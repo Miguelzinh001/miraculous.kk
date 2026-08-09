@@ -7,494 +7,560 @@
 
 <style>
 :root{
---bg:#07070a;
---p:#111116;
---line:#292933;
---txt:#f7f7fb;
---muted:#aaaab5;
---red:#e62b45;
+  --bg:#07070a;
+  --panel:#111116;
+  --panel2:#09090d;
+  --line:#292933;
+  --text:#f7f7fb;
+  --muted:#aaaab5;
+  --red:#e62b45;
 }
 
 *{box-sizing:border-box}
 
-html{scroll-behavior:smooth}
+html{
+  scroll-behavior:smooth;
+}
 
 body{
-margin:0;
-background:var(--bg);
-color:var(--txt);
-font:15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-min-height:100vh;
+  margin:0;
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--text);
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 
-#backgroundLayer{
-position:fixed;
-inset:0;
-z-index:-2;
-overflow:hidden;
-pointer-events:none;
-background:#07070a;
+button,
+input,
+textarea,
+select{
+  font:inherit;
 }
 
-#backgroundImage,
-#backgroundVideo{
-width:100%;
-height:100%;
-object-fit:cover;
-display:none;
-}
-
-#backgroundOverlay{
-position:absolute;
-inset:0;
-background:rgba(0,0,0,.62);
+button{
+  cursor:pointer;
 }
 
 a{
-color:inherit;
-text-decoration:none;
+  color:inherit;
+  text-decoration:none;
 }
 
-button,input,textarea,select{
-font:inherit;
+#background{
+  position:fixed;
+  inset:0;
+  z-index:-10;
+  overflow:hidden;
+  background:#07070a;
 }
 
-button{cursor:pointer}
+#background img,
+#background video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:none;
+}
+
+#backgroundOverlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.65);
+}
 
 .top{
-min-height:70px;
-display:flex;
-align-items:center;
-gap:18px;
-padding:12px 6vw;
-border-bottom:1px solid #17171c;
-background:rgba(8,8,11,.92);
-backdrop-filter:blur(14px);
-position:sticky;
-top:0;
-z-index:20;
+  position:sticky;
+  top:0;
+  z-index:50;
+  min-height:70px;
+  display:flex;
+  align-items:center;
+  gap:18px;
+  padding:12px 6vw;
+  background:rgba(8,8,11,.94);
+  border-bottom:1px solid #17171c;
+  backdrop-filter:blur(15px);
 }
 
 .brand{
-font-size:22px;
-font-weight:900;
-white-space:nowrap;
+  font-size:22px;
+  font-weight:900;
+  white-space:nowrap;
 }
 
-.brand span{color:var(--red)}
+.brand span{
+  color:var(--red);
+}
 
 .update{
-flex:1;
-color:var(--muted);
-font-size:11px;
+  flex:1;
+  color:var(--muted);
+  font-size:11px;
 }
 
 nav{
-display:flex;
-gap:20px;
-color:var(--muted);
+  display:flex;
+  gap:20px;
+  color:var(--muted);
 }
 
 .btn{
-border:1px solid var(--line);
-background:#121218;
-color:#fff;
-border-radius:10px;
-padding:10px 15px;
-transition:.15s;
+  border:1px solid var(--line);
+  background:#121218;
+  color:white;
+  border-radius:10px;
+  padding:10px 15px;
 }
 
 .btn:hover{
-border-color:#444450;
+  border-color:#555562;
 }
 
 .primary{
-background:var(--red);
-border-color:var(--red);
-}
-
-.hero{
-min-height:460px;
-padding:75px 8vw;
-display:grid;
-grid-template-columns:1.3fr .7fr;
-gap:40px;
-align-items:center;
-}
-
-.ey{
-font-size:11px;
-letter-spacing:2px;
-color:#ff6377;
-font-weight:800;
-}
-
-.hero h1{
-font-size:clamp(45px,7vw,82px);
-line-height:.95;
-letter-spacing:-4px;
-margin:10px 0;
-}
-
-.hero h1 span{color:var(--red)}
-
-.hero p{
-color:var(--muted);
-font-size:18px;
-line-height:1.6;
-max-width:620px;
-}
-
-.actions{
-display:flex;
-gap:10px;
-margin-top:25px;
-flex-wrap:wrap;
-}
-
-.showcase{
-height:270px;
-border:1px solid #3a2028;
-border-radius:25px;
-background:linear-gradient(145deg,#29111a,#101015);
-display:grid;
-place-items:center;
-font-size:85px;
-box-shadow:0 30px 100px #0008;
-}
-
-.sec{
-padding:60px 8vw;
-border-top:1px solid #14141a;
-background:rgba(7,7,10,.35);
-}
-
-.head{
-display:flex;
-justify-content:space-between;
-align-items:end;
-gap:15px;
-margin-bottom:25px;
-}
-
-.head h2,.sec h2{
-font-size:35px;
-margin:5px 0;
-letter-spacing:-1.5px;
-}
-
-.search,input,textarea,select{
-background:#09090d;
-border:1px solid var(--line);
-color:#fff;
-border-radius:10px;
-padding:12px;
-}
-
-input[type=file]{padding:9px}
-
-.search{width:min(330px,100%)}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:15px;
-}
-
-.card{
-background:rgba(17,17,22,.95);
-border:1px solid var(--line);
-border-radius:16px;
-overflow:hidden;
-}
-
-.thumb{
-aspect-ratio:16/9;
-background:linear-gradient(135deg,#271018,#17171d);
-display:grid;
-place-items:center;
-font-size:40px;
-overflow:hidden;
-}
-
-.thumb img{
-width:100%;
-height:100%;
-object-fit:cover;
-display:block;
-}
-
-.body{padding:14px}
-
-.meta{
-color:#858591;
-font-size:12px;
-margin-top:6px;
-}
-
-.muted{
-color:var(--muted);
-line-height:1.7;
-}
-
-.features{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-}
-
-.feature{
-background:rgba(17,17,22,.95);
-border:1px solid var(--line);
-padding:18px;
-border-radius:14px;
-}
-
-.feature span{
-display:block;
-color:var(--muted);
-font-size:13px;
-margin-top:4px;
-}
-
-footer{
-padding:30px 8vw;
-color:#70707b;
-border-top:1px solid #14141a;
-}
-
-.modal{
-position:fixed;
-inset:0;
-background:#000c;
-display:grid;
-place-items:center;
-padding:15px;
-z-index:100;
-}
-
-.hide{display:none!important}
-
-.box{
-position:relative;
-width:min(760px,100%);
-max-height:92vh;
-overflow:auto;
-background:#101015;
-border:1px solid var(--line);
-border-radius:20px;
-padding:28px;
-}
-
-.close{
-position:absolute;
-right:15px;
-top:8px;
-background:none;
-border:0;
-color:#aaa;
-font-size:28px;
-}
-
-.box input,
-.box textarea,
-.box select{
-width:100%;
-margin:6px 0;
-}
-
-.form{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:8px;
-}
-
-.full{
-grid-column:1/-1;
-}
-
-.field{
-display:flex;
-flex-direction:column;
-gap:3px;
-}
-
-.field label{
-color:var(--muted);
-font-size:12px;
-}
-
-.stats{
-display:flex;
-gap:10px;
-margin:18px 0;
-}
-
-.stat{
-background:#09090d;
-border:1px solid var(--line);
-padding:12px;
-border-radius:10px;
-flex:1;
-}
-
-.list{
-margin:18px 0;
-display:grid;
-gap:8px;
-}
-
-.item{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:10px;
-padding:12px;
-background:#09090d;
-border:1px solid var(--line);
-border-radius:10px;
-}
-
-.item-actions{
-display:flex;
-gap:6px;
-flex-wrap:wrap;
+  background:var(--red);
+  border-color:var(--red);
 }
 
 .danger{
-background:#38111a;
-border:1px solid #5a1a26;
-color:#ff8a99;
-border-radius:8px;
-padding:7px 10px;
+  background:#38111a;
+  border:1px solid #5a1a26;
+  color:#ff9aaa;
+  border-radius:8px;
+  padding:8px 11px;
+}
+
+.hero{
+  min-height:470px;
+  padding:75px 8vw;
+  display:grid;
+  grid-template-columns:1.3fr .7fr;
+  gap:40px;
+  align-items:center;
+}
+
+.ey{
+  color:#ff6377;
+  font-size:11px;
+  letter-spacing:2px;
+  font-weight:900;
+}
+
+.hero h1{
+  font-size:clamp(45px,7vw,82px);
+  line-height:.95;
+  letter-spacing:-4px;
+  margin:10px 0;
+}
+
+.hero h1 span{
+  color:var(--red);
+}
+
+.hero p{
+  max-width:620px;
+  color:var(--muted);
+  font-size:18px;
+  line-height:1.6;
+}
+
+.actions{
+  display:flex;
+  gap:10px;
+  margin-top:25px;
+  flex-wrap:wrap;
+}
+
+.showcase{
+  height:270px;
+  border:1px solid #3a2028;
+  border-radius:25px;
+  background:linear-gradient(145deg,#29111a,#101015);
+  display:grid;
+  place-items:center;
+  font-size:85px;
+  box-shadow:0 30px 100px #0008;
+}
+
+.sec{
+  padding:60px 8vw;
+  border-top:1px solid #14141a;
+  background:rgba(7,7,10,.38);
+}
+
+.head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:15px;
+  margin-bottom:25px;
+}
+
+h2{
+  font-size:35px;
+  margin:5px 0 20px;
+  letter-spacing:-1.5px;
+}
+
+.search,
+input,
+textarea,
+select{
+  width:100%;
+  background:#09090d;
+  border:1px solid var(--line);
+  color:white;
+  border-radius:10px;
+  padding:12px;
+  outline:none;
+}
+
+.search{
+  width:min(330px,100%);
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+  border-color:#555562;
+}
+
+textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+input[type=file]{
+  padding:9px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+
+.card{
+  background:rgba(17,17,22,.96);
+  border:1px solid var(--line);
+  border-radius:16px;
+  overflow:hidden;
+}
+
+.thumb{
+  aspect-ratio:16/9;
+  background:linear-gradient(135deg,#271018,#17171d);
+  display:grid;
+  place-items:center;
+  font-size:42px;
+  overflow:hidden;
+}
+
+.thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.body{
+  padding:14px;
+}
+
+.meta{
+  color:#858591;
+  font-size:12px;
+  margin-top:6px;
+}
+
+.muted{
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.features{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.feature{
+  background:rgba(17,17,22,.96);
+  border:1px solid var(--line);
+  padding:18px;
+  border-radius:14px;
+}
+
+.feature span{
+  display:block;
+  color:var(--muted);
+  font-size:13px;
+  margin-top:5px;
+}
+
+.announcement{
+  background:rgba(17,17,22,.96);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:16px;
+  margin:10px 0;
+}
+
+.announcement-label{
+  display:inline-block;
+  color:white;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:1px;
+  border-radius:7px;
+  padding:5px 9px;
+  margin-bottom:8px;
+}
+
+.announcement-title{
+  font-size:18px;
+  font-weight:800;
+  margin-bottom:4px;
+}
+
+footer{
+  padding:30px 8vw;
+  color:#70707b;
+  border-top:1px solid #14141a;
+}
+
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  background:#000c;
+  display:grid;
+  place-items:center;
+  padding:15px;
+}
+
+.hide{
+  display:none!important;
+}
+
+.box{
+  width:min(760px,100%);
+  max-height:92vh;
+  overflow:auto;
+  position:relative;
+  background:#101015;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:28px;
+}
+
+.close{
+  position:absolute;
+  right:15px;
+  top:8px;
+  background:none;
+  border:0;
+  color:#aaa;
+  font-size:28px;
+}
+
+.form{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+}
+
+.full{
+  grid-column:1/-1;
+}
+
+.field label{
+  display:block;
+  color:var(--muted);
+  font-size:12px;
+  margin-bottom:3px;
+}
+
+.stats{
+  display:flex;
+  gap:10px;
+  margin:18px 0;
+}
+
+.stat{
+  flex:1;
+  background:#09090d;
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:12px;
+}
+
+.list{
+  display:grid;
+  gap:8px;
+  margin-top:15px;
+}
+
+.item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  background:#09090d;
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:12px;
+}
+
+.item-actions{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
 }
 
 .notice{
-padding:12px;
-border:1px solid var(--line);
-background:#09090d;
-border-radius:10px;
-margin:10px 0;
+  border:1px solid var(--line);
+  background:#09090d;
+  border-radius:10px;
+  padding:12px;
+  margin-top:10px;
 }
 
-.success{color:#70e090}
-.error{color:#ff6377}
-
-.color-row{
-display:flex;
-align-items:center;
-gap:10px;
+.success{
+  color:#70e090;
 }
 
-.color-row input[type=color]{
-width:60px;
-height:45px;
-padding:3px;
+.error{
+  color:#ff6377;
 }
 
-.preview-label{
-display:inline-block;
-padding:5px 9px;
-border-radius:7px;
-color:#fff;
-font-size:10px;
-font-weight:900;
-letter-spacing:1px;
+.colorRow{
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
-.progress{
-height:6px;
-background:#24242b;
-border-radius:20px;
-overflow:hidden;
-margin-top:10px;
-display:none;
+.colorRow input[type=color]{
+  width:60px;
+  height:45px;
+  padding:3px;
 }
 
-.progress div{
-height:100%;
-width:0%;
-background:var(--red);
-transition:width .1s;
+.preview{
+  color:white;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:1px;
+  padding:6px 9px;
+  border-radius:7px;
+}
+
+hr{
+  border:0;
+  border-top:1px solid var(--line);
+  margin:25px 0;
 }
 
 @media(max-width:850px){
 
-nav{display:none}
+  nav{
+    display:none;
+  }
 
-.hero{
-grid-template-columns:1fr;
-padding-top:50px;
-}
+  .hero{
+    grid-template-columns:1fr;
+    padding-top:50px;
+  }
 
-.showcase{display:none}
+  .showcase{
+    display:none;
+  }
 
-.grid{
-grid-template-columns:repeat(2,1fr);
-}
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+  }
 
-.head{
-flex-direction:column;
-align-items:stretch;
-}
+  .head{
+    flex-direction:column;
+    align-items:stretch;
+  }
 
-.search{width:100%}
-
+  .search{
+    width:100%;
+  }
 }
 
 @media(max-width:520px){
 
-.grid{grid-template-columns:1fr}
+  .top{
+    padding:10px 15px;
+  }
 
-.form{
-grid-template-columns:1fr;
-}
+  .update{
+    font-size:9px;
+  }
 
-.full{grid-column:auto}
+  .hero{
+    padding:55px 20px;
+  }
 
-.hero h1{letter-spacing:-2px}
+  .hero h1{
+    letter-spacing:-2px;
+  }
 
-.stats{
-flex-direction:column;
-}
+  .sec{
+    padding:45px 20px;
+  }
 
-.box{padding:22px}
+  .grid{
+    grid-template-columns:1fr;
+  }
 
-.top{gap:10px}
+  .form{
+    grid-template-columns:1fr;
+  }
 
-.update{font-size:10px}
+  .full{
+    grid-column:auto;
+  }
 
+  .stats{
+    flex-direction:column;
+  }
+
+  .box{
+    padding:22px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div id="backgroundLayer">
-<img id="backgroundImage" alt="">
-<video id="backgroundVideo" autoplay muted loop playsinline></video>
-<div id="backgroundOverlay"></div>
+<div id="background">
+  <img id="bgImage" alt="">
+  <video id="bgVideo" autoplay muted loop playsinline></video>
+  <div id="backgroundOverlay"></div>
 </div>
 
 <header class="top">
 
-<a class="brand" href="#">
-miraculous<span>.kk</span>
-</a>
+  <a class="brand" href="#">
+    miraculous<span>.kk</span>
+  </a>
 
-<div class="update" id="updateText">
-Update feita agora
-</div>
+  <div class="update" id="updateText">
+    Update feita agora
+  </div>
 
-<nav>
-<a href="#catalogo">Catálogo</a>
-<a href="#anuncios">Anúncios</a>
-<a href="#func">Funcionalidades</a>
-</nav>
+  <nav>
+    <a href="#catalogo">Catálogo</a>
+    <a href="#anuncios">Anúncios</a>
+    <a href="#func">Funcionalidades</a>
+  </nav>
 
-<button class="btn" id="loginOpen">
-Admin
-</button>
+  <button class="btn" id="loginOpen">
+    Admin
+  </button>
 
 </header>
 
@@ -502,124 +568,129 @@ Admin
 
 <section class="hero">
 
-<div>
+  <div>
 
-<div class="ey">
-THE MIRACULOUS HUB
-</div>
+    <div class="ey">
+      THE MIRACULOUS HUB
+    </div>
 
-<h1>
-O teu lugar para <span>Miraculous.</span>
-</h1>
+    <h1>
+      O teu lugar para <span>Miraculous.</span>
+    </h1>
 
-<p>
-Catálogo, episódios, especiais, idiomas, legendas e novidades — tudo num só lugar.
-</p>
+    <p>
+      Catálogo, episódios, especiais, idiomas, legendas e novidades — tudo num só lugar.
+    </p>
 
-<div class="actions">
+    <div class="actions">
 
-<a class="btn primary" href="#catalogo">
-Explorar catálogo
-</a>
+      <a class="btn primary" href="#catalogo">
+        Explorar catálogo
+      </a>
 
-<a class="btn" href="#anuncios">
-Anúncios
-</a>
+      <a class="btn" href="#anuncios">
+        Anúncios
+      </a>
 
-</div>
+    </div>
 
-</div>
+  </div>
 
-<div class="showcase">
-🐞
-</div>
+  <div class="showcase">
+    🐞
+  </div>
 
 </section>
+
 
 <section class="sec" id="anuncios">
 
-<div class="ey">
-ANÚNCIOS
-</div>
+  <div class="ey">
+    ANÚNCIOS
+  </div>
 
-<h2>
-Últimas novidades
-</h2>
+  <h2>
+    Últimas novidades
+  </h2>
 
-<div id="announcements">
-<p class="muted">Ainda não existem anúncios.</p>
-</div>
+  <div id="announcements">
+    <p class="muted">
+      Ainda não existem anúncios.
+    </p>
+  </div>
 
 </section>
+
 
 <section class="sec" id="catalogo">
 
-<div class="head">
+  <div class="head">
 
-<div>
+    <div>
 
-<div class="ey">
-CATÁLOGO
-</div>
+      <div class="ey">
+        CATÁLOGO
+      </div>
 
-<h2>
-Temporadas e episódios
-</h2>
+      <h2>
+        Temporadas e episódios
+      </h2>
 
-</div>
+    </div>
 
-<input
-id="search"
-class="search"
-placeholder="Pesquisar episódios..."
->
+    <input
+      id="search"
+      class="search"
+      placeholder="Pesquisar episódios..."
+    >
 
-</div>
+  </div>
 
-<div id="grid" class="grid"></div>
+  <div id="grid" class="grid"></div>
 
 </section>
 
+
 <section class="sec" id="func">
 
-<div class="ey">
-PLATAFORMA
-</div>
+  <div class="ey">
+    PLATAFORMA
+  </div>
 
-<h2>
-Feito para crescer
-</h2>
+  <h2>
+    Feito para crescer
+  </h2>
 
-<div class="features">
+  <div class="features">
 
-<div class="feature">
-🎬 <b>Episódios</b>
-<span>Catálogo organizado por temporadas e episódios.</span>
-</div>
+    <div class="feature">
+      🎬 <b>Episódios</b>
+      <span>Catálogo organizado por temporadas e episódios.</span>
+    </div>
 
-<div class="feature">
-🖼️ <b>Thumbnails</b>
-<span>Imagem personalizada para cada episódio.</span>
-</div>
+    <div class="feature">
+      🖼️ <b>Thumbnails</b>
+      <span>Imagem personalizada para cada episódio.</span>
+    </div>
 
-<div class="feature">
-🌍 <b>Idiomas</b>
-<span>Organiza PT-PT e outros idiomas.</span>
-</div>
+    <div class="feature">
+      🌍 <b>Idiomas</b>
+      <span>Organização de idiomas e legendas.</span>
+    </div>
 
-<div class="feature">
-📢 <b>Anúncios</b>
-<span>Destaca novidades com cores personalizadas.</span>
-</div>
+    <div class="feature">
+      📢 <b>Anúncios</b>
+      <span>Destaca novidades com cores personalizadas.</span>
+    </div>
 
-</div>
+  </div>
 
 </section>
 
 </main>
 
 <footer>
-© miraculous.kk — fan project
+  © miraculous.kk — fan project
 </footer>
 
 
@@ -627,38 +698,42 @@ Feito para crescer
 
 <div id="login" class="modal hide">
 
-<div class="box" style="max-width:420px">
+  <div class="box" style="max-width:420px">
 
-<button class="close" id="loginClose">×</button>
+    <button class="close" id="loginClose">×</button>
 
-<div class="ey">ADMIN</div>
+    <div class="ey">
+      ADMIN
+    </div>
 
-<h2>Entrar</h2>
+    <h2>
+      Entrar
+    </h2>
 
-<input
-id="user"
-placeholder="Utilizador"
-autocomplete="username"
->
+    <input
+      id="user"
+      placeholder="Utilizador"
+      autocomplete="username"
+    >
 
-<input
-id="pass"
-type="password"
-placeholder="Palavra-passe"
-autocomplete="current-password"
->
+    <input
+      id="pass"
+      type="password"
+      placeholder="Palavra-passe"
+      autocomplete="current-password"
+    >
 
-<button
-class="btn primary"
-style="width:100%;margin-top:8px"
-id="loginBtn"
->
-Entrar
-</button>
+    <button
+      class="btn primary"
+      id="loginBtn"
+      style="width:100%;margin-top:8px"
+    >
+      Entrar
+    </button>
 
-<p id="err" class="error"></p>
+    <p id="loginError" class="error"></p>
 
-</div>
+  </div>
 
 </div>
 
@@ -667,1644 +742,1943 @@ Entrar
 
 <div id="admin" class="modal hide">
 
-<div class="box">
+  <div class="box">
+
+    <button class="close" id="adminClose">×</button>
 
-<button class="close" id="adminClose">×</button>
+    <div class="ey">
+      DASHBOARD
+    </div>
 
-<div class="ey">DASHBOARD</div>
+    <h2>
+      Painel miraculous.kk
+    </h2>
 
-<h2>Painel miraculous.kk</h2>
+    <div class="stats">
 
-<div class="stats">
+      <div class="stat">
+        <b id="episodeCount">0</b>
+        <br>
+        <small class="muted">episódios</small>
+      </div>
 
-<div class="stat">
-<b id="count">0</b>
-<br>
-<small class="muted">episódios</small>
-</div>
+      <div class="stat">
+        <b id="announcementCount">0</b>
+        <br>
+        <small class="muted">anúncios</small>
+      </div>
 
-<div class="stat">
-<b id="announcementCount">0</b>
-<br>
-<small class="muted">anúncios</small>
-</div>
+    </div>
 
-</div>
 
+    <!-- EPISÓDIO -->
 
-<h3 id="episodeFormTitle">
-Adicionar episódio
-</h3>
+    <h3 id="episodeTitle">
+      Adicionar episódio
+    </h3>
 
-<div class="form">
+    <div class="form">
 
-<div class="field">
-<label>Título</label>
-<input id="title" placeholder="Título">
-</div>
+      <div class="field">
+        <label>Título</label>
+        <input id="title" placeholder="Título">
+      </div>
 
-<div class="field">
-<label>Temporada</label>
-<input id="season" placeholder="S6">
-</div>
+      <div class="field">
+        <label>Temporada</label>
+        <input id="season" placeholder="S6">
+      </div>
 
-<div class="field">
-<label>Número</label>
-<input id="number" placeholder="1">
-</div>
+      <div class="field">
+        <label>Episódio</label>
+        <input id="number" placeholder="1">
+      </div>
 
-<div class="field">
-<label>Idioma</label>
-<input id="lang" placeholder="PT-PT">
-</div>
+      <div class="field">
+        <label>Idioma</label>
+        <input id="lang" placeholder="PT-PT">
+      </div>
 
-<div class="field full">
+      <div class="field full">
+        <label>Thumbnail — opcional</label>
+        <input
+          id="thumbnail"
+          type="file"
+          accept="image/*"
+        >
+        <small class="muted">
+          A thumbnail é opcional. Se falhar, o episódio continua a ser publicado.
+        </small>
+      </div>
 
-<label>Thumbnail</label>
+      <div class="field full">
+        <label>Descrição</label>
+        <textarea
+          id="description"
+          placeholder="Descrição do episódio"
+        ></textarea>
+      </div>
 
-<input
-id="thumb"
-type="file"
-accept="image/*"
->
+    </div>
 
-</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
 
-<div class="field full">
+      <button
+        class="btn primary"
+        id="saveEpisode"
+      >
+        Guardar episódio
+      </button>
 
-<label>Descrição</label>
+      <button
+        class="btn"
+        id="cancelEdit"
+        style="display:none"
+      >
+        Cancelar edição
+      </button>
 
-<textarea
-id="desc"
-placeholder="Descrição do episódio"
-></textarea>
+    </div>
 
-</div>
+    <div id="episodeStatus"></div>
 
-</div>
 
-<div style="margin-top:10px">
+    <hr>
 
-<button
-class="btn primary"
-id="add"
->
-Guardar episódio
-</button>
 
-<button
-class="btn"
-id="cancelEdit"
-style="display:none"
->
-Cancelar edição
-</button>
+    <!-- ANÚNCIO -->
 
-</div>
+    <h3>
+      📢 Criar anúncio
+    </h3>
 
-<div class="progress" id="uploadProgress">
-<div id="progressBar"></div>
-</div>
+    <div class="form">
 
-<div id="status"></div>
+      <div class="field">
+        <label>Etiqueta</label>
 
+        <input
+          id="announcementLabel"
+          value="NOVIDADE"
+          placeholder="NOVIDADE"
+        >
+      </div>
 
-<hr style="border-color:#292933;margin:25px 0">
+      <div class="field">
+        <label>Título</label>
 
+        <input
+          id="announcementTitle"
+          placeholder="Nova atualização!"
+        >
+      </div>
 
-<h3>📢 Criar anúncio</h3>
+      <div class="field full">
+        <label>Texto</label>
 
-<div class="form">
+        <textarea
+          id="announcementText"
+          placeholder="Escreve o anúncio..."
+        ></textarea>
+      </div>
 
-<div class="field">
-<label>Etiqueta</label>
-<input
-id="announcementLabel"
-placeholder="NOVIDADE"
-value="NOVIDADE"
->
-</div>
+      <div class="field full">
 
-<div class="field">
-<label>Título</label>
-<input
-id="announcementTitle"
-placeholder="Nova atualização!"
->
-</div>
+        <label>Cor da etiqueta</label>
 
-<div class="field full">
+        <div class="colorRow">
 
-<label>Texto</label>
+          <input
+            id="announcementColor"
+            type="color"
+            value="#e62b45"
+          >
 
-<textarea
-id="announcementText"
-placeholder="Escreve aqui o anúncio..."
-></textarea>
+          <span
+            id="colorPreview"
+            class="preview"
+            style="background:#e62b45"
+          >
+            NOVIDADE
+          </span>
 
-</div>
+        </div>
 
-<div class="field full">
+      </div>
 
-<label>Cor da etiqueta</label>
+    </div>
 
-<div class="color-row">
+    <button
+      class="btn primary"
+      id="saveAnnouncement"
+      style="margin-top:8px"
+    >
+      Publicar anúncio
+    </button>
 
-<input
-id="announcementColor"
-type="color"
-value="#e62b45"
->
+    <div id="announcementStatus"></div>
 
-<span
-id="colorPreview"
-class="preview-label"
-style="background:#e62b45"
->
-NOVIDADE
-</span>
 
-</div>
+    <hr>
 
-</div>
 
-</div>
+    <!-- FUNDO -->
 
-<button
-class="btn primary"
-id="addAnnouncement"
-style="margin-top:8px"
->
-Publicar anúncio
-</button>
+    <h3>
+      🎨 Fundo do site
+    </h3>
 
-<div id="announcementStatus"></div>
+    <p class="muted">
+      Escolhe uma imagem ou vídeo para o fundo.
+    </p>
 
+    <div class="form">
 
-<hr style="border-color:#292933;margin:25px 0">
+      <div class="field">
+        <label>Imagem</label>
 
+        <input
+          id="backgroundImageFile"
+          type="file"
+          accept="image/*"
+        >
+      </div>
 
-<h3>🎨 Fundo do site</h3>
+      <div class="field">
+        <label>Vídeo</label>
 
-<p class="muted">
-Escolhe uma imagem ou vídeo para o fundo.
-</p>
+        <input
+          id="backgroundVideoFile"
+          type="file"
+          accept="video/*"
+        >
+      </div>
 
-<div class="form">
+    </div>
 
-<div class="field">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
 
-<label>Imagem</label>
+      <button
+        class="btn primary"
+        id="saveBackground"
+      >
+        Guardar fundo
+      </button>
 
-<input
-id="backgroundImageFile"
-type="file"
-accept="image/*"
->
+      <button
+        class="btn"
+        id="removeBackground"
+      >
+        Remover fundo
+      </button>
 
-</div>
+    </div>
 
-<div class="field">
+    <div id="backgroundStatus"></div>
 
-<label>Vídeo</label>
 
-<input
-id="backgroundVideoFile"
-type="file"
-accept="video/*"
->
+    <hr>
 
-</div>
 
-</div>
+    <!-- LISTA -->
 
-<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+    <h3>
+      📚 Episódios publicados
+    </h3>
 
-<button
-class="btn primary"
-id="saveBackground"
->
-Guardar fundo
-</button>
+    <div id="episodeList" class="list"></div>
 
-<button
-class="btn"
-id="removeBackground"
->
-Remover fundo
-</button>
-
-</div>
-
-<div id="backgroundStatus"></div>
-
-
-<hr style="border-color:#292933;margin:25px 0">
-
-
-<h3>📚 Episódios publicados</h3>
-
-<div id="list" class="list"></div>
-
-</div>
+  </div>
 
 </div>
 
 
 <script>
-
 "use strict";
 
-
-/* ==========================
-   CONFIG
-========================== */
+/* ==============================
+   CONFIGURAÇÃO
+================================ */
 
 const ADMIN_USER = "miguel";
 const ADMIN_PASS = "nemesis6";
 
-const DB_NAME = "miraculousKK";
-const DB_VERSION = 3;
+const DB_NAME = "miraculousKK_clean";
+const DB_VERSION = 1;
 
-let db = null;
+let database = null;
 let episodes = [];
 let announcements = [];
 let editingId = null;
 
 
-/* ==========================
+/* ==============================
    ATALHO
-========================== */
+================================ */
 
 const $ = id => document.getElementById(id);
 
 
-/* ==========================
+/* ==============================
    ESCAPE
-========================== */
+================================ */
 
-function esc(value=""){
+function escapeHTML(value){
 
-return String(value).replace(
-/[&<>"']/g,
+  return String(value ?? "").replace(
+    /[&<>"']/g,
+    function(char){
 
-m => ({
-"&":"&amp;",
-"<":"&lt;",
-">":"&gt;",
-'"':"&quot;",
-"'":"&#39;"
-}[m])
+      const map = {
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#039;"
+      };
 
-);
+      return map[char];
 
-}
-
-
-/* ==========================
-   ABRIR BD
-========================== */
-
-function openDB(){
-
-return new Promise((resolve,reject)=>{
-
-const request =
-indexedDB.open(
-DB_NAME,
-DB_VERSION
-);
-
-request.onupgradeneeded =
-event => {
-
-const database =
-event.target.result;
-
-if(
-!database.objectStoreNames.contains("episodes")
-){
-
-database.createObjectStore(
-"episodes",
-{keyPath:"id"}
-);
-
-}
-
-if(
-!database.objectStoreNames.contains("announcements")
-){
-
-database.createObjectStore(
-"announcements",
-{keyPath:"id"}
-);
-
-}
-
-if(
-!database.objectStoreNames.contains("settings")
-){
-
-database.createObjectStore(
-"settings",
-{keyPath:"id"}
-);
-
-}
-
-};
-
-request.onsuccess =
-event => {
-
-db =
-event.target.result;
-
-resolve(db);
-
-};
-
-request.onerror =
-() => reject(
-request.error
-);
-
-});
+    }
+  );
 
 }
 
 
-/* ==========================
-   BD HELPERS
-========================== */
+/* ==============================
+   ID SEGURO
+================================ */
 
-function getAll(store){
+function makeId(){
 
-return new Promise(
-(resolve,reject)=>{
+  if(
+    window.crypto &&
+    typeof window.crypto.randomUUID === "function"
+  ){
+    return window.crypto.randomUUID();
+  }
 
-const tx =
-db.transaction(
-store,
-"readonly"
-);
-
-const request =
-tx.objectStore(store).getAll();
-
-request.onsuccess =
-() => resolve(
-request.result || []
-);
-
-request.onerror =
-() => reject(
-request.error
-);
-
-});
+  return Date.now().toString() +
+         Math.random().toString(36).slice(2);
 
 }
 
 
-function put(store,data){
+/* ==============================
+   INDEXEDDB
+================================ */
 
-return new Promise(
-(resolve,reject)=>{
+function openDatabase(){
 
-const tx =
-db.transaction(
-store,
-"readwrite"
-);
+  return new Promise(function(resolve,reject){
 
-tx.objectStore(store).put(data);
+    const request =
+      indexedDB.open(
+        DB_NAME,
+        DB_VERSION
+      );
 
-tx.oncomplete =
-() => resolve();
+    request.onupgradeneeded =
+      function(event){
 
-tx.onerror =
-() => reject(
-tx.error
-);
+        const db =
+          event.target.result;
 
-});
+        if(
+          !db.objectStoreNames.contains("episodes")
+        ){
 
-}
+          db.createObjectStore(
+            "episodes",
+            {keyPath:"id"}
+          );
+
+        }
+
+        if(
+          !db.objectStoreNames.contains("announcements")
+        ){
+
+          db.createObjectStore(
+            "announcements",
+            {keyPath:"id"}
+          );
+
+        }
+
+        if(
+          !db.objectStoreNames.contains("settings")
+        ){
+
+          db.createObjectStore(
+            "settings",
+            {keyPath:"id"}
+          );
+
+        }
+
+      };
 
 
-function remove(store,id){
+    request.onsuccess =
+      function(event){
 
-return new Promise(
-(resolve,reject)=>{
+        database =
+          event.target.result;
 
-const tx =
-db.transaction(
-store,
-"readwrite"
-);
+        database.onversionchange =
+          function(){
 
-tx.objectStore(store).delete(id);
+            database.close();
 
-tx.oncomplete =
-() => resolve();
+          };
 
-tx.onerror =
-() => reject(
-tx.error
-);
+        resolve(database);
 
-});
-
-}
+      };
 
 
-/* ==========================
-   THUMBNAIL ANDROID
-========================== */
+    request.onerror =
+      function(){
 
-/*
-   Esta função tenta primeiro copiar
-   o ficheiro para memória usando
-   arrayBuffer.
+        reject(
+          request.error ||
+          new Error("Não foi possível abrir a base de dados.")
+        );
 
-   Se o Android bloquear o acesso,
-   devolve vazio em vez de impedir
-   a publicação.
-*/
+      };
 
-async function readThumbnail(file){
-
-if(!file){
-return "";
-}
-
-try{
-
-const buffer =
-await file.arrayBuffer();
-
-if(!buffer || buffer.byteLength === 0){
-return "";
-}
-
-const blob =
-new Blob(
-[buffer],
-{
-type:
-file.type ||
-"image/jpeg"
-}
-);
-
-return await blobToDataURL(blob);
-
-}catch(error){
-
-console.warn(
-"Thumbnail não pôde ser lida:",
-error
-);
-
-return "";
-
-}
+  });
 
 }
 
 
-function blobToDataURL(blob){
+/* ==============================
+   GET ALL
+================================ */
 
-return new Promise(
-(resolve,reject)=>{
+function dbGetAll(storeName){
 
-const reader =
-new FileReader();
+  return new Promise(function(resolve,reject){
 
-reader.onload =
-() => resolve(
-reader.result
-);
+    try{
 
-reader.onerror =
-() => reject(
-reader.error
-);
+      const transaction =
+        database.transaction(
+          storeName,
+          "readonly"
+        );
 
-reader.readAsDataURL(blob);
+      const store =
+        transaction.objectStore(
+          storeName
+        );
 
-});
+      const request =
+        store.getAll();
 
-}
+      request.onsuccess =
+        function(){
 
+          resolve(
+            request.result || []
+          );
 
-/* ==========================
-   CARREGAR
-========================== */
+        };
 
-async function loadData(){
+      request.onerror =
+        function(){
 
-episodes =
-await getAll(
-"episodes"
-);
+          reject(
+            request.error
+          );
 
-announcements =
-await getAll(
-"announcements"
-);
+        };
 
-render();
-renderAnnouncements();
-await loadBackground();
+    }catch(error){
 
-}
+      reject(error);
 
+    }
 
-/* ==========================
-   RENDER
-========================== */
-
-function render(){
-
-const query =
-$("search")
-.value
-.toLowerCase()
-.trim();
-
-
-const filtered =
-episodes.filter(
-episode => {
-
-const text =
-`${episode.title}
-${episode.season}
-${episode.number}
-${episode.lang}`
-.toLowerCase();
-
-return text.includes(query);
-
-});
-
-
-$("grid").innerHTML =
-filtered.map(
-episode => {
-
-const thumbnail =
-episode.thumbnail
-? `
-<img
-src="${episode.thumbnail}"
-alt=""
-loading="lazy"
->
-`
-: "🐞";
-
-
-return `
-
-<article class="card">
-
-<div class="thumb">
-${thumbnail}
-</div>
-
-<div class="body">
-
-<b>
-${esc(episode.title)}
-</b>
-
-<div class="meta">
-${esc(episode.season)}
-·
-${esc(episode.number)}
-·
-${esc(episode.lang || "—")}
-</div>
-
-${
-episode.desc
-?
-`<p class="muted">
-${esc(episode.desc)}
-</p>`
-:
-""
-}
-
-</div>
-
-</article>
-
-`;
-
-}).join("")
-
-||
-
-'<p class="muted">Nenhum episódio encontrado.</p>';
-
-
-$("count").textContent =
-episodes.length;
-
-renderAdminList();
+  });
 
 }
 
 
-/* ==========================
-   ADMIN LIST
-========================== */
+/* ==============================
+   PUT
+================================ */
 
-function renderAdminList(){
+function dbPut(storeName,data){
 
-$("list").innerHTML =
-episodes.map(
-episode => `
+  return new Promise(function(resolve,reject){
 
-<div class="item">
+    try{
 
-<div>
+      const transaction =
+        database.transaction(
+          storeName,
+          "readwrite"
+        );
 
-<b>
-${esc(episode.title)}
-</b>
+      transaction.oncomplete =
+        function(){
 
-<div class="meta">
-${esc(episode.season)}
-·
-${esc(episode.number)}
-·
-${esc(episode.lang || "—")}
-</div>
+          resolve();
 
-</div>
+        };
 
-<div class="item-actions">
+      transaction.onerror =
+        function(){
 
-<button
-class="btn"
-onclick="editEpisode('${episode.id}')"
->
-✏️
-</button>
+          reject(
+            transaction.error ||
+            new Error("Erro ao guardar.")
+          );
 
-<button
-class="danger"
-onclick="deleteEpisode('${episode.id}')"
->
-🗑️
-</button>
+        };
 
-</div>
+      transaction.onabort =
+        function(){
 
-</div>
+          reject(
+            transaction.error ||
+            new Error("Operação cancelada.")
+          );
 
-`
-).join("")
+        };
 
-||
+      transaction
+        .objectStore(storeName)
+        .put(data);
 
-'<p class="muted">Ainda não existem episódios.</p>';
+    }catch(error){
+
+      reject(error);
+
+    }
+
+  });
 
 }
 
 
-/* ==========================
+/* ==============================
    DELETE
-========================== */
+================================ */
 
-window.deleteEpisode =
-async function(id){
+function dbDelete(storeName,id){
 
-if(
-!confirm(
-"Queres mesmo apagar este episódio?"
-)
-){
-return;
+  return new Promise(function(resolve,reject){
+
+    try{
+
+      const transaction =
+        database.transaction(
+          storeName,
+          "readwrite"
+        );
+
+      transaction.oncomplete =
+        function(){
+
+          resolve();
+
+        };
+
+      transaction.onerror =
+        function(){
+
+          reject(
+            transaction.error
+          );
+
+        };
+
+      transaction
+        .objectStore(storeName)
+        .delete(id);
+
+    }catch(error){
+
+      reject(error);
+
+    }
+
+  });
+
 }
 
-try{
 
-await remove(
-"episodes",
-id
-);
+/* ==============================
+   IMAGEM
+   COMPRIMIDA
+================================ */
 
-await loadData();
+function compressImage(file){
 
-}catch(error){
+  return new Promise(function(resolve,reject){
 
-console.error(error);
+    if(!file){
 
-alert(
-"Não foi possível apagar."
-);
+      resolve("");
+
+      return;
+
+    }
+
+    const reader =
+      new FileReader();
+
+    reader.onload =
+      function(){
+
+        const image =
+          new Image();
+
+        image.onload =
+          function(){
+
+            const maxWidth = 1000;
+
+            let width =
+              image.naturalWidth;
+
+            let height =
+              image.naturalHeight;
+
+
+            if(width > maxWidth){
+
+              const ratio =
+                maxWidth / width;
+
+              width =
+                Math.round(width * ratio);
+
+              height =
+                Math.round(height * ratio);
+
+            }
+
+
+            const canvas =
+              document.createElement("canvas");
+
+            canvas.width =
+              width;
+
+            canvas.height =
+              height;
+
+
+            const context =
+              canvas.getContext("2d");
+
+            context.drawImage(
+              image,
+              0,
+              0,
+              width,
+              height
+            );
+
+
+            resolve(
+              canvas.toDataURL(
+                "image/jpeg",
+                0.78
+              )
+            );
+
+          };
+
+
+        image.onerror =
+          function(){
+
+            reject(
+              new Error("A imagem não pôde ser processada.")
+            );
+
+          };
+
+
+        image.src =
+          reader.result;
+
+      };
+
+
+    reader.onerror =
+      function(){
+
+        reject(
+          new Error("Não foi possível ler a imagem.")
+        );
+
+      };
+
+
+    reader.readAsDataURL(file);
+
+  });
 
 }
+
+
+/* ==============================
+   VIDEO PARA FUNDO
+================================ */
+
+function readFileAsDataURL(file){
+
+  return new Promise(function(resolve,reject){
+
+    const reader =
+      new FileReader();
+
+    reader.onload =
+      function(){
+
+        resolve(
+          reader.result
+        );
+
+      };
+
+    reader.onerror =
+      function(){
+
+        reject(
+          reader.error ||
+          new Error("Não foi possível ler o ficheiro.")
+        );
+
+      };
+
+    reader.readAsDataURL(file);
+
+  });
+
+}
+
+
+/* ==============================
+   CARREGAR DADOS
+================================ */
+
+async function loadAll(){
+
+  episodes =
+    await dbGetAll("episodes");
+
+  announcements =
+    await dbGetAll("announcements");
+
+  episodes.sort(
+    function(a,b){
+      return (b.createdAt || 0) -
+             (a.createdAt || 0);
+    }
+  );
+
+  announcements.sort(
+    function(a,b){
+      return (b.createdAt || 0) -
+             (a.createdAt || 0);
+    }
+  );
+
+  renderEpisodes();
+  renderAdminEpisodes();
+  renderAnnouncements();
+  await loadBackground();
+
+}
+
+
+/* ==============================
+   RENDER EPISÓDIOS
+================================ */
+
+function renderEpisodes(){
+
+  const query =
+    $("search").value
+      .trim()
+      .toLowerCase();
+
+
+  const filtered =
+    episodes.filter(
+      function(episode){
+
+        const text =
+          (
+            episode.title + " " +
+            episode.season + " " +
+            episode.number + " " +
+            episode.lang
+          ).toLowerCase();
+
+        return text.includes(query);
+
+      }
+    );
+
+
+  if(!filtered.length){
+
+    $("grid").innerHTML =
+      '<p class="muted">Nenhum episódio encontrado.</p>';
+
+  }else{
+
+    $("grid").innerHTML =
+      filtered.map(
+        function(episode){
+
+          const image =
+            episode.thumbnail
+            ?
+            `<img src="${episode.thumbnail}" alt="">`
+            :
+            "🐞";
+
+
+          return `
+            <article class="card">
+
+              <div class="thumb">
+                ${image}
+              </div>
+
+              <div class="body">
+
+                <b>
+                  ${escapeHTML(episode.title)}
+                </b>
+
+                <div class="meta">
+                  ${escapeHTML(episode.season)}
+                  ·
+                  ${escapeHTML(episode.number)}
+                  ·
+                  ${escapeHTML(episode.lang || "—")}
+                </div>
+
+                ${
+                  episode.description
+                  ?
+                  `<p class="muted">
+                    ${escapeHTML(episode.description)}
+                  </p>`
+                  :
+                  ""
+                }
+
+              </div>
+
+            </article>
+          `;
+
+        }
+      ).join("");
+
+  }
+
+
+  $("episodeCount").textContent =
+    episodes.length;
+
+}
+
+
+/* ==============================
+   LISTA ADMIN
+================================ */
+
+function renderAdminEpisodes(){
+
+  if(!episodes.length){
+
+    $("episodeList").innerHTML =
+      '<p class="muted">Ainda não existem episódios.</p>';
+
+    return;
+
+  }
+
+
+  $("episodeList").innerHTML =
+    episodes.map(
+      function(episode){
+
+        return `
+          <div class="item">
+
+            <div>
+
+              <b>
+                ${escapeHTML(episode.title)}
+              </b>
+
+              <div class="meta">
+                ${escapeHTML(episode.season)}
+                ·
+                ${escapeHTML(episode.number)}
+                ·
+                ${escapeHTML(episode.lang || "—")}
+              </div>
+
+            </div>
+
+            <div class="item-actions">
+
+              <button
+                class="btn"
+                data-edit="${escapeHTML(episode.id)}"
+              >
+                ✏️
+              </button>
+
+              <button
+                class="danger"
+                data-delete="${escapeHTML(episode.id)}"
+              >
+                🗑️
+              </button>
+
+            </div>
+
+          </div>
+        `;
+
+      }
+    ).join("");
+
+
+  document
+    .querySelectorAll("[data-edit]")
+    .forEach(
+      function(button){
+
+        button.onclick =
+          function(){
+
+            editEpisode(
+              button.dataset.edit
+            );
+
+          };
+
+      }
+    );
+
+
+  document
+    .querySelectorAll("[data-delete]")
+    .forEach(
+      function(button){
+
+        button.onclick =
+          function(){
+
+            deleteEpisode(
+              button.dataset.delete
+            );
+
+          };
+
+      }
+    );
+
+}
+
+
+/* ==============================
+   PUBLICAR / EDITAR
+================================ */
+
+$("saveEpisode").onclick =
+async function(){
+
+  const button =
+    $("saveEpisode");
+
+  const title =
+    $("title").value.trim();
+
+
+  if(!title){
+
+    $("episodeStatus").innerHTML =
+      `
+        <div class="notice error">
+          ❌ Escreve o título do episódio.
+        </div>
+      `;
+
+    return;
+
+  }
+
+
+  button.disabled =
+    true;
+
+  button.textContent =
+    editingId
+    ?
+    "A guardar..."
+    :
+    "A publicar...";
+
+
+  $("episodeStatus").innerHTML =
+    `
+      <div class="notice">
+        ⏳ A guardar episódio...
+      </div>
+    `;
+
+
+  try{
+
+    let oldEpisode =
+      null;
+
+
+    if(editingId){
+
+      oldEpisode =
+        episodes.find(
+          function(e){
+            return e.id === editingId;
+          }
+        ) || null;
+
+    }
+
+
+    const episode = {
+
+      id:
+        editingId ||
+        makeId(),
+
+      title:title,
+
+      season:
+        $("season").value.trim() ||
+        "—",
+
+      number:
+        $("number").value.trim() ||
+        "—",
+
+      lang:
+        $("lang").value.trim() ||
+        "PT-PT",
+
+      description:
+        $("description").value.trim() ||
+        "",
+
+      thumbnail:
+        oldEpisode?.thumbnail ||
+        "",
+
+      createdAt:
+        oldEpisode?.createdAt ||
+        Date.now(),
+
+      updatedAt:
+        Date.now()
+
+    };
+
+
+    /*
+      IMPORTANTE:
+      O episódio é guardado PRIMEIRO.
+      A thumbnail nunca pode impedir
+      a publicação.
+    */
+
+    await dbPut(
+      "episodes",
+      episode
+    );
+
+
+    /*
+      Só agora tentamos a thumbnail.
+    */
+
+    const file =
+      $("thumbnail").files[0];
+
+
+    if(file){
+
+      try{
+
+        const compressed =
+          await compressImage(file);
+
+        if(compressed){
+
+          episode.thumbnail =
+            compressed;
+
+          await dbPut(
+            "episodes",
+            episode
+          );
+
+        }
+
+      }catch(imageError){
+
+        console.warn(
+          "Thumbnail ignorada:",
+          imageError
+        );
+
+      }
+
+    }
+
+
+    await loadAll();
+
+    resetEpisodeForm();
+
+
+    $("episodeStatus").innerHTML =
+      `
+        <div class="notice success">
+          ✅ Episódio ${
+            editingId
+            ? "editado"
+            : "publicado"
+          } com sucesso!
+        </div>
+      `;
+
+
+  }catch(error){
+
+    console.error(error);
+
+    $("episodeStatus").innerHTML =
+      `
+        <div class="notice error">
+          ❌ Não foi possível guardar o episódio.
+          <br>
+          <small>
+            ${escapeHTML(
+              error?.message ||
+              "Erro desconhecido."
+            )}
+          </small>
+        </div>
+      `;
+
+  }finally{
+
+    button.disabled =
+      false;
+
+    button.textContent =
+      editingId
+      ?
+      "Guardar alterações"
+      :
+      "Guardar episódio";
+
+  }
 
 };
 
 
-/* ==========================
-   EDIT
-========================== */
+/* ==============================
+   EDITAR
+================================ */
 
-window.editEpisode =
-function(id){
+function editEpisode(id){
 
-const episode =
-episodes.find(
-e => e.id === id
-);
+  const episode =
+    episodes.find(
+      function(item){
+        return item.id === id;
+      }
+    );
 
-if(!episode){
-return;
+
+  if(!episode){
+    return;
+  }
+
+
+  editingId =
+    id;
+
+
+  $("episodeTitle").textContent =
+    "Editar episódio";
+
+  $("title").value =
+    episode.title || "";
+
+  $("season").value =
+    episode.season || "";
+
+  $("number").value =
+    episode.number || "";
+
+  $("lang").value =
+    episode.lang || "";
+
+  $("description").value =
+    episode.description || "";
+
+  $("thumbnail").value =
+    "";
+
+  $("saveEpisode").textContent =
+    "Guardar alterações";
+
+  $("cancelEdit").style.display =
+    "inline-block";
+
+  $("episodeStatus").innerHTML =
+    "";
+
 }
 
-editingId =
-id;
 
-$("episodeFormTitle")
-.textContent =
-"Editar episódio";
+/* ==============================
+   RESET FORM
+================================ */
 
-$("title").value =
-episode.title || "";
+function resetEpisodeForm(){
 
-$("season").value =
-episode.season || "";
+  editingId =
+    null;
 
-$("number").value =
-episode.number || "";
+  $("episodeTitle").textContent =
+    "Adicionar episódio";
 
-$("lang").value =
-episode.lang || "";
+  $("saveEpisode").textContent =
+    "Guardar episódio";
 
-$("desc").value =
-episode.desc || "";
+  $("cancelEdit").style.display =
+    "none";
 
-$("thumb").value =
-"";
+  $("title").value =
+    "";
 
-$("add").textContent =
-"Guardar alterações";
+  $("season").value =
+    "";
 
-$("cancelEdit")
-.style.display =
-"inline-block";
+  $("number").value =
+    "";
 
-};
+  $("lang").value =
+    "";
+
+  $("description").value =
+    "";
+
+  $("thumbnail").value =
+    "";
+
+}
 
 
 $("cancelEdit").onclick =
-resetForm;
+function(){
 
+  resetEpisodeForm();
 
-function resetForm(){
-
-editingId = null;
-
-$("episodeFormTitle")
-.textContent =
-"Adicionar episódio";
-
-$("add").textContent =
-"Guardar episódio";
-
-$("cancelEdit")
-.style.display =
-"none";
-
-[
-"title",
-"season",
-"number",
-"lang",
-"desc"
-].forEach(
-id => $(id).value=""
-);
-
-$("thumb").value = "";
-
-}
-
-
-/* ==========================
-   GUARDAR EPISÓDIO
-========================== */
-
-$("add").onclick =
-async function(){
-
-const title =
-$("title")
-.value
-.trim();
-
-
-if(!title){
-
-$("status").innerHTML =
-`
-<div class="notice error">
-❌ Escreve um título.
-</div>
-`;
-
-return;
-
-}
-
-
-const button =
-$("add");
-
-button.disabled = true;
-button.textContent =
-"Publicando...";
-
-
-$("uploadProgress")
-.style.display =
-"block";
-
-$("progressBar")
-.style.width =
-"10%";
-
-
-try{
-
-/*
-   PRIMEIRO:
-   criamos o episódio sem thumbnail.
-
-   Assim, mesmo que o Android
-   não consiga ler a imagem,
-   o episódio já existe.
-*/
-
-const old =
-editingId
-?
-episodes.find(
-e => e.id === editingId
-)
-:
-null;
-
-
-const id =
-editingId ||
-(
-crypto &&
-crypto.randomUUID
-?
-crypto.randomUUID()
-:
-String(
-Date.now()
-)
-);
-
-
-const episode = {
-
-id:id,
-
-title:title,
-
-season:
-$("season").value.trim()
-|| "—",
-
-number:
-$("number").value.trim()
-|| "—",
-
-lang:
-$("lang").value.trim()
-|| "—",
-
-desc:
-$("desc").value.trim()
-|| "",
-
-thumbnail:
-old?.thumbnail || "",
-
-updatedAt:
-Date.now()
+  $("episodeStatus").innerHTML =
+    "";
 
 };
 
 
-/*
-   GUARDA PRIMEIRO
-*/
+/* ==============================
+   APAGAR
+================================ */
 
-await put(
-"episodes",
-episode
-);
+async function deleteEpisode(id){
 
-
-$("progressBar")
-.style.width =
-"45%";
-
-
-/*
-   AGORA tenta a thumbnail.
-   Se falhar, NÃO cancela o episódio.
-*/
-
-const file =
-$("thumb").files[0];
+  const episode =
+    episodes.find(
+      function(item){
+        return item.id === id;
+      }
+    );
 
 
-if(file){
-
-try{
-
-const thumbnail =
-await readThumbnail(file);
+  if(!episode){
+    return;
+  }
 
 
-$("progressBar")
-.style.width =
-"75%";
+  if(
+    !confirm(
+      `Apagar "${episode.title}"?`
+    )
+  ){
+    return;
+  }
 
 
-if(thumbnail){
+  try{
 
-episode.thumbnail =
-thumbnail;
+    await dbDelete(
+      "episodes",
+      id
+    );
 
-await put(
-"episodes",
-episode
-);
+    if(editingId === id){
 
-}
+      resetEpisodeForm();
 
-}catch(thumbnailError){
+    }
 
-console.warn(
-"Thumbnail ignorada:",
-thumbnailError
-);
+    await loadAll();
 
-}
+
+  }catch(error){
+
+    alert(
+      "Não foi possível apagar o episódio."
+    );
+
+    console.error(error);
+
+  }
 
 }
 
 
-$("progressBar")
-.style.width =
-"100%";
-
-
-await loadData();
-
-
-resetForm();
-
-
-$("status").innerHTML =
-`
-<div class="notice success">
-✅ Episódio publicado com sucesso!
-${
-file && !episode.thumbnail
-?
-"<br><small>A thumbnail não pôde ser carregada, mas o episódio foi publicado.</small>"
-:
-""
-}
-</div>
-`;
-
-
-setTimeout(
-() => {
-
-$("status").innerHTML="";
-$("uploadProgress")
-.style.display="none";
-
-},
-4000
-);
-
-
-}catch(error){
-
-console.error(
-"Erro real:",
-error
-);
-
-
-$("status").innerHTML =
-`
-<div class="notice error">
-
-❌ Erro ao guardar episódio.
-
-<br>
-
-<small>
-${esc(
-error?.message ||
-"Erro desconhecido"
-)}
-</small>
-
-</div>
-`;
-
-}
-
-
-button.disabled =
-false;
-
-button.textContent =
-editingId
-?
-"Guardar alterações"
-:
-"Guardar episódio";
-
-};
-
-
-/* ==========================
+/* ==============================
    ANÚNCIOS
-========================== */
+================================ */
 
 function renderAnnouncements(){
 
-$("announcementCount")
-.textContent =
-announcements.length;
+  $("announcementCount").textContent =
+    announcements.length;
 
 
-const sorted =
-[...announcements]
-.sort(
-(a,b) =>
-b.createdAt -
-a.createdAt
-);
+  if(!announcements.length){
+
+    $("announcements").innerHTML =
+      '<p class="muted">Ainda não existem anúncios.</p>';
+
+    return;
+
+  }
 
 
-$("announcements").innerHTML =
-sorted.map(
-a => `
+  $("announcements").innerHTML =
+    announcements.map(
+      function(item){
 
-<div class="announcement">
+        const color =
+          /^#[0-9A-Fa-f]{6}$/.test(
+            item.color || ""
+          )
+          ?
+          item.color
+          :
+          "#e62b45";
 
-<span
-class="announcement-label"
-style="background:${esc(a.color || "#e62b45")}"
->
-${esc(a.label || "NOVIDADE")}
-</span>
 
-<div class="announcement-title">
-${esc(a.title)}
-</div>
+        return `
+          <div class="announcement">
 
-<div class="muted">
-${esc(a.text)}
-</div>
+            <span
+              class="announcement-label"
+              style="background:${color}"
+            >
+              ${escapeHTML(
+                item.label || "NOVIDADE"
+              )}
+            </span>
 
-</div>
+            <div class="announcement-title">
+              ${escapeHTML(item.title)}
+            </div>
 
-`
-).join("")
+            <div class="muted">
+              ${escapeHTML(item.text)}
+            </div>
 
-||
+          </div>
+        `;
 
-'<p class="muted">Ainda não existem anúncios.</p>';
+      }
+    ).join("");
 
 }
 
 
-$("announcementColor")
-.oninput =
+/* ==============================
+   PREVIEW COR
+================================ */
+
+$("announcementColor").oninput =
 function(){
 
-$("colorPreview")
-.style.background =
-this.value;
-
-$("colorPreview")
-.textContent =
-$("announcementLabel")
-.value ||
-"NOVIDADE";
+  $("colorPreview").style.background =
+    this.value;
 
 };
 
 
-$("announcementLabel")
-.oninput =
+$("announcementLabel").oninput =
 function(){
 
-$("colorPreview")
-.textContent =
-this.value ||
-"NOVIDADE";
+  $("colorPreview").textContent =
+    this.value ||
+    "NOVIDADE";
 
 };
 
 
-$("addAnnouncement")
-.onclick =
+/* ==============================
+   GUARDAR ANÚNCIO
+================================ */
+
+$("saveAnnouncement").onclick =
 async function(){
 
-const label =
-$("announcementLabel")
-.value.trim()
-||
-"NOVIDADE";
+  const title =
+    $("announcementTitle")
+      .value
+      .trim();
 
-const title =
-$("announcementTitle")
-.value.trim();
+  const text =
+    $("announcementText")
+      .value
+      .trim();
 
-const text =
-$("announcementText")
-.value.trim();
+  const label =
+    $("announcementLabel")
+      .value
+      .trim() ||
+      "NOVIDADE";
 
-const color =
-$("announcementColor")
-.value;
-
-
-if(!title || !text){
-
-$("announcementStatus")
-.innerHTML =
-`
-<div class="notice error">
-❌ Preenche o título e o texto.
-</div>
-`;
-
-return;
-
-}
+  const color =
+    $("announcementColor")
+      .value;
 
 
-try{
+  if(!title || !text){
 
-await put(
-"announcements",
-{
+    $("announcementStatus").innerHTML =
+      `
+        <div class="notice error">
+          ❌ Preenche o título e o texto.
+        </div>
+      `;
 
-id:
-crypto &&
-crypto.randomUUID
-?
-crypto.randomUUID()
-:
-String(Date.now()),
+    return;
 
-label:label,
-
-title:title,
-
-text:text,
-
-color:color,
-
-createdAt:
-Date.now()
-
-}
-);
+  }
 
 
-announcements =
-await getAll(
-"announcements"
-);
+  try{
 
-renderAnnouncements();
+    await dbPut(
+      "announcements",
+      {
 
+        id:makeId(),
 
-$("announcementTitle").value="";
-$("announcementText").value="";
-$("announcementLabel").value="NOVIDADE";
-$("announcementColor").value="#e62b45";
+        label:label,
 
-$("colorPreview").style.background="#e62b45";
-$("colorPreview").textContent="NOVIDADE";
+        title:title,
 
+        text:text,
 
-$("announcementStatus").innerHTML =
-`
-<div class="notice success">
-✅ Anúncio publicado!
-</div>
-`;
+        color:color,
+
+        createdAt:Date.now()
+
+      }
+    );
 
 
-}catch(error){
+    await loadAll();
 
-console.error(error);
 
-$("announcementStatus").innerHTML =
-`
-<div class="notice error">
-❌ Erro ao publicar anúncio.
-</div>
-`;
+    $("announcementTitle").value =
+      "";
 
-}
+    $("announcementText").value =
+      "";
+
+    $("announcementLabel").value =
+      "NOVIDADE";
+
+
+    $("announcementStatus").innerHTML =
+      `
+        <div class="notice success">
+          ✅ Anúncio publicado!
+        </div>
+      `;
+
+
+  }catch(error){
+
+    console.error(error);
+
+    $("announcementStatus").innerHTML =
+      `
+        <div class="notice error">
+          ❌ Não foi possível publicar o anúncio.
+        </div>
+      `;
+
+  }
 
 };
 
 
-/* ==========================
+/* ==============================
    FUNDO
-========================== */
+================================ */
 
 async function loadBackground(){
 
-const tx =
-db.transaction(
-"settings",
-"readonly"
-);
+  try{
 
-const request =
-tx.objectStore("settings")
-.get("background");
+    const settings =
+      await dbGetAll("settings");
+
+    const background =
+      settings.find(
+        function(item){
+          return item.id === "background";
+        }
+      );
 
 
-request.onsuccess =
-function(){
+    $("bgImage").style.display =
+      "none";
 
-const setting =
-request.result;
+    $("bgVideo").style.display =
+      "none";
 
-if(!setting){
-return;
+
+    if(!background){
+      return;
+    }
+
+
+    if(background.type === "image"){
+
+      $("bgImage").src =
+        background.data;
+
+      $("bgImage").style.display =
+        "block";
+
+    }
+
+
+    if(background.type === "video"){
+
+      $("bgVideo").src =
+        background.data;
+
+      $("bgVideo").style.display =
+        "block";
+
+      $("bgVideo")
+        .play()
+        .catch(
+          function(){}
+        );
+
+    }
+
+  }catch(error){
+
+    console.warn(
+      "Fundo não carregado:",
+      error
+    );
+
+  }
+
 }
 
 
-$("backgroundImage")
-.style.display =
-"none";
+/* ==============================
+   GUARDAR FUNDO
+================================ */
 
-$("backgroundVideo")
-.style.display =
-"none";
-
-
-if(setting.type === "image"){
-
-$("backgroundImage").src =
-setting.data;
-
-$("backgroundImage")
-.style.display =
-"block";
-
-}
-
-
-if(setting.type === "video"){
-
-$("backgroundVideo").src =
-setting.data;
-
-$("backgroundVideo")
-.style.display =
-"block";
-
-$("backgroundVideo")
-.play()
-.catch(()=>{});
-
-}
-
-};
-
-}
-
-
-$("saveBackground")
-.onclick =
+$("saveBackground").onclick =
 async function(){
 
-const image =
-$("backgroundImageFile")
-.files[0];
+  const image =
+    $("backgroundImageFile").files[0];
 
-const video =
-$("backgroundVideoFile")
-.files[0];
+  const video =
+    $("backgroundVideoFile").files[0];
 
 
-if(!image && !video){
+  if(!image && !video){
 
-$("backgroundStatus")
-.innerHTML =
-`
-<div class="notice error">
-❌ Seleciona uma imagem ou vídeo.
-</div>
-`;
+    $("backgroundStatus").innerHTML =
+      `
+        <div class="notice error">
+          ❌ Seleciona uma imagem ou vídeo.
+        </div>
+      `;
 
-return;
+    return;
 
-}
-
-
-try{
-
-const file =
-video || image;
-
-const data =
-await readThumbnail(file);
+  }
 
 
-if(!data){
+  try{
 
-throw new Error(
-"Não foi possível ler o ficheiro."
-);
-
-}
+    const file =
+      video || image;
 
 
-await put(
-"settings",
-{
-
-id:"background",
-
-type:
-video
-?
-"video"
-:
-"image",
-
-data:data
-
-}
-);
+    const data =
+      await readFileAsDataURL(file);
 
 
-await loadBackground();
+    await dbPut(
+      "settings",
+      {
+
+        id:"background",
+
+        type:
+          video
+          ?
+          "video"
+          :
+          "image",
+
+        data:data
+
+      }
+    );
 
 
-$("backgroundImageFile").value="";
-$("backgroundVideoFile").value="";
+    await loadBackground();
 
 
-$("backgroundStatus")
-.innerHTML =
-`
-<div class="notice success">
-✅ Fundo atualizado!
-</div>
-`;
+    $("backgroundImageFile").value =
+      "";
+
+    $("backgroundVideoFile").value =
+      "";
 
 
-}catch(error){
+    $("backgroundStatus").innerHTML =
+      `
+        <div class="notice success">
+          ✅ Fundo atualizado!
+        </div>
+      `;
 
-console.error(error);
 
-$("backgroundStatus")
-.innerHTML =
-`
-<div class="notice error">
-❌ Não foi possível guardar o fundo.
-</div>
-`;
+  }catch(error){
 
-}
+    console.error(error);
+
+    $("backgroundStatus").innerHTML =
+      `
+        <div class="notice error">
+          ❌ Não foi possível guardar o fundo.
+          <br>
+          <small>
+            ${escapeHTML(
+              error?.message ||
+              "Erro desconhecido."
+            )}
+          </small>
+        </div>
+      `;
+
+  }
 
 };
 
 
-$("removeBackground")
-.onclick =
+/* ==============================
+   REMOVER FUNDO
+================================ */
+
+$("removeBackground").onclick =
 async function(){
 
-try{
+  try{
 
-await remove(
-"settings",
-"background"
-);
+    await dbDelete(
+      "settings",
+      "background"
+    );
 
-$("backgroundImage")
-.removeAttribute("src");
+    $("bgImage").removeAttribute("src");
 
-$("backgroundVideo")
-.pause();
+    $("bgVideo").pause();
 
-$("backgroundVideo")
-.removeAttribute("src");
+    $("bgVideo").removeAttribute("src");
 
-$("backgroundImage")
-.style.display="none";
+    $("bgImage").style.display =
+      "none";
 
-$("backgroundVideo")
-.style.display="none";
+    $("bgVideo").style.display =
+      "none";
 
 
-$("backgroundStatus")
-.innerHTML =
-`
-<div class="notice success">
-✅ Fundo removido.
-</div>
-`;
+    $("backgroundStatus").innerHTML =
+      `
+        <div class="notice success">
+          ✅ Fundo removido!
+        </div>
+      `;
 
-}catch(error){
+  }catch(error){
 
-console.error(error);
+    console.error(error);
 
-}
+  }
 
 };
 
 
-/* ==========================
+/* ==============================
    LOGIN
-========================== */
+================================ */
 
 $("loginOpen").onclick =
-() =>
-$("login")
-.classList.remove("hide");
+function(){
+
+  $("login").classList.remove(
+    "hide"
+  );
+
+  setTimeout(
+    function(){
+      $("user").focus();
+    },
+    50
+  );
+
+};
 
 
 $("loginClose").onclick =
-() =>
-$("login")
-.classList.add("hide");
+function(){
+
+  $("login").classList.add(
+    "hide"
+  );
+
+};
 
 
 $("adminClose").onclick =
-() =>
-$("admin")
-.classList.add("hide");
+function(){
+
+  $("admin").classList.add(
+    "hide"
+  );
+
+};
 
 
 $("loginBtn").onclick =
 function(){
 
-const user =
-$("user").value.trim();
+  const user =
+    $("user").value.trim();
 
-const pass =
-$("pass").value;
-
-
-if(
-user === ADMIN_USER &&
-pass === ADMIN_PASS
-){
-
-$("err").textContent="";
-
-$("login")
-.classList.add("hide");
-
-$("admin")
-.classList.remove("hide");
-
-renderAdminList();
-
-}else{
-
-$("err").textContent =
-"Credenciais inválidas.";
-
-}
-
-};
+  const pass =
+    $("pass").value;
 
 
-$("pass").onkeydown =
-function(event){
+  if(
+    user === ADMIN_USER &&
+    pass === ADMIN_PASS
+  ){
 
-if(event.key === "Enter"){
-$("loginBtn").click();
-}
+    $("loginError").textContent =
+      "";
+
+    $("login").classList.add(
+      "hide"
+    );
+
+    $("admin").classList.remove(
+      "hide"
+    );
+
+    renderAdminEpisodes();
+
+  }else{
+
+    $("loginError").textContent =
+      "❌ Utilizador ou palavra-passe incorretos.";
+
+  }
 
 };
 
 
-/* ==========================
+$("pass").addEventListener(
+  "keydown",
+  function(event){
+
+    if(event.key === "Enter"){
+
+      $("loginBtn").click();
+
+    }
+
+  }
+);
+
+
+/* ==============================
    PESQUISA
-========================== */
+================================ */
 
-$("search").oninput =
-render;
+$("search").addEventListener(
+  "input",
+  renderEpisodes
+);
 
 
-/* ==========================
+/* ==============================
    UPDATE
-========================== */
+================================ */
 
 const UPDATE_KEY =
-"miraculousKK_update";
+  "miraculousKK_update_time";
 
 
-if(
-!localStorage.getItem(
-UPDATE_KEY
-)
-){
+if(!localStorage.getItem(UPDATE_KEY)){
 
-localStorage.setItem(
-UPDATE_KEY,
-Date.now()
-);
+  localStorage.setItem(
+    UPDATE_KEY,
+    String(Date.now())
+  );
 
 }
 
 
 function updateText(){
 
-const seconds =
-Math.floor(
-(
-Date.now() -
-Number(
-localStorage.getItem(
-UPDATE_KEY
-)
-)
-) / 1000
-);
+  const timestamp =
+    Number(
+      localStorage.getItem(
+        UPDATE_KEY
+      )
+    );
 
 
-let text="agora";
+  if(!timestamp){
+
+    $("updateText").textContent =
+      "Update feita agora";
+
+    return;
+
+  }
 
 
-if(seconds >= 86400){
-
-const n =
-Math.floor(
-seconds / 86400
-);
-
-text =
-`há ${n} ${n===1?"dia":"dias"}`;
-
-}else if(seconds >= 3600){
-
-const n =
-Math.floor(
-seconds / 3600
-);
-
-text =
-`há ${n} ${n===1?"hora":"horas"}`;
-
-}else if(seconds >= 60){
-
-const n =
-Math.floor(
-seconds / 60
-);
-
-text =
-`há ${n} ${n===1?"minuto":"minutos"}`;
-
-}
+  let seconds =
+    Math.floor(
+      (Date.now() - timestamp) /
+      1000
+    );
 
 
-$("updateText")
-.textContent =
-"Update feita " + text;
+  if(seconds < 0){
+    seconds = 0;
+  }
+
+
+  let text =
+    "agora";
+
+
+  if(seconds >= 86400){
+
+    const value =
+      Math.floor(
+        seconds / 86400
+      );
+
+    text =
+      `há ${value} ${
+        value === 1
+        ? "dia"
+        : "dias"
+      }`;
+
+  }else if(seconds >= 3600){
+
+    const value =
+      Math.floor(
+        seconds / 3600
+      );
+
+    text =
+      `há ${value} ${
+        value === 1
+        ? "hora"
+        : "horas"
+      }`;
+
+  }else if(seconds >= 60){
+
+    const value =
+      Math.floor(
+        seconds / 60
+      );
+
+    text =
+      `há ${value} ${
+        value === 1
+        ? "minuto"
+        : "minutos"
+      }`;
+
+  }else if(seconds > 0){
+
+    text =
+      `há ${seconds} ${
+        seconds === 1
+        ? "segundo"
+        : "segundos"
+      }`;
+
+  }
+
+
+  $("updateText").textContent =
+    "Update feita " + text;
 
 }
 
@@ -2312,42 +2686,41 @@ $("updateText")
 updateText();
 
 setInterval(
-updateText,
-30000
+  updateText,
+  1000
 );
 
 
-/* ==========================
-   START
-========================== */
+/* ==============================
+   INICIAR
+================================ */
 
 (async function(){
 
-try{
+  try{
 
-await openDB();
+    await openDatabase();
 
-await loadData();
+    await loadAll();
 
-}catch(error){
+  }catch(error){
 
-console.error(
-"Erro ao iniciar:",
-error
-);
+    console.error(
+      "Erro ao iniciar:",
+      error
+    );
 
-$("grid").innerHTML =
-`
-<p class="muted">
-Erro ao iniciar o catálogo.
-</p>
-`;
+    $("grid").innerHTML =
+      `
+        <p class="muted">
+          Não foi possível iniciar o catálogo.
+        </p>
+      `;
 
-}
+  }
 
 })();
-
 </script>
 
 </body>
-  </html>
+       </html>
