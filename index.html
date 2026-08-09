@@ -5,459 +5,99 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>miraculous.kk</title><style>
-:root{
---bg:#07070a;
---p:#111116;
---line:#292933;
---txt:#f7f7fb;
---muted:#aaaab5;
---red:#e62b45
-}
-
+:root{--bg:#07070a;--p:#111116;--line:#292933;--txt:#f7f7fb;--muted:#aaaab5;--red:#e62b45}
 *{box-sizing:border-box}
-
-body{
-margin:0;
-background:radial-gradient(circle at 80% 0,#32101a,#07070a 38%);
-color:var(--txt);
-font:15px system-ui,sans-serif
-}
-
+body{margin:0;background:radial-gradient(circle at 80% 0,#32101a,#07070a 38%);color:var(--txt);font:15px system-ui,sans-serif}
 a{color:inherit;text-decoration:none}
-
-.top{
-height:70px;
-display:flex;
-align-items:center;
-gap:30px;
-padding:0 6vw;
-border-bottom:1px solid #17171c;
-background:#08080bdd;
-position:sticky;
-top:0;
-z-index:5
-}
-
-.brand{
-font-size:22px;
-font-weight:900
-}
-
+.top{height:70px;display:flex;align-items:center;gap:25px;padding:0 6vw;border-bottom:1px solid #17171c;background:#08080bdd;position:sticky;top:0;z-index:5}
+.brand{font-size:22px;font-weight:900;white-space:nowrap}
 .brand span{color:var(--red)}
-
-nav{
-display:flex;
-gap:22px;
-color:var(--muted);
-flex:1
-}
-
-.btn{
-border:1px solid var(--line);
-background:#121218;
-color:#fff;
-border-radius:10px;
-padding:10px 15px;
-cursor:pointer
-}
-
-.primary{
-background:var(--red);
-border:0
-}
-
-.hero{
-min-height:520px;
-padding:90px 8vw;
-display:grid;
-grid-template-columns:1.3fr .7fr;
-gap:40px;
-align-items:center
-}
-
-.ey{
-font-size:11px;
-letter-spacing:2px;
-color:#ff6377;
-font-weight:800
-}
-
-.hero h1{
-font-size:clamp(46px,7vw,82px);
-line-height:.95;
-letter-spacing:-4px;
-margin:10px 0
-}
-
+.update{font-size:11px;color:var(--muted);white-space:nowrap}
+nav{display:flex;gap:22px;color:var(--muted);flex:1}
+.btn{border:1px solid var(--line);background:#121218;color:#fff;border-radius:10px;padding:10px 15px;cursor:pointer}
+.primary{background:var(--red);border:0}
+.hero{min-height:520px;padding:90px 8vw;display:grid;grid-template-columns:1.3fr .7fr;gap:40px;align-items:center}
+.ey{font-size:11px;letter-spacing:2px;color:#ff6377;font-weight:800}
+.hero h1{font-size:clamp(46px,7vw,82px);line-height:.95;letter-spacing:-4px;margin:10px 0}
 .hero h1 span{color:var(--red)}
-
-.hero p{
-color:var(--muted);
-font-size:18px;
-line-height:1.6;
-max-width:620px
-}
-
-.actions{
-display:flex;
-gap:10px;
-margin-top:25px
-}
-
-.showcase{
-height:300px;
-border:1px solid #3a2028;
-border-radius:25px;
-background:linear-gradient(145deg,#29111a,#101015);
-display:grid;
-place-items:center;
-font-size:85px;
-box-shadow:0 30px 100px #0008
-}
-
-.sec{
-padding:70px 8vw;
-border-top:1px solid #14141a
-}
-
-.head{
-display:flex;
-justify-content:space-between;
-align-items:end;
-gap:15px;
-margin-bottom:25px
-}
-
-.head h2,.sec h2{
-font-size:35px;
-margin:5px 0;
-letter-spacing:-1.5px
-}
-
-.search,input,textarea,select{
-background:#09090d;
-border:1px solid var(--line);
-color:#fff;
-border-radius:10px;
-padding:12px;
-font:inherit
-}
-
+.hero p{color:var(--muted);font-size:18px;line-height:1.6;max-width:620px}
+.actions{display:flex;gap:10px;margin-top:25px}
+.showcase{height:300px;border:1px solid #3a2028;border-radius:25px;background:linear-gradient(145deg,#29111a,#101015);display:grid;place-items:center;font-size:85px;box-shadow:0 30px 100px #0008}
+.sec{padding:70px 8vw;border-top:1px solid #14141a}
+.head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:25px}
+.head h2,.sec h2{font-size:35px;margin:5px 0;letter-spacing:-1.5px}
+.search,input,textarea,select{background:#09090d;border:1px solid var(--line);color:#fff;border-radius:10px;padding:12px;font:inherit}
 .search{width:min(330px,100%)}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:15px
-}
-
-.card{
-background:var(--p);
-border:1px solid var(--line);
-border-radius:16px;
-overflow:hidden
-}
-
-.thumb{
-aspect-ratio:16/9;
-background:linear-gradient(135deg,#271018,#17171d);
-display:grid;
-place-items:center;
-font-size:40px;
-overflow:hidden
-}
-
-.thumb img{
-width:100%;
-height:100%;
-object-fit:cover
-}
-
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.card{background:var(--p);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.thumb{aspect-ratio:16/9;background:linear-gradient(135deg,#271018,#17171d);display:grid;place-items:center;font-size:40px;overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover}
 .body{padding:14px}
-
-.meta{
-color:#858591;
-font-size:12px;
-margin-top:6px
-}
-
-.muted{
-color:var(--muted);
-line-height:1.7
-}
-
-.features{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px
-}
-
-.feature{
-background:var(--p);
-border:1px solid var(--line);
-padding:18px;
-border-radius:14px
-}
-
-.feature span{
-display:block;
-color:var(--muted);
-font-size:13px;
-margin-top:4px
-}
-
-.announcement{
-background:var(--p);
-border:1px solid var(--line);
-border-radius:14px;
-padding:18px;
-margin-bottom:10px
-}
-
-.announcement-title{
-font-size:18px;
-font-weight:800
-}
-
-.announcement-date{
-font-size:12px;
-color:#858591;
-margin-top:5px
-}
-
-footer{
-padding:30px 8vw;
-color:#70707b;
-border-top:1px solid #14141a
-}
-
-.modal{
-position:fixed;
-inset:0;
-background:#000c;
-display:grid;
-place-items:center;
-padding:20px;
-z-index:20
-}
-
+.meta{color:#858591;font-size:12px;margin-top:6px}
+.muted{color:var(--muted);line-height:1.7}
+.features{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.feature{background:var(--p);border:1px solid var(--line);padding:18px;border-radius:14px}
+.feature span{display:block;color:var(--muted);font-size:13px;margin-top:4px}
+.announcement{background:var(--p);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:10px}
+.announcement-title{font-size:18px;font-weight:800}
+.announcement-date{font-size:12px;color:#858591;margin-top:5px}
+footer{padding:30px 8vw;color:#70707b;border-top:1px solid #14141a}
+.modal{position:fixed;inset:0;background:#000c;display:grid;place-items:center;padding:20px;z-index:20}
 .hide{display:none}
-
-.box{
-position:relative;
-width:min(720px,100%);
-max-height:90vh;
-overflow:auto;
-background:#101015;
-border:1px solid var(--line);
-border-radius:20px;
-padding:28px
-}
-
-.close{
-position:absolute;
-right:15px;
-top:8px;
-background:none;
-border:0;
-color:#aaa;
-font-size:28px
-}
-
-.box input,
-.box textarea,
-.box select{
-width:100%;
-margin:6px 0
-}
-
-.form{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:8px
-}
-
-.form textarea{
-grid-column:1/-1
-}
-
-.stats{
-display:flex;
-gap:10px;
-margin:18px 0
-}
-
-.stat{
-background:#09090d;
-border:1px solid var(--line);
-padding:12px;
-border-radius:10px;
-flex:1
-}
-
-.list{
-margin:18px 0;
-display:grid;
-gap:8px
-}
-
-.item{
-display:flex;
-justify-content:space-between;
-gap:10px;
-padding:12px;
-background:#09090d;
-border:1px solid var(--line);
-border-radius:10px
-}
-
-.item-buttons{
-display:flex;
-gap:6px;
-align-items:center
-}
-
-.danger{
-background:#38111a;
-border:1px solid #5a1a26;
-color:#ff8a99;
-border-radius:8px;
-padding:7px;
-cursor:pointer
-}
-
-.edit{
-background:#18182a;
-border:1px solid #393950;
-color:#b9b9ff;
-border-radius:8px;
-padding:7px;
-cursor:pointer
-}
-
-.badge{
-display:inline-block;
-padding:3px 7px;
-border-radius:6px;
-font-size:11px;
-margin-top:5px
-}
-
-.badge.global{
-background:#12351f;
-color:#7dffa4
-}
-
-.badge.local{
-background:#30240f;
-color:#ffd477
-}
-
-.file-box{
-background:#09090d;
-border:1px solid var(--line);
-border-radius:10px;
-padding:10px;
-margin-top:6px
-}
-
-.file-name{
-font-size:12px;
-color:var(--muted);
-margin:5px 0 8px
-}
-
-.admin-tabs{
-display:flex;
-gap:8px;
-margin:20px 0;
-border-bottom:1px solid var(--line);
-padding-bottom:10px
-}
-
-.tab{
-background:#09090d;
-border:1px solid var(--line);
-color:#aaa;
-border-radius:8px;
-padding:9px 13px;
-cursor:pointer
-}
-
-.tab.active{
-background:var(--red);
-border-color:var(--red);
-color:white
-}
-
+.box{position:relative;width:min(720px,100%);max-height:90vh;overflow:auto;background:#101015;border:1px solid var(--line);border-radius:20px;padding:28px}
+.close{position:absolute;right:15px;top:8px;background:none;border:0;color:#aaa;font-size:28px;cursor:pointer}
+.box input,.box textarea,.box select{width:100%;margin:6px 0}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.form textarea{grid-column:1/-1}
+.stats{display:flex;gap:10px;margin:18px 0}
+.stat{background:#09090d;border:1px solid var(--line);padding:12px;border-radius:10px;flex:1}
+.list{margin:18px 0;display:grid;gap:8px}
+.item{display:flex;justify-content:space-between;gap:10px;padding:12px;background:#09090d;border:1px solid var(--line);border-radius:10px}
+.item-buttons{display:flex;gap:6px;align-items:center}
+.danger{background:#38111a;border:1px solid #5a1a26;color:#ff8a99;border-radius:8px;padding:7px;cursor:pointer}
+.edit{background:#18182a;border:1px solid #393950;color:#b9b9ff;border-radius:8px;padding:7px;cursor:pointer}
+.badge{display:inline-block;padding:3px 7px;border-radius:6px;font-size:11px;margin-top:5px}
+.badge.global{background:#12351f;color:#7dffa4}
+.badge.local{background:#30240f;color:#ffd477}
+.file-box{background:#09090d;border:1px solid var(--line);border-radius:10px;padding:10px;margin-top:6px}
+.file-name{font-size:12px;color:var(--muted);margin:5px 0 8px}
+.admin-tabs{display:flex;gap:8px;margin:20px 0;border-bottom:1px solid var(--line);padding-bottom:10px}
+.tab{background:#09090d;border:1px solid var(--line);color:#aaa;border-radius:8px;padding:9px 13px;cursor:pointer}
+.tab.active{background:var(--red);border-color:var(--red);color:white}
 .panel-section{display:none}
-
 .panel-section.active{display:block}
 
 @media(max-width:850px){
 nav{display:none}
-
-.hero{
-grid-template-columns:1fr;
-padding-top:55px
-}
-
+.hero{grid-template-columns:1fr;padding-top:55px}
 .showcase{display:none}
-
-.grid{
-grid-template-columns:repeat(2,1fr)
-}
-
-.head{
-flex-direction:column;
-align-items:stretch
-}
-
+.grid{grid-template-columns:repeat(2,1fr)}
+.head{flex-direction:column;align-items:stretch}
 .search{width:100%}
+.update{display:none}
 }
 
 @media(max-width:520px){
-
-.grid{
-grid-template-columns:1fr
-}
-
-.form{
-grid-template-columns:1fr
-}
-
-.form textarea{
-grid-column:auto
-}
-
-.hero h1{
-letter-spacing:-2px
-}
-
-.stats{
-flex-direction:column
-}
-
-.item{
-flex-direction:column
-}
-
-.item-buttons{
-justify-content:flex-end
-}
+.grid{grid-template-columns:1fr}
+.form{grid-template-columns:1fr}
+.form textarea{grid-column:auto}
+.hero h1{letter-spacing:-2px}
+.stats{flex-direction:column}
+.item{flex-direction:column}
+.item-buttons{justify-content:flex-end}
 }
 </style></head><body><header class="top"><a class="brand" href="#">
 miraculous<span>.kk</span>
-</a><nav>
+</a><span id="updateText" class="update">
+Update feita há 0 seg
+</span><nav>
 <a href="#catalogo">Catálogo</a>
 <a href="#anuncios">Anúncios</a>
 <a href="#func">Funcionalidades</a>
 <a href="#sobre">Sobre</a>
-</nav><button class="btn" id="loginOpen">
-Admin
-</button></header><main><section class="hero"><div><div class="ey">
-THE MIRACULOUS HUB
-</div><h1>
+</nav><button class="btn" id="loginOpen">Admin</button>
+
+</header><main><section class="hero"><div><div class="ey">THE MIRACULOUS HUB</div><h1>
 O teu lugar para <span>Miraculous.</span>
 </h1><p>
 Catálogo, episódios, especiais, idiomas,
@@ -466,67 +106,35 @@ legendas e novidades — tudo num só lugar.
 Explorar catálogo
 </a><a class="btn" href="#anuncios">
 Anúncios
-</a></div></div><div class="showcase">
-🐞
-</div></section><!-- CATÁLOGO --><section class="sec" id="catalogo"><div class="head"><div><div class="ey">
-CATÁLOGO
-</div><h2>
-Temporadas e episódios
-</h2></div><input
-id="search"
-class="search"
-placeholder="Pesquisar..."
-
-«»
-
-</div><div id="grid" class="grid"></div></section><!-- ANÚNCIOS --><section class="sec" id="anuncios"><div class="ey">
-NOVIDADES
-</div><h2>
-Anúncios
-</h2><div id="publicAnnouncements"></div></section><!-- FUNCIONALIDADES --><section class="sec" id="func"><div class="ey">
-PLATAFORMA
-</div><h2>
-Feito para crescer
-</h2><div class="features"><div class="feature">
+</a></div></div><div class="showcase">🐞</div></section><section class="sec" id="catalogo"><div class="head"><div>
+<div class="ey">CATÁLOGO</div>
+<h2>Temporadas e episódios</h2>
+</div><input id="search" class="search" placeholder="Pesquisar..."></div><div id="grid" class="grid"></div></section><section class="sec" id="anuncios"><div class="ey">NOVIDADES</div><h2>Anúncios</h2><div id="publicAnnouncements"></div></section><section class="sec" id="func"><div class="ey">PLATAFORMA</div><h2>Feito para crescer</h2><div class="features"><div class="feature">
 🎬 <b>Player</b>
-<span>
-Vídeo, legendas e áudio autorizado.
-</span>
+<span>Vídeo, legendas e áudio autorizado.</span>
 </div><div class="feature">
 💾 <b>Progresso</b>
-<span>
-Continuar de onde ficaste.
-</span>
+<span>Continuar de onde ficaste.</span>
 </div><div class="feature">
 🌍 <b>Idiomas</b>
-<span>
-Dobragens e legendas organizadas.
-</span>
+<span>Dobragens e legendas organizadas.</span>
 </div><div class="feature">
 👥 <b>Watch Together</b>
-<span>
-Salas para ver em conjunto.
-</span>
-</div></div></section><section class="sec" id="sobre"><div class="ey">
-MIRACULOUS.KK
-</div><h2>
-Feito para fãs.
-</h2><p class="muted">
+<span>Salas para ver em conjunto.</span>
+</div></div></section><section class="sec" id="sobre"><div class="ey">MIRACULOUS.KK</div><h2>Feito para fãs.</h2><p class="muted">
 Starter de um projecto de fã.
 Não inclui episódios protegidos por direitos de autor.
 </p></section></main><footer>
 © miraculous.kk — fan project
-</footer><!-- LOGIN --><div id="login" class="modal hide"><div class="box" style="max-width:420px"><button class="close" id="loginClose">
-×
-</button><div class="ey">
-ADMIN
-</div><h2>
-Entrar
-</h2><p class="muted">
+</footer><!-- LOGIN --><div id="login" class="modal hide"><div class="box" style="max-width:420px"><button class="close" id="loginClose">×</button>
+
+<div class="ey">ADMIN</div><h2>Entrar</h2><p class="muted">
 Entra com uma conta de administrador.
 </p><input
 id="user"
+type="text"
 placeholder="Utilizador"
+autocomplete="username"
 
 «»
 
@@ -534,6 +142,7 @@ placeholder="Utilizador"
 id="pass"
 type="password"
 placeholder="Palavra-passe"
+autocomplete="current-password"
 
 «»
 
@@ -547,146 +156,72 @@ id="loginBtn"
 Entrar
 </button>
 
-<p id="err" style="color:#ff6377"></p></div>
-</div><!-- ADMIN --><div id="admin" class="modal hide"><div class="box"><button class="close" id="adminClose">
-×
-</button><div class="ey">
-DASHBOARD
-</div><h2>
-Painel miraculous.kk
-</h2><div class="stats"><div class="stat">
+<p id="err" style="color:#ff6377"></p></div></div><!-- ADMIN --><div id="admin" class="modal hide"><div class="box"><button class="close" id="adminClose">×</button>
+
+<div class="ey">DASHBOARD</div><h2>Painel miraculous.kk</h2><div class="stats"><div class="stat">
 <b id="count">0</b>
 <br>
-<small class="muted">
-episódios
-</small>
+<small class="muted">episódios</small>
 </div><div class="stat">
 <b id="announcementCount">0</b>
 <br>
-<small class="muted">
-anúncios
-</small>
+<small class="muted">anúncios</small>
 </div></div><div class="admin-tabs"><button class="tab active" id="episodesTab">
 🎬 Episódios
 </button><button class="tab" id="announcementsTab">
 📢 Anúncios
 </button></div><!-- EPISÓDIOS --><div id="episodesPanel" class="panel-section active"><h3 id="episodeFormTitle">
 Adicionar episódio
-</h3><div class="form"><input
-id="title"
-placeholder="Título"
-
-«»
-
-<input
-id="season"
-placeholder="Temporada"
-
-«»
+</h3><div class="form"><input id="title" placeholder="Título">
+<input id="season" placeholder="Temporada">
+<input id="number" placeholder="Episódio">
+<input id="lang" placeholder="Idioma"><div class="file-box"><label class="muted">🖼️ Thumbnail</label>
 
 <input
-id="number"
-placeholder="Episódio"
-
-«»
-
-<input
-id="lang"
-placeholder="Idioma"
-
-«»
-
-<div class="file-box"><label class="muted">
-🖼️ Thumbnail
-</label><input
 id="thumbFile"
 type="file"
 accept="image/*"
 
 «»
 
-<div
-id="thumbName"
-class="file-name"
->
+<div id="thumbName" class="file-name">
 Nenhuma imagem selecionada.
-</div></div><div class="file-box"><label class="muted">
-🎬 Vídeo
-</label><input
+</div></div><div class="file-box"><label class="muted">🎬 Vídeo</label>
+
+<input
 id="videoFile"
 type="file"
 accept="video/*"
 
 «»
 
-<div
-id="videoName"
-class="file-name"
->
+<div id="videoName" class="file-name">
 Nenhum vídeo selecionado.
-</div></div><div><label class="muted">
-Disponibilidade
-</label><select id="visibility"><option value="global">
-🌐 Global
-</option><option value="local">
-📱 Local
-</option></select></div><div><label class="muted">
-Idioma das legendas
-</label><select id="subtitleLang"><option value="">
-Sem legendas
-</option><option value="PT-PT">
-🇵🇹 Português (PT-PT)
-</option><option value="EN">
-🇬🇧 Inglês
-</option><option value="FR">
-🇫🇷 Francês
-</option><option value="ES">
-🇪🇸 Espanhol
-</option></select></div><div
-class="file-box"
-style="grid-column:1/-1"
-><label class="muted">
-📄 Legendas
-</label><input
+</div></div><div><label class="muted">Disponibilidade</label>
+
+<select id="visibility"><option value="global">🌐 Global</option>
+<option value="local">📱 Local</option></select></div><div><label class="muted">Idioma das legendas</label>
+
+<select id="subtitleLang"><option value="">Sem legendas</option>
+<option value="PT-PT">🇵🇹 Português (PT-PT)</option>
+<option value="EN">🇬🇧 Inglês</option>
+<option value="FR">🇫🇷 Francês</option>
+<option value="ES">🇪🇸 Espanhol</option></select></div><div class="file-box" style="grid-column:1/-1"><label class="muted">📄 Legendas</label>
+
+<input
 id="subtitleFile"
 type="file"
 accept=".srt,.vtt,text/plain"
 
 «»
 
-<div
-id="subtitleName"
-class="file-name"
->
+<div id="subtitleName" class="file-name">
 Nenhum ficheiro selecionado.
-</div></div><textarea
-id="desc"
-placeholder="Descrição"
-></textarea></div><div style="display:flex;gap:8px;margin-top:8px"><button
-class="btn primary"
-id="add"
-
-«»
-
+</div></div><textarea id="desc" placeholder="Descrição"></textarea></div><div style="display:flex;gap:8px;margin-top:8px"><button class="btn primary" id="add">
 Guardar episódio
-</button>
-
-<button
-class="btn hide"
-id="cancelEdit"
-
-«»
-
+</button><button class="btn hide" id="cancelEdit">
 Cancelar edição
-</button>
-
-</div><div
-id="list"
-class="list"
-></div></div><!-- ANÚNCIOS ADMIN --><div
-id="announcementsPanel"
-class="panel-section"
-><h3 id="announcementFormTitle">
+</button></div><div id="list" class="list"></div></div><!-- ANÚNCIOS --><div id="announcementsPanel" class="panel-section"><h3 id="announcementFormTitle">
 Criar anúncio
 </h3><input
 id="announcementTitle"
@@ -697,34 +232,13 @@ placeholder="Título do anúncio"
 <textarea
 id="announcementText"
 placeholder="Texto do anúncio"
-></textarea><select id="announcementType"><option value="info">
-ℹ️ Informação
-</option><option value="update">
-🆕 Atualização
-</option><option value="important">
-⚠️ Importante
-</option></select><div style="display:flex;gap:8px;margin-top:8px"><button
-class="btn primary"
-id="addAnnouncement"
-
-«»
-
+></textarea><select id="announcementType"><option value="info">ℹ️ Informação</option>
+<option value="update">🆕 Atualização</option>
+<option value="important">⚠️ Importante</option></select><div style="display:flex;gap:8px;margin-top:8px"><button class="btn primary" id="addAnnouncement">
 Publicar anúncio
-</button>
-
-<button
-class="btn hide"
-id="cancelAnnouncementEdit"
-
-«»
-
+</button><button class="btn hide" id="cancelAnnouncementEdit">
 Cancelar edição
-</button>
-
-</div><div
-id="announcementList"
-class="list"
-></div></div></div>
+</button></div><div id="announcementList" class="list"></div></div></div>
 </div><script>
 
 /* =========================
@@ -742,34 +256,93 @@ subtitleLang:'',
 subtitle:'',
 video:'',
 thumb:'',
-desc:''
+desc:'',
+updated:Date.now()
 }
 ];
 
+let eps=JSON.parse(
+localStorage.getItem('mkEps')||'null'
+)||seed;
 
-let eps=
-JSON.parse(localStorage.getItem('mkEps')||'null')
-||seed;
-
-
-let announcements=
-JSON.parse(
+let announcements=JSON.parse(
 localStorage.getItem('mkAnnouncements')||'null'
-)
-||[];
+)||[];
 
+let lastUpdate=parseInt(
+localStorage.getItem('mkLastUpdate')||Date.now()
+);
 
 let editingEpisode=-1;
-
 let editingAnnouncement=-1;
 
-
-const $=x=>
-document.getElementById(x);
+const $=x=>document.getElementById(x);
 
 
 /* =========================
-   SEGURANÇA HTML
+   ATUALIZAÇÃO
+========================= */
+
+function updateTimeText(){
+
+const diff=Math.max(
+0,
+Date.now()-lastUpdate
+);
+
+const sec=Math.floor(diff/1000);
+
+let text;
+
+if(sec<60){
+
+text=`Update feita há ${sec} seg`;
+
+}else if(sec<3600){
+
+const min=Math.floor(sec/60);
+
+text=`Update feita há ${min} min`;
+
+}else if(sec<86400){
+
+const hrs=Math.floor(sec/3600);
+
+text=`Update feita há ${hrs} hrs`;
+
+}else{
+
+const days=Math.floor(sec/86400);
+
+text=`Update feita há ${days} dias`;
+
+}
+
+$('updateText').textContent=text;
+
+}
+
+setInterval(updateTimeText,1000);
+
+updateTimeText();
+
+
+function markUpdated(){
+
+lastUpdate=Date.now();
+
+localStorage.setItem(
+'mkLastUpdate',
+String(lastUpdate)
+);
+
+updateTimeText();
+
+}
+
+
+/* =========================
+   ESC
 ========================= */
 
 function esc(s=''){
@@ -789,30 +362,23 @@ m=>({
 
 
 /* =========================
-   EPISÓDIOS
+   RENDER
 ========================= */
 
 function render(){
 
-const q=
-$('search').value.toLowerCase();
+const q=$('search').value.toLowerCase();
 
-
-const a=
-eps.filter(e=>
+const a=eps.filter(e=>
 (
 e.title+' '+
 e.season+' '+
 e.number+' '+
 e.lang
-)
-.toLowerCase()
-.includes(q)
+).toLowerCase().includes(q)
 );
 
-
-$('grid').innerHTML=
-a.map(e=>`
+$('grid').innerHTML=a.map(e=>`
 
 <article class="card">
 
@@ -830,9 +396,7 @@ e.thumb
 
 <div class="body">
 
-<b>
-${esc(e.title)}
-</b>
+<b>${esc(e.title)}</b>
 
 <div class="meta">
 ${esc(e.season)}
@@ -860,11 +424,9 @@ ${
 e.subtitle
 ?
 `<div class="meta">
-💬 Legendas:
-${esc(e.subtitleLang||'SRT')}
+💬 Legendas: ${esc(e.subtitleLang||'SRT')}
 </div>`
-:
-''
+:''
 }
 
 </div>
@@ -875,33 +437,27 @@ ${esc(e.subtitleLang||'SRT')}
 ||
 '<p class="muted">Nenhum resultado.</p>';
 
-
 $('count').textContent=eps.length;
 
-
 renderAdminEpisodes();
-
 renderAnnouncements();
 
 }
 
 
 /* =========================
-   LISTA ADMIN EPISÓDIOS
+   ADMIN EPISÓDIOS
 ========================= */
 
 function renderAdminEpisodes(){
 
-$('list').innerHTML=
-eps.map((e,i)=>`
+$('list').innerHTML=eps.map((e,i)=>`
 
 <div class="item">
 
 <div>
 
-<b>
-${esc(e.title)}
-</b>
+<b>${esc(e.title)}</b>
 
 <div class="meta">
 ${esc(e.season)}
@@ -937,25 +493,18 @@ e.subtitle
 `<div class="meta">
 💬 Legendas ${esc(e.subtitleLang||'SRT')}
 </div>`
-:
-''
+:''
 }
 
 </div>
 
 <div class="item-buttons">
 
-<button
-class="edit"
-onclick="editEpisode(${i})"
->
+<button class="edit" onclick="editEpisode(${i})">
 ✏️ Editar
 </button>
 
-<button
-class="danger"
-onclick="deleteEpisode(${i})"
->
+<button class="danger" onclick="deleteEpisode(${i})">
 🗑️
 </button>
 
@@ -970,10 +519,7 @@ onclick="deleteEpisode(${i})"
 
 window.deleteEpisode=function(i){
 
-if(
-!confirm('Queres mesmo apagar este episódio?')
-)return;
-
+if(!confirm('Queres mesmo apagar este episódio?'))return;
 
 eps.splice(i,1);
 
@@ -982,6 +528,7 @@ localStorage.setItem(
 JSON.stringify(eps)
 );
 
+markUpdated();
 render();
 
 };
@@ -997,67 +544,33 @@ const e=eps[i];
 
 editingEpisode=i;
 
-$('episodeFormTitle').textContent=
-'Editar episódio';
+$('episodeFormTitle').textContent='Editar episódio';
 
 $('title').value=e.title||'';
-
 $('season').value=e.season||'';
-
 $('number').value=e.number||'';
-
 $('lang').value=e.lang||'';
+$('visibility').value=e.visibility||'global';
+$('subtitleLang').value=e.subtitleLang||'';
+$('desc').value=e.desc||'';
 
-$('visibility').value=
-e.visibility||'global';
+$('videoName').textContent=e.video
+?'🎬 Vídeo já selecionado'
+:'Nenhum vídeo selecionado.';
 
-$('subtitleLang').value=
-e.subtitleLang||'';
-
-$('desc').value=
-e.desc||'';
-
-$('videoName').textContent=
-e.video
-?
-'🎬 Vídeo já selecionado: '+e.video
-:
-'Nenhum vídeo selecionado.';
-
-$('subtitleName').textContent=
-e.subtitle
-?
-'📄 Legendas já carregadas'
-:
-'Nenhum ficheiro selecionado.';
+$('subtitleName').textContent=e.subtitle
+?'📄 Legendas já carregadas'
+:'Nenhum ficheiro selecionado.';
 
 $('cancelEdit').classList.remove('hide');
 
-$('add').textContent=
-'Guardar alterações';
-
-$('episodesPanel').scrollIntoView({
-behavior:'smooth'
-});
+$('add').textContent='Guardar alterações';
 
 };
 
 
 /* =========================
-   CANCELAR EDIÇÃO
-========================= */
-
-$('cancelEdit').onclick=()=>{
-
-editingEpisode=-1;
-
-clearEpisodeForm();
-
-};
-
-
-/* =========================
-   LIMPAR FORM EPISÓDIO
+   LIMPAR FORM
 ========================= */
 
 function clearEpisodeForm(){
@@ -1068,41 +581,31 @@ function clearEpisodeForm(){
 'number',
 'lang',
 'desc'
-].forEach(id=>{
-$(id).value='';
-});
-
+].forEach(id=>$(id).value='');
 
 $('videoFile').value='';
-
 $('subtitleFile').value='';
-
 $('thumbFile').value='';
 
 $('visibility').value='global';
-
 $('subtitleLang').value='';
 
-$('videoName').textContent=
-'Nenhum vídeo selecionado.';
-
-$('subtitleName').textContent=
-'Nenhum ficheiro selecionado.';
-
-$('thumbName').textContent=
-'Nenhuma imagem selecionada.';
+$('videoName').textContent='Nenhum vídeo selecionado.';
+$('subtitleName').textContent='Nenhum ficheiro selecionado.';
+$('thumbName').textContent='Nenhuma imagem selecionada.';
 
 editingEpisode=-1;
 
-$('episodeFormTitle').textContent=
-'Adicionar episódio';
+$('episodeFormTitle').textContent='Adicionar episódio';
 
-$('add').textContent=
-'Guardar episódio';
+$('add').textContent='Guardar episódio';
 
 $('cancelEdit').classList.add('hide');
 
 }
+
+
+$('cancelEdit').onclick=clearEpisodeForm;
 
 
 /* =========================
@@ -1117,54 +620,37 @@ $('search').oninput=render;
 ========================= */
 
 $('loginOpen').onclick=()=>{
-
 $('login').classList.remove('hide');
-
 };
-
 
 $('loginClose').onclick=()=>{
-
 $('login').classList.add('hide');
-
 };
-
 
 $('adminClose').onclick=()=>{
-
 $('admin').classList.add('hide');
-
 };
-
 
 $('loginBtn').onclick=()=>{
 
 const u=$('user').value.trim();
-
 const p=$('pass').value;
 
-
 const valid=
-
-(u==='admin' && p==='miraculous')
-||
-(u==='miguel' && p==='nemesis6');
-
+(u==='admin'&&p==='miraculous')||
+(u==='miguel'&&p==='nemesis6');
 
 if(valid){
 
 $('login').classList.add('hide');
-
 $('admin').classList.remove('hide');
-
 $('err').textContent='';
 
 render();
 
 }else{
 
-$('err').textContent=
-'Credenciais inválidas.';
+$('err').textContent='Credenciais inválidas.';
 
 }
 
@@ -1172,30 +658,25 @@ $('err').textContent=
 
 
 /* =========================
-   TABS ADMIN
+   TABS
 ========================= */
 
 $('episodesTab').onclick=()=>{
 
 $('episodesTab').classList.add('active');
-
 $('announcementsTab').classList.remove('active');
 
 $('episodesPanel').classList.add('active');
-
 $('announcementsPanel').classList.remove('active');
 
 };
 
-
 $('announcementsTab').onclick=()=>{
 
 $('announcementsTab').classList.add('active');
-
 $('episodesTab').classList.remove('active');
 
 $('announcementsPanel').classList.add('active');
-
 $('episodesPanel').classList.remove('active');
 
 };
@@ -1207,216 +688,130 @@ $('episodesPanel').classList.remove('active');
 
 $('thumbFile').onchange=()=>{
 
-const file=
-$('thumbFile').files[0];
+const f=$('thumbFile').files[0];
 
 $('thumbName').textContent=
-file
-?
-'🖼️ '+file.name
-:
-'Nenhuma imagem selecionada.';
+f?'🖼️ '+f.name:'Nenhuma imagem selecionada.';
 
 };
-
 
 $('videoFile').onchange=()=>{
 
-const file=
-$('videoFile').files[0];
+const f=$('videoFile').files[0];
 
 $('videoName').textContent=
-file
-?
-'🎬 '+file.name
-:
-'Nenhum vídeo selecionado.';
+f?'🎬 '+f.name:'Nenhum vídeo selecionado.';
 
 };
 
-
 $('subtitleFile').onchange=()=>{
 
-const file=
-$('subtitleFile').files[0];
+const f=$('subtitleFile').files[0];
 
 $('subtitleName').textContent=
-file
-?
-'📄 '+file.name
-:
-'Nenhum ficheiro selecionado.';
+f?'📄 '+f.name:'Nenhum ficheiro selecionado.';
 
 };
 
 
 /* =========================
-   GUARDAR / EDITAR EPISÓDIO
+   GUARDAR EPISÓDIO
 ========================= */
 
 $('add').onclick=async()=>{
 
-const title=
-$('title').value.trim();
-
+const title=$('title').value.trim();
 
 if(!title){
 
 alert('Escreve um título.');
-
 return;
 
 }
 
+const videoFile=$('videoFile').files[0];
+const subtitleFile=$('subtitleFile').files[0];
+const thumbFile=$('thumbFile').files[0];
 
-const videoFile=
-$('videoFile').files[0];
-
-
-const subtitleFile=
-$('subtitleFile').files[0];
-
-
-const thumbFile=
-$('thumbFile').files[0];
-
-
-let oldEpisode=
+const old=
 editingEpisode>=0
-?
-eps[editingEpisode]
-:
-null;
+?eps[editingEpisode]
+:null;
 
-
-let subtitleText=
-oldEpisode
-?
-oldEpisode.subtitle||''
-:
-'';
-
+let subtitle=
+old?old.subtitle||'':'';
 
 if(subtitleFile){
 
-const filename=
+const name=
 subtitleFile.name.toLowerCase();
 
-
 if(
-!filename.endsWith('.srt')
-&&
-!filename.endsWith('.vtt')
+!name.endsWith('.srt')&&
+!name.endsWith('.vtt')
 ){
 
-alert(
-'Escolhe um ficheiro .srt ou .vtt.'
-);
-
+alert('Escolhe um ficheiro .srt ou .vtt.');
 return;
 
 }
 
-
-subtitleText=
-await subtitleFile.text();
+subtitle=await subtitleFile.text();
 
 }
 
-
-let thumbValue=
-oldEpisode
-?
-oldEpisode.thumb||''
-:
-'';
-
+let thumb=
+old?old.thumb||'':'';
 
 if(thumbFile){
 
-/*
-Imagem selecionada localmente.
-*/
-thumbValue=
-URL.createObjectURL(thumbFile);
+thumb=URL.createObjectURL(thumbFile);
 
 }
 
-
-let videoValue=
-oldEpisode
-?
-oldEpisode.video||''
-:
-'';
-
+let video=
+old?old.video||'':'';
 
 if(videoFile){
 
-videoValue=
-videoFile.name;
+video=videoFile.name;
 
 }
 
-
 const episode={
-
 title:title,
-
-season:
-$('season').value||'—',
-
-number:
-$('number').value||'—',
-
-lang:
-$('lang').value||'—',
-
-visibility:
-$('visibility').value,
-
-subtitleLang:
-$('subtitleLang').value,
-
-subtitle:
-subtitleText,
-
-video:
-videoValue,
-
-thumb:
-thumbValue,
-
-desc:
-$('desc').value||''
-
+season:$('season').value||'—',
+number:$('number').value||'—',
+lang:$('lang').value||'—',
+visibility:$('visibility').value,
+subtitleLang:$('subtitleLang').value,
+subtitle:subtitle,
+video:video,
+thumb:thumb,
+desc:$('desc').value||'',
+updated:Date.now()
 };
-
 
 if(editingEpisode>=0){
 
 eps[editingEpisode]=episode;
 
-alert(
-'Episódio atualizado!'
-);
+alert('Episódio atualizado!');
 
 }else{
 
 eps.push(episode);
 
-alert(
-'Episódio publicado!'
-);
+alert('Episódio publicado!');
 
 }
-
 
 localStorage.setItem(
 'mkEps',
 JSON.stringify(eps)
 );
 
+markUpdated();
 
 clearEpisodeForm();
 
@@ -1443,9 +838,7 @@ ${esc(a.title)}
 </div>
 
 <div class="announcement-date">
-${esc(a.type)}
-·
-${esc(a.date)}
+${esc(a.type)} · ${esc(a.date)}
 </div>
 
 <p class="muted">
@@ -1458,10 +851,8 @@ ${esc(a.text)}
 :
 '<p class="muted">Ainda não existem anúncios.</p>';
 
-
 $('announcementCount').textContent=
 announcements.length;
-
 
 $('announcementList').innerHTML=
 announcements.map((a,i)=>`
@@ -1470,9 +861,7 @@ announcements.map((a,i)=>`
 
 <div>
 
-<b>
-${esc(a.title)}
-</b>
+<b>${esc(a.title)}</b>
 
 <div class="meta">
 ${esc(a.date)}
@@ -1482,17 +871,11 @@ ${esc(a.date)}
 
 <div class="item-buttons">
 
-<button
-class="edit"
-onclick="editAnnouncement(${i})"
->
+<button class="edit" onclick="editAnnouncement(${i})">
 ✏️
 </button>
 
-<button
-class="danger"
-onclick="deleteAnnouncement(${i})"
->
+<button class="danger" onclick="deleteAnnouncement(${i})">
 🗑️
 </button>
 
@@ -1520,60 +903,40 @@ $('announcementText').value.trim();
 const type=
 $('announcementType').value;
 
-
 if(!title||!text){
 
-alert(
-'Preenche o título e o texto do anúncio.'
-);
-
+alert('Preenche o título e o texto do anúncio.');
 return;
 
 }
 
-
-const now=
-new Date().toLocaleDateString(
-'pt-PT'
-);
-
-
 const announcement={
-
 title:title,
-
 text:text,
-
 type:type,
-
-date:now
-
+date:new Date().toLocaleDateString('pt-PT')
 };
-
 
 if(editingAnnouncement>=0){
 
-announcements[editingAnnouncement]=
-announcement;
+announcements[editingAnnouncement]=announcement;
 
 alert('Anúncio atualizado!');
 
 }else{
 
-announcements.unshift(
-announcement
-);
+announcements.unshift(announcement);
 
 alert('Anúncio publicado!');
 
 }
-
 
 localStorage.setItem(
 'mkAnnouncements',
 JSON.stringify(announcements)
 );
 
+markUpdated();
 
 clearAnnouncementForm();
 
@@ -1588,28 +951,19 @@ render();
 
 window.editAnnouncement=function(i){
 
-const a=
-announcements[i];
+const a=announcements[i];
 
 editingAnnouncement=i;
 
-$('announcementTitle').value=
-a.title||'';
+$('announcementTitle').value=a.title||'';
+$('announcementText').value=a.text||'';
+$('announcementType').value=a.type||'info';
 
-$('announcementText').value=
-a.text||'';
+$('announcementFormTitle').textContent='Editar anúncio';
 
-$('announcementType').value=
-a.type||'info';
+$('addAnnouncement').textContent='Guardar alterações';
 
-$('announcementFormTitle').textContent=
-'Editar anúncio';
-
-$('addAnnouncement').textContent=
-'Guardar alterações';
-
-$('cancelAnnouncementEdit')
-.classList.remove('hide');
+$('cancelAnnouncementEdit').classList.remove('hide');
 
 };
 
@@ -1620,10 +974,7 @@ $('cancelAnnouncementEdit')
 
 window.deleteAnnouncement=function(i){
 
-if(
-!confirm('Queres mesmo apagar este anúncio?')
-)return;
-
+if(!confirm('Queres mesmo apagar este anúncio?'))return;
 
 announcements.splice(i,1);
 
@@ -1632,46 +983,41 @@ localStorage.setItem(
 JSON.stringify(announcements)
 );
 
+markUpdated();
 render();
 
 };
 
 
 /* =========================
-   CANCELAR ANÚNCIO
+   LIMPAR ANÚNCIO
 ========================= */
-
-$('cancelAnnouncementEdit').onclick=
-clearAnnouncementForm;
-
 
 function clearAnnouncementForm(){
 
 editingAnnouncement=-1;
 
 $('announcementTitle').value='';
-
 $('announcementText').value='';
-
 $('announcementType').value='info';
 
-$('announcementFormTitle').textContent=
-'Criar anúncio';
+$('announcementFormTitle').textContent='Criar anúncio';
 
-$('addAnnouncement').textContent=
-'Publicar anúncio';
+$('addAnnouncement').textContent='Publicar anúncio';
 
-$('cancelAnnouncementEdit')
-.classList.add('hide');
+$('cancelAnnouncementEdit').classList.add('hide');
 
 }
 
+$('cancelAnnouncementEdit').onclick=
+clearAnnouncementForm;
+
 
 /* =========================
-   INICIALIZAR
+   INICIAR
 ========================= */
 
 render();
 
 </script></body>
-  </html>
+   </html>
