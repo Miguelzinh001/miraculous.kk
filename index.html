@@ -1,384 +1,1063 @@
 <!doctype html>
-
 <html lang="pt-PT">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>miraculous.kk</title><style>
-:root{--bg:#07070a;--p:#111116;--line:#292933;--txt:#f7f7fb;--muted:#aaaab5;--red:#e62b45}
+<title>miraculous.kk</title>
+
+<style>
+:root{
+--bg:#07070a;
+--panel:#111116;
+--line:#292933;
+--text:#f7f7fb;
+--muted:#aaaab5;
+--red:#e62b45;
+}
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(circle at 80% 0,#32101a,#07070a 38%);color:var(--txt);font:15px system-ui,sans-serif}
+html{scroll-behavior:smooth}
+body{
+margin:0;
+background:radial-gradient(circle at 80% 0,#32101a,#07070a 38%);
+color:var(--text);
+font:15px system-ui,sans-serif;
+}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
 a{color:inherit;text-decoration:none}
-.top{height:70px;display:flex;align-items:center;gap:25px;padding:0 6vw;border-bottom:1px solid #17171c;background:#08080bdd;position:sticky;top:0;z-index:5}
-.brand{font-size:22px;font-weight:900;white-space:nowrap}
+
+.top{
+min-height:70px;
+display:flex;
+align-items:center;
+gap:20px;
+padding:12px 6vw;
+border-bottom:1px solid #17171c;
+background:#08080bdd;
+position:sticky;
+top:0;
+z-index:10;
+backdrop-filter:blur(12px);
+}
+
+.brand{
+font-size:22px;
+font-weight:900;
+white-space:nowrap;
+}
 .brand span{color:var(--red)}
-.update{font-size:11px;color:var(--muted);white-space:nowrap}
-nav{display:flex;gap:22px;color:var(--muted);flex:1}
-.btn{border:1px solid var(--line);background:#121218;color:#fff;border-radius:10px;padding:10px 15px;cursor:pointer}
-.primary{background:var(--red);border:0}
-.hero{min-height:520px;padding:90px 8vw;display:grid;grid-template-columns:1.3fr .7fr;gap:40px;align-items:center}
-.ey{font-size:11px;letter-spacing:2px;color:#ff6377;font-weight:800}
-.hero h1{font-size:clamp(46px,7vw,82px);line-height:.95;letter-spacing:-4px;margin:10px 0}
+
+.update{
+font-size:11px;
+color:var(--muted);
+white-space:nowrap;
+}
+
+nav{
+display:flex;
+gap:22px;
+color:var(--muted);
+flex:1;
+}
+
+.btn{
+border:1px solid var(--line);
+background:#121218;
+color:#fff;
+border-radius:10px;
+padding:10px 15px;
+}
+
+.primary{
+background:var(--red);
+border-color:var(--red);
+}
+
+.hero{
+min-height:520px;
+padding:90px 8vw;
+display:grid;
+grid-template-columns:1.3fr .7fr;
+gap:40px;
+align-items:center;
+}
+
+.ey{
+font-size:11px;
+letter-spacing:2px;
+color:#ff6377;
+font-weight:800;
+}
+
+.hero h1{
+font-size:clamp(46px,7vw,82px);
+line-height:.95;
+letter-spacing:-4px;
+margin:10px 0;
+}
+
 .hero h1 span{color:var(--red)}
-.hero p{color:var(--muted);font-size:18px;line-height:1.6;max-width:620px}
-.actions{display:flex;gap:10px;margin-top:25px}
-.showcase{height:300px;border:1px solid #3a2028;border-radius:25px;background:linear-gradient(145deg,#29111a,#101015);display:grid;place-items:center;font-size:85px;box-shadow:0 30px 100px #0008}
-.sec{padding:70px 8vw;border-top:1px solid #14141a}
-.head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:25px}
-.head h2,.sec h2{font-size:35px;margin:5px 0;letter-spacing:-1.5px}
-.search,input,textarea,select{background:#09090d;border:1px solid var(--line);color:#fff;border-radius:10px;padding:12px;font:inherit}
+
+.hero p{
+color:var(--muted);
+font-size:18px;
+line-height:1.6;
+max-width:620px;
+}
+
+.actions{
+display:flex;
+gap:10px;
+margin-top:25px;
+}
+
+.showcase{
+height:300px;
+border:1px solid #3a2028;
+border-radius:25px;
+background:linear-gradient(145deg,#29111a,#101015);
+display:grid;
+place-items:center;
+font-size:85px;
+box-shadow:0 30px 100px #0008;
+}
+
+.sec{
+padding:70px 8vw;
+border-top:1px solid #14141a;
+}
+
+.head{
+display:flex;
+justify-content:space-between;
+align-items:end;
+gap:15px;
+margin-bottom:25px;
+}
+
+h2{
+font-size:35px;
+margin:5px 0;
+letter-spacing:-1.5px;
+}
+
+.search,
+input,
+textarea,
+select{
+background:#09090d;
+border:1px solid var(--line);
+color:#fff;
+border-radius:10px;
+padding:12px;
+width:100%;
+}
+
 .search{width:min(330px,100%)}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
-.card{background:var(--p);border:1px solid var(--line);border-radius:16px;overflow:hidden}
-.thumb{aspect-ratio:16/9;background:linear-gradient(135deg,#271018,#17171d);display:grid;place-items:center;font-size:40px;overflow:hidden}
-.thumb img{width:100%;height:100%;object-fit:cover}
+
+textarea{
+min-height:100px;
+resize:vertical;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px;
+}
+
+.card{
+background:var(--panel);
+border:1px solid var(--line);
+border-radius:16px;
+overflow:hidden;
+}
+
+.thumb{
+aspect-ratio:16/9;
+background:linear-gradient(135deg,#271018,#17171d);
+display:grid;
+place-items:center;
+font-size:40px;
+overflow:hidden;
+}
+
+.thumb img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
 .body{padding:14px}
-.meta{color:#858591;font-size:12px;margin-top:6px}
-.muted{color:var(--muted);line-height:1.7}
-.features{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.feature{background:var(--p);border:1px solid var(--line);padding:18px;border-radius:14px}
-.feature span{display:block;color:var(--muted);font-size:13px;margin-top:4px}
-.announcement{background:var(--p);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:10px}
-.announcement-title{font-size:18px;font-weight:800}
-.announcement-date{font-size:12px;color:#858591;margin-top:5px}
-footer{padding:30px 8vw;color:#70707b;border-top:1px solid #14141a}
-.modal{position:fixed;inset:0;background:#000c;display:grid;place-items:center;padding:20px;z-index:20}
-.hide{display:none}
-.box{position:relative;width:min(720px,100%);max-height:90vh;overflow:auto;background:#101015;border:1px solid var(--line);border-radius:20px;padding:28px}
-.close{position:absolute;right:15px;top:8px;background:none;border:0;color:#aaa;font-size:28px;cursor:pointer}
-.box input,.box textarea,.box select{width:100%;margin:6px 0}
-.form{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.form textarea{grid-column:1/-1}
-.stats{display:flex;gap:10px;margin:18px 0}
-.stat{background:#09090d;border:1px solid var(--line);padding:12px;border-radius:10px;flex:1}
-.list{margin:18px 0;display:grid;gap:8px}
-.item{display:flex;justify-content:space-between;gap:10px;padding:12px;background:#09090d;border:1px solid var(--line);border-radius:10px}
-.item-buttons{display:flex;gap:6px;align-items:center}
-.danger{background:#38111a;border:1px solid #5a1a26;color:#ff8a99;border-radius:8px;padding:7px;cursor:pointer}
-.edit{background:#18182a;border:1px solid #393950;color:#b9b9ff;border-radius:8px;padding:7px;cursor:pointer}
-.badge{display:inline-block;padding:3px 7px;border-radius:6px;font-size:11px;margin-top:5px}
-.badge.global{background:#12351f;color:#7dffa4}
-.badge.local{background:#30240f;color:#ffd477}
-.file-box{background:#09090d;border:1px solid var(--line);border-radius:10px;padding:10px;margin-top:6px}
-.file-name{font-size:12px;color:var(--muted);margin:5px 0 8px}
-.admin-tabs{display:flex;gap:8px;margin:20px 0;border-bottom:1px solid var(--line);padding-bottom:10px}
-.tab{background:#09090d;border:1px solid var(--line);color:#aaa;border-radius:8px;padding:9px 13px;cursor:pointer}
-.tab.active{background:var(--red);border-color:var(--red);color:white}
-.panel-section{display:none}
-.panel-section.active{display:block}
+
+.meta{
+color:#858591;
+font-size:12px;
+margin-top:6px;
+}
+
+.muted{
+color:var(--muted);
+line-height:1.7;
+}
+
+.badge{
+display:inline-block;
+padding:4px 8px;
+border-radius:7px;
+font-size:11px;
+margin-top:7px;
+}
+
+.global{
+background:#12351f;
+color:#7dffa4;
+}
+
+.local{
+background:#30240f;
+color:#ffd477;
+}
+
+.features{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+}
+
+.feature{
+background:var(--panel);
+border:1px solid var(--line);
+padding:18px;
+border-radius:14px;
+}
+
+.feature span{
+display:block;
+color:var(--muted);
+font-size:13px;
+margin-top:4px;
+}
+
+.announcement{
+background:var(--panel);
+border:1px solid var(--line);
+border-radius:14px;
+padding:18px;
+margin-bottom:10px;
+}
+
+.announcement h3{
+margin:0 0 5px;
+}
+
+footer{
+padding:30px 8vw;
+color:#70707b;
+border-top:1px solid #14141a;
+}
+
+.modal{
+position:fixed;
+inset:0;
+background:#000c;
+display:grid;
+place-items:center;
+padding:20px;
+z-index:50;
+}
+
+.hide{display:none!important}
+
+.box{
+position:relative;
+width:min(760px,100%);
+max-height:90vh;
+overflow:auto;
+background:#101015;
+border:1px solid var(--line);
+border-radius:20px;
+padding:28px;
+}
+
+.close{
+position:absolute;
+right:15px;
+top:8px;
+background:none;
+border:0;
+color:#aaa;
+font-size:28px;
+}
+
+.form{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:8px;
+}
+
+.form textarea{
+grid-column:1/-1;
+}
+
+.file{
+background:#09090d;
+border:1px solid var(--line);
+border-radius:10px;
+padding:10px;
+}
+
+.file input{
+padding:8px 0;
+border:0;
+}
+
+.stats{
+display:flex;
+gap:10px;
+margin:18px 0;
+}
+
+.stat{
+background:#09090d;
+border:1px solid var(--line);
+padding:12px;
+border-radius:10px;
+flex:1;
+}
+
+.tabs{
+display:flex;
+gap:8px;
+margin:20px 0;
+}
+
+.tab{
+background:#09090d;
+border:1px solid var(--line);
+color:#aaa;
+border-radius:8px;
+padding:9px 13px;
+}
+
+.tab.active{
+background:var(--red);
+border-color:var(--red);
+color:#fff;
+}
+
+.panel{display:none}
+.panel.active{display:block}
+
+.list{
+display:grid;
+gap:8px;
+margin-top:18px;
+}
+
+.item{
+display:flex;
+justify-content:space-between;
+gap:12px;
+padding:12px;
+background:#09090d;
+border:1px solid var(--line);
+border-radius:10px;
+}
+
+.item-buttons{
+display:flex;
+gap:6px;
+align-items:center;
+}
+
+.edit{
+background:#18182a;
+border:1px solid #393950;
+color:#b9b9ff;
+border-radius:8px;
+padding:7px;
+}
+
+.danger{
+background:#38111a;
+border:1px solid #5a1a26;
+color:#ff8a99;
+border-radius:8px;
+padding:7px;
+}
 
 @media(max-width:850px){
 nav{display:none}
-.hero{grid-template-columns:1fr;padding-top:55px}
+.hero{
+grid-template-columns:1fr;
+padding-top:55px;
+}
 .showcase{display:none}
 .grid{grid-template-columns:repeat(2,1fr)}
-.head{flex-direction:column;align-items:stretch}
+.head{
+flex-direction:column;
+align-items:stretch;
+}
 .search{width:100%}
-.update{display:none}
 }
 
 @media(max-width:520px){
+.top{
+padding:12px 16px;
+gap:10px;
+}
+.brand{font-size:19px}
+.update{font-size:9px}
+.hero{padding:55px 6vw}
+.hero h1{letter-spacing:-2px}
+.sec{padding:50px 6vw}
 .grid{grid-template-columns:1fr}
+.features{grid-template-columns:1fr}
 .form{grid-template-columns:1fr}
 .form textarea{grid-column:auto}
-.hero h1{letter-spacing:-2px}
 .stats{flex-direction:column}
 .item{flex-direction:column}
 .item-buttons{justify-content:flex-end}
 }
-</style></head><body><header class="top"><a class="brand" href="#">
+</style>
+</head>
+
+<body>
+
+<header class="top">
+
+<a class="brand" href="#">
 miraculous<span>.kk</span>
-</a><span id="updateText" class="update">
+</a>
+
+<span id="updateText" class="update">
 Update feita há 0 seg
-</span><nav>
+</span>
+
+<nav>
 <a href="#catalogo">Catálogo</a>
 <a href="#anuncios">Anúncios</a>
 <a href="#func">Funcionalidades</a>
 <a href="#sobre">Sobre</a>
-</nav><button class="btn" id="loginOpen">Admin</button>
+</nav>
 
-</header><main><section class="hero"><div><div class="ey">THE MIRACULOUS HUB</div><h1>
+<button class="btn" id="loginOpen">Admin</button>
+
+</header>
+
+
+<main>
+
+<section class="hero">
+
+<div>
+
+<div class="ey">THE MIRACULOUS HUB</div>
+
+<h1>
 O teu lugar para <span>Miraculous.</span>
-</h1><p>
+</h1>
+
+<p>
 Catálogo, episódios, especiais, idiomas,
 legendas e novidades — tudo num só lugar.
-</p><div class="actions"><a class="btn primary" href="#catalogo">
+</p>
+
+<div class="actions">
+
+<a class="btn primary" href="#catalogo">
 Explorar catálogo
-</a><a class="btn" href="#anuncios">
+</a>
+
+<a class="btn" href="#anuncios">
 Anúncios
-</a></div></div><div class="showcase">🐞</div></section><section class="sec" id="catalogo"><div class="head"><div>
+</a>
+
+</div>
+
+</div>
+
+<div class="showcase">🐞</div>
+
+</section>
+
+
+<section class="sec" id="catalogo">
+
+<div class="head">
+
+<div>
 <div class="ey">CATÁLOGO</div>
 <h2>Temporadas e episódios</h2>
-</div><input id="search" class="search" placeholder="Pesquisar..."></div><div id="grid" class="grid"></div></section><section class="sec" id="anuncios"><div class="ey">NOVIDADES</div><h2>Anúncios</h2><div id="publicAnnouncements"></div></section><section class="sec" id="func"><div class="ey">PLATAFORMA</div><h2>Feito para crescer</h2><div class="features"><div class="feature">
+</div>
+
+<input
+id="search"
+class="search"
+placeholder="Pesquisar..."
+>
+
+</div>
+
+<div id="grid" class="grid"></div>
+
+</section>
+
+
+<section class="sec" id="anuncios">
+
+<div class="ey">NOVIDADES</div>
+
+<h2>Anúncios</h2>
+
+<div id="publicAnnouncements"></div>
+
+</section>
+
+
+<section class="sec" id="func">
+
+<div class="ey">PLATAFORMA</div>
+
+<h2>Feito para crescer</h2>
+
+<div class="features">
+
+<div class="feature">
 🎬 <b>Player</b>
 <span>Vídeo, legendas e áudio autorizado.</span>
-</div><div class="feature">
+</div>
+
+<div class="feature">
 💾 <b>Progresso</b>
 <span>Continuar de onde ficaste.</span>
-</div><div class="feature">
+</div>
+
+<div class="feature">
 🌍 <b>Idiomas</b>
 <span>Dobragens e legendas organizadas.</span>
-</div><div class="feature">
+</div>
+
+<div class="feature">
 👥 <b>Watch Together</b>
 <span>Salas para ver em conjunto.</span>
-</div></div></section><section class="sec" id="sobre"><div class="ey">MIRACULOUS.KK</div><h2>Feito para fãs.</h2><p class="muted">
+</div>
+
+</div>
+
+</section>
+
+
+<section class="sec" id="sobre">
+
+<div class="ey">MIRACULOUS.KK</div>
+
+<h2>Feito para fãs.</h2>
+
+<p class="muted">
 Starter de um projecto de fã.
 Não inclui episódios protegidos por direitos de autor.
-</p></section></main><footer>
-© miraculous.kk — fan project
-</footer><!-- LOGIN --><div id="login" class="modal hide"><div class="box" style="max-width:420px"><button class="close" id="loginClose">×</button>
+</p>
 
-<div class="ey">ADMIN</div><h2>Entrar</h2><p class="muted">
+</section>
+
+</main>
+
+
+<footer>
+© miraculous.kk — fan project
+</footer>
+
+
+<!-- LOGIN -->
+
+<div id="login" class="modal hide">
+
+<div class="box" style="max-width:420px">
+
+<button class="close" id="loginClose">×</button>
+
+<div class="ey">ADMIN</div>
+
+<h2>Entrar</h2>
+
+<p class="muted">
 Entra com uma conta de administrador.
-</p><input
+</p>
+
+<input
 id="user"
 type="text"
 placeholder="Utilizador"
 autocomplete="username"
-
-«»
+>
 
 <input
 id="pass"
 type="password"
 placeholder="Palavra-passe"
 autocomplete="current-password"
-
-«»
+>
 
 <button
 class="btn primary"
-style="width:100%;margin-top:8px"
 id="loginBtn"
-
-«»
-
+style="width:100%;margin-top:8px"
+>
 Entrar
 </button>
 
-<p id="err" style="color:#ff6377"></p></div></div><!-- ADMIN --><div id="admin" class="modal hide"><div class="box"><button class="close" id="adminClose">×</button>
+<p id="err" style="color:#ff6377"></p>
 
-<div class="ey">DASHBOARD</div><h2>Painel miraculous.kk</h2><div class="stats"><div class="stat">
+</div>
+</div>
+
+
+<!-- ADMIN -->
+
+<div id="admin" class="modal hide">
+
+<div class="box">
+
+<button class="close" id="adminClose">×</button>
+
+<div class="ey">DASHBOARD</div>
+
+<h2>Painel miraculous.kk</h2>
+
+<div class="stats">
+
+<div class="stat">
 <b id="count">0</b>
 <br>
 <small class="muted">episódios</small>
-</div><div class="stat">
+</div>
+
+<div class="stat">
 <b id="announcementCount">0</b>
 <br>
 <small class="muted">anúncios</small>
-</div></div><div class="admin-tabs"><button class="tab active" id="episodesTab">
+</div>
+
+</div>
+
+
+<div class="tabs">
+
+<button class="tab active" id="episodesTab">
 🎬 Episódios
-</button><button class="tab" id="announcementsTab">
+</button>
+
+<button class="tab" id="announcementsTab">
 📢 Anúncios
-</button></div><!-- EPISÓDIOS --><div id="episodesPanel" class="panel-section active"><h3 id="episodeFormTitle">
+</button>
+
+</div>
+
+
+<!-- EPISÓDIOS -->
+
+<div id="episodesPanel" class="panel active">
+
+<h3 id="episodeTitleText">
 Adicionar episódio
-</h3><div class="form"><input id="title" placeholder="Título">
+</h3>
+
+<div class="form">
+
+<input id="title" placeholder="Título">
+
 <input id="season" placeholder="Temporada">
+
 <input id="number" placeholder="Episódio">
-<input id="lang" placeholder="Idioma"><div class="file-box"><label class="muted">🖼️ Thumbnail</label>
+
+<input id="lang" placeholder="Idioma">
+
+
+<div class="file">
+
+<label>🖼️ Thumbnail</label>
 
 <input
 id="thumbFile"
 type="file"
 accept="image/*"
+>
 
-«»
+<small id="thumbName" class="muted">
+Nenhuma imagem selecionada
+</small>
 
-<div id="thumbName" class="file-name">
-Nenhuma imagem selecionada.
-</div></div><div class="file-box"><label class="muted">🎬 Vídeo</label>
+</div>
+
+
+<div class="file">
+
+<label>🎬 Vídeo</label>
 
 <input
 id="videoFile"
 type="file"
 accept="video/*"
+>
 
-«»
+<small id="videoName" class="muted">
+Nenhum vídeo selecionado
+</small>
 
-<div id="videoName" class="file-name">
-Nenhum vídeo selecionado.
-</div></div><div><label class="muted">Disponibilidade</label>
+</div>
 
-<select id="visibility"><option value="global">🌐 Global</option>
-<option value="local">📱 Local</option></select></div><div><label class="muted">Idioma das legendas</label>
 
-<select id="subtitleLang"><option value="">Sem legendas</option>
-<option value="PT-PT">🇵🇹 Português (PT-PT)</option>
-<option value="EN">🇬🇧 Inglês</option>
-<option value="FR">🇫🇷 Francês</option>
-<option value="ES">🇪🇸 Espanhol</option></select></div><div class="file-box" style="grid-column:1/-1"><label class="muted">📄 Legendas</label>
+<div>
+
+<label class="muted">
+Disponibilidade
+</label>
+
+<select id="visibility">
+
+<option value="global">
+🌐 Global
+</option>
+
+<option value="local">
+📱 Local
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label class="muted">
+Idioma das legendas
+</label>
+
+<select id="subtitleLang">
+
+<option value="">
+Sem legendas
+</option>
+
+<option value="PT-PT">
+🇵🇹 Português (PT-PT)
+</option>
+
+<option value="EN">
+🇬🇧 Inglês
+</option>
+
+<option value="FR">
+🇫🇷 Francês
+</option>
+
+<option value="ES">
+🇪🇸 Espanhol
+</option>
+
+</select>
+
+</div>
+
+
+<div class="file" style="grid-column:1/-1">
+
+<label>📄 Legendas SRT/VTT</label>
 
 <input
 id="subtitleFile"
 type="file"
 accept=".srt,.vtt,text/plain"
+>
 
-«»
+<small id="subtitleName" class="muted">
+Nenhum ficheiro selecionado
+</small>
 
-<div id="subtitleName" class="file-name">
-Nenhum ficheiro selecionado.
-</div></div><textarea id="desc" placeholder="Descrição"></textarea></div><div style="display:flex;gap:8px;margin-top:8px"><button class="btn primary" id="add">
+</div>
+
+
+<textarea
+id="desc"
+placeholder="Descrição"
+></textarea>
+
+</div>
+
+
+<div style="display:flex;gap:8px;margin-top:10px">
+
+<button
+class="btn primary"
+id="add"
+>
 Guardar episódio
-</button><button class="btn hide" id="cancelEdit">
-Cancelar edição
-</button></div><div id="list" class="list"></div></div><!-- ANÚNCIOS --><div id="announcementsPanel" class="panel-section"><h3 id="announcementFormTitle">
+</button>
+
+<button
+class="btn hide"
+id="cancelEdit"
+>
+Cancelar
+</button>
+
+</div>
+
+
+<div id="list" class="list"></div>
+
+</div>
+
+
+<!-- ANÚNCIOS -->
+
+<div id="announcementsPanel" class="panel">
+
+<h3 id="announcementTitleText">
 Criar anúncio
-</h3><input
+</h3>
+
+<input
 id="announcementTitle"
 placeholder="Título do anúncio"
-
-«»
+>
 
 <textarea
 id="announcementText"
 placeholder="Texto do anúncio"
-></textarea><select id="announcementType"><option value="info">ℹ️ Informação</option>
-<option value="update">🆕 Atualização</option>
-<option value="important">⚠️ Importante</option></select><div style="display:flex;gap:8px;margin-top:8px"><button class="btn primary" id="addAnnouncement">
+></textarea>
+
+<select id="announcementType">
+
+<option value="Informação">
+ℹ️ Informação
+</option>
+
+<option value="Atualização">
+🆕 Atualização
+</option>
+
+<option value="Importante">
+⚠️ Importante
+</option>
+
+</select>
+
+<div style="display:flex;gap:8px;margin-top:10px">
+
+<button
+class="btn primary"
+id="addAnnouncement"
+>
 Publicar anúncio
-</button><button class="btn hide" id="cancelAnnouncementEdit">
-Cancelar edição
-</button></div><div id="announcementList" class="list"></div></div></div>
-</div><script>
+</button>
 
-/* =========================
+<button
+class="btn hide"
+id="cancelAnnouncement"
+>
+Cancelar
+</button>
+
+</div>
+
+<div id="announcementList" class="list"></div>
+
+</div>
+
+</div>
+</div>
+
+
+<script>
+
+/* ==============================
    DADOS
-========================= */
+============================== */
 
-const seed=[
+const DEFAULT_EPISODES=[
 {
-title:'Catálogo em construção',
-season:'S6',
-number:'—',
-lang:'PT-PT',
-visibility:'global',
-subtitleLang:'',
-subtitle:'',
-video:'',
-thumb:'',
-desc:'',
+title:"Catálogo em construção",
+season:"S6",
+number:"—",
+lang:"PT-PT",
+visibility:"global",
+thumb:"",
+video:"",
+subtitle:"",
+subtitleLang:"",
+desc:"",
 updated:Date.now()
 }
 ];
 
-let eps=JSON.parse(
-localStorage.getItem('mkEps')||'null'
-)||seed;
-
-let announcements=JSON.parse(
-localStorage.getItem('mkAnnouncements')||'null'
-)||[];
-
-let lastUpdate=parseInt(
-localStorage.getItem('mkLastUpdate')||Date.now()
-);
+let episodes=load("mkEpisodes",DEFAULT_EPISODES);
+let announcements=load("mkAnnouncements",[]);
 
 let editingEpisode=-1;
 let editingAnnouncement=-1;
 
-const $=x=>document.getElementById(x);
+let lastUpdate=
+Number(localStorage.getItem("mkLastUpdate"))
+||Date.now();
 
 
-/* =========================
-   ATUALIZAÇÃO
-========================= */
+function load(key,fallback){
 
-function updateTimeText(){
+try{
 
-const diff=Math.max(
-0,
-Date.now()-lastUpdate
+const data=JSON.parse(
+localStorage.getItem(key)
 );
 
-const sec=Math.floor(diff/1000);
+return Array.isArray(data)
+?data
+:fallback;
 
-let text;
+}catch{
 
-if(sec<60){
-
-text=`Update feita há ${sec} seg`;
-
-}else if(sec<3600){
-
-const min=Math.floor(sec/60);
-
-text=`Update feita há ${min} min`;
-
-}else if(sec<86400){
-
-const hrs=Math.floor(sec/3600);
-
-text=`Update feita há ${hrs} hrs`;
-
-}else{
-
-const days=Math.floor(sec/86400);
-
-text=`Update feita há ${days} dias`;
+return fallback;
 
 }
 
-$('updateText').textContent=text;
+}
+
+
+function save(){
+
+localStorage.setItem(
+"mkEpisodes",
+JSON.stringify(episodes)
+);
+
+localStorage.setItem(
+"mkAnnouncements",
+JSON.stringify(announcements)
+);
 
 }
 
-setInterval(updateTimeText,1000);
 
-updateTimeText();
-
+/* ==============================
+   UPDATE
+============================== */
 
 function markUpdated(){
 
 lastUpdate=Date.now();
 
 localStorage.setItem(
-'mkLastUpdate',
+"mkLastUpdate",
 String(lastUpdate)
 );
 
-updateTimeText();
+updateText();
 
 }
 
 
-/* =========================
-   ESC
-========================= */
+function updateText(){
 
-function esc(s=''){
+const seconds=Math.floor(
+(Date.now()-lastUpdate)/1000
+);
 
-return String(s).replace(
+let text;
+
+if(seconds<60){
+
+text=`Update feita há ${seconds} seg`;
+
+}else if(seconds<3600){
+
+const minutes=Math.floor(seconds/60);
+
+text=`Update feita há ${minutes} min`;
+
+}else if(seconds<86400){
+
+const hours=Math.floor(seconds/3600);
+
+text=`Update feita há ${hours} hrs`;
+
+}else{
+
+const days=Math.floor(seconds/86400);
+
+text=`Update feita há ${days} dias`;
+
+}
+
+document.getElementById(
+"updateText"
+).textContent=text;
+
+}
+
+setInterval(updateText,1000);
+updateText();
+
+
+/* ==============================
+   SEGURANÇA HTML
+============================== */
+
+function esc(value=""){
+
+return String(value).replace(
 /[&<>"']/g,
-m=>({
-'&':'&amp;',
-'<':'&lt;',
-'>':'&gt;',
-'"':'&quot;',
-"'":'&#39;'
-}[m])
+char=>({
+
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#39;"
+
+}[char])
+
 );
 
 }
 
 
-/* =========================
-   RENDER
-========================= */
+/* ==============================
+   ELEMENTOS
+============================== */
+
+const $=id=>
+document.getElementById(id);
+
+
+/* ==============================
+   RENDER CATÁLOGO
+============================== */
 
 function render(){
 
-const q=$('search').value.toLowerCase();
+const query=
+$("search").value
+.toLowerCase()
+.trim();
 
-const a=eps.filter(e=>
+const filtered=
+episodes.filter(e=>
 (
-e.title+' '+
-e.season+' '+
-e.number+' '+
+e.title+" "+
+e.season+" "+
+e.number+" "+
 e.lang
-).toLowerCase().includes(q)
+)
+.toLowerCase()
+.includes(query)
 );
 
-$('grid').innerHTML=a.map(e=>`
+
+$("grid").innerHTML=
+filtered.map(e=>`
 
 <article class="card">
 
@@ -387,9 +1066,9 @@ $('grid').innerHTML=a.map(e=>`
 ${
 e.thumb
 ?
-`<img src="${esc(e.thumb)}">`
+`<img src="${esc(e.thumb)}" alt="">`
 :
-'🐞'
+"🐞"
 }
 
 </div>
@@ -403,55 +1082,65 @@ ${esc(e.season)}
 ·
 ${esc(e.number)}
 ·
-${esc(e.lang||'—')}
+${esc(e.lang||"—")}
 </div>
 
-<div class="badge ${
-e.visibility==='global'
-?'global'
-:'local'
+<span class="badge ${
+e.visibility==="global"
+?"global"
+:"local"
 }">
 
 ${
-e.visibility==='global'
-?'🌐 Global'
-:'📱 Local'
+e.visibility==="global"
+?"🌐 Global"
+:"📱 Local"
 }
 
-</div>
+</span>
 
 ${
 e.subtitle
 ?
 `<div class="meta">
-💬 Legendas: ${esc(e.subtitleLang||'SRT')}
+💬 Legendas ${esc(e.subtitleLang||"SRT")}
 </div>`
-:''
+:
+""
 }
 
 </div>
 
 </article>
 
-`).join('')
+`).join("")
 ||
-'<p class="muted">Nenhum resultado.</p>';
+`<p class="muted">
+Nenhum resultado.
+</p>`;
 
-$('count').textContent=eps.length;
 
-renderAdminEpisodes();
-renderAnnouncements();
+$("count").textContent=
+episodes.length;
+
+$("announcementCount").textContent=
+announcements.length;
+
+renderAdmin();
+
+renderPublicAnnouncements();
 
 }
 
 
-/* =========================
-   ADMIN EPISÓDIOS
-========================= */
+/* ==============================
+   ADMIN LISTA
+============================== */
 
-function renderAdminEpisodes(){
+function renderAdmin(){
 
-$('list').innerHTML=eps.map((e,i)=>`
+$("list").innerHTML=
+episodes.map((e,i)=>`
 
 <div class="item">
 
@@ -463,48 +1152,49 @@ $('list').innerHTML=eps.map((e,i)=>`
 ${esc(e.season)}
 ·
 ${esc(e.number)}
+·
+${esc(e.lang||"—")}
 </div>
 
-<div class="badge ${
-e.visibility==='global'
-?'global'
-:'local'
+<span class="badge ${
+e.visibility==="global"
+?"global"
+:"local"
 }">
 
 ${
-e.visibility==='global'
-?'🌐 Global'
-:'📱 Local'
+e.visibility==="global"
+?"🌐 Global"
+:"📱 Local"
 }
 
-</div>
-
-${
-e.video
-?
-'<div class="meta">🎬 Vídeo selecionado</div>'
-:
-'<div class="meta">Sem vídeo</div>'
-}
+</span>
 
 ${
 e.subtitle
 ?
 `<div class="meta">
-💬 Legendas ${esc(e.subtitleLang||'SRT')}
+📄 Legendas carregadas
 </div>`
-:''
+:
+""
 }
 
 </div>
 
 <div class="item-buttons">
 
-<button class="edit" onclick="editEpisode(${i})">
-✏️ Editar
+<button
+class="edit"
+onclick="editEpisode(${i})"
+>
+✏️
 </button>
 
-<button class="danger" onclick="deleteEpisode(${i})">
+<button
+class="danger"
+onclick="deleteEpisode(${i})"
+>
 🗑️
 </button>
 
@@ -512,304 +1202,420 @@ e.subtitle
 
 </div>
 
-`).join('');
+`).join("");
 
 }
 
 
-window.deleteEpisode=function(i){
+/* ==============================
+   APAGAR
+============================== */
 
-if(!confirm('Queres mesmo apagar este episódio?'))return;
+window.deleteEpisode=function(index){
 
-eps.splice(i,1);
+if(!confirm(
+"Queres mesmo apagar este episódio?"
+))return;
 
-localStorage.setItem(
-'mkEps',
-JSON.stringify(eps)
-);
+episodes.splice(index,1);
 
+save();
 markUpdated();
 render();
 
 };
 
 
-/* =========================
-   EDITAR EPISÓDIO
-========================= */
+/* ==============================
+   EDITAR
+============================== */
 
-window.editEpisode=function(i){
+window.editEpisode=function(index){
 
-const e=eps[i];
+const e=episodes[index];
 
-editingEpisode=i;
+editingEpisode=index;
 
-$('episodeFormTitle').textContent='Editar episódio';
+$("title").value=e.title||"";
+$("season").value=e.season||"";
+$("number").value=e.number||"";
+$("lang").value=e.lang||"—";
+$("visibility").value=e.visibility||"global";
+$("subtitleLang").value=e.subtitleLang||"";
+$("desc").value=e.desc||"";
 
-$('title').value=e.title||'';
-$('season').value=e.season||'';
-$('number').value=e.number||'';
-$('lang').value=e.lang||'';
-$('visibility').value=e.visibility||'global';
-$('subtitleLang').value=e.subtitleLang||'';
-$('desc').value=e.desc||'';
+$("episodeTitleText").textContent=
+"Editar episódio";
 
-$('videoName').textContent=e.video
-?'🎬 Vídeo já selecionado'
-:'Nenhum vídeo selecionado.';
+$("add").textContent=
+"Guardar alterações";
 
-$('subtitleName').textContent=e.subtitle
-?'📄 Legendas já carregadas'
-:'Nenhum ficheiro selecionado.';
+$("cancelEdit").classList.remove(
+"hide"
+);
 
-$('cancelEdit').classList.remove('hide');
+$("videoName").textContent=
+e.video
+?
+"🎬 Vídeo já associado"
+:
+"Nenhum vídeo selecionado";
 
-$('add').textContent='Guardar alterações';
+$("thumbName").textContent=
+e.thumb
+?
+"🖼️ Thumbnail já associada"
+:
+"Nenhuma imagem selecionada";
+
+$("subtitleName").textContent=
+e.subtitle
+?
+"📄 Legendas já associadas"
+:
+"Nenhum ficheiro selecionado";
 
 };
 
 
-/* =========================
-   LIMPAR FORM
-========================= */
+/* ==============================
+   LIMPAR EPISÓDIO
+============================== */
 
 function clearEpisodeForm(){
 
 [
-'title',
-'season',
-'number',
-'lang',
-'desc'
-].forEach(id=>$(id).value='');
+"title",
+"season",
+"number",
+"lang",
+"desc"
+].forEach(id=>{
+$(id).value="";
+});
 
-$('videoFile').value='';
-$('subtitleFile').value='';
-$('thumbFile').value='';
+$("visibility").value="global";
+$("subtitleLang").value="";
 
-$('visibility').value='global';
-$('subtitleLang').value='';
+$("thumbFile").value="";
+$("videoFile").value="";
+$("subtitleFile").value="";
 
-$('videoName').textContent='Nenhum vídeo selecionado.';
-$('subtitleName').textContent='Nenhum ficheiro selecionado.';
-$('thumbName').textContent='Nenhuma imagem selecionada.';
+$("thumbName").textContent=
+"Nenhuma imagem selecionada";
+
+$("videoName").textContent=
+"Nenhum vídeo selecionado";
+
+$("subtitleName").textContent=
+"Nenhum ficheiro selecionado";
+
+$("episodeTitleText").textContent=
+"Adicionar episódio";
+
+$("add").textContent=
+"Guardar episódio";
+
+$("cancelEdit").classList.add(
+"hide"
+);
 
 editingEpisode=-1;
-
-$('episodeFormTitle').textContent='Adicionar episódio';
-
-$('add').textContent='Guardar episódio';
-
-$('cancelEdit').classList.add('hide');
 
 }
 
 
-$('cancelEdit').onclick=clearEpisodeForm;
+$("cancelEdit").onclick=
+clearEpisodeForm;
 
 
-/* =========================
+/* ==============================
    PESQUISA
-========================= */
+============================== */
 
-$('search').oninput=render;
+$("search").oninput=render;
 
 
-/* =========================
+/* ==============================
    LOGIN
-========================= */
+============================== */
 
-$('loginOpen').onclick=()=>{
-$('login').classList.remove('hide');
+$("loginOpen").onclick=()=>{
+$("login").classList.remove("hide");
+$("user").focus();
 };
 
-$('loginClose').onclick=()=>{
-$('login').classList.add('hide');
+
+$("loginClose").onclick=()=>{
+$("login").classList.add("hide");
 };
 
-$('adminClose').onclick=()=>{
-$('admin').classList.add('hide');
+
+$("adminClose").onclick=()=>{
+$("admin").classList.add("hide");
 };
 
-$('loginBtn').onclick=()=>{
 
-const u=$('user').value.trim();
-const p=$('pass').value;
+$("loginBtn").onclick=login;
 
-const valid=
-(u==='admin'&&p==='miraculous')||
-(u==='miguel'&&p==='nemesis6');
 
-if(valid){
+$("pass").addEventListener(
+"keydown",
+e=>{
+if(e.key==="Enter"){
+login();
+}
+});
 
-$('login').classList.add('hide');
-$('admin').classList.remove('hide');
-$('err').textContent='';
+
+function login(){
+
+const username=
+$("user").value.trim();
+
+const password=
+$("pass").value;
+
+const correct=
+
+(username==="miguel"&&
+password==="nemesis6")
+
+||
+
+(username==="admin"&&
+password==="miraculous");
+
+
+if(correct){
+
+$("login").classList.add("hide");
+
+$("admin").classList.remove("hide");
+
+$("err").textContent="";
 
 render();
 
 }else{
 
-$('err').textContent='Credenciais inválidas.';
+$("err").textContent=
+"Utilizador ou palavra-passe inválidos.";
+
+}
+
+}
+
+
+/* ==============================
+   TABS
+============================== */
+
+$("episodesTab").onclick=()=>{
+
+$("episodesTab").classList.add("active");
+$("announcementsTab").classList.remove("active");
+
+$("episodesPanel").classList.add("active");
+$("announcementsPanel").classList.remove("active");
+
+};
+
+
+$("announcementsTab").onclick=()=>{
+
+$("announcementsTab").classList.add("active");
+$("episodesTab").classList.remove("active");
+
+$("announcementsPanel").classList.add("active");
+$("episodesPanel").classList.remove("active");
+
+};
+
+
+/* ==============================
+   FICHEIROS
+============================== */
+
+$("thumbFile").onchange=()=>{
+
+const file=$("thumbFile").files[0];
+
+if(file){
+
+$("thumbName").textContent=
+"🖼️ "+file.name;
 
 }
 
 };
 
 
-/* =========================
-   TABS
-========================= */
+$("videoFile").onchange=()=>{
 
-$('episodesTab').onclick=()=>{
+const file=$("videoFile").files[0];
 
-$('episodesTab').classList.add('active');
-$('announcementsTab').classList.remove('active');
+if(file){
 
-$('episodesPanel').classList.add('active');
-$('announcementsPanel').classList.remove('active');
+$("videoName").textContent=
+"🎬 "+file.name;
 
-};
-
-$('announcementsTab').onclick=()=>{
-
-$('announcementsTab').classList.add('active');
-$('episodesTab').classList.remove('active');
-
-$('announcementsPanel').classList.add('active');
-$('episodesPanel').classList.remove('active');
+}
 
 };
 
 
-/* =========================
-   FICHEIROS
-========================= */
+$("subtitleFile").onchange=()=>{
 
-$('thumbFile').onchange=()=>{
+const file=$("subtitleFile").files[0];
 
-const f=$('thumbFile').files[0];
+if(file){
 
-$('thumbName').textContent=
-f?'🖼️ '+f.name:'Nenhuma imagem selecionada.';
+$("subtitleName").textContent=
+"📄 "+file.name;
 
-};
-
-$('videoFile').onchange=()=>{
-
-const f=$('videoFile').files[0];
-
-$('videoName').textContent=
-f?'🎬 '+f.name:'Nenhum vídeo selecionado.';
-
-};
-
-$('subtitleFile').onchange=()=>{
-
-const f=$('subtitleFile').files[0];
-
-$('subtitleName').textContent=
-f?'📄 '+f.name:'Nenhum ficheiro selecionado.';
+}
 
 };
 
 
-/* =========================
-   GUARDAR EPISÓDIO
-========================= */
+/* ==============================
+   ADICIONAR / EDITAR EPISÓDIO
+============================== */
 
-$('add').onclick=async()=>{
+$("add").onclick=async()=>{
 
-const title=$('title').value.trim();
+const title=
+$("title").value.trim();
 
 if(!title){
 
-alert('Escreve um título.');
+alert("Escreve um título.");
 return;
 
 }
 
-const videoFile=$('videoFile').files[0];
-const subtitleFile=$('subtitleFile').files[0];
-const thumbFile=$('thumbFile').files[0];
 
 const old=
 editingEpisode>=0
-?eps[editingEpisode]
-:null;
+?
+episodes[editingEpisode]
+:
+null;
+
+
+const thumbFile=
+$("thumbFile").files[0];
+
+const videoFile=
+$("videoFile").files[0];
+
+const subtitleFile=
+$("subtitleFile").files[0];
+
+
+let thumb=
+old?.thumb||"";
+
+let video=
+old?.video||"";
 
 let subtitle=
-old?old.subtitle||'':'';
+old?.subtitle||"";
+
+
+/*
+Para o teste local, os ficheiros
+ficam associados ao episódio.
+*/
+
+if(thumbFile){
+
+thumb=
+URL.createObjectURL(thumbFile);
+
+}
+
+if(videoFile){
+
+video=
+URL.createObjectURL(videoFile);
+
+}
 
 if(subtitleFile){
 
-const name=
+const filename=
 subtitleFile.name.toLowerCase();
 
 if(
-!name.endsWith('.srt')&&
-!name.endsWith('.vtt')
+!filename.endsWith(".srt")&&
+!filename.endsWith(".vtt")
 ){
 
-alert('Escolhe um ficheiro .srt ou .vtt.');
+alert(
+"As legendas têm de ser .srt ou .vtt."
+);
+
 return;
 
 }
 
-subtitle=await subtitleFile.text();
+subtitle=
+await subtitleFile.text();
 
 }
 
-let thumb=
-old?old.thumb||'':'';
-
-if(thumbFile){
-
-thumb=URL.createObjectURL(thumbFile);
-
-}
-
-let video=
-old?old.video||'':'';
-
-if(videoFile){
-
-video=videoFile.name;
-
-}
 
 const episode={
+
 title:title,
-season:$('season').value||'—',
-number:$('number').value||'—',
-lang:$('lang').value||'—',
-visibility:$('visibility').value,
-subtitleLang:$('subtitleLang').value,
-subtitle:subtitle,
-video:video,
+
+season:
+$("season").value||"—",
+
+number:
+$("number").value||"—",
+
+lang:
+$("lang").value||"—",
+
+visibility:
+$("visibility").value,
+
 thumb:thumb,
-desc:$('desc').value||'',
+
+video:video,
+
+subtitle:subtitle,
+
+subtitleLang:
+$("subtitleLang").value,
+
+desc:
+$("desc").value||"",
+
 updated:Date.now()
+
 };
+
 
 if(editingEpisode>=0){
 
-eps[editingEpisode]=episode;
+episodes[editingEpisode]=episode;
 
-alert('Episódio atualizado!');
+alert("Episódio atualizado!");
 
 }else{
 
-eps.push(episode);
+episodes.push(episode);
 
-alert('Episódio publicado!');
+alert("Episódio publicado!");
 
 }
 
-localStorage.setItem(
-'mkEps',
-JSON.stringify(eps)
-);
+
+save();
 
 markUpdated();
 
@@ -820,24 +1626,34 @@ render();
 };
 
 
-/* =========================
-   ANÚNCIOS
-========================= */
+/* ==============================
+   ANÚNCIOS PÚBLICOS
+============================== */
 
-function renderAnnouncements(){
+function renderPublicAnnouncements(){
 
-$('publicAnnouncements').innerHTML=
-announcements.length
-?
+if(!announcements.length){
+
+$("publicAnnouncements").innerHTML=
+`<p class="muted">
+Ainda não existem anúncios.
+</p>`;
+
+return;
+
+}
+
+
+$("publicAnnouncements").innerHTML=
 announcements.map(a=>`
 
 <div class="announcement">
 
-<div class="announcement-title">
+<h3>
 ${esc(a.title)}
-</div>
+</h3>
 
-<div class="announcement-date">
+<div class="meta">
 ${esc(a.type)} · ${esc(a.date)}
 </div>
 
@@ -847,14 +1663,18 @@ ${esc(a.text)}
 
 </div>
 
-`).join('')
-:
-'<p class="muted">Ainda não existem anúncios.</p>';
+`).join("");
 
-$('announcementCount').textContent=
-announcements.length;
+}
 
-$('announcementList').innerHTML=
+
+/* ==============================
+   ADMIN ANÚNCIOS
+============================== */
+
+function renderAnnouncementsAdmin(){
+
+$("announcementList").innerHTML=
 announcements.map((a,i)=>`
 
 <div class="item">
@@ -871,11 +1691,17 @@ ${esc(a.date)}
 
 <div class="item-buttons">
 
-<button class="edit" onclick="editAnnouncement(${i})">
+<button
+class="edit"
+onclick="editAnnouncement(${i})"
+>
 ✏️
 </button>
 
-<button class="danger" onclick="deleteAnnouncement(${i})">
+<button
+class="danger"
+onclick="deleteAnnouncement(${i})"
+>
 🗑️
 </button>
 
@@ -883,141 +1709,245 @@ ${esc(a.date)}
 
 </div>
 
-`).join('');
+`).join("");
 
 }
 
 
-/* =========================
-   ADICIONAR ANÚNCIO
-========================= */
+/* Re-render adicional para anúncios */
 
-$('addAnnouncement').onclick=()=>{
+function renderAdmin(){
+
+$("list").innerHTML=
+episodes.map((e,i)=>`
+
+<div class="item">
+
+<div>
+
+<b>${esc(e.title)}</b>
+
+<div class="meta">
+${esc(e.season)}
+·
+${esc(e.number)}
+·
+${esc(e.lang||"—")}
+</div>
+
+<span class="badge ${
+e.visibility==="global"
+?"global"
+:"local"
+}">
+
+${
+e.visibility==="global"
+?"🌐 Global"
+:"📱 Local"
+}
+
+</span>
+
+${
+e.subtitle
+?
+`<div class="meta">
+📄 Legendas carregadas
+</div>`
+:
+""
+}
+
+</div>
+
+<div class="item-buttons">
+
+<button
+class="edit"
+onclick="editEpisode(${i})"
+>
+✏️
+</button>
+
+<button
+class="danger"
+onclick="deleteEpisode(${i})"
+>
+🗑️
+</button>
+
+</div>
+
+</div>
+
+`).join("");
+
+
+renderAnnouncementsAdmin();
+
+}
+
+
+/* ==============================
+   CRIAR ANÚNCIO
+============================== */
+
+$("addAnnouncement").onclick=()=>{
 
 const title=
-$('announcementTitle').value.trim();
+$("announcementTitle").value.trim();
 
 const text=
-$('announcementText').value.trim();
-
-const type=
-$('announcementType').value;
+$("announcementText").value.trim();
 
 if(!title||!text){
 
-alert('Preenche o título e o texto do anúncio.');
+alert(
+"Preenche o título e o texto."
+);
+
 return;
 
 }
 
+
 const announcement={
+
 title:title,
+
 text:text,
-type:type,
-date:new Date().toLocaleDateString('pt-PT')
+
+type:
+$("announcementType").value,
+
+date:
+new Date().toLocaleString(
+"pt-PT"
+)
+
 };
+
 
 if(editingAnnouncement>=0){
 
-announcements[editingAnnouncement]=announcement;
+announcements[
+editingAnnouncement
+]=announcement;
 
-alert('Anúncio atualizado!');
+alert("Anúncio atualizado!");
 
 }else{
 
-announcements.unshift(announcement);
+announcements.unshift(
+announcement
+);
 
-alert('Anúncio publicado!');
+alert("Anúncio publicado!");
 
 }
 
-localStorage.setItem(
-'mkAnnouncements',
-JSON.stringify(announcements)
-);
+
+save();
 
 markUpdated();
 
-clearAnnouncementForm();
+clearAnnouncement();
 
 render();
 
 };
 
 
-/* =========================
+/* ==============================
    EDITAR ANÚNCIO
-========================= */
+============================== */
 
-window.editAnnouncement=function(i){
+window.editAnnouncement=function(index){
 
-const a=announcements[i];
+const a=
+announcements[index];
 
-editingAnnouncement=i;
+editingAnnouncement=index;
 
-$('announcementTitle').value=a.title||'';
-$('announcementText').value=a.text||'';
-$('announcementType').value=a.type||'info';
+$("announcementTitle").value=
+a.title||"";
 
-$('announcementFormTitle').textContent='Editar anúncio';
+$("announcementText").value=
+a.text||"";
 
-$('addAnnouncement').textContent='Guardar alterações';
+$("announcementType").value=
+a.type||"Informação";
 
-$('cancelAnnouncementEdit').classList.remove('hide');
+$("announcementTitleText").textContent=
+"Editar anúncio";
+
+$("addAnnouncement").textContent=
+"Guardar alterações";
+
+$("cancelAnnouncement").classList.remove(
+"hide"
+);
 
 };
 
 
-/* =========================
+/* ==============================
    APAGAR ANÚNCIO
-========================= */
+============================== */
 
-window.deleteAnnouncement=function(i){
+window.deleteAnnouncement=function(index){
 
-if(!confirm('Queres mesmo apagar este anúncio?'))return;
+if(!confirm(
+"Queres mesmo apagar este anúncio?"
+))return;
 
-announcements.splice(i,1);
+announcements.splice(index,1);
 
-localStorage.setItem(
-'mkAnnouncements',
-JSON.stringify(announcements)
-);
-
+save();
 markUpdated();
 render();
 
 };
 
 
-/* =========================
+/* ==============================
    LIMPAR ANÚNCIO
-========================= */
+============================== */
 
-function clearAnnouncementForm(){
+function clearAnnouncement(){
 
 editingAnnouncement=-1;
 
-$('announcementTitle').value='';
-$('announcementText').value='';
-$('announcementType').value='info';
+$("announcementTitle").value="";
+$("announcementText").value="";
+$("announcementType").value=
+"Informação";
 
-$('announcementFormTitle').textContent='Criar anúncio';
+$("announcementTitleText").textContent=
+"Criar anúncio";
 
-$('addAnnouncement').textContent='Publicar anúncio';
+$("addAnnouncement").textContent=
+"Publicar anúncio";
 
-$('cancelAnnouncementEdit').classList.add('hide');
+$("cancelAnnouncement").classList.add(
+"hide"
+);
 
 }
 
-$('cancelAnnouncementEdit').onclick=
-clearAnnouncementForm;
+
+$("cancelAnnouncement").onclick=
+clearAnnouncement;
 
 
-/* =========================
-   INICIAR
-========================= */
+/* ==============================
+   INICIALIZAR
+============================== */
 
 render();
 
-</script></body>
+</script>
+
+</body>
    </html>
