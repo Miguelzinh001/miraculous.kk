@@ -12,16 +12,20 @@
 --line:#292933;
 --text:#f7f7fb;
 --muted:#aaaab5;
---red:#e62b45;
+--red:#e62b45
 }
+
 *{box-sizing:border-box}
+
 html{scroll-behavior:smooth}
+
 body{
 margin:0;
 background:radial-gradient(circle at 80% 0,#32101a,#07070a 38%);
 color:var(--text);
-font:15px system-ui,sans-serif;
+font:15px system-ui,sans-serif
 }
+
 button,input,textarea,select{font:inherit}
 button{cursor:pointer}
 a{color:inherit;text-decoration:none}
@@ -37,27 +41,28 @@ background:#08080bdd;
 position:sticky;
 top:0;
 z-index:10;
-backdrop-filter:blur(12px);
+backdrop-filter:blur(12px)
 }
 
 .brand{
 font-size:22px;
 font-weight:900;
-white-space:nowrap;
+white-space:nowrap
 }
+
 .brand span{color:var(--red)}
 
 .update{
 font-size:11px;
 color:var(--muted);
-white-space:nowrap;
+white-space:nowrap
 }
 
 nav{
 display:flex;
 gap:22px;
 color:var(--muted);
-flex:1;
+flex:1
 }
 
 .btn{
@@ -65,12 +70,12 @@ border:1px solid var(--line);
 background:#121218;
 color:#fff;
 border-radius:10px;
-padding:10px 15px;
+padding:10px 15px
 }
 
 .primary{
 background:var(--red);
-border-color:var(--red);
+border-color:var(--red)
 }
 
 .hero{
@@ -79,21 +84,21 @@ padding:90px 8vw;
 display:grid;
 grid-template-columns:1.3fr .7fr;
 gap:40px;
-align-items:center;
+align-items:center
 }
 
 .ey{
 font-size:11px;
 letter-spacing:2px;
 color:#ff6377;
-font-weight:800;
+font-weight:800
 }
 
 .hero h1{
 font-size:clamp(46px,7vw,82px);
 line-height:.95;
 letter-spacing:-4px;
-margin:10px 0;
+margin:10px 0
 }
 
 .hero h1 span{color:var(--red)}
@@ -102,13 +107,13 @@ margin:10px 0;
 color:var(--muted);
 font-size:18px;
 line-height:1.6;
-max-width:620px;
+max-width:620px
 }
 
 .actions{
 display:flex;
 gap:10px;
-margin-top:25px;
+margin-top:25px
 }
 
 .showcase{
@@ -119,12 +124,12 @@ background:linear-gradient(145deg,#29111a,#101015);
 display:grid;
 place-items:center;
 font-size:85px;
-box-shadow:0 30px 100px #0008;
+box-shadow:0 30px 100px #0008
 }
 
 .sec{
 padding:70px 8vw;
-border-top:1px solid #14141a;
+border-top:1px solid #14141a
 }
 
 .head{
@@ -132,45 +137,42 @@ display:flex;
 justify-content:space-between;
 align-items:end;
 gap:15px;
-margin-bottom:25px;
+margin-bottom:25px
 }
 
 h2{
 font-size:35px;
 margin:5px 0;
-letter-spacing:-1.5px;
+letter-spacing:-1.5px
 }
 
-.search,
-input,
-textarea,
-select{
+.search,input,textarea,select{
 background:#09090d;
 border:1px solid var(--line);
 color:#fff;
 border-radius:10px;
 padding:12px;
-width:100%;
+width:100%
 }
 
 .search{width:min(330px,100%)}
 
 textarea{
 min-height:100px;
-resize:vertical;
+resize:vertical
 }
 
 .grid{
 display:grid;
 grid-template-columns:repeat(4,1fr);
-gap:15px;
+gap:15px
 }
 
 .card{
 background:var(--panel);
 border:1px solid var(--line);
 border-radius:16px;
-overflow:hidden;
+overflow:hidden
 }
 
 .thumb{
@@ -180,12 +182,39 @@ display:grid;
 place-items:center;
 font-size:40px;
 overflow:hidden;
+cursor:pointer;
+position:relative
 }
 
 .thumb img{
 width:100%;
 height:100%;
-object-fit:cover;
+object-fit:cover
+}
+
+.play{
+position:absolute;
+inset:0;
+display:grid;
+place-items:center;
+background:#0005;
+opacity:0;
+transition:.2s
+}
+
+.thumb:hover .play,
+.thumb:active .play{
+opacity:1
+}
+
+.play span{
+width:55px;
+height:55px;
+border-radius:50%;
+background:#e62b45;
+display:grid;
+place-items:center;
+font-size:25px
 }
 
 .body{padding:14px}
@@ -193,12 +222,12 @@ object-fit:cover;
 .meta{
 color:#858591;
 font-size:12px;
-margin-top:6px;
+margin-top:6px
 }
 
 .muted{
 color:var(--muted);
-line-height:1.7;
+line-height:1.7
 }
 
 .badge{
@@ -206,37 +235,37 @@ display:inline-block;
 padding:4px 8px;
 border-radius:7px;
 font-size:11px;
-margin-top:7px;
+margin-top:7px
 }
 
 .global{
 background:#12351f;
-color:#7dffa4;
+color:#7dffa4
 }
 
 .local{
 background:#30240f;
-color:#ffd477;
+color:#ffd477
 }
 
 .features{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:10px;
+gap:10px
 }
 
 .feature{
 background:var(--panel);
 border:1px solid var(--line);
 padding:18px;
-border-radius:14px;
+border-radius:14px
 }
 
 .feature span{
 display:block;
 color:var(--muted);
 font-size:13px;
-margin-top:4px;
+margin-top:4px
 }
 
 .announcement{
@@ -244,27 +273,27 @@ background:var(--panel);
 border:1px solid var(--line);
 border-radius:14px;
 padding:18px;
-margin-bottom:10px;
+margin-bottom:10px
 }
 
 .announcement h3{
-margin:0 0 5px;
+margin:0 0 5px
 }
 
 footer{
 padding:30px 8vw;
 color:#70707b;
-border-top:1px solid #14141a;
+border-top:1px solid #14141a
 }
 
 .modal{
 position:fixed;
 inset:0;
-background:#000c;
+background:#000d;
 display:grid;
 place-items:center;
 padding:20px;
-z-index:50;
+z-index:50
 }
 
 .hide{display:none!important}
@@ -277,7 +306,7 @@ overflow:auto;
 background:#101015;
 border:1px solid var(--line);
 border-radius:20px;
-padding:28px;
+padding:28px
 }
 
 .close{
@@ -287,35 +316,35 @@ top:8px;
 background:none;
 border:0;
 color:#aaa;
-font-size:28px;
+font-size:28px
 }
 
 .form{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:8px;
+gap:8px
 }
 
 .form textarea{
-grid-column:1/-1;
+grid-column:1/-1
 }
 
 .file{
 background:#09090d;
 border:1px solid var(--line);
 border-radius:10px;
-padding:10px;
+padding:10px
 }
 
 .file input{
 padding:8px 0;
-border:0;
+border:0
 }
 
 .stats{
 display:flex;
 gap:10px;
-margin:18px 0;
+margin:18px 0
 }
 
 .stat{
@@ -323,13 +352,13 @@ background:#09090d;
 border:1px solid var(--line);
 padding:12px;
 border-radius:10px;
-flex:1;
+flex:1
 }
 
 .tabs{
 display:flex;
 gap:8px;
-margin:20px 0;
+margin:20px 0
 }
 
 .tab{
@@ -337,13 +366,13 @@ background:#09090d;
 border:1px solid var(--line);
 color:#aaa;
 border-radius:8px;
-padding:9px 13px;
+padding:9px 13px
 }
 
 .tab.active{
 background:var(--red);
 border-color:var(--red);
-color:#fff;
+color:#fff
 }
 
 .panel{display:none}
@@ -352,7 +381,7 @@ color:#fff;
 .list{
 display:grid;
 gap:8px;
-margin-top:18px;
+margin-top:18px
 }
 
 .item{
@@ -362,13 +391,13 @@ gap:12px;
 padding:12px;
 background:#09090d;
 border:1px solid var(--line);
-border-radius:10px;
+border-radius:10px
 }
 
 .item-buttons{
 display:flex;
 gap:6px;
-align-items:center;
+align-items:center
 }
 
 .edit{
@@ -376,7 +405,7 @@ background:#18182a;
 border:1px solid #393950;
 color:#b9b9ff;
 border-radius:8px;
-padding:7px;
+padding:7px
 }
 
 .danger{
@@ -384,41 +413,129 @@ background:#38111a;
 border:1px solid #5a1a26;
 color:#ff8a99;
 border-radius:8px;
-padding:7px;
+padding:7px
+}
+
+/* PLAYER */
+
+.playerBox{
+width:min(1000px,100%);
+background:#08080b;
+padding:0;
+overflow:hidden
+}
+
+.playerHeader{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:15px 20px;
+border-bottom:1px solid var(--line)
+}
+
+.playerHeader h2{
+font-size:20px;
+margin:0
+}
+
+.videoWrap{
+background:#000;
+width:100%
+}
+
+#videoPlayer{
+display:block;
+width:100%;
+max-height:75vh;
+background:#000
+}
+
+.playerInfo{
+padding:15px 20px
+}
+
+.subtitleStatus{
+font-size:12px;
+color:var(--muted)
 }
 
 @media(max-width:850px){
+
 nav{display:none}
+
 .hero{
 grid-template-columns:1fr;
-padding-top:55px;
+padding-top:55px
 }
+
 .showcase{display:none}
-.grid{grid-template-columns:repeat(2,1fr)}
+
+.grid{
+grid-template-columns:repeat(2,1fr)
+}
+
 .head{
 flex-direction:column;
-align-items:stretch;
+align-items:stretch
 }
+
 .search{width:100%}
+
 }
 
 @media(max-width:520px){
+
 .top{
 padding:12px 16px;
-gap:10px;
+gap:10px
 }
+
 .brand{font-size:19px}
-.update{font-size:9px}
-.hero{padding:55px 6vw}
-.hero h1{letter-spacing:-2px}
-.sec{padding:50px 6vw}
-.grid{grid-template-columns:1fr}
-.features{grid-template-columns:1fr}
-.form{grid-template-columns:1fr}
-.form textarea{grid-column:auto}
-.stats{flex-direction:column}
-.item{flex-direction:column}
-.item-buttons{justify-content:flex-end}
+
+.update{
+font-size:9px
+}
+
+.hero{
+padding:55px 6vw
+}
+
+.hero h1{
+letter-spacing:-2px
+}
+
+.sec{
+padding:50px 6vw
+}
+
+.grid{
+grid-template-columns:1fr
+}
+
+.features{
+grid-template-columns:1fr
+}
+
+.form{
+grid-template-columns:1fr
+}
+
+.form textarea{
+grid-column:auto
+}
+
+.stats{
+flex-direction:column
+}
+
+.item{
+flex-direction:column
+}
+
+.item-buttons{
+justify-content:flex-end
+}
+
 }
 </style>
 </head>
@@ -526,7 +643,7 @@ placeholder="Pesquisar..."
 
 <div class="feature">
 🎬 <b>Player</b>
-<span>Vídeo, legendas e áudio autorizado.</span>
+<span>Vídeo e legendas.</span>
 </div>
 
 <div class="feature">
@@ -581,10 +698,6 @@ Não inclui episódios protegidos por direitos de autor.
 <div class="ey">ADMIN</div>
 
 <h2>Entrar</h2>
-
-<p class="muted">
-Entra com uma conta de administrador.
-</p>
 
 <input
 id="user"
@@ -656,8 +769,6 @@ Entrar
 </div>
 
 
-<!-- EPISÓDIOS -->
-
 <div id="episodesPanel" class="panel active">
 
 <h3 id="episodeTitleText">
@@ -694,12 +805,12 @@ Nenhuma imagem selecionada
 
 <div class="file">
 
-<label>🎬 Vídeo</label>
+<label>🎬 Vídeo MP4</label>
 
 <input
 id="videoFile"
 type="file"
-accept="video/*"
+accept="video/mp4,video/*"
 >
 
 <small id="videoName" class="muted">
@@ -816,9 +927,7 @@ Cancelar
 
 <div id="announcementsPanel" class="panel">
 
-<h3 id="announcementTitleText">
-Criar anúncio
-</h3>
+<h3>Criar anúncio</h3>
 
 <input
 id="announcementTitle"
@@ -846,23 +955,13 @@ placeholder="Texto do anúncio"
 
 </select>
 
-<div style="display:flex;gap:8px;margin-top:10px">
-
 <button
 class="btn primary"
 id="addAnnouncement"
+style="margin-top:8px"
 >
 Publicar anúncio
 </button>
-
-<button
-class="btn hide"
-id="cancelAnnouncement"
->
-Cancelar
-</button>
-
-</div>
 
 <div id="announcementList" class="list"></div>
 
@@ -872,44 +971,215 @@ Cancelar
 </div>
 
 
+<!-- PLAYER -->
+
+<div id="playerModal" class="modal hide">
+
+<div class="box playerBox">
+
+<div class="playerHeader">
+
+<h2 id="playerTitle">
+Episódio
+</h2>
+
+<button class="close" id="playerClose">
+×
+</button>
+
+</div>
+
+<div class="videoWrap">
+
+<video
+id="videoPlayer"
+controls
+playsinline
+preload="metadata"
+></video>
+
+</div>
+
+<div class="playerInfo">
+
+<div id="playerMeta" class="meta"></div>
+
+<div id="subtitleStatus" class="subtitleStatus"></div>
+
+</div>
+
+</div>
+
+</div>
+
+
 <script>
 
-/* ==============================
+/* =====================================
+   INDEXED DB
+===================================== */
+
+const DB_NAME="miraculousKK";
+const DB_VERSION=1;
+const STORE="files";
+
+let db=null;
+
+function openDB(){
+
+return new Promise((resolve,reject)=>{
+
+const request=
+indexedDB.open(DB_NAME,DB_VERSION);
+
+request.onupgradeneeded=()=>{
+
+const database=request.result;
+
+if(!database.objectStoreNames.contains(STORE)){
+
+database.createObjectStore(
+STORE,
+{keyPath:"id"}
+);
+
+}
+
+};
+
+request.onsuccess=()=>{
+
+db=request.result;
+resolve(db);
+
+};
+
+request.onerror=()=>reject(
+request.error
+);
+
+});
+
+}
+
+
+function putFile(id,file){
+
+return new Promise((resolve,reject)=>{
+
+const tx=
+db.transaction(STORE,"readwrite");
+
+tx.objectStore(STORE).put({
+id:id,
+file:file
+});
+
+tx.oncomplete=()=>resolve();
+
+tx.onerror=()=>reject(
+tx.error
+);
+
+});
+
+}
+
+
+function getFile(id){
+
+return new Promise((resolve,reject)=>{
+
+const tx=
+db.transaction(STORE,"readonly");
+
+const request=
+tx.objectStore(STORE).get(id);
+
+request.onsuccess=()=>{
+
+resolve(
+request.result?.file||null
+);
+
+};
+
+request.onerror=()=>reject(
+request.error
+);
+
+});
+
+}
+
+
+function deleteFile(id){
+
+return new Promise(resolve=>{
+
+if(!id){
+resolve();
+return;
+}
+
+const tx=
+db.transaction(STORE,"readwrite");
+
+tx.objectStore(STORE).delete(id);
+
+tx.oncomplete=()=>resolve();
+tx.onerror=()=>resolve();
+
+});
+
+}
+
+
+/* =====================================
    DADOS
-============================== */
+===================================== */
 
 const DEFAULT_EPISODES=[
 {
+id:"seed",
 title:"Catálogo em construção",
 season:"S6",
 number:"—",
 lang:"PT-PT",
 visibility:"global",
-thumb:"",
-video:"",
-subtitle:"",
+videoId:"",
+thumbId:"",
+subtitleId:"",
 subtitleLang:"",
 desc:"",
 updated:Date.now()
 }
 ];
 
-let episodes=load("mkEpisodes",DEFAULT_EPISODES);
-let announcements=load("mkAnnouncements",[]);
+let episodes=load(
+"mkEpisodes",
+DEFAULT_EPISODES
+);
+
+let announcements=load(
+"mkAnnouncements",
+[]
+);
 
 let editingEpisode=-1;
-let editingAnnouncement=-1;
 
 let lastUpdate=
-Number(localStorage.getItem("mkLastUpdate"))
-||Date.now();
+Number(
+localStorage.getItem("mkLastUpdate")
+)||Date.now();
 
 
 function load(key,fallback){
 
 try{
 
-const data=JSON.parse(
+const data=
+JSON.parse(
 localStorage.getItem(key)
 );
 
@@ -941,10 +1211,6 @@ JSON.stringify(announcements)
 }
 
 
-/* ==============================
-   UPDATE
-============================== */
-
 function markUpdated(){
 
 lastUpdate=Date.now();
@@ -961,7 +1227,8 @@ updateText();
 
 function updateText(){
 
-const seconds=Math.floor(
+const seconds=
+Math.floor(
 (Date.now()-lastUpdate)/1000
 );
 
@@ -969,41 +1236,40 @@ let text;
 
 if(seconds<60){
 
-text=`Update feita há ${seconds} seg`;
+text=
+`Update feita há ${seconds} seg`;
 
 }else if(seconds<3600){
 
-const minutes=Math.floor(seconds/60);
-
-text=`Update feita há ${minutes} min`;
+text=
+`Update feita há ${Math.floor(seconds/60)} min`;
 
 }else if(seconds<86400){
 
-const hours=Math.floor(seconds/3600);
-
-text=`Update feita há ${hours} hrs`;
+text=
+`Update feita há ${Math.floor(seconds/3600)} hrs`;
 
 }else{
 
-const days=Math.floor(seconds/86400);
-
-text=`Update feita há ${days} dias`;
+text=
+`Update feita há ${Math.floor(seconds/86400)} dias`;
 
 }
 
-document.getElementById(
-"updateText"
-).textContent=text;
+$("updateText").textContent=text;
 
 }
 
 setInterval(updateText,1000);
-updateText();
 
 
-/* ==============================
-   SEGURANÇA HTML
-============================== */
+/* =====================================
+   HELPERS
+===================================== */
+
+const $=id=>
+document.getElementById(id);
+
 
 function esc(value=""){
 
@@ -1024,19 +1290,210 @@ char=>({
 }
 
 
-/* ==============================
-   ELEMENTOS
-============================== */
+/* =====================================
+   THUMBNAIL / PLAYER
+===================================== */
 
-const $=id=>
-document.getElementById(id);
+async function getObjectURL(id){
+
+if(!id)return "";
+
+const file=
+await getFile(id);
+
+if(!file)return "";
+
+return URL.createObjectURL(file);
+
+}
 
 
-/* ==============================
-   RENDER CATÁLOGO
-============================== */
+window.openEpisode=async function(id){
 
-function render(){
+const episode=
+episodes.find(e=>e.id===id);
+
+if(!episode)return;
+
+
+if(!episode.videoId){
+
+alert(
+"Este episódio ainda não tem vídeo."
+);
+
+return;
+
+}
+
+
+const videoFile=
+await getFile(
+episode.videoId
+);
+
+if(!videoFile){
+
+alert(
+"O ficheiro de vídeo não foi encontrado neste dispositivo."
+);
+
+return;
+
+}
+
+
+const videoURL=
+URL.createObjectURL(videoFile);
+
+$("videoPlayer").src=
+videoURL;
+
+$("playerTitle").textContent=
+episode.title;
+
+$("playerMeta").textContent=
+`${episode.season} · ${episode.number} · ${episode.lang||"—"}`;
+
+
+$("subtitleStatus").textContent=
+episode.subtitleId
+?
+`💬 Legendas: ${episode.subtitleLang||"disponíveis"}`
+:
+"Sem legendas";
+
+
+/*
+Remove tracks antigos.
+*/
+
+$("videoPlayer")
+.querySelectorAll("track")
+.forEach(track=>track.remove());
+
+
+/*
+Adicionar legendas.
+*/
+
+if(episode.subtitleId){
+
+const subtitleFile=
+await getFile(
+episode.subtitleId
+);
+
+if(subtitleFile){
+
+let text=
+await subtitleFile.text();
+
+if(
+subtitleFile.name
+.toLowerCase()
+.endsWith(".srt")
+){
+
+text=
+srtToVtt(text);
+
+}
+
+const blob=
+new Blob(
+[text],
+{type:"text/vtt"}
+);
+
+const subtitleURL=
+URL.createObjectURL(blob);
+
+const track=
+document.createElement("track");
+
+track.kind="subtitles";
+track.label=
+episode.subtitleLang||"Legendas";
+
+track.srclang=
+episode.subtitleLang==="PT-PT"
+?"pt"
+:"en";
+
+track.src=subtitleURL;
+
+track.default=true;
+
+$("videoPlayer")
+.appendChild(track);
+
+}
+
+}
+
+
+$("playerModal")
+.classList.remove("hide");
+
+$("videoPlayer").play()
+.catch(()=>{});
+
+};
+
+
+function srtToVtt(srt){
+
+let result=
+"WEBVTT\n\n"+srt;
+
+result=
+result.replace(
+/(\d{2}:\d{2}:\d{2}),(\d{3})/g,
+"$1.$2"
+);
+
+return result;
+
+}
+
+
+$("playerClose").onclick=()=>{
+
+const video=
+$("videoPlayer");
+
+video.pause();
+
+video.removeAttribute("src");
+
+video.load();
+
+$("playerModal")
+.classList.add("hide");
+
+};
+
+
+$("playerModal").addEventListener(
+"click",
+e=>{
+
+if(e.target===
+$("playerModal")){
+
+$("playerClose").click();
+
+}
+
+});
+
+
+/* =====================================
+   RENDER
+===================================== */
+
+async function render(){
 
 const query=
 $("search").value
@@ -1056,20 +1513,46 @@ e.lang
 );
 
 
-$("grid").innerHTML=
-filtered.map(e=>`
+let html="";
+
+for(const e of filtered){
+
+let thumbURL="";
+
+if(e.thumbId){
+
+const file=
+await getFile(e.thumbId);
+
+if(file){
+
+thumbURL=
+URL.createObjectURL(file);
+
+}
+
+}
+
+html+=`
 
 <article class="card">
 
-<div class="thumb">
+<div
+class="thumb"
+onclick="openEpisode('${e.id}')"
+>
 
 ${
-e.thumb
+thumbURL
 ?
-`<img src="${esc(e.thumb)}" alt="">`
+`<img src="${thumbURL}" alt="">`
 :
 "🐞"
 }
+
+<div class="play">
+<span>▶</span>
+</div>
 
 </div>
 
@@ -1093,17 +1576,19 @@ e.visibility==="global"
 
 ${
 e.visibility==="global"
-?"🌐 Global"
-:"📱 Local"
+?
+"🌐 Global"
+:
+"📱 Local"
 }
 
 </span>
 
 ${
-e.subtitle
+e.subtitleId
 ?
 `<div class="meta">
-💬 Legendas ${esc(e.subtitleLang||"SRT")}
+💬 Legendas disponíveis
 </div>`
 :
 ""
@@ -1113,12 +1598,16 @@ e.subtitle
 
 </article>
 
-`).join("")
-||
+`;
+
+}
+
+
+$("grid").innerHTML=
+html||
 `<p class="muted">
 Nenhum resultado.
 </p>`;
-
 
 $("count").textContent=
 episodes.length;
@@ -1133,9 +1622,9 @@ renderPublicAnnouncements();
 }
 
 
-/* ==============================
-   ADMIN LISTA
-============================== */
+/* =====================================
+   ADMIN
+===================================== */
 
 function renderAdmin(){
 
@@ -1164,14 +1653,16 @@ e.visibility==="global"
 
 ${
 e.visibility==="global"
-?"🌐 Global"
-:"📱 Local"
+?
+"🌐 Global"
+:
+"📱 Local"
 }
 
 </span>
 
 ${
-e.subtitle
+e.subtitleId
 ?
 `<div class="meta">
 📄 Legendas carregadas
@@ -1204,45 +1695,87 @@ onclick="deleteEpisode(${i})"
 
 `).join("");
 
+
+$("announcementList").innerHTML=
+announcements.map((a,i)=>`
+
+<div class="item">
+
+<div>
+
+<b>${esc(a.title)}</b>
+
+<div class="meta">
+${esc(a.date)}
+</div>
+
+</div>
+
+<button
+class="danger"
+onclick="deleteAnnouncement(${i})"
+>
+🗑️
+</button>
+
+</div>
+
+`).join("");
+
 }
 
 
-/* ==============================
-   APAGAR
-============================== */
+/* =====================================
+   DELETE EPISODE
+===================================== */
 
-window.deleteEpisode=function(index){
+window.deleteEpisode=async function(index){
 
 if(!confirm(
 "Queres mesmo apagar este episódio?"
 ))return;
 
+const e=
+episodes[index];
+
+await deleteFile(e.videoId);
+await deleteFile(e.thumbId);
+await deleteFile(e.subtitleId);
+
 episodes.splice(index,1);
 
 save();
+
 markUpdated();
+
 render();
 
 };
 
 
-/* ==============================
-   EDITAR
-============================== */
+/* =====================================
+   EDIT EPISODE
+===================================== */
 
 window.editEpisode=function(index){
 
-const e=episodes[index];
+const e=
+episodes[index];
 
 editingEpisode=index;
 
 $("title").value=e.title||"";
 $("season").value=e.season||"";
 $("number").value=e.number||"";
-$("lang").value=e.lang||"—";
-$("visibility").value=e.visibility||"global";
-$("subtitleLang").value=e.subtitleLang||"";
-$("desc").value=e.desc||"";
+$("lang").value=e.lang||"";
+$("visibility").value=
+e.visibility||"global";
+
+$("subtitleLang").value=
+e.subtitleLang||"";
+
+$("desc").value=
+e.desc||"";
 
 $("episodeTitleText").textContent=
 "Editar episódio";
@@ -1250,37 +1783,36 @@ $("episodeTitleText").textContent=
 $("add").textContent=
 "Guardar alterações";
 
-$("cancelEdit").classList.remove(
-"hide"
-);
+$("cancelEdit")
+.classList.remove("hide");
 
 $("videoName").textContent=
-e.video
+e.videoId
 ?
-"🎬 Vídeo já associado"
+"🎬 Vídeo já guardado"
 :
 "Nenhum vídeo selecionado";
 
 $("thumbName").textContent=
-e.thumb
+e.thumbId
 ?
-"🖼️ Thumbnail já associada"
+"🖼️ Thumbnail já guardada"
 :
 "Nenhuma imagem selecionada";
 
 $("subtitleName").textContent=
-e.subtitle
+e.subtitleId
 ?
-"📄 Legendas já associadas"
+"📄 Legendas já guardadas"
 :
 "Nenhum ficheiro selecionado";
 
 };
 
 
-/* ==============================
-   LIMPAR EPISÓDIO
-============================== */
+/* =====================================
+   CLEAR EPISODE
+===================================== */
 
 function clearEpisodeForm(){
 
@@ -1294,7 +1826,9 @@ function clearEpisodeForm(){
 $(id).value="";
 });
 
-$("visibility").value="global";
+$("visibility").value=
+"global";
+
 $("subtitleLang").value="";
 
 $("thumbFile").value="";
@@ -1316,9 +1850,8 @@ $("episodeTitleText").textContent=
 $("add").textContent=
 "Guardar episódio";
 
-$("cancelEdit").classList.add(
-"hide"
-);
+$("cancelEdit")
+.classList.add("hide");
 
 editingEpisode=-1;
 
@@ -1329,159 +1862,49 @@ $("cancelEdit").onclick=
 clearEpisodeForm;
 
 
-/* ==============================
-   PESQUISA
-============================== */
-
-$("search").oninput=render;
-
-
-/* ==============================
-   LOGIN
-============================== */
-
-$("loginOpen").onclick=()=>{
-$("login").classList.remove("hide");
-$("user").focus();
-};
-
-
-$("loginClose").onclick=()=>{
-$("login").classList.add("hide");
-};
-
-
-$("adminClose").onclick=()=>{
-$("admin").classList.add("hide");
-};
-
-
-$("loginBtn").onclick=login;
-
-
-$("pass").addEventListener(
-"keydown",
-e=>{
-if(e.key==="Enter"){
-login();
-}
-});
-
-
-function login(){
-
-const username=
-$("user").value.trim();
-
-const password=
-$("pass").value;
-
-const correct=
-
-(username==="miguel"&&
-password==="nemesis6")
-
-||
-
-(username==="admin"&&
-password==="miraculous");
-
-
-if(correct){
-
-$("login").classList.add("hide");
-
-$("admin").classList.remove("hide");
-
-$("err").textContent="";
-
-render();
-
-}else{
-
-$("err").textContent=
-"Utilizador ou palavra-passe inválidos.";
-
-}
-
-}
-
-
-/* ==============================
-   TABS
-============================== */
-
-$("episodesTab").onclick=()=>{
-
-$("episodesTab").classList.add("active");
-$("announcementsTab").classList.remove("active");
-
-$("episodesPanel").classList.add("active");
-$("announcementsPanel").classList.remove("active");
-
-};
-
-
-$("announcementsTab").onclick=()=>{
-
-$("announcementsTab").classList.add("active");
-$("episodesTab").classList.remove("active");
-
-$("announcementsPanel").classList.add("active");
-$("episodesPanel").classList.remove("active");
-
-};
-
-
-/* ==============================
-   FICHEIROS
-============================== */
+/* =====================================
+   FILE LABELS
+===================================== */
 
 $("thumbFile").onchange=()=>{
 
-const file=$("thumbFile").files[0];
+const f=
+$("thumbFile").files[0];
 
-if(file){
-
+if(f)
 $("thumbName").textContent=
-"🖼️ "+file.name;
-
-}
+"🖼️ "+f.name;
 
 };
 
 
 $("videoFile").onchange=()=>{
 
-const file=$("videoFile").files[0];
+const f=
+$("videoFile").files[0];
 
-if(file){
-
+if(f)
 $("videoName").textContent=
-"🎬 "+file.name;
-
-}
+"🎬 "+f.name;
 
 };
 
 
 $("subtitleFile").onchange=()=>{
 
-const file=$("subtitleFile").files[0];
+const f=
+$("subtitleFile").files[0];
 
-if(file){
-
+if(f)
 $("subtitleName").textContent=
-"📄 "+file.name;
-
-}
+"📄 "+f.name;
 
 };
 
 
-/* ==============================
-   ADICIONAR / EDITAR EPISÓDIO
-============================== */
+/* =====================================
+   ADD / EDIT EPISODE
+===================================== */
 
 $("add").onclick=async()=>{
 
@@ -1491,6 +1914,7 @@ $("title").value.trim();
 if(!title){
 
 alert("Escreve um título.");
+
 return;
 
 }
@@ -1514,43 +1938,65 @@ const subtitleFile=
 $("subtitleFile").files[0];
 
 
-let thumb=
-old?.thumb||"";
+let videoId=
+old?.videoId||"";
 
-let video=
-old?.video||"";
+let thumbId=
+old?.thumbId||"";
 
-let subtitle=
-old?.subtitle||"";
+let subtitleId=
+old?.subtitleId||"";
 
 
-/*
-Para o teste local, os ficheiros
-ficam associados ao episódio.
-*/
+const id=
+old?.id||
+"ep_"+Date.now();
+
 
 if(thumbFile){
 
-thumb=
-URL.createObjectURL(thumbFile);
+thumbId=
+id+"_thumb";
+
+await putFile(
+thumbId,
+thumbFile
+);
 
 }
+
 
 if(videoFile){
 
-video=
-URL.createObjectURL(videoFile);
+if(!videoFile.type.startsWith("video/")){
+
+alert(
+"Seleciona um ficheiro de vídeo válido."
+);
+
+return;
 
 }
 
+videoId=
+id+"_video";
+
+await putFile(
+videoId,
+videoFile
+);
+
+}
+
+
 if(subtitleFile){
 
-const filename=
+const name=
 subtitleFile.name.toLowerCase();
 
 if(
-!filename.endsWith(".srt")&&
-!filename.endsWith(".vtt")
+!name.endsWith(".srt")&&
+!name.endsWith(".vtt")
 ){
 
 alert(
@@ -1561,13 +2007,20 @@ return;
 
 }
 
-subtitle=
-await subtitleFile.text();
+subtitleId=
+id+"_subtitle";
+
+await putFile(
+subtitleId,
+subtitleFile
+);
 
 }
 
 
 const episode={
+
+id:id,
 
 title:title,
 
@@ -1583,11 +2036,11 @@ $("lang").value||"—",
 visibility:
 $("visibility").value,
 
-thumb:thumb,
+videoId:videoId,
 
-video:video,
+thumbId:thumbId,
 
-subtitle:subtitle,
+subtitleId:subtitleId,
 
 subtitleLang:
 $("subtitleLang").value,
@@ -1604,13 +2057,17 @@ if(editingEpisode>=0){
 
 episodes[editingEpisode]=episode;
 
-alert("Episódio atualizado!");
+alert(
+"Episódio atualizado!"
+);
 
 }else{
 
 episodes.push(episode);
 
-alert("Episódio publicado!");
+alert(
+"Episódio publicado!"
+);
 
 }
 
@@ -1626,9 +2083,136 @@ render();
 };
 
 
-/* ==============================
-   ANÚNCIOS PÚBLICOS
-============================== */
+/* =====================================
+   LOGIN
+===================================== */
+
+$("loginOpen").onclick=()=>{
+
+$("login")
+.classList.remove("hide");
+
+$("user").focus();
+
+};
+
+$("loginClose").onclick=()=>{
+
+$("login")
+.classList.add("hide");
+
+};
+
+$("adminClose").onclick=()=>{
+
+$("admin")
+.classList.add("hide");
+
+};
+
+$("loginBtn").onclick=login;
+
+
+$("pass").addEventListener(
+"keydown",
+e=>{
+if(e.key==="Enter")
+login();
+});
+
+
+function login(){
+
+const user=
+$("user").value.trim();
+
+const pass=
+$("pass").value;
+
+
+const valid=
+
+(
+user==="miguel"&&
+pass==="nemesis6"
+)
+||
+(
+user==="admin"&&
+pass==="miraculous"
+);
+
+
+if(valid){
+
+$("login")
+.classList.add("hide");
+
+$("admin")
+.classList.remove("hide");
+
+$("err").textContent="";
+
+render();
+
+}else{
+
+$("err").textContent=
+"Utilizador ou palavra-passe inválidos.";
+
+}
+
+}
+
+
+/* =====================================
+   SEARCH
+===================================== */
+
+$("search").oninput=render;
+
+
+/* =====================================
+   TABS
+===================================== */
+
+$("episodesTab").onclick=()=>{
+
+$("episodesTab")
+.classList.add("active");
+
+$("announcementsTab")
+.classList.remove("active");
+
+$("episodesPanel")
+.classList.add("active");
+
+$("announcementsPanel")
+.classList.remove("active");
+
+};
+
+
+$("announcementsTab").onclick=()=>{
+
+$("announcementsTab")
+.classList.add("active");
+
+$("episodesTab")
+.classList.remove("active");
+
+$("announcementsPanel")
+.classList.add("active");
+
+$("episodesPanel")
+.classList.remove("active");
+
+};
+
+
+/* =====================================
+   ANNOUNCEMENTS
+===================================== */
 
 function renderPublicAnnouncements(){
 
@@ -1668,131 +2252,6 @@ ${esc(a.text)}
 }
 
 
-/* ==============================
-   ADMIN ANÚNCIOS
-============================== */
-
-function renderAnnouncementsAdmin(){
-
-$("announcementList").innerHTML=
-announcements.map((a,i)=>`
-
-<div class="item">
-
-<div>
-
-<b>${esc(a.title)}</b>
-
-<div class="meta">
-${esc(a.date)}
-</div>
-
-</div>
-
-<div class="item-buttons">
-
-<button
-class="edit"
-onclick="editAnnouncement(${i})"
->
-✏️
-</button>
-
-<button
-class="danger"
-onclick="deleteAnnouncement(${i})"
->
-🗑️
-</button>
-
-</div>
-
-</div>
-
-`).join("");
-
-}
-
-
-/* Re-render adicional para anúncios */
-
-function renderAdmin(){
-
-$("list").innerHTML=
-episodes.map((e,i)=>`
-
-<div class="item">
-
-<div>
-
-<b>${esc(e.title)}</b>
-
-<div class="meta">
-${esc(e.season)}
-·
-${esc(e.number)}
-·
-${esc(e.lang||"—")}
-</div>
-
-<span class="badge ${
-e.visibility==="global"
-?"global"
-:"local"
-}">
-
-${
-e.visibility==="global"
-?"🌐 Global"
-:"📱 Local"
-}
-
-</span>
-
-${
-e.subtitle
-?
-`<div class="meta">
-📄 Legendas carregadas
-</div>`
-:
-""
-}
-
-</div>
-
-<div class="item-buttons">
-
-<button
-class="edit"
-onclick="editEpisode(${i})"
->
-✏️
-</button>
-
-<button
-class="danger"
-onclick="deleteEpisode(${i})"
->
-🗑️
-</button>
-
-</div>
-
-</div>
-
-`).join("");
-
-
-renderAnnouncementsAdmin();
-
-}
-
-
-/* ==============================
-   CRIAR ANÚNCIO
-============================== */
-
 $("addAnnouncement").onclick=()=>{
 
 const title=
@@ -1812,7 +2271,7 @@ return;
 }
 
 
-const announcement={
+announcements.unshift({
 
 title:title,
 
@@ -1826,126 +2285,63 @@ new Date().toLocaleString(
 "pt-PT"
 )
 
-};
+});
 
 
-if(editingAnnouncement>=0){
-
-announcements[
-editingAnnouncement
-]=announcement;
-
-alert("Anúncio atualizado!");
-
-}else{
-
-announcements.unshift(
-announcement
-);
-
-alert("Anúncio publicado!");
-
-}
-
+$("announcementTitle").value="";
+$("announcementText").value="";
 
 save();
 
 markUpdated();
 
-clearAnnouncement();
-
 render();
 
-};
-
-
-/* ==============================
-   EDITAR ANÚNCIO
-============================== */
-
-window.editAnnouncement=function(index){
-
-const a=
-announcements[index];
-
-editingAnnouncement=index;
-
-$("announcementTitle").value=
-a.title||"";
-
-$("announcementText").value=
-a.text||"";
-
-$("announcementType").value=
-a.type||"Informação";
-
-$("announcementTitleText").textContent=
-"Editar anúncio";
-
-$("addAnnouncement").textContent=
-"Guardar alterações";
-
-$("cancelAnnouncement").classList.remove(
-"hide"
-);
+alert("Anúncio publicado!");
 
 };
 
-
-/* ==============================
-   APAGAR ANÚNCIO
-============================== */
 
 window.deleteAnnouncement=function(index){
 
 if(!confirm(
-"Queres mesmo apagar este anúncio?"
+"Queres apagar este anúncio?"
 ))return;
 
 announcements.splice(index,1);
 
 save();
+
 markUpdated();
+
 render();
 
 };
 
 
-/* ==============================
-   LIMPAR ANÚNCIO
-============================== */
+/* =====================================
+   START
+===================================== */
 
-function clearAnnouncement(){
+(async()=>{
 
-editingAnnouncement=-1;
+try{
 
-$("announcementTitle").value="";
-$("announcementText").value="";
-$("announcementType").value=
-"Informação";
+await openDB();
 
-$("announcementTitleText").textContent=
-"Criar anúncio";
+await render();
 
-$("addAnnouncement").textContent=
-"Publicar anúncio";
+}catch(error){
 
-$("cancelAnnouncement").classList.add(
-"hide"
+console.error(error);
+
+alert(
+"O armazenamento do navegador não pôde ser iniciado."
 );
 
 }
 
-
-$("cancelAnnouncement").onclick=
-clearAnnouncement;
-
-
-/* ==============================
-   INICIALIZAR
-============================== */
-
-render();
+})();
 
 </script>
 
