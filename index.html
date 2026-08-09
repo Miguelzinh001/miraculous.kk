@@ -7,1351 +7,924 @@
 
 <style>
 :root{
-  --bg:#07070a;
-  --p:#111116;
-  --line:#292933;
-  --txt:#f7f7fb;
-  --muted:#aaaab5;
-  --red:#e62b45;
+--bg:#07070a;
+--p:#111116;
+--line:#292933;
+--txt:#f7f7fb;
+--muted:#aaaab5;
+--red:#e62b45;
 }
 
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
-html{
-  scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
-  margin:0;
-  min-height:100vh;
-  background:transparent;
-  color:var(--txt);
-  font:15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+margin:0;
+background:var(--bg);
+color:var(--txt);
+font:15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+min-height:100vh;
 }
-
-button,
-input,
-textarea,
-select{
-  font:inherit;
-}
-
-button{
-  cursor:pointer;
-}
-
-a{
-  color:inherit;
-  text-decoration:none;
-}
-
-
-/* =========================================
-   FUNDO
-========================================= */
 
 #backgroundLayer{
-  position:fixed;
-  inset:0;
-  z-index:-1;
-  overflow:hidden;
-  pointer-events:none;
-  background:
-    radial-gradient(
-      circle at 50% 15%,
-      rgba(230,35,65,.30),
-      transparent 34%
-    ),
-    linear-gradient(
-      180deg,
-      #19060d 0%,
-      #0b080d 45%,
-      #030305 100%
-    );
+position:fixed;
+inset:0;
+z-index:-2;
+overflow:hidden;
+pointer-events:none;
+background:#07070a;
 }
 
-.paris-sky{
-  position:absolute;
-  inset:0;
-  background:
-    radial-gradient(
-      ellipse at 50% 15%,
-      rgba(255,40,70,.22),
-      transparent 35%
-    ),
-    radial-gradient(
-      ellipse at 20% 40%,
-      rgba(150,10,35,.14),
-      transparent 35%
-    );
-}
-
-.paris-glow{
-  position:absolute;
-  left:50%;
-  bottom:10%;
-  transform:translateX(-50%);
-  width:100%;
-  height:55%;
-  background:
-    radial-gradient(
-      ellipse,
-      rgba(190,25,50,.20),
-      transparent 65%
-    );
-  filter:blur(25px);
-}
-
-.paris-stars{
-  position:absolute;
-  inset:0;
-  opacity:.42;
-  background-image:
-    radial-gradient(
-      circle,
-      rgba(255,255,255,.7) 1px,
-      transparent 1.5px
-    ),
-    radial-gradient(
-      circle,
-      rgba(255,70,90,.5) 1px,
-      transparent 1.5px
-    );
-  background-size:
-    95px 95px,
-    145px 145px;
-  background-position:
-    10px 20px,
-    40px 70px;
-}
-
-.paris-city{
-  position:absolute;
-  bottom:0;
-  left:0;
-  width:100%;
-  height:25%;
-  display:flex;
-  align-items:flex-end;
-  justify-content:center;
-  gap:3px;
-  opacity:.75;
-}
-
-.paris-city span{
-  display:block;
-  width:clamp(18px,4vw,55px);
-  background:
-    linear-gradient(
-      180deg,
-      #151018,
-      #030306
-    );
-  border-top:1px solid rgba(255,50,70,.12);
-}
-
-.paris-city span:nth-child(1){height:35%}
-.paris-city span:nth-child(2){height:60%}
-.paris-city span:nth-child(3){height:42%}
-.paris-city span:nth-child(4){height:75%}
-.paris-city span:nth-child(5){height:48%}
-.paris-city span:nth-child(6){height:68%}
-.paris-city span:nth-child(7){height:40%}
-.paris-city span:nth-child(8){height:82%}
-.paris-city span:nth-child(9){height:52%}
-.paris-city span:nth-child(10){height:70%}
-.paris-city span:nth-child(11){height:45%}
-.paris-city span:nth-child(12){height:62%}
-
-.eiffel{
-  position:absolute;
-  bottom:13%;
-  left:50%;
-  transform:translateX(-50%);
-  width:90px;
-  height:230px;
-  opacity:.20;
-  filter:drop-shadow(0 0 20px rgba(230,40,70,.5));
-}
-
-.eiffel-top{
-  position:absolute;
-  top:0;
-  left:50%;
-  transform:translateX(-50%);
-  width:4px;
-  height:40px;
-  background:#aaa;
-}
-
-.eiffel-body{
-  position:absolute;
-  bottom:0;
-  left:50%;
-  transform:translateX(-50%);
-  width:78px;
-  height:195px;
-  clip-path:polygon(
-    50% 0,
-    56% 30%,
-    88% 100%,
-    65% 100%,
-    50% 45%,
-    35% 100%,
-    12% 100%,
-    44% 30%
-  );
-  background:linear-gradient(
-    90deg,
-    #29242a,
-    #888,
-    #29242a
-  );
-}
-
-#backgroundImage{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:none;
-}
-
+#backgroundImage,
 #backgroundVideo{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:none;
+width:100%;
+height:100%;
+object-fit:cover;
+display:none;
 }
 
 #backgroundOverlay{
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(
-      180deg,
-      rgba(0,0,0,.20),
-      rgba(0,0,0,.40) 45%,
-      rgba(0,0,0,.84) 100%
-    );
+position:absolute;
+inset:0;
+background:rgba(0,0,0,.62);
 }
 
+a{
+color:inherit;
+text-decoration:none;
+}
 
-/* =========================================
-   HEADER
-========================================= */
+button,input,textarea,select{
+font:inherit;
+}
+
+button{cursor:pointer}
 
 .top{
-  min-height:70px;
-  display:flex;
-  align-items:center;
-  gap:18px;
-  padding:12px 6vw;
-  border-bottom:1px solid #17171c;
-  background:rgba(8,8,11,.92);
-  backdrop-filter:blur(14px);
-  position:sticky;
-  top:0;
-  z-index:20;
+min-height:70px;
+display:flex;
+align-items:center;
+gap:18px;
+padding:12px 6vw;
+border-bottom:1px solid #17171c;
+background:rgba(8,8,11,.92);
+backdrop-filter:blur(14px);
+position:sticky;
+top:0;
+z-index:20;
 }
 
 .brand{
-  font-size:22px;
-  font-weight:900;
-  white-space:nowrap;
+font-size:22px;
+font-weight:900;
+white-space:nowrap;
 }
 
-.brand span{
-  color:var(--red);
-}
+.brand span{color:var(--red)}
 
 .update{
-  flex:1;
-  color:var(--muted);
-  font-size:11px;
+flex:1;
+color:var(--muted);
+font-size:11px;
 }
 
 nav{
-  display:flex;
-  gap:20px;
-  color:var(--muted);
+display:flex;
+gap:20px;
+color:var(--muted);
 }
-
-nav a:hover{
-  color:#fff;
-}
-
-
-/* =========================================
-   BOTÕES
-========================================= */
 
 .btn{
-  border:1px solid var(--line);
-  background:#121218;
-  color:#fff;
-  border-radius:10px;
-  padding:10px 15px;
-  transition:.15s;
+border:1px solid var(--line);
+background:#121218;
+color:#fff;
+border-radius:10px;
+padding:10px 15px;
+transition:.15s;
 }
 
 .btn:hover{
-  border-color:#555562;
-  transform:translateY(-1px);
-}
-
-.btn:disabled{
-  opacity:.55;
-  cursor:not-allowed;
-  transform:none;
+border-color:#444450;
 }
 
 .primary{
-  background:var(--red);
-  border-color:var(--red);
+background:var(--red);
+border-color:var(--red);
 }
 
-
-/* =========================================
-   HERO
-========================================= */
-
 .hero{
-  min-height:460px;
-  padding:75px 8vw;
-  display:grid;
-  grid-template-columns:1.3fr .7fr;
-  gap:40px;
-  align-items:center;
+min-height:460px;
+padding:75px 8vw;
+display:grid;
+grid-template-columns:1.3fr .7fr;
+gap:40px;
+align-items:center;
 }
 
 .ey{
-  font-size:11px;
-  letter-spacing:2px;
-  color:#ff6377;
-  font-weight:800;
+font-size:11px;
+letter-spacing:2px;
+color:#ff6377;
+font-weight:800;
 }
 
 .hero h1{
-  font-size:clamp(45px,7vw,82px);
-  line-height:.95;
-  letter-spacing:-4px;
-  margin:10px 0;
+font-size:clamp(45px,7vw,82px);
+line-height:.95;
+letter-spacing:-4px;
+margin:10px 0;
 }
 
-.hero h1 span{
-  color:var(--red);
-}
+.hero h1 span{color:var(--red)}
 
 .hero p{
-  color:var(--muted);
-  font-size:18px;
-  line-height:1.6;
-  max-width:620px;
+color:var(--muted);
+font-size:18px;
+line-height:1.6;
+max-width:620px;
 }
 
 .actions{
-  display:flex;
-  gap:10px;
-  margin-top:25px;
-  flex-wrap:wrap;
+display:flex;
+gap:10px;
+margin-top:25px;
+flex-wrap:wrap;
 }
 
 .showcase{
-  height:270px;
-  border:1px solid #3a2028;
-  border-radius:25px;
-  background:
-    linear-gradient(
-      145deg,
-      rgba(41,17,26,.85),
-      rgba(16,16,21,.85)
-    );
-  display:grid;
-  place-items:center;
-  font-size:85px;
-  box-shadow:0 30px 100px #0008;
+height:270px;
+border:1px solid #3a2028;
+border-radius:25px;
+background:linear-gradient(145deg,#29111a,#101015);
+display:grid;
+place-items:center;
+font-size:85px;
+box-shadow:0 30px 100px #0008;
 }
 
-
-/* =========================================
-   SECÇÕES
-========================================= */
-
 .sec{
-  padding:60px 8vw;
-  border-top:1px solid #14141a;
-  background:rgba(7,7,10,.40);
+padding:60px 8vw;
+border-top:1px solid #14141a;
+background:rgba(7,7,10,.35);
 }
 
 .head{
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
-  gap:15px;
-  margin-bottom:25px;
+display:flex;
+justify-content:space-between;
+align-items:end;
+gap:15px;
+margin-bottom:25px;
 }
 
-.head h2,
-.sec h2{
-  font-size:35px;
-  margin:5px 0;
-  letter-spacing:-1.5px;
+.head h2,.sec h2{
+font-size:35px;
+margin:5px 0;
+letter-spacing:-1.5px;
 }
 
-.search,
-input,
-textarea,
-select{
-  background:#09090d;
-  border:1px solid var(--line);
-  color:#fff;
-  border-radius:10px;
-  padding:12px;
-  outline:none;
+.search,input,textarea,select{
+background:#09090d;
+border:1px solid var(--line);
+color:#fff;
+border-radius:10px;
+padding:12px;
 }
 
-input:focus,
-textarea:focus,
-select:focus{
-  border-color:#555562;
-}
+input[type=file]{padding:9px}
 
-input[type=file]{
-  padding:9px;
-}
-
-.search{
-  width:min(330px,100%);
-}
-
-
-/* =========================================
-   EPISÓDIOS
-========================================= */
+.search{width:min(330px,100%)}
 
 .grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:15px;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px;
 }
 
 .card{
-  background:rgba(17,17,22,.96);
-  border:1px solid var(--line);
-  border-radius:16px;
-  overflow:hidden;
-  transition:.18s;
-}
-
-.card:hover{
-  transform:translateY(-3px);
-  border-color:#41414c;
+background:rgba(17,17,22,.95);
+border:1px solid var(--line);
+border-radius:16px;
+overflow:hidden;
 }
 
 .thumb{
-  aspect-ratio:16/9;
-  background:
-    linear-gradient(
-      135deg,
-      #271018,
-      #17171d
-    );
-  display:grid;
-  place-items:center;
-  font-size:40px;
-  overflow:hidden;
+aspect-ratio:16/9;
+background:linear-gradient(135deg,#271018,#17171d);
+display:grid;
+place-items:center;
+font-size:40px;
+overflow:hidden;
 }
 
 .thumb img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
 }
 
-.body{
-  padding:14px;
-}
+.body{padding:14px}
 
 .meta{
-  color:#858591;
-  font-size:12px;
-  margin-top:6px;
+color:#858591;
+font-size:12px;
+margin-top:6px;
 }
 
 .muted{
-  color:var(--muted);
-  line-height:1.7;
+color:var(--muted);
+line-height:1.7;
 }
 
-
-/* =========================================
-   FUNCIONALIDADES
-========================================= */
-
 .features{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
 }
 
 .feature{
-  background:rgba(17,17,22,.95);
-  border:1px solid var(--line);
-  padding:18px;
-  border-radius:14px;
+background:rgba(17,17,22,.95);
+border:1px solid var(--line);
+padding:18px;
+border-radius:14px;
 }
 
 .feature span{
-  display:block;
-  color:var(--muted);
-  font-size:13px;
-  margin-top:4px;
+display:block;
+color:var(--muted);
+font-size:13px;
+margin-top:4px;
 }
-
-
-/* =========================================
-   ANÚNCIOS
-========================================= */
-
-.announcement{
-  background:rgba(17,17,22,.95);
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:16px;
-  margin-bottom:10px;
-}
-
-.announcement-label{
-  display:inline-block;
-  padding:5px 9px;
-  border-radius:7px;
-  color:#fff;
-  font-size:10px;
-  font-weight:900;
-  letter-spacing:1px;
-  margin-bottom:8px;
-}
-
-.announcement-title{
-  font-weight:800;
-  font-size:18px;
-  margin-bottom:5px;
-}
-
-
-/* =========================================
-   FOOTER
-========================================= */
 
 footer{
-  padding:30px 8vw;
-  color:#70707b;
-  border-top:1px solid #14141a;
-  background:rgba(5,5,8,.7);
+padding:30px 8vw;
+color:#70707b;
+border-top:1px solid #14141a;
 }
-
-
-/* =========================================
-   MODAIS
-========================================= */
 
 .modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.80);
-  display:grid;
-  place-items:center;
-  padding:15px;
-  z-index:100;
+position:fixed;
+inset:0;
+background:#000c;
+display:grid;
+place-items:center;
+padding:15px;
+z-index:100;
 }
 
-.hide{
-  display:none!important;
-}
+.hide{display:none!important}
 
 .box{
-  position:relative;
-  width:min(760px,100%);
-  max-height:92vh;
-  overflow:auto;
-  background:#101015;
-  border:1px solid var(--line);
-  border-radius:20px;
-  padding:28px;
-  box-shadow:0 30px 100px #000;
+position:relative;
+width:min(760px,100%);
+max-height:92vh;
+overflow:auto;
+background:#101015;
+border:1px solid var(--line);
+border-radius:20px;
+padding:28px;
 }
 
 .close{
-  position:absolute;
-  right:15px;
-  top:8px;
-  background:none;
-  border:0;
-  color:#aaa;
-  font-size:28px;
+position:absolute;
+right:15px;
+top:8px;
+background:none;
+border:0;
+color:#aaa;
+font-size:28px;
 }
 
 .box input,
 .box textarea,
 .box select{
-  width:100%;
-  margin:6px 0;
+width:100%;
+margin:6px 0;
 }
 
 .form{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:8px;
 }
 
 .full{
-  grid-column:1/-1;
+grid-column:1/-1;
 }
 
 .field{
-  display:flex;
-  flex-direction:column;
-  gap:3px;
+display:flex;
+flex-direction:column;
+gap:3px;
 }
 
 .field label{
-  color:var(--muted);
-  font-size:12px;
+color:var(--muted);
+font-size:12px;
 }
 
-
-/* =========================================
-   ADMIN
-========================================= */
-
 .stats{
-  display:flex;
-  gap:10px;
-  margin:18px 0;
+display:flex;
+gap:10px;
+margin:18px 0;
 }
 
 .stat{
-  background:#09090d;
-  border:1px solid var(--line);
-  padding:12px;
-  border-radius:10px;
-  flex:1;
+background:#09090d;
+border:1px solid var(--line);
+padding:12px;
+border-radius:10px;
+flex:1;
 }
 
 .list{
-  margin:18px 0;
-  display:grid;
-  gap:8px;
+margin:18px 0;
+display:grid;
+gap:8px;
 }
 
 .item{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  padding:12px;
-  background:#09090d;
-  border:1px solid var(--line);
-  border-radius:10px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+padding:12px;
+background:#09090d;
+border:1px solid var(--line);
+border-radius:10px;
 }
 
 .item-actions{
-  display:flex;
-  gap:6px;
-  flex-wrap:wrap;
+display:flex;
+gap:6px;
+flex-wrap:wrap;
 }
 
 .danger{
-  background:#38111a;
-  border:1px solid #5a1a26;
-  color:#ff8a99;
-  border-radius:8px;
-  padding:7px 10px;
-  cursor:pointer;
+background:#38111a;
+border:1px solid #5a1a26;
+color:#ff8a99;
+border-radius:8px;
+padding:7px 10px;
 }
 
 .notice{
-  padding:12px;
-  border:1px solid var(--line);
-  background:#09090d;
-  border-radius:10px;
-  margin:10px 0;
+padding:12px;
+border:1px solid var(--line);
+background:#09090d;
+border-radius:10px;
+margin:10px 0;
 }
 
-.success{
-  color:#70e090;
-}
-
-.error{
-  color:#ff6377;
-}
+.success{color:#70e090}
+.error{color:#ff6377}
 
 .color-row{
-  display:flex;
-  align-items:center;
-  gap:10px;
+display:flex;
+align-items:center;
+gap:10px;
 }
 
 .color-row input[type=color]{
-  width:60px;
-  height:45px;
-  padding:3px;
+width:60px;
+height:45px;
+padding:3px;
 }
 
 .preview-label{
-  display:inline-block;
-  padding:5px 9px;
-  border-radius:7px;
-  color:#fff;
-  font-size:10px;
-  font-weight:900;
-  letter-spacing:1px;
+display:inline-block;
+padding:5px 9px;
+border-radius:7px;
+color:#fff;
+font-size:10px;
+font-weight:900;
+letter-spacing:1px;
 }
 
 .progress{
-  height:6px;
-  background:#24242b;
-  border-radius:20px;
-  overflow:hidden;
-  margin-top:10px;
-  display:none;
+height:6px;
+background:#24242b;
+border-radius:20px;
+overflow:hidden;
+margin-top:10px;
+display:none;
 }
 
 .progress div{
-  height:100%;
-  width:0%;
-  background:var(--red);
-  transition:width .1s;
+height:100%;
+width:0%;
+background:var(--red);
+transition:width .1s;
 }
-
-
-/* =========================================
-   RESPONSIVO
-========================================= */
 
 @media(max-width:850px){
 
-  nav{
-    display:none;
-  }
+nav{display:none}
 
-  .hero{
-    grid-template-columns:1fr;
-    padding-top:50px;
-  }
+.hero{
+grid-template-columns:1fr;
+padding-top:50px;
+}
 
-  .showcase{
-    display:none;
-  }
+.showcase{display:none}
 
-  .grid{
-    grid-template-columns:repeat(2,1fr);
-  }
+.grid{
+grid-template-columns:repeat(2,1fr);
+}
 
-  .head{
-    flex-direction:column;
-    align-items:stretch;
-  }
+.head{
+flex-direction:column;
+align-items:stretch;
+}
 
-  .search{
-    width:100%;
-  }
+.search{width:100%}
+
 }
 
 @media(max-width:520px){
 
-  .grid{
-    grid-template-columns:1fr;
-  }
+.grid{grid-template-columns:1fr}
 
-  .form{
-    grid-template-columns:1fr;
-  }
+.form{
+grid-template-columns:1fr;
+}
 
-  .full{
-    grid-column:auto;
-  }
+.full{grid-column:auto}
 
-  .hero h1{
-    letter-spacing:-2px;
-  }
+.hero h1{letter-spacing:-2px}
 
-  .stats{
-    flex-direction:column;
-  }
+.stats{
+flex-direction:column;
+}
 
-  .box{
-    padding:22px;
-  }
+.box{padding:22px}
 
-  .top{
-    gap:10px;
-    padding-left:15px;
-    padding-right:15px;
-  }
+.top{gap:10px}
 
-  .update{
-    font-size:9px;
-  }
+.update{font-size:10px}
 
-  .eiffel{
-    bottom:14%;
-    width:70px;
-    height:190px;
-    opacity:.17;
-  }
-
-  .paris-city{
-    height:22%;
-  }
-
-  .paris-stars{
-    opacity:.30;
-  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- FUNDO -->
 <div id="backgroundLayer">
-
-  <div class="paris-sky"></div>
-  <div class="paris-glow"></div>
-  <div class="paris-stars"></div>
-
-  <div class="paris-city">
-    <span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span>
-  </div>
-
-  <div class="eiffel">
-    <div class="eiffel-top"></div>
-    <div class="eiffel-body"></div>
-  </div>
-
-  <img id="backgroundImage" alt="">
-
-  <video
-    id="backgroundVideo"
-    autoplay
-    muted
-    loop
-    playsinline>
-  </video>
-
-  <div id="backgroundOverlay"></div>
-
+<img id="backgroundImage" alt="">
+<video id="backgroundVideo" autoplay muted loop playsinline></video>
+<div id="backgroundOverlay"></div>
 </div>
 
-
-<!-- HEADER -->
 <header class="top">
 
-  <a class="brand" href="#">
-    miraculous<span>.kk</span>
-  </a>
+<a class="brand" href="#">
+miraculous<span>.kk</span>
+</a>
 
-  <div class="update" id="updateText">
-    Update feita agora
-  </div>
+<div class="update" id="updateText">
+Update feita agora
+</div>
 
-  <nav>
-    <a href="#catalogo">Catálogo</a>
-    <a href="#anuncios">Anúncios</a>
-    <a href="#func">Funcionalidades</a>
-  </nav>
+<nav>
+<a href="#catalogo">Catálogo</a>
+<a href="#anuncios">Anúncios</a>
+<a href="#func">Funcionalidades</a>
+</nav>
 
-  <button class="btn" id="loginOpen">
-    Admin
-  </button>
+<button class="btn" id="loginOpen">
+Admin
+</button>
 
 </header>
 
-
-<!-- CONTEÚDO -->
 <main>
 
 <section class="hero">
 
-  <div>
+<div>
 
-    <div class="ey">
-      THE MIRACULOUS HUB
-    </div>
+<div class="ey">
+THE MIRACULOUS HUB
+</div>
 
-    <h1>
-      O teu lugar para <span>Miraculous.</span>
-    </h1>
+<h1>
+O teu lugar para <span>Miraculous.</span>
+</h1>
 
-    <p>
-      Catálogo, episódios, especiais, idiomas, legendas e novidades — tudo num só lugar.
-    </p>
+<p>
+Catálogo, episódios, especiais, idiomas, legendas e novidades — tudo num só lugar.
+</p>
 
-    <div class="actions">
+<div class="actions">
 
-      <a class="btn primary" href="#catalogo">
-        Explorar catálogo
-      </a>
+<a class="btn primary" href="#catalogo">
+Explorar catálogo
+</a>
 
-      <a class="btn" href="#anuncios">
-        Anúncios
-      </a>
+<a class="btn" href="#anuncios">
+Anúncios
+</a>
 
-    </div>
+</div>
 
-  </div>
+</div>
 
-  <div class="showcase">
-    🐞
-  </div>
+<div class="showcase">
+🐞
+</div>
 
 </section>
 
-
-<!-- ANÚNCIOS -->
 <section class="sec" id="anuncios">
 
-  <div class="ey">
-    ANÚNCIOS
-  </div>
+<div class="ey">
+ANÚNCIOS
+</div>
 
-  <h2>
-    Últimas novidades
-  </h2>
+<h2>
+Últimas novidades
+</h2>
 
-  <div id="announcements">
-    <p class="muted">
-      Ainda não existem anúncios.
-    </p>
-  </div>
+<div id="announcements">
+<p class="muted">Ainda não existem anúncios.</p>
+</div>
 
 </section>
 
-
-<!-- CATÁLOGO -->
 <section class="sec" id="catalogo">
 
-  <div class="head">
+<div class="head">
 
-    <div>
+<div>
 
-      <div class="ey">
-        CATÁLOGO
-      </div>
+<div class="ey">
+CATÁLOGO
+</div>
 
-      <h2>
-        Temporadas e episódios
-      </h2>
+<h2>
+Temporadas e episódios
+</h2>
 
-    </div>
+</div>
 
-    <input
-      id="search"
-      class="search"
-      placeholder="Pesquisar episódios..."
-    >
+<input
+id="search"
+class="search"
+placeholder="Pesquisar episódios..."
+>
 
-  </div>
+</div>
 
-  <div id="grid" class="grid"></div>
+<div id="grid" class="grid"></div>
 
 </section>
 
-
-<!-- FUNCIONALIDADES -->
 <section class="sec" id="func">
 
-  <div class="ey">
-    PLATAFORMA
-  </div>
+<div class="ey">
+PLATAFORMA
+</div>
 
-  <h2>
-    Feito para crescer
-  </h2>
+<h2>
+Feito para crescer
+</h2>
 
-  <div class="features">
+<div class="features">
 
-    <div class="feature">
-      🎬 <b>Episódios</b>
-      <span>
-        Catálogo organizado por temporadas e episódios.
-      </span>
-    </div>
+<div class="feature">
+🎬 <b>Episódios</b>
+<span>Catálogo organizado por temporadas e episódios.</span>
+</div>
 
-    <div class="feature">
-      🖼️ <b>Thumbnails</b>
-      <span>
-        Imagem personalizada para cada episódio.
-      </span>
-    </div>
+<div class="feature">
+🖼️ <b>Thumbnails</b>
+<span>Imagem personalizada para cada episódio.</span>
+</div>
 
-    <div class="feature">
-      🌍 <b>Idiomas</b>
-      <span>
-        Organiza PT-PT e outros idiomas.
-      </span>
-    </div>
+<div class="feature">
+🌍 <b>Idiomas</b>
+<span>Organiza PT-PT e outros idiomas.</span>
+</div>
 
-    <div class="feature">
-      📢 <b>Anúncios</b>
-      <span>
-        Destaca novidades com cores personalizadas.
-      </span>
-    </div>
+<div class="feature">
+📢 <b>Anúncios</b>
+<span>Destaca novidades com cores personalizadas.</span>
+</div>
 
-  </div>
+</div>
 
 </section>
 
 </main>
 
-
 <footer>
-  © miraculous.kk — fan project
+© miraculous.kk — fan project
 </footer>
 
 
 <!-- LOGIN -->
+
 <div id="login" class="modal hide">
 
-  <div class="box" style="max-width:420px">
+<div class="box" style="max-width:420px">
 
-    <button class="close" id="loginClose">
-      ×
-    </button>
+<button class="close" id="loginClose">×</button>
 
-    <div class="ey">
-      ADMIN
-    </div>
+<div class="ey">ADMIN</div>
 
-    <h2>
-      Entrar
-    </h2>
+<h2>Entrar</h2>
 
-    <input
-      id="user"
-      placeholder="Utilizador"
-      autocomplete="username"
-    >
+<input
+id="user"
+placeholder="Utilizador"
+autocomplete="username"
+>
 
-    <input
-      id="pass"
-      type="password"
-      placeholder="Palavra-passe"
-      autocomplete="current-password"
-    >
+<input
+id="pass"
+type="password"
+placeholder="Palavra-passe"
+autocomplete="current-password"
+>
 
-    <button
-      class="btn primary"
-      style="width:100%;margin-top:8px"
-      id="loginBtn"
-    >
-      Entrar
-    </button>
+<button
+class="btn primary"
+style="width:100%;margin-top:8px"
+id="loginBtn"
+>
+Entrar
+</button>
 
-    <p id="err" class="error"></p>
+<p id="err" class="error"></p>
 
-  </div>
+</div>
 
 </div>
 
 
 <!-- ADMIN -->
+
 <div id="admin" class="modal hide">
 
-  <div class="box">
+<div class="box">
 
-    <button class="close" id="adminClose">
-      ×
-    </button>
+<button class="close" id="adminClose">×</button>
 
-    <div class="ey">
-      DASHBOARD
-    </div>
+<div class="ey">DASHBOARD</div>
 
-    <h2>
-      Painel miraculous.kk
-    </h2>
+<h2>Painel miraculous.kk</h2>
 
-    <div class="stats">
+<div class="stats">
 
-      <div class="stat">
-        <b id="count">0</b>
-        <br>
-        <small class="muted">
-          episódios
-        </small>
-      </div>
+<div class="stat">
+<b id="count">0</b>
+<br>
+<small class="muted">episódios</small>
+</div>
 
-      <div class="stat">
-        <b id="announcementCount">0</b>
-        <br>
-        <small class="muted">
-          anúncios
-        </small>
-      </div>
+<div class="stat">
+<b id="announcementCount">0</b>
+<br>
+<small class="muted">anúncios</small>
+</div>
 
-    </div>
+</div>
 
 
-    <!-- EPISÓDIO -->
-    <h3 id="episodeFormTitle">
-      Adicionar episódio
-    </h3>
+<h3 id="episodeFormTitle">
+Adicionar episódio
+</h3>
 
-    <div class="form">
+<div class="form">
 
-      <div class="field">
-        <label>Título</label>
-        <input id="title" placeholder="Título">
-      </div>
+<div class="field">
+<label>Título</label>
+<input id="title" placeholder="Título">
+</div>
 
-      <div class="field">
-        <label>Temporada</label>
-        <input id="season" placeholder="S6">
-      </div>
+<div class="field">
+<label>Temporada</label>
+<input id="season" placeholder="S6">
+</div>
 
-      <div class="field">
-        <label>Número</label>
-        <input id="number" placeholder="1">
-      </div>
+<div class="field">
+<label>Número</label>
+<input id="number" placeholder="1">
+</div>
 
-      <div class="field">
-        <label>Idioma</label>
-        <input id="lang" placeholder="PT-PT">
-      </div>
+<div class="field">
+<label>Idioma</label>
+<input id="lang" placeholder="PT-PT">
+</div>
 
-      <div class="field full">
+<div class="field full">
 
-        <label>Thumbnail</label>
+<label>Thumbnail</label>
 
-        <input
-          id="thumb"
-          type="file"
-          accept="image/*"
-        >
+<input
+id="thumb"
+type="file"
+accept="image/*"
+>
 
-      </div>
+</div>
 
-      <div class="field full">
+<div class="field full">
 
-        <label>Descrição</label>
+<label>Descrição</label>
 
-        <textarea
-          id="desc"
-          placeholder="Descrição do episódio"
-        ></textarea>
+<textarea
+id="desc"
+placeholder="Descrição do episódio"
+></textarea>
 
-      </div>
+</div>
 
-    </div>
+</div>
 
-    <div style="margin-top:10px">
+<div style="margin-top:10px">
 
-      <button
-        class="btn primary"
-        id="add"
-      >
-        Guardar episódio
-      </button>
+<button
+class="btn primary"
+id="add"
+>
+Guardar episódio
+</button>
 
-      <button
-        class="btn"
-        id="cancelEdit"
-        style="display:none"
-      >
-        Cancelar edição
-      </button>
+<button
+class="btn"
+id="cancelEdit"
+style="display:none"
+>
+Cancelar edição
+</button>
 
-    </div>
+</div>
 
-    <div class="progress" id="uploadProgress">
-      <div id="progressBar"></div>
-    </div>
+<div class="progress" id="uploadProgress">
+<div id="progressBar"></div>
+</div>
 
-    <div id="status"></div>
+<div id="status"></div>
 
 
-    <hr style="border-color:#292933;margin:25px 0">
+<hr style="border-color:#292933;margin:25px 0">
 
 
-    <!-- ANÚNCIO -->
-    <h3>
-      📢 Criar anúncio
-    </h3>
+<h3>📢 Criar anúncio</h3>
 
-    <div class="form">
+<div class="form">
 
-      <div class="field">
+<div class="field">
+<label>Etiqueta</label>
+<input
+id="announcementLabel"
+placeholder="NOVIDADE"
+value="NOVIDADE"
+>
+</div>
 
-        <label>Etiqueta</label>
+<div class="field">
+<label>Título</label>
+<input
+id="announcementTitle"
+placeholder="Nova atualização!"
+>
+</div>
 
-        <input
-          id="announcementLabel"
-          placeholder="NOVIDADE"
-          value="NOVIDADE"
-        >
+<div class="field full">
 
-      </div>
+<label>Texto</label>
 
-      <div class="field">
+<textarea
+id="announcementText"
+placeholder="Escreve aqui o anúncio..."
+></textarea>
 
-        <label>Título</label>
+</div>
 
-        <input
-          id="announcementTitle"
-          placeholder="Nova atualização!"
-        >
+<div class="field full">
 
-      </div>
+<label>Cor da etiqueta</label>
 
-      <div class="field full">
+<div class="color-row">
 
-        <label>Texto</label>
+<input
+id="announcementColor"
+type="color"
+value="#e62b45"
+>
 
-        <textarea
-          id="announcementText"
-          placeholder="Escreve aqui o anúncio..."
-        ></textarea>
+<span
+id="colorPreview"
+class="preview-label"
+style="background:#e62b45"
+>
+NOVIDADE
+</span>
 
-      </div>
+</div>
 
-      <div class="field full">
+</div>
 
-        <label>Cor da etiqueta</label>
+</div>
 
-        <div class="color-row">
+<button
+class="btn primary"
+id="addAnnouncement"
+style="margin-top:8px"
+>
+Publicar anúncio
+</button>
 
-          <input
-            id="announcementColor"
-            type="color"
-            value="#e62b45"
-          >
+<div id="announcementStatus"></div>
 
-          <span
-            id="colorPreview"
-            class="preview-label"
-            style="background:#e62b45"
-          >
-            NOVIDADE
-          </span>
 
-        </div>
+<hr style="border-color:#292933;margin:25px 0">
 
-      </div>
 
-    </div>
+<h3>🎨 Fundo do site</h3>
 
-    <button
-      class="btn primary"
-      id="addAnnouncement"
-      style="margin-top:8px"
-    >
-      Publicar anúncio
-    </button>
+<p class="muted">
+Escolhe uma imagem ou vídeo para o fundo.
+</p>
 
-    <div id="announcementStatus"></div>
+<div class="form">
 
+<div class="field">
 
-    <hr style="border-color:#292933;margin:25px 0">
+<label>Imagem</label>
 
+<input
+id="backgroundImageFile"
+type="file"
+accept="image/*"
+>
 
-    <!-- FUNDO -->
-    <h3>
-      🎨 Fundo do site
-    </h3>
+</div>
 
-    <p class="muted">
-      Podes manter o fundo Miraculous automático ou escolher uma imagem/vídeo.
-    </p>
+<div class="field">
 
-    <div class="form">
+<label>Vídeo</label>
 
-      <div class="field">
+<input
+id="backgroundVideoFile"
+type="file"
+accept="video/*"
+>
 
-        <label>Imagem</label>
+</div>
 
-        <input
-          id="backgroundImageFile"
-          type="file"
-          accept="image/*"
-        >
+</div>
 
-      </div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
 
-      <div class="field">
+<button
+class="btn primary"
+id="saveBackground"
+>
+Guardar fundo
+</button>
 
-        <label>Vídeo</label>
+<button
+class="btn"
+id="removeBackground"
+>
+Remover fundo
+</button>
 
-        <input
-          id="backgroundVideoFile"
-          type="file"
-          accept="video/*"
-        >
+</div>
 
-      </div>
+<div id="backgroundStatus"></div>
 
-    </div>
 
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+<hr style="border-color:#292933;margin:25px 0">
 
-      <button
-        class="btn primary"
-        id="saveBackground"
-      >
-        Guardar fundo
-      </button>
 
-      <button
-        class="btn"
-        id="removeBackground"
-      >
-        Usar fundo Miraculous
-      </button>
+<h3>📚 Episódios publicados</h3>
 
-    </div>
+<div id="list" class="list"></div>
 
-    <div id="backgroundStatus"></div>
-
-
-    <hr style="border-color:#292933;margin:25px 0">
-
-
-    <!-- LISTA -->
-    <h3>
-      📚 Episódios publicados
-    </h3>
-
-    <div id="list" class="list"></div>
-
-  </div>
+</div>
 
 </div>
 
 
 <script>
+
 "use strict";
 
 
-/* =========================================
-   CONFIGURAÇÃO
-========================================= */
+/* ==========================
+   CONFIG
+========================== */
 
 const ADMIN_USER = "miguel";
 const ADMIN_PASS = "nemesis6";
 
 const DB_NAME = "miraculousKK";
-const DB_VERSION = 4;
+const DB_VERSION = 3;
 
 let db = null;
 let episodes = [];
@@ -1359,1596 +932,1281 @@ let announcements = [];
 let editingId = null;
 
 
-/* =========================================
+/* ==========================
    ATALHO
-========================================= */
+========================== */
 
 const $ = id => document.getElementById(id);
 
 
-/* =========================================
-   ID SEGURO
-========================================= */
-
-function createId(){
-
-  if(
-    typeof crypto !== "undefined" &&
-    typeof crypto.randomUUID === "function"
-  ){
-    return crypto.randomUUID();
-  }
-
-  return (
-    Date.now().toString(36) +
-    Math.random().toString(36).slice(2)
-  );
-}
-
-
-/* =========================================
+/* ==========================
    ESCAPE
-========================================= */
+========================== */
 
 function esc(value=""){
 
-  return String(value).replace(
-    /[&<>"']/g,
-    m => ({
-      "&":"&amp;",
-      "<":"&lt;",
-      ">":"&gt;",
-      '"':"&quot;",
-      "'":"&#39;"
-    }[m])
-  );
+return String(value).replace(
+/[&<>"']/g,
+
+m => ({
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#39;"
+}[m])
+
+);
 
 }
 
 
-/* =========================================
-   INDEXEDDB
-========================================= */
+/* ==========================
+   ABRIR BD
+========================== */
 
 function openDB(){
 
-  return new Promise((resolve,reject)=>{
+return new Promise((resolve,reject)=>{
 
-    const request =
-      indexedDB.open(
-        DB_NAME,
-        DB_VERSION
-      );
+const request =
+indexedDB.open(
+DB_NAME,
+DB_VERSION
+);
 
-    request.onupgradeneeded =
-      event => {
+request.onupgradeneeded =
+event => {
 
-        const database =
-          event.target.result;
+const database =
+event.target.result;
 
-        if(
-          !database.objectStoreNames.contains(
-            "episodes"
-          )
-        ){
+if(
+!database.objectStoreNames.contains("episodes")
+){
 
-          database.createObjectStore(
-            "episodes",
-            {keyPath:"id"}
-          );
+database.createObjectStore(
+"episodes",
+{keyPath:"id"}
+);
 
-        }
+}
 
-        if(
-          !database.objectStoreNames.contains(
-            "announcements"
-          )
-        ){
+if(
+!database.objectStoreNames.contains("announcements")
+){
 
-          database.createObjectStore(
-            "announcements",
-            {keyPath:"id"}
-          );
+database.createObjectStore(
+"announcements",
+{keyPath:"id"}
+);
 
-        }
+}
 
-        if(
-          !database.objectStoreNames.contains(
-            "settings"
-          )
-        ){
+if(
+!database.objectStoreNames.contains("settings")
+){
 
-          database.createObjectStore(
-            "settings",
-            {keyPath:"id"}
-          );
+database.createObjectStore(
+"settings",
+{keyPath:"id"}
+);
 
-        }
+}
 
-      };
+};
 
-    request.onsuccess =
-      event => {
+request.onsuccess =
+event => {
 
-        db =
-          event.target.result;
+db =
+event.target.result;
 
-        db.onversionchange = () => {
-          db.close();
-        };
+resolve(db);
 
-        resolve(db);
+};
 
-      };
+request.onerror =
+() => reject(
+request.error
+);
 
-    request.onerror =
-      () => {
-
-        reject(
-          request.error ||
-          new Error(
-            "Não foi possível abrir a base de dados."
-          )
-        );
-
-      };
-
-  });
+});
 
 }
 
 
-/* =========================================
-   BD - LER
-========================================= */
+/* ==========================
+   BD HELPERS
+========================== */
 
 function getAll(store){
 
-  return new Promise(
-    (resolve,reject)=>{
+return new Promise(
+(resolve,reject)=>{
 
-      try{
+const tx =
+db.transaction(
+store,
+"readonly"
+);
 
-        const tx =
-          db.transaction(
-            store,
-            "readonly"
-          );
+const request =
+tx.objectStore(store).getAll();
 
-        const request =
-          tx.objectStore(store).getAll();
+request.onsuccess =
+() => resolve(
+request.result || []
+);
 
-        request.onsuccess =
-          () => {
+request.onerror =
+() => reject(
+request.error
+);
 
-            resolve(
-              request.result || []
-            );
-
-          };
-
-        request.onerror =
-          () => {
-
-            reject(
-              request.error
-            );
-
-          };
-
-      }catch(error){
-
-        reject(error);
-
-      }
-
-    }
-  );
+});
 
 }
 
-
-/* =========================================
-   BD - GUARDAR
-========================================= */
 
 function put(store,data){
 
-  return new Promise(
-    (resolve,reject)=>{
+return new Promise(
+(resolve,reject)=>{
 
-      try{
+const tx =
+db.transaction(
+store,
+"readwrite"
+);
 
-        const tx =
-          db.transaction(
-            store,
-            "readwrite"
-          );
+tx.objectStore(store).put(data);
 
-        tx.objectStore(store).put(data);
+tx.oncomplete =
+() => resolve();
 
-        tx.oncomplete =
-          () => resolve();
+tx.onerror =
+() => reject(
+tx.error
+);
 
-        tx.onerror =
-          () => reject(
-            tx.error ||
-            new Error(
-              "Erro ao guardar dados."
-            )
-          );
-
-        tx.onabort =
-          () => reject(
-            tx.error ||
-            new Error(
-              "Operação cancelada."
-            )
-          );
-
-      }catch(error){
-
-        reject(error);
-
-      }
-
-    }
-  );
+});
 
 }
 
-
-/* =========================================
-   BD - APAGAR
-========================================= */
 
 function remove(store,id){
 
-  return new Promise(
-    (resolve,reject)=>{
+return new Promise(
+(resolve,reject)=>{
 
-      try{
+const tx =
+db.transaction(
+store,
+"readwrite"
+);
 
-        const tx =
-          db.transaction(
-            store,
-            "readwrite"
-          );
+tx.objectStore(store).delete(id);
 
-        tx.objectStore(store).delete(id);
+tx.oncomplete =
+() => resolve();
 
-        tx.oncomplete =
-          () => resolve();
+tx.onerror =
+() => reject(
+tx.error
+);
 
-        tx.onerror =
-          () => reject(
-            tx.error
-          );
-
-      }catch(error){
-
-        reject(error);
-
-      }
-
-    }
-  );
+});
 
 }
 
 
-/* =========================================
-   FICHEIRO -> DATA URL
-========================================= */
+/* ==========================
+   THUMBNAIL ANDROID
+========================== */
 
-function fileToDataURL(file){
+/*
+   Esta função tenta primeiro copiar
+   o ficheiro para memória usando
+   arrayBuffer.
 
-  return new Promise(
-    (resolve,reject)=>{
-
-      if(!file){
-        resolve("");
-        return;
-      }
-
-      const reader =
-        new FileReader();
-
-      reader.onload =
-        () => resolve(
-          String(reader.result || "")
-        );
-
-      reader.onerror =
-        () => reject(
-          reader.error ||
-          new Error(
-            "Não foi possível ler o ficheiro."
-          )
-        );
-
-      reader.readAsDataURL(file);
-
-    }
-  );
-
-}
-
-
-/* =========================================
-   THUMBNAIL
-========================================= */
+   Se o Android bloquear o acesso,
+   devolve vazio em vez de impedir
+   a publicação.
+*/
 
 async function readThumbnail(file){
 
-  if(!file){
-    return "";
-  }
+if(!file){
+return "";
+}
 
-  try{
+try{
 
-    if(
-      !file.type ||
-      !file.type.startsWith("image/")
-    ){
-      return "";
-    }
+const buffer =
+await file.arrayBuffer();
 
-    return await fileToDataURL(file);
+if(!buffer || buffer.byteLength === 0){
+return "";
+}
 
-  }catch(error){
+const blob =
+new Blob(
+[buffer],
+{
+type:
+file.type ||
+"image/jpeg"
+}
+);
 
-    console.warn(
-      "Thumbnail ignorada:",
-      error
-    );
+return await blobToDataURL(blob);
 
-    return "";
+}catch(error){
 
-  }
+console.warn(
+"Thumbnail não pôde ser lida:",
+error
+);
+
+return "";
+
+}
 
 }
 
 
-/* =========================================
-   CARREGAR DADOS
-========================================= */
+function blobToDataURL(blob){
+
+return new Promise(
+(resolve,reject)=>{
+
+const reader =
+new FileReader();
+
+reader.onload =
+() => resolve(
+reader.result
+);
+
+reader.onerror =
+() => reject(
+reader.error
+);
+
+reader.readAsDataURL(blob);
+
+});
+
+}
+
+
+/* ==========================
+   CARREGAR
+========================== */
 
 async function loadData(){
 
-  episodes =
-    await getAll("episodes");
+episodes =
+await getAll(
+"episodes"
+);
 
-  announcements =
-    await getAll("announcements");
+announcements =
+await getAll(
+"announcements"
+);
 
-  render();
-  renderAnnouncements();
-  await loadBackground();
+render();
+renderAnnouncements();
+await loadBackground();
 
 }
 
 
-/* =========================================
-   RENDER EPISÓDIOS
-========================================= */
+/* ==========================
+   RENDER
+========================== */
 
 function render(){
 
-  const search =
-    $("search");
-
-  const query =
-    search
-      ? search.value.toLowerCase().trim()
-      : "";
-
-  const filtered =
-    episodes.filter(
-      episode => {
-
-        const text =
-          `${episode.title || ""}
-           ${episode.season || ""}
-           ${episode.number || ""}
-           ${episode.lang || ""}`
-          .toLowerCase();
-
-        return text.includes(query);
-
-      }
-    );
+const query =
+$("search")
+.value
+.toLowerCase()
+.trim();
 
 
-  $("grid").innerHTML =
-    filtered.map(
-      episode => {
+const filtered =
+episodes.filter(
+episode => {
 
-        const thumbnail =
-          episode.thumbnail
-          ?
-          `
-          <img
-            src="${episode.thumbnail}"
-            alt=""
-            loading="lazy"
-          >
-          `
-          :
-          "🐞";
+const text =
+`${episode.title}
+${episode.season}
+${episode.number}
+${episode.lang}`
+.toLowerCase();
+
+return text.includes(query);
+
+});
 
 
-        return `
-          <article class="card">
+$("grid").innerHTML =
+filtered.map(
+episode => {
 
-            <div class="thumb">
-              ${thumbnail}
-            </div>
-
-            <div class="body">
-
-              <b>
-                ${esc(episode.title || "Sem título")}
-              </b>
-
-              <div class="meta">
-                ${esc(episode.season || "—")}
-                ·
-                ${esc(episode.number || "—")}
-                ·
-                ${esc(episode.lang || "—")}
-              </div>
-
-              ${
-                episode.desc
-                ?
-                `
-                <p class="muted">
-                  ${esc(episode.desc)}
-                </p>
-                `
-                :
-                ""
-              }
-
-            </div>
-
-          </article>
-        `;
-
-      }
-    ).join("")
-
-    ||
-
-    `
-      <p class="muted">
-        Nenhum episódio encontrado.
-      </p>
-    `;
+const thumbnail =
+episode.thumbnail
+? `
+<img
+src="${episode.thumbnail}"
+alt=""
+loading="lazy"
+>
+`
+: "🐞";
 
 
-  $("count").textContent =
-    episodes.length;
+return `
 
-  renderAdminList();
+<article class="card">
+
+<div class="thumb">
+${thumbnail}
+</div>
+
+<div class="body">
+
+<b>
+${esc(episode.title)}
+</b>
+
+<div class="meta">
+${esc(episode.season)}
+·
+${esc(episode.number)}
+·
+${esc(episode.lang || "—")}
+</div>
+
+${
+episode.desc
+?
+`<p class="muted">
+${esc(episode.desc)}
+</p>`
+:
+""
+}
+
+</div>
+
+</article>
+
+`;
+
+}).join("")
+
+||
+
+'<p class="muted">Nenhum episódio encontrado.</p>';
+
+
+$("count").textContent =
+episodes.length;
+
+renderAdminList();
 
 }
 
 
-/* =========================================
-   LISTA ADMIN
-========================================= */
+/* ==========================
+   ADMIN LIST
+========================== */
 
 function renderAdminList(){
 
-  $("list").innerHTML =
-    episodes.map(
-      episode => `
+$("list").innerHTML =
+episodes.map(
+episode => `
 
-        <div class="item">
+<div class="item">
 
-          <div>
+<div>
 
-            <b>
-              ${esc(episode.title || "Sem título")}
-            </b>
+<b>
+${esc(episode.title)}
+</b>
 
-            <div class="meta">
-              ${esc(episode.season || "—")}
-              ·
-              ${esc(episode.number || "—")}
-              ·
-              ${esc(episode.lang || "—")}
-            </div>
+<div class="meta">
+${esc(episode.season)}
+·
+${esc(episode.number)}
+·
+${esc(episode.lang || "—")}
+</div>
 
-          </div>
+</div>
 
-          <div class="item-actions">
+<div class="item-actions">
 
-            <button
-              class="btn"
-              data-edit="${esc(episode.id)}"
-            >
-              ✏️
-            </button>
+<button
+class="btn"
+onclick="editEpisode('${episode.id}')"
+>
+✏️
+</button>
 
-            <button
-              class="danger"
-              data-delete="${esc(episode.id)}"
-            >
-              🗑️
-            </button>
+<button
+class="danger"
+onclick="deleteEpisode('${episode.id}')"
+>
+🗑️
+</button>
 
-          </div>
+</div>
 
-        </div>
+</div>
 
-      `
-    ).join("")
+`
+).join("")
 
-    ||
+||
 
-    `
-      <p class="muted">
-        Ainda não existem episódios.
-      </p>
-    `;
-
-
-  document
-    .querySelectorAll("[data-edit]")
-    .forEach(button => {
-
-      button.onclick =
-        () => editEpisode(
-          button.dataset.edit
-        );
-
-    });
-
-
-  document
-    .querySelectorAll("[data-delete]")
-    .forEach(button => {
-
-      button.onclick =
-        () => deleteEpisode(
-          button.dataset.delete
-        );
-
-    });
+'<p class="muted">Ainda não existem episódios.</p>';
 
 }
 
 
-/* =========================================
-   APAGAR EPISÓDIO
-========================================= */
+/* ==========================
+   DELETE
+========================== */
 
-async function deleteEpisode(id){
+window.deleteEpisode =
+async function(id){
 
-  if(
-    !confirm(
-      "Queres mesmo apagar este episódio?"
-    )
-  ){
-    return;
-  }
-
-  try{
-
-    await remove(
-      "episodes",
-      id
-    );
-
-    await loadData();
-
-  }catch(error){
-
-    console.error(error);
-
-    alert(
-      "Não foi possível apagar o episódio."
-    );
-
-  }
-
+if(
+!confirm(
+"Queres mesmo apagar este episódio?"
+)
+){
+return;
 }
 
+try{
 
-/* =========================================
-   EDITAR
-========================================= */
+await remove(
+"episodes",
+id
+);
 
-function editEpisode(id){
+await loadData();
 
-  const episode =
-    episodes.find(
-      e => e.id === id
-    );
+}catch(error){
 
-  if(!episode){
-    return;
-  }
+console.error(error);
 
-  editingId =
-    id;
-
-  $("episodeFormTitle")
-    .textContent =
-    "Editar episódio";
-
-  $("title").value =
-    episode.title || "";
-
-  $("season").value =
-    episode.season || "";
-
-  $("number").value =
-    episode.number || "";
-
-  $("lang").value =
-    episode.lang || "";
-
-  $("desc").value =
-    episode.desc || "";
-
-  $("thumb").value =
-    "";
-
-  $("add").textContent =
-    "Guardar alterações";
-
-  $("cancelEdit")
-    .style.display =
-    "inline-block";
+alert(
+"Não foi possível apagar."
+);
 
 }
-
-
-function resetForm(){
-
-  editingId =
-    null;
-
-  $("episodeFormTitle")
-    .textContent =
-    "Adicionar episódio";
-
-  $("add").textContent =
-    "Guardar episódio";
-
-  $("cancelEdit")
-    .style.display =
-    "none";
-
-  [
-    "title",
-    "season",
-    "number",
-    "lang",
-    "desc"
-  ].forEach(
-    id => {
-      $(id).value = "";
-    }
-  );
-
-  $("thumb").value = "";
-
-}
-
-
-/* =========================================
-   GUARDAR EPISÓDIO
-========================================= */
-
-$("add").onclick =
-async function(){
-
-  const title =
-    $("title")
-      .value
-      .trim();
-
-
-  if(!title){
-
-    $("status").innerHTML =
-      `
-      <div class="notice error">
-        ❌ Escreve um título.
-      </div>
-      `;
-
-    return;
-
-  }
-
-
-  const button =
-    $("add");
-
-  const wasEditing =
-    Boolean(editingId);
-
-  button.disabled =
-    true;
-
-  button.textContent =
-    wasEditing
-    ?
-    "A guardar..."
-    :
-    "A publicar...";
-
-
-  $("uploadProgress")
-    .style.display =
-    "block";
-
-  $("progressBar")
-    .style.width =
-    "10%";
-
-
-  try{
-
-    const old =
-      editingId
-      ?
-      episodes.find(
-        e => e.id === editingId
-      )
-      :
-      null;
-
-
-    const id =
-      editingId ||
-      createId();
-
-
-    const episode = {
-
-      id,
-
-      title,
-
-      season:
-        $("season").value.trim()
-        || "—",
-
-      number:
-        $("number").value.trim()
-        || "—",
-
-      lang:
-        $("lang").value.trim()
-        || "—",
-
-      desc:
-        $("desc").value.trim()
-        || "",
-
-      thumbnail:
-        old?.thumbnail || "",
-
-      updatedAt:
-        Date.now()
-
-    };
-
-
-    /*
-      PRIMEIRO GUARDA O EPISÓDIO.
-      A thumbnail nunca pode impedir
-      a publicação.
-    */
-
-    await put(
-      "episodes",
-      episode
-    );
-
-
-    $("progressBar")
-      .style.width =
-      "45%";
-
-
-    const file =
-      $("thumb").files &&
-      $("thumb").files[0];
-
-
-    let thumbnailFailed =
-      false;
-
-
-    if(file){
-
-      try{
-
-        const thumbnail =
-          await readThumbnail(file);
-
-
-        $("progressBar")
-          .style.width =
-          "70%";
-
-
-        if(thumbnail){
-
-          episode.thumbnail =
-            thumbnail;
-
-          await put(
-            "episodes",
-            episode
-          );
-
-        }else{
-
-          thumbnailFailed =
-            true;
-
-        }
-
-      }catch(error){
-
-        thumbnailFailed =
-          true;
-
-        console.warn(
-          "Thumbnail ignorada:",
-          error
-        );
-
-      }
-
-    }
-
-
-    $("progressBar")
-      .style.width =
-      "100%";
-
-
-    await loadData();
-
-    resetForm();
-
-
-    $("status").innerHTML =
-      `
-      <div class="notice success">
-
-        ✅ Episódio ${
-          wasEditing
-          ? "editado"
-          : "publicado"
-        } com sucesso!
-
-        ${
-          thumbnailFailed
-          ?
-          `
-          <br>
-          <small>
-            A thumbnail não pôde ser carregada,
-            mas o episódio foi guardado.
-          </small>
-          `
-          :
-          ""
-        }
-
-      </div>
-      `;
-
-
-    setTimeout(
-      () => {
-
-        $("status").innerHTML =
-          "";
-
-        $("uploadProgress")
-          .style.display =
-          "none";
-
-        $("progressBar")
-          .style.width =
-          "0%";
-
-      },
-      4000
-    );
-
-
-  }catch(error){
-
-    console.error(
-      "Erro ao guardar episódio:",
-      error
-    );
-
-
-    $("status").innerHTML =
-      `
-      <div class="notice error">
-
-        ❌ Erro ao guardar episódio.
-
-        <br>
-
-        <small>
-          ${esc(
-            error?.message ||
-            "Erro desconhecido."
-          )}
-        </small>
-
-      </div>
-      `;
-
-  }
-
-
-  button.disabled =
-    false;
-
-  button.textContent =
-    editingId
-    ?
-    "Guardar alterações"
-    :
-    "Guardar episódio";
 
 };
 
 
-/* =========================================
-   CANCELAR EDIÇÃO
-========================================= */
+/* ==========================
+   EDIT
+========================== */
+
+window.editEpisode =
+function(id){
+
+const episode =
+episodes.find(
+e => e.id === id
+);
+
+if(!episode){
+return;
+}
+
+editingId =
+id;
+
+$("episodeFormTitle")
+.textContent =
+"Editar episódio";
+
+$("title").value =
+episode.title || "";
+
+$("season").value =
+episode.season || "";
+
+$("number").value =
+episode.number || "";
+
+$("lang").value =
+episode.lang || "";
+
+$("desc").value =
+episode.desc || "";
+
+$("thumb").value =
+"";
+
+$("add").textContent =
+"Guardar alterações";
+
+$("cancelEdit")
+.style.display =
+"inline-block";
+
+};
+
 
 $("cancelEdit").onclick =
-  resetForm;
+resetForm;
 
 
-/* =========================================
-   ANÚNCIOS
-========================================= */
+function resetForm(){
 
-function renderAnnouncements(){
+editingId = null;
 
-  $("announcementCount")
-    .textContent =
-    announcements.length;
+$("episodeFormTitle")
+.textContent =
+"Adicionar episódio";
 
+$("add").textContent =
+"Guardar episódio";
 
-  const sorted =
-    [...announcements]
-      .sort(
-        (a,b) =>
-          (b.createdAt || 0) -
-          (a.createdAt || 0)
-      );
+$("cancelEdit")
+.style.display =
+"none";
 
+[
+"title",
+"season",
+"number",
+"lang",
+"desc"
+].forEach(
+id => $(id).value=""
+);
 
-  $("announcements").innerHTML =
-    sorted.map(
-      announcement => `
-
-        <div class="announcement">
-
-          <span
-            class="announcement-label"
-            style="background:${esc(
-              announcement.color ||
-              "#e62b45"
-            )}"
-          >
-            ${esc(
-              announcement.label ||
-              "NOVIDADE"
-            )}
-          </span>
-
-          <div class="announcement-title">
-            ${esc(
-              announcement.title ||
-              ""
-            )}
-          </div>
-
-          <div class="muted">
-            ${esc(
-              announcement.text ||
-              ""
-            )}
-          </div>
-
-        </div>
-
-      `
-    ).join("")
-
-    ||
-
-    `
-      <p class="muted">
-        Ainda não existem anúncios.
-      </p>
-    `;
+$("thumb").value = "";
 
 }
 
 
-/* =========================================
-   PREVIEW COR
-========================================= */
+/* ==========================
+   GUARDAR EPISÓDIO
+========================== */
 
-function updateColorPreview(){
+$("add").onclick =
+async function(){
 
-  const color =
-    $("announcementColor")
-      .value;
-
-  const label =
-    $("announcementLabel")
-      .value
-      .trim()
-      ||
-      "NOVIDADE";
+const title =
+$("title")
+.value
+.trim();
 
 
-  $("colorPreview")
-    .style.background =
-    color;
+if(!title){
 
-  $("colorPreview")
-    .textContent =
-    label;
+$("status").innerHTML =
+`
+<div class="notice error">
+❌ Escreve um título.
+</div>
+`;
+
+return;
+
+}
+
+
+const button =
+$("add");
+
+button.disabled = true;
+button.textContent =
+"Publicando...";
+
+
+$("uploadProgress")
+.style.display =
+"block";
+
+$("progressBar")
+.style.width =
+"10%";
+
+
+try{
+
+/*
+   PRIMEIRO:
+   criamos o episódio sem thumbnail.
+
+   Assim, mesmo que o Android
+   não consiga ler a imagem,
+   o episódio já existe.
+*/
+
+const old =
+editingId
+?
+episodes.find(
+e => e.id === editingId
+)
+:
+null;
+
+
+const id =
+editingId ||
+(
+crypto &&
+crypto.randomUUID
+?
+crypto.randomUUID()
+:
+String(
+Date.now()
+)
+);
+
+
+const episode = {
+
+id:id,
+
+title:title,
+
+season:
+$("season").value.trim()
+|| "—",
+
+number:
+$("number").value.trim()
+|| "—",
+
+lang:
+$("lang").value.trim()
+|| "—",
+
+desc:
+$("desc").value.trim()
+|| "",
+
+thumbnail:
+old?.thumbnail || "",
+
+updatedAt:
+Date.now()
+
+};
+
+
+/*
+   GUARDA PRIMEIRO
+*/
+
+await put(
+"episodes",
+episode
+);
+
+
+$("progressBar")
+.style.width =
+"45%";
+
+
+/*
+   AGORA tenta a thumbnail.
+   Se falhar, NÃO cancela o episódio.
+*/
+
+const file =
+$("thumb").files[0];
+
+
+if(file){
+
+try{
+
+const thumbnail =
+await readThumbnail(file);
+
+
+$("progressBar")
+.style.width =
+"75%";
+
+
+if(thumbnail){
+
+episode.thumbnail =
+thumbnail;
+
+await put(
+"episodes",
+episode
+);
+
+}
+
+}catch(thumbnailError){
+
+console.warn(
+"Thumbnail ignorada:",
+thumbnailError
+);
+
+}
+
+}
+
+
+$("progressBar")
+.style.width =
+"100%";
+
+
+await loadData();
+
+
+resetForm();
+
+
+$("status").innerHTML =
+`
+<div class="notice success">
+✅ Episódio publicado com sucesso!
+${
+file && !episode.thumbnail
+?
+"<br><small>A thumbnail não pôde ser carregada, mas o episódio foi publicado.</small>"
+:
+""
+}
+</div>
+`;
+
+
+setTimeout(
+() => {
+
+$("status").innerHTML="";
+$("uploadProgress")
+.style.display="none";
+
+},
+4000
+);
+
+
+}catch(error){
+
+console.error(
+"Erro real:",
+error
+);
+
+
+$("status").innerHTML =
+`
+<div class="notice error">
+
+❌ Erro ao guardar episódio.
+
+<br>
+
+<small>
+${esc(
+error?.message ||
+"Erro desconhecido"
+)}
+</small>
+
+</div>
+`;
+
+}
+
+
+button.disabled =
+false;
+
+button.textContent =
+editingId
+?
+"Guardar alterações"
+:
+"Guardar episódio";
+
+};
+
+
+/* ==========================
+   ANÚNCIOS
+========================== */
+
+function renderAnnouncements(){
+
+$("announcementCount")
+.textContent =
+announcements.length;
+
+
+const sorted =
+[...announcements]
+.sort(
+(a,b) =>
+b.createdAt -
+a.createdAt
+);
+
+
+$("announcements").innerHTML =
+sorted.map(
+a => `
+
+<div class="announcement">
+
+<span
+class="announcement-label"
+style="background:${esc(a.color || "#e62b45")}"
+>
+${esc(a.label || "NOVIDADE")}
+</span>
+
+<div class="announcement-title">
+${esc(a.title)}
+</div>
+
+<div class="muted">
+${esc(a.text)}
+</div>
+
+</div>
+
+`
+).join("")
+
+||
+
+'<p class="muted">Ainda não existem anúncios.</p>';
 
 }
 
 
 $("announcementColor")
-  .oninput =
-  updateColorPreview;
+.oninput =
+function(){
 
+$("colorPreview")
+.style.background =
+this.value;
+
+$("colorPreview")
+.textContent =
 $("announcementLabel")
-  .oninput =
-  updateColorPreview;
-
-
-/* =========================================
-   PUBLICAR ANÚNCIO
-========================================= */
-
-$("addAnnouncement").onclick =
-async function(){
-
-  const label =
-    $("announcementLabel")
-      .value
-      .trim()
-      ||
-      "NOVIDADE";
-
-  const title =
-    $("announcementTitle")
-      .value
-      .trim();
-
-  const text =
-    $("announcementText")
-      .value
-      .trim();
-
-  const color =
-    $("announcementColor")
-      .value;
-
-
-  if(!title || !text){
-
-    $("announcementStatus")
-      .innerHTML =
-      `
-      <div class="notice error">
-        ❌ Preenche o título e o texto.
-      </div>
-      `;
-
-    return;
-
-  }
-
-
-  const button =
-    $("addAnnouncement");
-
-  button.disabled =
-    true;
-
-
-  try{
-
-    await put(
-      "announcements",
-      {
-
-        id:createId(),
-
-        label,
-
-        title,
-
-        text,
-
-        color,
-
-        createdAt:
-          Date.now()
-
-      }
-    );
-
-
-    announcements =
-      await getAll(
-        "announcements"
-      );
-
-
-    renderAnnouncements();
-
-
-    $("announcementTitle")
-      .value = "";
-
-    $("announcementText")
-      .value = "";
-
-    $("announcementLabel")
-      .value =
-      "NOVIDADE";
-
-    $("announcementColor")
-      .value =
-      "#e62b45";
-
-
-    updateColorPreview();
-
-
-    $("announcementStatus")
-      .innerHTML =
-      `
-      <div class="notice success">
-        ✅ Anúncio publicado!
-      </div>
-      `;
-
-
-  }catch(error){
-
-    console.error(error);
-
-    $("announcementStatus")
-      .innerHTML =
-      `
-      <div class="notice error">
-        ❌ Erro ao publicar anúncio.
-      </div>
-      `;
-
-  }
-
-
-  button.disabled =
-    false;
+.value ||
+"NOVIDADE";
 
 };
 
 
-/* =========================================
-   FUNDO
-========================================= */
+$("announcementLabel")
+.oninput =
+function(){
 
-function showDefaultBackground(){
+$("colorPreview")
+.textContent =
+this.value ||
+"NOVIDADE";
 
-  $("backgroundImage")
-    .style.display =
-    "none";
+};
 
-  $("backgroundVideo")
-    .pause();
 
-  $("backgroundVideo")
-    .removeAttribute("src");
+$("addAnnouncement")
+.onclick =
+async function(){
 
-  $("backgroundVideo")
-    .style.display =
-    "none";
+const label =
+$("announcementLabel")
+.value.trim()
+||
+"NOVIDADE";
+
+const title =
+$("announcementTitle")
+.value.trim();
+
+const text =
+$("announcementText")
+.value.trim();
+
+const color =
+$("announcementColor")
+.value;
+
+
+if(!title || !text){
+
+$("announcementStatus")
+.innerHTML =
+`
+<div class="notice error">
+❌ Preenche o título e o texto.
+</div>
+`;
+
+return;
 
 }
 
+
+try{
+
+await put(
+"announcements",
+{
+
+id:
+crypto &&
+crypto.randomUUID
+?
+crypto.randomUUID()
+:
+String(Date.now()),
+
+label:label,
+
+title:title,
+
+text:text,
+
+color:color,
+
+createdAt:
+Date.now()
+
+}
+);
+
+
+announcements =
+await getAll(
+"announcements"
+);
+
+renderAnnouncements();
+
+
+$("announcementTitle").value="";
+$("announcementText").value="";
+$("announcementLabel").value="NOVIDADE";
+$("announcementColor").value="#e62b45";
+
+$("colorPreview").style.background="#e62b45";
+$("colorPreview").textContent="NOVIDADE";
+
+
+$("announcementStatus").innerHTML =
+`
+<div class="notice success">
+✅ Anúncio publicado!
+</div>
+`;
+
+
+}catch(error){
+
+console.error(error);
+
+$("announcementStatus").innerHTML =
+`
+<div class="notice error">
+❌ Erro ao publicar anúncio.
+</div>
+`;
+
+}
+
+};
+
+
+/* ==========================
+   FUNDO
+========================== */
 
 async function loadBackground(){
 
-  try{
+const tx =
+db.transaction(
+"settings",
+"readonly"
+);
 
-    const settings =
-      await getAll(
-        "settings"
-      );
-
-    const setting =
-      settings.find(
-        item =>
-          item.id === "background"
-      );
+const request =
+tx.objectStore("settings")
+.get("background");
 
 
-    if(!setting){
+request.onsuccess =
+function(){
 
-      showDefaultBackground();
-      return;
+const setting =
+request.result;
 
-    }
-
-
-    $("backgroundImage")
-      .style.display =
-      "none";
-
-    $("backgroundVideo")
-      .style.display =
-      "none";
+if(!setting){
+return;
+}
 
 
-    if(
-      setting.type === "image" &&
-      setting.data
-    ){
+$("backgroundImage")
+.style.display =
+"none";
 
-      $("backgroundImage")
-        .src =
-        setting.data;
-
-      $("backgroundImage")
-        .style.display =
-        "block";
-
-      return;
-
-    }
+$("backgroundVideo")
+.style.display =
+"none";
 
 
-    if(
-      setting.type === "video" &&
-      setting.data
-    ){
+if(setting.type === "image"){
 
-      $("backgroundVideo")
-        .src =
-        setting.data;
+$("backgroundImage").src =
+setting.data;
 
-      $("backgroundVideo")
-        .style.display =
-        "block";
-
-      $("backgroundVideo")
-        .play()
-        .catch(
-          () => {}
-        );
-
-      return;
-
-    }
-
-
-    showDefaultBackground();
-
-  }catch(error){
-
-    console.warn(
-      "Não foi possível carregar o fundo:",
-      error
-    );
-
-    showDefaultBackground();
-
-  }
+$("backgroundImage")
+.style.display =
+"block";
 
 }
 
 
-/* =========================================
-   GUARDAR FUNDO
-========================================= */
+if(setting.type === "video"){
 
-$("saveBackground").onclick =
+$("backgroundVideo").src =
+setting.data;
+
+$("backgroundVideo")
+.style.display =
+"block";
+
+$("backgroundVideo")
+.play()
+.catch(()=>{});
+
+}
+
+};
+
+}
+
+
+$("saveBackground")
+.onclick =
 async function(){
 
-  const image =
-    $("backgroundImageFile")
-      .files &&
-    $("backgroundImageFile")
-      .files[0];
+const image =
+$("backgroundImageFile")
+.files[0];
 
-  const video =
-    $("backgroundVideoFile")
-      .files &&
-    $("backgroundVideoFile")
-      .files[0];
+const video =
+$("backgroundVideoFile")
+.files[0];
 
 
-  if(!image && !video){
+if(!image && !video){
 
-    $("backgroundStatus")
-      .innerHTML =
-      `
-      <div class="notice error">
-        ❌ Seleciona uma imagem ou vídeo.
-      </div>
-      `;
+$("backgroundStatus")
+.innerHTML =
+`
+<div class="notice error">
+❌ Seleciona uma imagem ou vídeo.
+</div>
+`;
 
-    return;
+return;
 
-  }
-
-
-  if(image && video){
-
-    $("backgroundStatus")
-      .innerHTML =
-      `
-      <div class="notice error">
-        ❌ Escolhe apenas imagem OU vídeo.
-      </div>
-      `;
-
-    return;
-
-  }
+}
 
 
-  const button =
-    $("saveBackground");
+try{
 
-  button.disabled =
-    true;
+const file =
+video || image;
 
-
-  try{
-
-    const file =
-      video || image;
+const data =
+await readThumbnail(file);
 
 
-    const data =
-      await fileToDataURL(
-        file
-      );
+if(!data){
+
+throw new Error(
+"Não foi possível ler o ficheiro."
+);
+
+}
 
 
-    if(!data){
+await put(
+"settings",
+{
 
-      throw new Error(
-        "O ficheiro não pôde ser lido."
-      );
+id:"background",
 
-    }
+type:
+video
+?
+"video"
+:
+"image",
 
+data:data
 
-    await put(
-      "settings",
-      {
-
-        id:"background",
-
-        type:
-          video
-          ?
-          "video"
-          :
-          "image",
-
-        data
-
-      }
-    );
+}
+);
 
 
-    await loadBackground();
+await loadBackground();
 
 
-    $("backgroundImageFile")
-      .value = "";
-
-    $("backgroundVideoFile")
-      .value = "";
+$("backgroundImageFile").value="";
+$("backgroundVideoFile").value="";
 
 
-    $("backgroundStatus")
-      .innerHTML =
-      `
-      <div class="notice success">
-        ✅ Fundo atualizado!
-      </div>
-      `;
+$("backgroundStatus")
+.innerHTML =
+`
+<div class="notice success">
+✅ Fundo atualizado!
+</div>
+`;
 
 
-  }catch(error){
+}catch(error){
 
-    console.error(
-      error
-    );
+console.error(error);
 
+$("backgroundStatus")
+.innerHTML =
+`
+<div class="notice error">
+❌ Não foi possível guardar o fundo.
+</div>
+`;
 
-    $("backgroundStatus")
-      .innerHTML =
-      `
-      <div class="notice error">
-
-        ❌ Não foi possível guardar o fundo.
-
-        <br>
-
-        <small>
-          ${esc(
-            error?.message ||
-            "Erro desconhecido."
-          )}
-        </small>
-
-      </div>
-      `;
-
-  }
-
-
-  button.disabled =
-    false;
+}
 
 };
 
 
-/* =========================================
-   REMOVER FUNDO PERSONALIZADO
-========================================= */
-
-$("removeBackground").onclick =
+$("removeBackground")
+.onclick =
 async function(){
 
-  try{
+try{
 
-    await remove(
-      "settings",
-      "background"
-    );
+await remove(
+"settings",
+"background"
+);
 
-    showDefaultBackground();
+$("backgroundImage")
+.removeAttribute("src");
+
+$("backgroundVideo")
+.pause();
+
+$("backgroundVideo")
+.removeAttribute("src");
+
+$("backgroundImage")
+.style.display="none";
+
+$("backgroundVideo")
+.style.display="none";
 
 
-    $("backgroundStatus")
-      .innerHTML =
-      `
-      <div class="notice success">
-        ✅ Fundo Miraculous restaurado!
-      </div>
-      `;
+$("backgroundStatus")
+.innerHTML =
+`
+<div class="notice success">
+✅ Fundo removido.
+</div>
+`;
 
-  }catch(error){
+}catch(error){
 
-    console.error(error);
+console.error(error);
 
-    $("backgroundStatus")
-      .innerHTML =
-      `
-      <div class="notice error">
-        ❌ Não foi possível remover o fundo.
-      </div>
-      `;
-
-  }
+}
 
 };
 
 
-/* =========================================
+/* ==========================
    LOGIN
-========================================= */
+========================== */
 
 $("loginOpen").onclick =
-function(){
-
-  $("login")
-    .classList
-    .remove("hide");
-
-  setTimeout(
-    () => $("user").focus(),
-    50
-  );
-
-};
+() =>
+$("login")
+.classList.remove("hide");
 
 
 $("loginClose").onclick =
-function(){
-
-  $("login")
-    .classList
-    .add("hide");
-
-};
+() =>
+$("login")
+.classList.add("hide");
 
 
 $("adminClose").onclick =
-function(){
-
-  $("admin")
-    .classList
-    .add("hide");
-
-};
+() =>
+$("admin")
+.classList.add("hide");
 
 
 $("loginBtn").onclick =
 function(){
 
-  const user =
-    $("user")
-      .value
-      .trim();
+const user =
+$("user").value.trim();
 
-  const pass =
-    $("pass")
-      .value;
+const pass =
+$("pass").value;
 
 
-  if(
-    user === ADMIN_USER &&
-    pass === ADMIN_PASS
-  ){
+if(
+user === ADMIN_USER &&
+pass === ADMIN_PASS
+){
 
-    $("err")
-      .textContent =
-      "";
+$("err").textContent="";
 
-    $("user")
-      .value = "";
+$("login")
+.classList.add("hide");
 
-    $("pass")
-      .value = "";
+$("admin")
+.classList.remove("hide");
 
-    $("login")
-      .classList
-      .add("hide");
+renderAdminList();
 
-    $("admin")
-      .classList
-      .remove("hide");
+}else{
 
-    renderAdminList();
+$("err").textContent =
+"Credenciais inválidas.";
 
-  }else{
-
-    $("err")
-      .textContent =
-      "Credenciais inválidas.";
-
-  }
+}
 
 };
 
@@ -2956,138 +2214,97 @@ function(){
 $("pass").onkeydown =
 function(event){
 
-  if(
-    event.key === "Enter"
-  ){
-
-    $("loginBtn").click();
-
-  }
+if(event.key === "Enter"){
+$("loginBtn").click();
+}
 
 };
 
 
-/* =========================================
+/* ==========================
    PESQUISA
-========================================= */
+========================== */
 
 $("search").oninput =
 render;
 
 
-/* =========================================
+/* ==========================
    UPDATE
-========================================= */
+========================== */
 
 const UPDATE_KEY =
-"miraculousKK_update_v1";
+"miraculousKK_update";
 
 
 if(
-  !localStorage.getItem(
-    UPDATE_KEY
-  )
+!localStorage.getItem(
+UPDATE_KEY
+)
 ){
 
-  localStorage.setItem(
-    UPDATE_KEY,
-    String(Date.now())
-  );
+localStorage.setItem(
+UPDATE_KEY,
+Date.now()
+);
 
 }
 
 
 function updateText(){
 
-  const saved =
-    Number(
-      localStorage.getItem(
-        UPDATE_KEY
-      )
-    );
+const seconds =
+Math.floor(
+(
+Date.now() -
+Number(
+localStorage.getItem(
+UPDATE_KEY
+)
+)
+) / 1000
+);
 
 
-  if(!saved){
-
-    $("updateText")
-      .textContent =
-      "Update feita agora";
-
-    return;
-
-  }
+let text="agora";
 
 
-  const seconds =
-    Math.max(
-      0,
-      Math.floor(
-        (
-          Date.now() -
-          saved
-        ) / 1000
-      )
-    );
+if(seconds >= 86400){
+
+const n =
+Math.floor(
+seconds / 86400
+);
+
+text =
+`há ${n} ${n===1?"dia":"dias"}`;
+
+}else if(seconds >= 3600){
+
+const n =
+Math.floor(
+seconds / 3600
+);
+
+text =
+`há ${n} ${n===1?"hora":"horas"}`;
+
+}else if(seconds >= 60){
+
+const n =
+Math.floor(
+seconds / 60
+);
+
+text =
+`há ${n} ${n===1?"minuto":"minutos"}`;
+
+}
 
 
-  let text =
-    "agora";
-
-
-  if(
-    seconds >= 86400
-  ){
-
-    const n =
-      Math.floor(
-        seconds / 86400
-      );
-
-    text =
-      `há ${n} ${
-        n === 1
-        ? "dia"
-        : "dias"
-      }`;
-
-  }else if(
-    seconds >= 3600
-  ){
-
-    const n =
-      Math.floor(
-        seconds / 3600
-      );
-
-    text =
-      `há ${n} ${
-        n === 1
-        ? "hora"
-        : "horas"
-      }`;
-
-  }else if(
-    seconds >= 60
-  ){
-
-    const n =
-      Math.floor(
-        seconds / 60
-      );
-
-    text =
-      `há ${n} ${
-        n === 1
-        ? "minuto"
-        : "minutos"
-      }`;
-
-  }
-
-
-  $("updateText")
-    .textContent =
-    "Update feita " + text;
+$("updateText")
+.textContent =
+"Update feita " + text;
 
 }
 
@@ -3095,64 +2312,42 @@ function updateText(){
 updateText();
 
 setInterval(
-  updateText,
-  30000
+updateText,
+30000
 );
 
 
-/* =========================================
-   INICIAR
-========================================= */
+/* ==========================
+   START
+========================== */
 
 (async function(){
 
-  try{
+try{
 
-    if(
-      !("indexedDB" in window)
-    ){
+await openDB();
 
-      throw new Error(
-        "Este navegador não suporta IndexedDB."
-      );
+await loadData();
 
-    }
+}catch(error){
 
+console.error(
+"Erro ao iniciar:",
+error
+);
 
-    await openDB();
+$("grid").innerHTML =
+`
+<p class="muted">
+Erro ao iniciar o catálogo.
+</p>
+`;
 
-    await loadData();
-
-  }catch(error){
-
-    console.error(
-      "Erro ao iniciar:",
-      error
-    );
-
-
-    $("grid").innerHTML =
-      `
-      <div class="notice error">
-
-        ❌ Erro ao iniciar o catálogo.
-
-        <br>
-
-        <small>
-          ${esc(
-            error?.message ||
-            "Erro desconhecido."
-          )}
-        </small>
-
-      </div>
-      `;
-
-  }
+}
 
 })();
+
 </script>
 
 </body>
-   </html>
+  </html>
