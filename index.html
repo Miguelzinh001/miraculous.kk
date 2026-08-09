@@ -7,12 +7,13 @@
 
 <style>
 :root{
---bg:#07070a;
---panel:#111116;
---line:#292933;
---text:#f7f7fb;
---muted:#aaaab5;
---red:#e62b45
+  --bg:#07070a;
+  --panel:#111116;
+  --line:#292933;
+  --text:#f7f7fb;
+  --muted:#aaaab5;
+  --red:#e62b45;
+  --green:#24c96b;
 }
 
 *{box-sizing:border-box}
@@ -20,522 +21,572 @@
 html{scroll-behavior:smooth}
 
 body{
-margin:0;
-background:radial-gradient(circle at 80% 0,#32101a,#07070a 38%);
-color:var(--text);
-font:15px system-ui,sans-serif
+  margin:0;
+  background:radial-gradient(circle at 80% 0,#32101a,#07070a 38%);
+  color:var(--text);
+  font:15px system-ui,sans-serif;
 }
 
 button,input,textarea,select{font:inherit}
+
 button{cursor:pointer}
-a{color:inherit;text-decoration:none}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
 
 .top{
-min-height:70px;
-display:flex;
-align-items:center;
-gap:20px;
-padding:12px 6vw;
-border-bottom:1px solid #17171c;
-background:#08080bdd;
-position:sticky;
-top:0;
-z-index:10;
-backdrop-filter:blur(12px)
+  min-height:70px;
+  display:flex;
+  align-items:center;
+  gap:18px;
+  padding:12px 6vw;
+  border-bottom:1px solid #17171c;
+  background:#08080bdd;
+  position:sticky;
+  top:0;
+  z-index:10;
+  backdrop-filter:blur(12px);
 }
 
 .brand{
-font-size:22px;
-font-weight:900;
-white-space:nowrap
+  font-size:22px;
+  font-weight:900;
+  white-space:nowrap;
 }
 
 .brand span{color:var(--red)}
 
 .update{
-font-size:11px;
-color:var(--muted);
-white-space:nowrap
+  color:var(--muted);
+  font-size:11px;
+  white-space:nowrap;
 }
 
 nav{
-display:flex;
-gap:22px;
-color:var(--muted);
-flex:1
+  display:flex;
+  gap:22px;
+  color:var(--muted);
+  flex:1;
 }
 
 .btn{
-border:1px solid var(--line);
-background:#121218;
-color:#fff;
-border-radius:10px;
-padding:10px 15px
+  border:1px solid var(--line);
+  background:#121218;
+  color:#fff;
+  border-radius:10px;
+  padding:10px 15px;
 }
 
 .primary{
-background:var(--red);
-border-color:var(--red)
+  background:var(--red);
+  border-color:var(--red);
+}
+
+.btn:disabled{
+  opacity:.5;
+  cursor:not-allowed;
 }
 
 .hero{
-min-height:520px;
-padding:90px 8vw;
-display:grid;
-grid-template-columns:1.3fr .7fr;
-gap:40px;
-align-items:center
+  min-height:520px;
+  padding:90px 8vw;
+  display:grid;
+  grid-template-columns:1.3fr .7fr;
+  gap:40px;
+  align-items:center;
 }
 
 .ey{
-font-size:11px;
-letter-spacing:2px;
-color:#ff6377;
-font-weight:800
+  font-size:11px;
+  letter-spacing:2px;
+  color:#ff6377;
+  font-weight:800;
 }
 
 .hero h1{
-font-size:clamp(46px,7vw,82px);
-line-height:.95;
-letter-spacing:-4px;
-margin:10px 0
+  font-size:clamp(46px,7vw,82px);
+  line-height:.95;
+  letter-spacing:-4px;
+  margin:10px 0;
 }
 
 .hero h1 span{color:var(--red)}
 
 .hero p{
-color:var(--muted);
-font-size:18px;
-line-height:1.6;
-max-width:620px
+  color:var(--muted);
+  font-size:18px;
+  line-height:1.6;
+  max-width:620px;
 }
 
 .actions{
-display:flex;
-gap:10px;
-margin-top:25px
+  display:flex;
+  gap:10px;
+  margin-top:25px;
 }
 
 .showcase{
-height:300px;
-border:1px solid #3a2028;
-border-radius:25px;
-background:linear-gradient(145deg,#29111a,#101015);
-display:grid;
-place-items:center;
-font-size:85px;
-box-shadow:0 30px 100px #0008
+  height:300px;
+  border:1px solid #3a2028;
+  border-radius:25px;
+  background:linear-gradient(145deg,#29111a,#101015);
+  display:grid;
+  place-items:center;
+  font-size:85px;
+  box-shadow:0 30px 100px #0008;
 }
 
 .sec{
-padding:70px 8vw;
-border-top:1px solid #14141a
+  padding:70px 8vw;
+  border-top:1px solid #14141a;
 }
 
 .head{
-display:flex;
-justify-content:space-between;
-align-items:end;
-gap:15px;
-margin-bottom:25px
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:15px;
+  margin-bottom:25px;
 }
 
 h2{
-font-size:35px;
-margin:5px 0;
-letter-spacing:-1.5px
+  font-size:35px;
+  margin:5px 0;
+  letter-spacing:-1.5px;
 }
 
-.search,input,textarea,select{
-background:#09090d;
-border:1px solid var(--line);
-color:#fff;
-border-radius:10px;
-padding:12px;
-width:100%
+.search,
+input,
+textarea,
+select{
+  background:#09090d;
+  border:1px solid var(--line);
+  color:#fff;
+  border-radius:10px;
+  padding:12px;
+  width:100%;
 }
 
-.search{width:min(330px,100%)}
+.search{
+  width:min(330px,100%);
+}
 
 textarea{
-min-height:100px;
-resize:vertical
+  min-height:100px;
+  resize:vertical;
 }
 
 .grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:15px
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
 }
 
 .card{
-background:var(--panel);
-border:1px solid var(--line);
-border-radius:16px;
-overflow:hidden
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:16px;
+  overflow:hidden;
 }
 
 .thumb{
-aspect-ratio:16/9;
-background:linear-gradient(135deg,#271018,#17171d);
-display:grid;
-place-items:center;
-font-size:40px;
-overflow:hidden;
-cursor:pointer;
-position:relative
+  aspect-ratio:16/9;
+  background:linear-gradient(135deg,#271018,#17171d);
+  display:grid;
+  place-items:center;
+  font-size:40px;
+  overflow:hidden;
+  cursor:pointer;
+  position:relative;
 }
 
 .thumb img{
-width:100%;
-height:100%;
-object-fit:cover
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
 .play{
-position:absolute;
-inset:0;
-display:grid;
-place-items:center;
-background:#0005;
-opacity:0;
-transition:.2s
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  background:#0007;
+  opacity:0;
+  transition:.2s;
 }
 
-.thumb:hover .play,
-.thumb:active .play{
-opacity:1
+.thumb:hover .play{
+  opacity:1;
 }
 
 .play span{
-width:55px;
-height:55px;
-border-radius:50%;
-background:#e62b45;
-display:grid;
-place-items:center;
-font-size:25px
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  background:var(--red);
+  display:grid;
+  place-items:center;
+  font-size:23px;
 }
 
-.body{padding:14px}
+.body{
+  padding:14px;
+}
 
 .meta{
-color:#858591;
-font-size:12px;
-margin-top:6px
+  color:#858591;
+  font-size:12px;
+  margin-top:6px;
 }
 
 .muted{
-color:var(--muted);
-line-height:1.7
+  color:var(--muted);
+  line-height:1.7;
 }
 
 .badge{
-display:inline-block;
-padding:4px 8px;
-border-radius:7px;
-font-size:11px;
-margin-top:7px
+  display:inline-block;
+  padding:4px 8px;
+  border-radius:7px;
+  font-size:11px;
+  margin-top:8px;
 }
 
 .global{
-background:#12351f;
-color:#7dffa4
+  background:#12351f;
+  color:#7dffa4;
 }
 
 .local{
-background:#30240f;
-color:#ffd477
+  background:#30240f;
+  color:#ffd477;
 }
 
 .features{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
 }
 
 .feature{
-background:var(--panel);
-border:1px solid var(--line);
-padding:18px;
-border-radius:14px
+  background:var(--panel);
+  border:1px solid var(--line);
+  padding:18px;
+  border-radius:14px;
 }
 
 .feature span{
-display:block;
-color:var(--muted);
-font-size:13px;
-margin-top:4px
+  display:block;
+  color:var(--muted);
+  font-size:13px;
+  margin-top:4px;
 }
 
 .announcement{
-background:var(--panel);
-border:1px solid var(--line);
-border-radius:14px;
-padding:18px;
-margin-bottom:10px
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:18px;
+  margin-bottom:10px;
 }
 
 .announcement h3{
-margin:0 0 5px
+  margin:0 0 5px;
 }
 
 footer{
-padding:30px 8vw;
-color:#70707b;
-border-top:1px solid #14141a
+  padding:30px 8vw;
+  color:#70707b;
+  border-top:1px solid #14141a;
 }
 
 .modal{
-position:fixed;
-inset:0;
-background:#000d;
-display:grid;
-place-items:center;
-padding:20px;
-z-index:50
+  position:fixed;
+  inset:0;
+  background:#000d;
+  display:grid;
+  place-items:center;
+  padding:20px;
+  z-index:50;
 }
 
-.hide{display:none!important}
+.hide{
+  display:none!important;
+}
 
 .box{
-position:relative;
-width:min(760px,100%);
-max-height:90vh;
-overflow:auto;
-background:#101015;
-border:1px solid var(--line);
-border-radius:20px;
-padding:28px
+  position:relative;
+  width:min(760px,100%);
+  max-height:90vh;
+  overflow:auto;
+  background:#101015;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:28px;
 }
 
 .close{
-position:absolute;
-right:15px;
-top:8px;
-background:none;
-border:0;
-color:#aaa;
-font-size:28px
+  position:absolute;
+  right:15px;
+  top:8px;
+  background:none;
+  border:0;
+  color:#aaa;
+  font-size:28px;
 }
 
 .form{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:8px
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
 }
 
 .form textarea{
-grid-column:1/-1
+  grid-column:1/-1;
 }
 
 .file{
-background:#09090d;
-border:1px solid var(--line);
-border-radius:10px;
-padding:10px
+  background:#09090d;
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:10px;
 }
 
 .file input{
-padding:8px 0;
-border:0
+  border:0;
+  padding:8px 0;
 }
 
 .stats{
-display:flex;
-gap:10px;
-margin:18px 0
+  display:flex;
+  gap:10px;
+  margin:18px 0;
 }
 
 .stat{
-background:#09090d;
-border:1px solid var(--line);
-padding:12px;
-border-radius:10px;
-flex:1
+  background:#09090d;
+  border:1px solid var(--line);
+  padding:12px;
+  border-radius:10px;
+  flex:1;
 }
 
 .tabs{
-display:flex;
-gap:8px;
-margin:20px 0
+  display:flex;
+  gap:8px;
+  margin:20px 0;
 }
 
 .tab{
-background:#09090d;
-border:1px solid var(--line);
-color:#aaa;
-border-radius:8px;
-padding:9px 13px
+  background:#09090d;
+  border:1px solid var(--line);
+  color:#aaa;
+  border-radius:8px;
+  padding:9px 13px;
 }
 
 .tab.active{
-background:var(--red);
-border-color:var(--red);
-color:#fff
+  background:var(--red);
+  border-color:var(--red);
+  color:#fff;
 }
 
-.panel{display:none}
-.panel.active{display:block}
+.panel{
+  display:none;
+}
+
+.panel.active{
+  display:block;
+}
 
 .list{
-display:grid;
-gap:8px;
-margin-top:18px
+  display:grid;
+  gap:8px;
+  margin-top:18px;
 }
 
 .item{
-display:flex;
-justify-content:space-between;
-gap:12px;
-padding:12px;
-background:#09090d;
-border:1px solid var(--line);
-border-radius:10px
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  padding:12px;
+  background:#09090d;
+  border:1px solid var(--line);
+  border-radius:10px;
 }
 
 .item-buttons{
-display:flex;
-gap:6px;
-align-items:center
+  display:flex;
+  gap:6px;
+  align-items:center;
 }
 
 .edit{
-background:#18182a;
-border:1px solid #393950;
-color:#b9b9ff;
-border-radius:8px;
-padding:7px
+  background:#18182a;
+  border:1px solid #393950;
+  color:#b9b9ff;
+  border-radius:8px;
+  padding:7px;
 }
 
 .danger{
-background:#38111a;
-border:1px solid #5a1a26;
-color:#ff8a99;
-border-radius:8px;
-padding:7px
+  background:#38111a;
+  border:1px solid #5a1a26;
+  color:#ff8a99;
+  border-radius:8px;
+  padding:7px;
 }
 
-/* PLAYER */
+.status{
+  display:none;
+  margin:15px 0;
+  padding:12px 14px;
+  border-radius:10px;
+  font-weight:600;
+}
+
+.status.show{
+  display:block;
+}
+
+.status.success{
+  background:#10351f;
+  border:1px solid #1d7040;
+  color:#7dffa4;
+}
+
+.status.error{
+  background:#3a1118;
+  border:1px solid #702331;
+  color:#ff9aaa;
+}
+
+.status.loading{
+  background:#30250d;
+  border:1px solid #70581c;
+  color:#ffd477;
+}
 
 .playerBox{
-width:min(1000px,100%);
-background:#08080b;
-padding:0;
-overflow:hidden
+  width:min(1000px,100%);
+  background:#08080b;
+  padding:0;
+  overflow:hidden;
 }
 
 .playerHeader{
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:15px 20px;
-border-bottom:1px solid var(--line)
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:15px 20px;
+  border-bottom:1px solid var(--line);
 }
 
 .playerHeader h2{
-font-size:20px;
-margin:0
+  font-size:20px;
+  margin:0;
 }
 
 .videoWrap{
-background:#000;
-width:100%
+  background:#000;
+  width:100%;
 }
 
 #videoPlayer{
-display:block;
-width:100%;
-max-height:75vh;
-background:#000
+  display:block;
+  width:100%;
+  max-height:75vh;
+  background:#000;
 }
 
 .playerInfo{
-padding:15px 20px
-}
-
-.subtitleStatus{
-font-size:12px;
-color:var(--muted)
+  padding:15px 20px;
 }
 
 @media(max-width:850px){
 
-nav{display:none}
+  nav{display:none}
 
-.hero{
-grid-template-columns:1fr;
-padding-top:55px
-}
+  .hero{
+    grid-template-columns:1fr;
+    padding-top:55px;
+  }
 
-.showcase{display:none}
+  .showcase{
+    display:none;
+  }
 
-.grid{
-grid-template-columns:repeat(2,1fr)
-}
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+  }
 
-.head{
-flex-direction:column;
-align-items:stretch
-}
+  .head{
+    flex-direction:column;
+    align-items:stretch;
+  }
 
-.search{width:100%}
-
+  .search{
+    width:100%;
+  }
 }
 
 @media(max-width:520px){
 
-.top{
-padding:12px 16px;
-gap:10px
-}
+  .top{
+    padding:12px 16px;
+    gap:9px;
+  }
 
-.brand{font-size:19px}
+  .brand{
+    font-size:19px;
+  }
 
-.update{
-font-size:9px
-}
+  .update{
+    font-size:9px;
+  }
 
-.hero{
-padding:55px 6vw
-}
+  .hero{
+    padding:55px 6vw;
+  }
 
-.hero h1{
-letter-spacing:-2px
-}
+  .hero h1{
+    letter-spacing:-2px;
+  }
 
-.sec{
-padding:50px 6vw
-}
+  .sec{
+    padding:50px 6vw;
+  }
 
-.grid{
-grid-template-columns:1fr
-}
+  .grid{
+    grid-template-columns:1fr;
+  }
 
-.features{
-grid-template-columns:1fr
-}
+  .features{
+    grid-template-columns:1fr;
+  }
 
-.form{
-grid-template-columns:1fr
-}
+  .form{
+    grid-template-columns:1fr;
+  }
 
-.form textarea{
-grid-column:auto
-}
+  .form textarea{
+    grid-column:auto;
+  }
 
-.stats{
-flex-direction:column
-}
+  .stats{
+    flex-direction:column;
+  }
 
-.item{
-flex-direction:column
-}
+  .item{
+    flex-direction:column;
+  }
 
-.item-buttons{
-justify-content:flex-end
-}
-
+  .item-buttons{
+    justify-content:flex-end;
+  }
 }
 </style>
 </head>
@@ -559,7 +610,9 @@ Update feita há 0 seg
 <a href="#sobre">Sobre</a>
 </nav>
 
-<button class="btn" id="loginOpen">Admin</button>
+<button class="btn" id="loginOpen">
+Admin
+</button>
 
 </header>
 
@@ -693,7 +746,9 @@ Não inclui episódios protegidos por direitos de autor.
 
 <div class="box" style="max-width:420px">
 
-<button class="close" id="loginClose">×</button>
+<button class="close" id="loginClose">
+×
+</button>
 
 <div class="ey">ADMIN</div>
 
@@ -733,7 +788,9 @@ Entrar
 
 <div class="box">
 
-<button class="close" id="adminClose">×</button>
+<button class="close" id="adminClose">
+×
+</button>
 
 <div class="ey">DASHBOARD</div>
 
@@ -774,6 +831,8 @@ Entrar
 <h3 id="episodeTitleText">
 Adicionar episódio
 </h3>
+
+<div id="publishStatus" class="status"></div>
 
 <div class="form">
 
@@ -1015,1331 +1074,1930 @@ preload="metadata"
 
 <script>
 
-/* =====================================
-   INDEXED DB
-===================================== */
+"use strict";
 
-const DB_NAME="miraculousKK";
-const DB_VERSION=1;
-const STORE="files";
+/* =========================================
+   ELEMENTOS
+========================================= */
 
-let db=null;
+const $ = id => document.getElementById(id);
+
+
+/* =========================================
+   INDEXEDDB
+========================================= */
+
+const DB_NAME = "miraculousKK";
+const DB_VERSION = 1;
+const STORE_NAME = "files";
+
+let db = null;
+
 
 function openDB(){
 
-return new Promise((resolve,reject)=>{
+  return new Promise((resolve,reject)=>{
 
-const request=
-indexedDB.open(DB_NAME,DB_VERSION);
+    if(!window.indexedDB){
 
-request.onupgradeneeded=()=>{
+      reject(
+        new Error(
+          "Este navegador não suporta IndexedDB."
+        )
+      );
 
-const database=request.result;
+      return;
+    }
 
-if(!database.objectStoreNames.contains(STORE)){
+    const request =
+      indexedDB.open(
+        DB_NAME,
+        DB_VERSION
+      );
 
-database.createObjectStore(
-STORE,
-{keyPath:"id"}
-);
+    request.onupgradeneeded = function(){
+
+      const database = request.result;
+
+      if(
+        !database.objectStoreNames.contains(
+          STORE_NAME
+        )
+      ){
+
+        database.createObjectStore(
+          STORE_NAME,
+          {keyPath:"id"}
+        );
+
+      }
+
+    };
+
+    request.onsuccess = function(){
+
+      db = request.result;
+
+      resolve(db);
+
+    };
+
+    request.onerror = function(){
+
+      reject(
+        request.error ||
+        new Error(
+          "Erro ao abrir armazenamento."
+        )
+      );
+
+    };
+
+  });
 
 }
 
-};
 
-request.onsuccess=()=>{
+function saveFile(id,file){
 
-db=request.result;
-resolve(db);
+  return new Promise((resolve,reject)=>{
 
-};
+    if(!db){
 
-request.onerror=()=>reject(
-request.error
-);
+      reject(
+        new Error(
+          "Armazenamento ainda não está pronto."
+        )
+      );
 
-});
+      return;
+    }
 
-}
+    const transaction =
+      db.transaction(
+        STORE_NAME,
+        "readwrite"
+      );
 
+    const store =
+      transaction.objectStore(
+        STORE_NAME
+      );
 
-function putFile(id,file){
+    store.put({
+      id:id,
+      file:file
+    });
 
-return new Promise((resolve,reject)=>{
+    transaction.oncomplete =
+      () => resolve();
 
-const tx=
-db.transaction(STORE,"readwrite");
+    transaction.onerror =
+      () => reject(
+        transaction.error ||
+        new Error(
+          "Erro ao guardar ficheiro."
+        )
+      );
 
-tx.objectStore(STORE).put({
-id:id,
-file:file
-});
+    transaction.onabort =
+      () => reject(
+        transaction.error ||
+        new Error(
+          "Operação cancelada."
+        )
+      );
 
-tx.oncomplete=()=>resolve();
-
-tx.onerror=()=>reject(
-tx.error
-);
-
-});
+  });
 
 }
 
 
 function getFile(id){
 
-return new Promise((resolve,reject)=>{
+  return new Promise((resolve,reject)=>{
 
-const tx=
-db.transaction(STORE,"readonly");
+    if(!id){
 
-const request=
-tx.objectStore(STORE).get(id);
+      resolve(null);
+      return;
+    }
 
-request.onsuccess=()=>{
+    if(!db){
 
-resolve(
-request.result?.file||null
-);
+      reject(
+        new Error(
+          "Armazenamento não está pronto."
+        )
+      );
 
-};
+      return;
+    }
 
-request.onerror=()=>reject(
-request.error
-);
+    const transaction =
+      db.transaction(
+        STORE_NAME,
+        "readonly"
+      );
 
-});
+    const request =
+      transaction
+        .objectStore(STORE_NAME)
+        .get(id);
+
+    request.onsuccess =
+      () => resolve(
+        request.result
+          ? request.result.file
+          : null
+      );
+
+    request.onerror =
+      () => reject(
+        request.error
+      );
+
+  });
 
 }
 
 
-function deleteFile(id){
+function removeFile(id){
 
-return new Promise(resolve=>{
+  return new Promise(resolve=>{
 
-if(!id){
-resolve();
-return;
+    if(!id || !db){
+
+      resolve();
+      return;
+    }
+
+    try{
+
+      const transaction =
+        db.transaction(
+          STORE_NAME,
+          "readwrite"
+        );
+
+      transaction
+        .objectStore(STORE_NAME)
+        .delete(id);
+
+      transaction.oncomplete =
+        () => resolve();
+
+      transaction.onerror =
+        () => resolve();
+
+      transaction.onabort =
+        () => resolve();
+
+    }catch{
+
+      resolve();
+
+    }
+
+  });
+
 }
 
-const tx=
-db.transaction(STORE,"readwrite");
 
-tx.objectStore(STORE).delete(id);
-
-tx.oncomplete=()=>resolve();
-tx.onerror=()=>resolve();
-
-});
-
-}
-
-
-/* =====================================
+/* =========================================
    DADOS
-===================================== */
+========================================= */
 
-const DEFAULT_EPISODES=[
-{
-id:"seed",
-title:"Catálogo em construção",
-season:"S6",
-number:"—",
-lang:"PT-PT",
-visibility:"global",
-videoId:"",
-thumbId:"",
-subtitleId:"",
-subtitleLang:"",
-desc:"",
-updated:Date.now()
-}
+const seed = [
+
+  {
+    id:"seed",
+    title:"Catálogo em construção",
+    season:"S6",
+    number:"—",
+    lang:"PT-PT",
+    visibility:"global",
+    videoId:"",
+    thumbId:"",
+    subtitleId:"",
+    subtitleLang:"",
+    desc:"",
+    updated:Date.now()
+  }
+
 ];
 
-let episodes=load(
-"mkEpisodes",
-DEFAULT_EPISODES
-);
 
-let announcements=load(
-"mkAnnouncements",
-[]
-);
+function readArray(key,fallback){
 
-let editingEpisode=-1;
+  try{
 
-let lastUpdate=
-Number(
-localStorage.getItem("mkLastUpdate")
-)||Date.now();
+    const value =
+      JSON.parse(
+        localStorage.getItem(key)
+      );
 
+    return Array.isArray(value)
+      ? value
+      : fallback;
 
-function load(key,fallback){
+  }catch{
 
-try{
+    return fallback;
 
-const data=
-JSON.parse(
-localStorage.getItem(key)
-);
-
-return Array.isArray(data)
-?data
-:fallback;
-
-}catch{
-
-return fallback;
-
-}
+  }
 
 }
 
 
-function save(){
+let episodes =
+  readArray(
+    "mkEpisodes",
+    seed
+  );
 
-localStorage.setItem(
-"mkEpisodes",
-JSON.stringify(episodes)
-);
 
-localStorage.setItem(
-"mkAnnouncements",
-JSON.stringify(announcements)
-);
+let announcements =
+  readArray(
+    "mkAnnouncements",
+    []
+  );
+
+
+let editingIndex = -1;
+
+
+let lastUpdate =
+  Number(
+    localStorage.getItem(
+      "mkLastUpdate"
+    )
+  ) || Date.now();
+
+
+function saveData(){
+
+  localStorage.setItem(
+    "mkEpisodes",
+    JSON.stringify(episodes)
+  );
+
+  localStorage.setItem(
+    "mkAnnouncements",
+    JSON.stringify(announcements)
+  );
 
 }
 
 
 function markUpdated(){
 
-lastUpdate=Date.now();
+  lastUpdate = Date.now();
 
-localStorage.setItem(
-"mkLastUpdate",
-String(lastUpdate)
+  localStorage.setItem(
+    "mkLastUpdate",
+    String(lastUpdate)
+  );
+
+  updateTime();
+
+}
+
+
+function updateTime(){
+
+  const seconds =
+    Math.floor(
+      (Date.now()-lastUpdate)/1000
+    );
+
+  let text;
+
+  if(seconds < 60){
+
+    text =
+      `Update feita há ${seconds} seg`;
+
+  }else if(seconds < 3600){
+
+    text =
+      `Update feita há ${Math.floor(seconds/60)} min`;
+
+  }else if(seconds < 86400){
+
+    text =
+      `Update feita há ${Math.floor(seconds/3600)} hrs`;
+
+  }else{
+
+    text =
+      `Update feita há ${Math.floor(seconds/86400)} dias`;
+
+  }
+
+  $("updateText").textContent = text;
+
+}
+
+
+setInterval(
+  updateTime,
+  1000
 );
 
-updateText();
 
-}
-
-
-function updateText(){
-
-const seconds=
-Math.floor(
-(Date.now()-lastUpdate)/1000
-);
-
-let text;
-
-if(seconds<60){
-
-text=
-`Update feita há ${seconds} seg`;
-
-}else if(seconds<3600){
-
-text=
-`Update feita há ${Math.floor(seconds/60)} min`;
-
-}else if(seconds<86400){
-
-text=
-`Update feita há ${Math.floor(seconds/3600)} hrs`;
-
-}else{
-
-text=
-`Update feita há ${Math.floor(seconds/86400)} dias`;
-
-}
-
-$("updateText").textContent=text;
-
-}
-
-setInterval(updateText,1000);
-
-
-/* =====================================
-   HELPERS
-===================================== */
-
-const $=id=>
-document.getElementById(id);
-
+/* =========================================
+   ESCAPE HTML
+========================================= */
 
 function esc(value=""){
 
-return String(value).replace(
-/[&<>"']/g,
-char=>({
+  return String(value).replace(
+    /[&<>"']/g,
+    char => ({
 
-"&":"&amp;",
-"<":"&lt;",
-">":"&gt;",
-'"':"&quot;",
-"'":"&#39;"
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#39;"
 
-}[char])
-
-);
-
-}
-
-
-/* =====================================
-   THUMBNAIL / PLAYER
-===================================== */
-
-async function getObjectURL(id){
-
-if(!id)return "";
-
-const file=
-await getFile(id);
-
-if(!file)return "";
-
-return URL.createObjectURL(file);
+    }[char])
+  );
 
 }
 
 
-window.openEpisode=async function(id){
+/* =========================================
+   STATUS
+========================================= */
 
-const episode=
-episodes.find(e=>e.id===id);
+function status(message,type){
 
-if(!episode)return;
+  const element =
+    $("publishStatus");
 
+  element.textContent =
+    message;
 
-if(!episode.videoId){
-
-alert(
-"Este episódio ainda não tem vídeo."
-);
-
-return;
-
-}
-
-
-const videoFile=
-await getFile(
-episode.videoId
-);
-
-if(!videoFile){
-
-alert(
-"O ficheiro de vídeo não foi encontrado neste dispositivo."
-);
-
-return;
+  element.className =
+    "status show "+type;
 
 }
 
 
-const videoURL=
-URL.createObjectURL(videoFile);
-
-$("videoPlayer").src=
-videoURL;
-
-$("playerTitle").textContent=
-episode.title;
-
-$("playerMeta").textContent=
-`${episode.season} · ${episode.number} · ${episode.lang||"—"}`;
-
-
-$("subtitleStatus").textContent=
-episode.subtitleId
-?
-`💬 Legendas: ${episode.subtitleLang||"disponíveis"}`
-:
-"Sem legendas";
-
-
-/*
-Remove tracks antigos.
-*/
-
-$("videoPlayer")
-.querySelectorAll("track")
-.forEach(track=>track.remove());
-
-
-/*
-Adicionar legendas.
-*/
-
-if(episode.subtitleId){
-
-const subtitleFile=
-await getFile(
-episode.subtitleId
-);
-
-if(subtitleFile){
-
-let text=
-await subtitleFile.text();
-
-if(
-subtitleFile.name
-.toLowerCase()
-.endsWith(".srt")
-){
-
-text=
-srtToVtt(text);
-
-}
-
-const blob=
-new Blob(
-[text],
-{type:"text/vtt"}
-);
-
-const subtitleURL=
-URL.createObjectURL(blob);
-
-const track=
-document.createElement("track");
-
-track.kind="subtitles";
-track.label=
-episode.subtitleLang||"Legendas";
-
-track.srclang=
-episode.subtitleLang==="PT-PT"
-?"pt"
-:"en";
-
-track.src=subtitleURL;
-
-track.default=true;
-
-$("videoPlayer")
-.appendChild(track);
-
-}
-
-}
-
-
-$("playerModal")
-.classList.remove("hide");
-
-$("videoPlayer").play()
-.catch(()=>{});
-
-};
-
-
-function srtToVtt(srt){
-
-let result=
-"WEBVTT\n\n"+srt;
-
-result=
-result.replace(
-/(\d{2}:\d{2}:\d{2}),(\d{3})/g,
-"$1.$2"
-);
-
-return result;
-
-}
-
-
-$("playerClose").onclick=()=>{
-
-const video=
-$("videoPlayer");
-
-video.pause();
-
-video.removeAttribute("src");
-
-video.load();
-
-$("playerModal")
-.classList.add("hide");
-
-};
-
-
-$("playerModal").addEventListener(
-"click",
-e=>{
-
-if(e.target===
-$("playerModal")){
-
-$("playerClose").click();
-
-}
-
-});
-
-
-/* =====================================
+/* =========================================
    RENDER
-===================================== */
+========================================= */
 
 async function render(){
 
-const query=
-$("search").value
-.toLowerCase()
-.trim();
-
-const filtered=
-episodes.filter(e=>
-(
-e.title+" "+
-e.season+" "+
-e.number+" "+
-e.lang
-)
-.toLowerCase()
-.includes(query)
-);
+  const query =
+    $("search")
+      .value
+      .toLowerCase()
+      .trim();
 
 
-let html="";
+  const filtered =
+    episodes.filter(
+      episode => {
 
-for(const e of filtered){
+        const text =
+          [
+            episode.title,
+            episode.season,
+            episode.number,
+            episode.lang
+          ]
+          .join(" ")
+          .toLowerCase();
 
-let thumbURL="";
+        return text.includes(query);
 
-if(e.thumbId){
+      }
+    );
 
-const file=
-await getFile(e.thumbId);
 
-if(file){
+  let html = "";
 
-thumbURL=
-URL.createObjectURL(file);
+
+  for(const episode of filtered){
+
+    let thumbnail = null;
+
+    if(episode.thumbId){
+
+      try{
+
+        thumbnail =
+          await getFile(
+            episode.thumbId
+          );
+
+      }catch{
+
+        thumbnail = null;
+
+      }
+
+    }
+
+
+    let image = "";
+
+    if(thumbnail){
+
+      const url =
+        URL.createObjectURL(
+          thumbnail
+        );
+
+      image =
+        `<img src="${url}" alt="">`;
+
+    }
+
+
+    html += `
+
+      <article class="card">
+
+        <div
+          class="thumb"
+          data-open="${esc(episode.id)}"
+        >
+
+          ${
+            image || "🐞"
+          }
+
+          <div class="play">
+            <span>▶</span>
+          </div>
+
+        </div>
+
+        <div class="body">
+
+          <b>
+            ${esc(episode.title)}
+          </b>
+
+          <div class="meta">
+            ${esc(episode.season)}
+            ·
+            ${esc(episode.number)}
+            ·
+            ${esc(episode.lang || "—")}
+          </div>
+
+          <span class="badge ${
+            episode.visibility === "global"
+              ? "global"
+              : "local"
+          }">
+
+            ${
+              episode.visibility === "global"
+                ? "🌐 Global"
+                : "📱 Local"
+            }
+
+          </span>
+
+          ${
+            episode.subtitleId
+              ? `<div class="meta">
+                   💬 Legendas disponíveis
+                 </div>`
+              : ""
+          }
+
+        </div>
+
+      </article>
+
+    `;
+
+  }
+
+
+  $("grid").innerHTML =
+    html ||
+    `<p class="muted">
+      Nenhum resultado.
+    </p>`;
+
+
+  document
+    .querySelectorAll("[data-open]")
+    .forEach(element=>{
+
+      element.onclick =
+        () => openEpisode(
+          element.dataset.open
+        );
+
+    });
+
+
+  $("count").textContent =
+    episodes.length;
+
+  $("announcementCount").textContent =
+    announcements.length;
+
+
+  renderAdmin();
+
+  renderAnnouncements();
 
 }
 
-}
 
-html+=`
-
-<article class="card">
-
-<div
-class="thumb"
-onclick="openEpisode('${e.id}')"
->
-
-${
-thumbURL
-?
-`<img src="${thumbURL}" alt="">`
-:
-"🐞"
-}
-
-<div class="play">
-<span>▶</span>
-</div>
-
-</div>
-
-<div class="body">
-
-<b>${esc(e.title)}</b>
-
-<div class="meta">
-${esc(e.season)}
-·
-${esc(e.number)}
-·
-${esc(e.lang||"—")}
-</div>
-
-<span class="badge ${
-e.visibility==="global"
-?"global"
-:"local"
-}">
-
-${
-e.visibility==="global"
-?
-"🌐 Global"
-:
-"📱 Local"
-}
-
-</span>
-
-${
-e.subtitleId
-?
-`<div class="meta">
-💬 Legendas disponíveis
-</div>`
-:
-""
-}
-
-</div>
-
-</article>
-
-`;
-
-}
-
-
-$("grid").innerHTML=
-html||
-`<p class="muted">
-Nenhum resultado.
-</p>`;
-
-$("count").textContent=
-episodes.length;
-
-$("announcementCount").textContent=
-announcements.length;
-
-renderAdmin();
-
-renderPublicAnnouncements();
-
-}
-
-
-/* =====================================
-   ADMIN
-===================================== */
+/* =========================================
+   ADMIN LIST
+========================================= */
 
 function renderAdmin(){
 
-$("list").innerHTML=
-episodes.map((e,i)=>`
+  $("list").innerHTML =
+    episodes.map(
+      (episode,index)=>`
+
+        <div class="item">
+
+          <div>
+
+            <b>
+              ${esc(episode.title)}
+            </b>
+
+            <div class="meta">
+              ${esc(episode.season)}
+              ·
+              ${esc(episode.number)}
+              ·
+              ${esc(episode.lang || "—")}
+            </div>
+
+            <span class="badge ${
+              episode.visibility === "global"
+                ? "global"
+                : "local"
+            }">
+
+              ${
+                episode.visibility === "global"
+                  ? "🌐 Global"
+                  : "📱 Local"
+              }
+
+            </span>
+
+            ${
+              episode.videoId
+                ? `<div class="meta">
+                     🎬 Vídeo carregado
+                   </div>`
+                : `<div class="meta">
+                     ⚠️ Sem vídeo
+                   </div>`
+            }
+
+            ${
+              episode.subtitleId
+                ? `<div class="meta">
+                     📄 Legendas carregadas
+                   </div>`
+                : ""
+            }
+
+          </div>
+
+          <div class="item-buttons">
+
+            <button
+              class="edit"
+              data-edit="${index}"
+            >
+              ✏️
+            </button>
+
+            <button
+              class="danger"
+              data-delete="${index}"
+            >
+              🗑️
+            </button>
+
+          </div>
+
+        </div>
+
+      `
+    )
+    .join("");
+
+
+  document
+    .querySelectorAll("[data-edit]")
+    .forEach(button=>{
+
+      button.onclick =
+        () => editEpisode(
+          Number(
+            button.dataset.edit
+          )
+        );
+
+    });
+
+
+  document
+    .querySelectorAll("[data-delete]")
+    .forEach(button=>{
+
+      button.onclick =
+        () => deleteEpisode(
+          Number(
+            button.dataset.delete
+          )
+        );
 
-<div class="item">
+    });
 
-<div>
 
-<b>${esc(e.title)}</b>
+  $("announcementList").innerHTML =
+    announcements.map(
+      (announcement,index)=>`
 
-<div class="meta">
-${esc(e.season)}
-·
-${esc(e.number)}
-·
-${esc(e.lang||"—")}
-</div>
+        <div class="item">
 
-<span class="badge ${
-e.visibility==="global"
-?"global"
-:"local"
-}">
+          <div>
 
-${
-e.visibility==="global"
-?
-"🌐 Global"
-:
-"📱 Local"
-}
+            <b>
+              ${esc(
+                announcement.title
+              )}
+            </b>
 
-</span>
+            <div class="meta">
+              ${esc(
+                announcement.type
+              )}
+              ·
+              ${esc(
+                announcement.date
+              )}
+            </div>
 
-${
-e.subtitleId
-?
-`<div class="meta">
-📄 Legendas carregadas
-</div>`
-:
-""
-}
+          </div>
 
-</div>
+          <button
+            class="danger"
+            data-ann-delete="${index}"
+          >
+            🗑️
+          </button>
 
-<div class="item-buttons">
+        </div>
 
-<button
-class="edit"
-onclick="editEpisode(${i})"
->
-✏️
-</button>
+      `
+    )
+    .join("");
 
-<button
-class="danger"
-onclick="deleteEpisode(${i})"
->
-🗑️
-</button>
 
-</div>
+  document
+    .querySelectorAll("[data-ann-delete]")
+    .forEach(button=>{
 
-</div>
+      button.onclick =
+        () => deleteAnnouncement(
+          Number(
+            button.dataset.annDelete
+          )
+        );
 
-`).join("");
-
-
-$("announcementList").innerHTML=
-announcements.map((a,i)=>`
-
-<div class="item">
-
-<div>
-
-<b>${esc(a.title)}</b>
-
-<div class="meta">
-${esc(a.date)}
-</div>
-
-</div>
-
-<button
-class="danger"
-onclick="deleteAnnouncement(${i})"
->
-🗑️
-</button>
-
-</div>
-
-`).join("");
-
-}
-
-
-/* =====================================
-   DELETE EPISODE
-===================================== */
-
-window.deleteEpisode=async function(index){
-
-if(!confirm(
-"Queres mesmo apagar este episódio?"
-))return;
-
-const e=
-episodes[index];
-
-await deleteFile(e.videoId);
-await deleteFile(e.thumbId);
-await deleteFile(e.subtitleId);
-
-episodes.splice(index,1);
-
-save();
-
-markUpdated();
-
-render();
-
-};
-
-
-/* =====================================
-   EDIT EPISODE
-===================================== */
-
-window.editEpisode=function(index){
-
-const e=
-episodes[index];
-
-editingEpisode=index;
-
-$("title").value=e.title||"";
-$("season").value=e.season||"";
-$("number").value=e.number||"";
-$("lang").value=e.lang||"";
-$("visibility").value=
-e.visibility||"global";
-
-$("subtitleLang").value=
-e.subtitleLang||"";
-
-$("desc").value=
-e.desc||"";
-
-$("episodeTitleText").textContent=
-"Editar episódio";
-
-$("add").textContent=
-"Guardar alterações";
-
-$("cancelEdit")
-.classList.remove("hide");
-
-$("videoName").textContent=
-e.videoId
-?
-"🎬 Vídeo já guardado"
-:
-"Nenhum vídeo selecionado";
-
-$("thumbName").textContent=
-e.thumbId
-?
-"🖼️ Thumbnail já guardada"
-:
-"Nenhuma imagem selecionada";
-
-$("subtitleName").textContent=
-e.subtitleId
-?
-"📄 Legendas já guardadas"
-:
-"Nenhum ficheiro selecionado";
-
-};
-
-
-/* =====================================
-   CLEAR EPISODE
-===================================== */
-
-function clearEpisodeForm(){
-
-[
-"title",
-"season",
-"number",
-"lang",
-"desc"
-].forEach(id=>{
-$(id).value="";
-});
-
-$("visibility").value=
-"global";
-
-$("subtitleLang").value="";
-
-$("thumbFile").value="";
-$("videoFile").value="";
-$("subtitleFile").value="";
-
-$("thumbName").textContent=
-"Nenhuma imagem selecionada";
-
-$("videoName").textContent=
-"Nenhum vídeo selecionado";
-
-$("subtitleName").textContent=
-"Nenhum ficheiro selecionado";
-
-$("episodeTitleText").textContent=
-"Adicionar episódio";
-
-$("add").textContent=
-"Guardar episódio";
-
-$("cancelEdit")
-.classList.add("hide");
-
-editingEpisode=-1;
+    });
 
 }
 
 
-$("cancelEdit").onclick=
-clearEpisodeForm;
+/* =========================================
+   ANÚNCIOS PÚBLICOS
+========================================= */
+
+function renderAnnouncements(){
+
+  if(!announcements.length){
+
+    $("publicAnnouncements").innerHTML =
+      `<p class="muted">
+        Ainda não existem anúncios.
+      </p>`;
+
+    return;
+
+  }
 
 
-/* =====================================
-   FILE LABELS
-===================================== */
+  $("publicAnnouncements").innerHTML =
+    announcements.map(
+      announcement=>`
 
-$("thumbFile").onchange=()=>{
+        <div class="announcement">
 
-const f=
-$("thumbFile").files[0];
+          <h3>
+            ${esc(
+              announcement.title
+            )}
+          </h3>
 
-if(f)
-$("thumbName").textContent=
-"🖼️ "+f.name;
+          <div class="meta">
+            ${esc(
+              announcement.type
+            )}
+            ·
+            ${esc(
+              announcement.date
+            )}
+          </div>
 
-};
+          <p class="muted">
+            ${esc(
+              announcement.text
+            )}
+          </p>
 
+        </div>
 
-$("videoFile").onchange=()=>{
-
-const f=
-$("videoFile").files[0];
-
-if(f)
-$("videoName").textContent=
-"🎬 "+f.name;
-
-};
-
-
-$("subtitleFile").onchange=()=>{
-
-const f=
-$("subtitleFile").files[0];
-
-if(f)
-$("subtitleName").textContent=
-"📄 "+f.name;
-
-};
-
-
-/* =====================================
-   ADD / EDIT EPISODE
-===================================== */
-
-$("add").onclick=async()=>{
-
-const title=
-$("title").value.trim();
-
-if(!title){
-
-alert("Escreve um título.");
-
-return;
+      `
+    )
+    .join("");
 
 }
 
 
-const old=
-editingEpisode>=0
-?
-episodes[editingEpisode]
-:
-null;
-
-
-const thumbFile=
-$("thumbFile").files[0];
-
-const videoFile=
-$("videoFile").files[0];
-
-const subtitleFile=
-$("subtitleFile").files[0];
-
-
-let videoId=
-old?.videoId||"";
-
-let thumbId=
-old?.thumbId||"";
-
-let subtitleId=
-old?.subtitleId||"";
-
-
-const id=
-old?.id||
-"ep_"+Date.now();
-
-
-if(thumbFile){
-
-thumbId=
-id+"_thumb";
-
-await putFile(
-thumbId,
-thumbFile
-);
-
-}
-
-
-if(videoFile){
-
-if(!videoFile.type.startsWith("video/")){
-
-alert(
-"Seleciona um ficheiro de vídeo válido."
-);
-
-return;
-
-}
-
-videoId=
-id+"_video";
-
-await putFile(
-videoId,
-videoFile
-);
-
-}
-
-
-if(subtitleFile){
-
-const name=
-subtitleFile.name.toLowerCase();
-
-if(
-!name.endsWith(".srt")&&
-!name.endsWith(".vtt")
-){
-
-alert(
-"As legendas têm de ser .srt ou .vtt."
-);
-
-return;
-
-}
-
-subtitleId=
-id+"_subtitle";
-
-await putFile(
-subtitleId,
-subtitleFile
-);
-
-}
-
-
-const episode={
-
-id:id,
-
-title:title,
-
-season:
-$("season").value||"—",
-
-number:
-$("number").value||"—",
-
-lang:
-$("lang").value||"—",
-
-visibility:
-$("visibility").value,
-
-videoId:videoId,
-
-thumbId:thumbId,
-
-subtitleId:subtitleId,
-
-subtitleLang:
-$("subtitleLang").value,
-
-desc:
-$("desc").value||"",
-
-updated:Date.now()
-
-};
-
-
-if(editingEpisode>=0){
-
-episodes[editingEpisode]=episode;
-
-alert(
-"Episódio atualizado!"
-);
-
-}else{
-
-episodes.push(episode);
-
-alert(
-"Episódio publicado!"
-);
-
-}
-
-
-save();
-
-markUpdated();
-
-clearEpisodeForm();
-
-render();
-
-};
-
-
-/* =====================================
+/* =========================================
    LOGIN
-===================================== */
+========================================= */
 
-$("loginOpen").onclick=()=>{
+$("loginOpen").onclick =
+  function(){
 
-$("login")
-.classList.remove("hide");
+    $("login")
+      .classList
+      .remove("hide");
 
-$("user").focus();
+    $("user").focus();
 
-};
-
-$("loginClose").onclick=()=>{
-
-$("login")
-.classList.add("hide");
-
-};
-
-$("adminClose").onclick=()=>{
-
-$("admin")
-.classList.add("hide");
-
-};
-
-$("loginBtn").onclick=login;
+  };
 
 
-$("pass").addEventListener(
-"keydown",
-e=>{
-if(e.key==="Enter")
-login();
-});
+$("loginClose").onclick =
+  function(){
+
+    $("login")
+      .classList
+      .add("hide");
+
+  };
+
+
+$("adminClose").onclick =
+  function(){
+
+    $("admin")
+      .classList
+      .add("hide");
+
+  };
 
 
 function login(){
 
-const user=
-$("user").value.trim();
+  const username =
+    $("user").value.trim();
 
-const pass=
-$("pass").value;
+  const password =
+    $("pass").value;
 
 
-const valid=
+  const valid =
+    (
+      username === "miguel" &&
+      password === "nemesis6"
+    )
+    ||
+    (
+      username === "admin" &&
+      password === "miraculous"
+    );
 
-(
-user==="miguel"&&
-pass==="nemesis6"
-)
-||
-(
-user==="admin"&&
-pass==="miraculous"
+
+  if(valid){
+
+    $("err").textContent = "";
+
+    $("login")
+      .classList
+      .add("hide");
+
+    $("admin")
+      .classList
+      .remove("hide");
+
+    render();
+
+  }else{
+
+    $("err").textContent =
+      "Utilizador ou palavra-passe inválidos.";
+
+  }
+
+}
+
+
+$("loginBtn").onclick =
+  login;
+
+
+$("pass").addEventListener(
+  "keydown",
+  event=>{
+
+    if(event.key === "Enter"){
+      login();
+    }
+
+  }
 );
 
 
-if(valid){
+/* =========================================
+   PESQUISA
+========================================= */
 
-$("login")
-.classList.add("hide");
-
-$("admin")
-.classList.remove("hide");
-
-$("err").textContent="";
-
-render();
-
-}else{
-
-$("err").textContent=
-"Utilizador ou palavra-passe inválidos.";
-
-}
-
-}
+$("search").oninput =
+  render;
 
 
-/* =====================================
-   SEARCH
-===================================== */
-
-$("search").oninput=render;
-
-
-/* =====================================
+/* =========================================
    TABS
-===================================== */
+========================================= */
 
-$("episodesTab").onclick=()=>{
+$("episodesTab").onclick =
+  function(){
 
-$("episodesTab")
-.classList.add("active");
+    $("episodesTab")
+      .classList
+      .add("active");
 
-$("announcementsTab")
-.classList.remove("active");
+    $("announcementsTab")
+      .classList
+      .remove("active");
 
-$("episodesPanel")
-.classList.add("active");
+    $("episodesPanel")
+      .classList
+      .add("active");
 
-$("announcementsPanel")
-.classList.remove("active");
+    $("announcementsPanel")
+      .classList
+      .remove("active");
 
-};
-
-
-$("announcementsTab").onclick=()=>{
-
-$("announcementsTab")
-.classList.add("active");
-
-$("episodesTab")
-.classList.remove("active");
-
-$("announcementsPanel")
-.classList.add("active");
-
-$("episodesPanel")
-.classList.remove("active");
-
-};
+  };
 
 
-/* =====================================
-   ANNOUNCEMENTS
-===================================== */
+$("announcementsTab").onclick =
+  function(){
 
-function renderPublicAnnouncements(){
+    $("announcementsTab")
+      .classList
+      .add("active");
 
-if(!announcements.length){
+    $("episodesTab")
+      .classList
+      .remove("active");
 
-$("publicAnnouncements").innerHTML=
-`<p class="muted">
-Ainda não existem anúncios.
-</p>`;
+    $("announcementsPanel")
+      .classList
+      .add("active");
 
-return;
+    $("episodesPanel")
+      .classList
+      .remove("active");
+
+  };
+
+
+/* =========================================
+   FILE INPUTS
+========================================= */
+
+$("thumbFile").onchange =
+  function(){
+
+    const file =
+      this.files[0];
+
+    $("thumbName").textContent =
+      file
+        ? "🖼️ "+file.name
+        : "Nenhuma imagem selecionada";
+
+  };
+
+
+$("videoFile").onchange =
+  function(){
+
+    const file =
+      this.files[0];
+
+    $("videoName").textContent =
+      file
+        ? "🎬 "+file.name
+        : "Nenhum vídeo selecionado";
+
+  };
+
+
+$("subtitleFile").onchange =
+  function(){
+
+    const file =
+      this.files[0];
+
+    $("subtitleName").textContent =
+      file
+        ? "📄 "+file.name
+        : "Nenhum ficheiro selecionado";
+
+  };
+
+
+/* =========================================
+   PUBLICAR / EDITAR EPISÓDIO
+========================================= */
+
+$("add").onclick =
+  async function(){
+
+    const button = $("add");
+
+    if(button.disabled){
+      return;
+    }
+
+
+    const title =
+      $("title")
+        .value
+        .trim();
+
+
+    if(!title){
+
+      status(
+        "⚠️ Escreve um título antes de publicar.",
+        "error"
+      );
+
+      $("title").focus();
+
+      return;
+
+    }
+
+
+    const isEditing =
+      editingIndex >= 0;
+
+
+    const oldEpisode =
+      isEditing
+        ? episodes[editingIndex]
+        : null;
+
+
+    const thumbnailFile =
+      $("thumbFile")
+        .files[0];
+
+
+    const videoFile =
+      $("videoFile")
+        .files[0];
+
+
+    const subtitleFile =
+      $("subtitleFile")
+        .files[0];
+
+
+    const id =
+      oldEpisode?.id ||
+      "episode_"+Date.now();
+
+
+    let videoId =
+      oldEpisode?.videoId || "";
+
+
+    let thumbId =
+      oldEpisode?.thumbId || "";
+
+
+    let subtitleId =
+      oldEpisode?.subtitleId || "";
+
+
+    try{
+
+      button.disabled = true;
+
+
+      status(
+        isEditing
+          ? "⏳ A atualizar o episódio..."
+          : "⏳ A publicar o episódio...",
+        "loading"
+      );
+
+
+      /* VÍDEO */
+
+      if(videoFile){
+
+        if(
+          !videoFile.type.startsWith(
+            "video/"
+          )
+        ){
+
+          throw new Error(
+            "O ficheiro selecionado não é um vídeo."
+          );
+
+        }
+
+
+        status(
+          "⏳ A guardar o vídeo...",
+          "loading"
+        );
+
+
+        videoId =
+          id+"_video";
+
+
+        await saveFile(
+          videoId,
+          videoFile
+        );
+
+      }
+
+
+      /* THUMBNAIL */
+
+      if(thumbnailFile){
+
+        if(
+          !thumbnailFile.type.startsWith(
+            "image/"
+          )
+        ){
+
+          throw new Error(
+            "A thumbnail tem de ser uma imagem."
+          );
+
+        }
+
+
+        status(
+          "⏳ A guardar a thumbnail...",
+          "loading"
+        );
+
+
+        thumbId =
+          id+"_thumb";
+
+
+        await saveFile(
+          thumbId,
+          thumbnailFile
+        );
+
+      }
+
+
+      /* LEGENDAS */
+
+      if(subtitleFile){
+
+        const filename =
+          subtitleFile.name
+            .toLowerCase();
+
+
+        if(
+          !filename.endsWith(".srt") &&
+          !filename.endsWith(".vtt")
+        ){
+
+          throw new Error(
+            "As legendas têm de estar em formato .srt ou .vtt."
+          );
+
+        }
+
+
+        status(
+          "⏳ A guardar as legendas...",
+          "loading"
+        );
+
+
+        subtitleId =
+          id+"_subtitle";
+
+
+        await saveFile(
+          subtitleId,
+          subtitleFile
+        );
+
+      }
+
+
+      /* OBJETO */
+
+      const episode = {
+
+        id:id,
+
+        title:title,
+
+        season:
+          $("season").value ||
+          "—",
+
+        number:
+          $("number").value ||
+          "—",
+
+        lang:
+          $("lang").value ||
+          "—",
+
+        visibility:
+          $("visibility").value,
+
+        videoId:videoId,
+
+        thumbId:thumbId,
+
+        subtitleId:subtitleId,
+
+        subtitleLang:
+          $("subtitleLang").value,
+
+        desc:
+          $("desc").value,
+
+        updated:
+          Date.now()
+
+      };
+
+
+      status(
+        "⏳ A guardar dados...",
+        "loading"
+      );
+
+
+      if(isEditing){
+
+        episodes[editingIndex] =
+          episode;
+
+      }else{
+
+        episodes.push(
+          episode
+        );
+
+      }
+
+
+      saveData();
+
+      markUpdated();
+
+      await render();
+
+
+      /*
+       * NÃO limpamos a mensagem antes
+       * de a mostrar.
+       */
+
+      status(
+        isEditing
+          ? "✅ Episódio atualizado com sucesso!"
+          : "✅ Episódio publicado com sucesso!",
+        "success"
+      );
+
+
+      clearForm();
+
+
+      /*
+       * Volta a mostrar a confirmação
+       * depois de limpar o formulário.
+       */
+
+      status(
+        isEditing
+          ? "✅ Episódio atualizado com sucesso!"
+          : "✅ Episódio publicado com sucesso!",
+        "success"
+      );
+
+
+    }catch(error){
+
+      console.error(
+        "Erro ao guardar episódio:",
+        error
+      );
+
+
+      status(
+        "❌ "+(
+          error?.message ||
+          "Não foi possível guardar o episódio."
+        ),
+        "error"
+      );
+
+
+    }finally{
+
+      button.disabled = false;
+
+    }
+
+  };
+
+
+/* =========================================
+   LIMPAR FORMULÁRIO
+========================================= */
+
+function clearForm(){
+
+  $("title").value = "";
+  $("season").value = "";
+  $("number").value = "";
+  $("lang").value = "";
+  $("desc").value = "";
+
+  $("visibility").value =
+    "global";
+
+  $("subtitleLang").value =
+    "";
+
+  $("thumbFile").value =
+    "";
+
+  $("videoFile").value =
+    "";
+
+  $("subtitleFile").value =
+    "";
+
+  $("thumbName").textContent =
+    "Nenhuma imagem selecionada";
+
+  $("videoName").textContent =
+    "Nenhum vídeo selecionado";
+
+  $("subtitleName").textContent =
+    "Nenhum ficheiro selecionado";
+
+  $("episodeTitleText").textContent =
+    "Adicionar episódio";
+
+  $("add").textContent =
+    "Guardar episódio";
+
+  $("cancelEdit")
+    .classList
+    .add("hide");
+
+  editingIndex = -1;
 
 }
 
 
-$("publicAnnouncements").innerHTML=
-announcements.map(a=>`
+$("cancelEdit").onclick =
+  function(){
 
-<div class="announcement">
+    clearForm();
 
-<h3>
-${esc(a.title)}
-</h3>
+  };
 
-<div class="meta">
-${esc(a.type)} · ${esc(a.date)}
-</div>
 
-<p class="muted">
-${esc(a.text)}
-</p>
+/* =========================================
+   EDITAR
+========================================= */
 
-</div>
+function editEpisode(index){
 
-`).join("");
+  const episode =
+    episodes[index];
+
+
+  if(!episode){
+    return;
+  }
+
+
+  editingIndex =
+    index;
+
+
+  $("title").value =
+    episode.title || "";
+
+  $("season").value =
+    episode.season || "";
+
+  $("number").value =
+    episode.number || "";
+
+  $("lang").value =
+    episode.lang || "";
+
+  $("visibility").value =
+    episode.visibility || "global";
+
+  $("subtitleLang").value =
+    episode.subtitleLang || "";
+
+  $("desc").value =
+    episode.desc || "";
+
+
+  $("episodeTitleText").textContent =
+    "Editar episódio";
+
+
+  $("add").textContent =
+    "Guardar alterações";
+
+
+  $("cancelEdit")
+    .classList
+    .remove("hide");
+
+
+  $("videoName").textContent =
+    episode.videoId
+      ? "🎬 Vídeo atual guardado — seleciona outro para substituir"
+      : "Nenhum vídeo selecionado";
+
+
+  $("thumbName").textContent =
+    episode.thumbId
+      ? "🖼️ Thumbnail atual guardada — seleciona outra para substituir"
+      : "Nenhuma imagem selecionada";
+
+
+  $("subtitleName").textContent =
+    episode.subtitleId
+      ? "📄 Legendas atuais guardadas — seleciona outras para substituir"
+      : "Nenhum ficheiro selecionado";
+
+
+  status(
+    "✏️ A editar "+episode.title,
+    "loading"
+  );
 
 }
 
 
-$("addAnnouncement").onclick=()=>{
+/* =========================================
+   APAGAR
+========================================= */
 
-const title=
-$("announcementTitle").value.trim();
+async function deleteEpisode(index){
 
-const text=
-$("announcementText").value.trim();
+  const episode =
+    episodes[index];
 
-if(!title||!text){
 
-alert(
-"Preenche o título e o texto."
-);
+  if(!episode){
+    return;
+  }
 
-return;
+
+  const confirmed =
+    confirm(
+      `Apagar "${episode.title}"?`
+    );
+
+
+  if(!confirmed){
+    return;
+  }
+
+
+  try{
+
+    await removeFile(
+      episode.videoId
+    );
+
+    await removeFile(
+      episode.thumbId
+    );
+
+    await removeFile(
+      episode.subtitleId
+    );
+
+
+    episodes.splice(
+      index,
+      1
+    );
+
+
+    saveData();
+
+    markUpdated();
+
+    await render();
+
+
+    status(
+      "🗑️ Episódio apagado.",
+      "success"
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    status(
+      "❌ Não foi possível apagar o episódio.",
+      "error"
+    );
+
+  }
 
 }
 
 
-announcements.unshift({
+/* =========================================
+   ANÚNCIOS
+========================================= */
 
-title:title,
+$("addAnnouncement").onclick =
+  function(){
 
-text:text,
+    const title =
+      $("announcementTitle")
+        .value
+        .trim();
 
-type:
-$("announcementType").value,
-
-date:
-new Date().toLocaleString(
-"pt-PT"
-)
-
-});
-
-
-$("announcementTitle").value="";
-$("announcementText").value="";
-
-save();
-
-markUpdated();
-
-render();
-
-alert("Anúncio publicado!");
-
-};
+    const text =
+      $("announcementText")
+        .value
+        .trim();
 
 
-window.deleteAnnouncement=function(index){
+    if(!title || !text){
 
-if(!confirm(
-"Queres apagar este anúncio?"
-))return;
+      alert(
+        "Preenche o título e o texto do anúncio."
+      );
 
-announcements.splice(index,1);
+      return;
 
-save();
-
-markUpdated();
-
-render();
-
-};
+    }
 
 
-/* =====================================
+    announcements.unshift({
+
+      title:title,
+
+      text:text,
+
+      type:
+        $("announcementType")
+          .value,
+
+      date:
+        new Date()
+          .toLocaleString(
+            "pt-PT"
+          )
+
+    });
+
+
+    $("announcementTitle").value =
+      "";
+
+    $("announcementText").value =
+      "";
+
+
+    saveData();
+
+    markUpdated();
+
+    render();
+
+    alert(
+      "📢 Anúncio publicado com sucesso!"
+    );
+
+  };
+
+
+function deleteAnnouncement(index){
+
+  if(
+    !confirm(
+      "Apagar este anúncio?"
+    )
+  ){
+    return;
+  }
+
+
+  announcements.splice(
+    index,
+    1
+  );
+
+
+  saveData();
+
+  markUpdated();
+
+  render();
+
+}
+
+
+/* =========================================
+   PLAYER
+========================================= */
+
+async function openEpisode(id){
+
+  try{
+
+    const episode =
+      episodes.find(
+        e => e.id === id
+      );
+
+
+    if(!episode){
+      return;
+    }
+
+
+    if(!episode.videoId){
+
+      alert(
+        "⚠️ Este episódio ainda não tem um vídeo."
+      );
+
+      return;
+
+    }
+
+
+    const videoFile =
+      await getFile(
+        episode.videoId
+      );
+
+
+    if(!videoFile){
+
+      alert(
+        "⚠️ O vídeo não foi encontrado neste dispositivo."
+      );
+
+      return;
+
+    }
+
+
+    const video =
+      $("videoPlayer");
+
+
+    const videoURL =
+      URL.createObjectURL(
+        videoFile
+      );
+
+
+    video.pause();
+
+    video.removeAttribute(
+      "src"
+    );
+
+    video.load();
+
+
+    video.src =
+      videoURL;
+
+
+    $("playerTitle").textContent =
+      episode.title;
+
+
+    $("playerMeta").textContent =
+      `${episode.season} · ${episode.number} · ${episode.lang || "—"}`;
+
+
+    $("subtitleStatus").textContent =
+      episode.subtitleId
+        ? `💬 Legendas: ${episode.subtitleLang || "disponíveis"}`
+        : "Sem legendas";
+
+
+    video
+      .querySelectorAll("track")
+      .forEach(
+        track => track.remove()
+      );
+
+
+    if(episode.subtitleId){
+
+      const subtitleFile =
+        await getFile(
+          episode.subtitleId
+        );
+
+
+      if(subtitleFile){
+
+        let text =
+          await subtitleFile.text();
+
+
+        if(
+          subtitleFile.name
+            .toLowerCase()
+            .endsWith(".srt")
+        ){
+
+          text =
+            srtToVtt(
+              text
+            );
+
+        }
+
+
+        if(
+          !text.startsWith(
+            "WEBVTT"
+          )
+        ){
+
+          text =
+            "WEBVTT\n\n"+
+            text;
+
+        }
+
+
+        const blob =
+          new Blob(
+            [text],
+            {
+              type:"text/vtt"
+            }
+          );
+
+
+        const subtitleURL =
+          URL.createObjectURL(
+            blob
+          );
+
+
+        const track =
+          document.createElement(
+            "track"
+          );
+
+
+        track.kind =
+          "subtitles";
+
+        track.label =
+          episode.subtitleLang ||
+          "Legendas";
+
+        track.srclang =
+          episode.subtitleLang ===
+          "PT-PT"
+            ? "pt"
+            : "en";
+
+        track.src =
+          subtitleURL;
+
+        track.default =
+          true;
+
+
+        video.appendChild(
+          track
+        );
+
+      }
+
+    }
+
+
+    $("playerModal")
+      .classList
+      .remove("hide");
+
+
+    video
+      .play()
+      .catch(
+        ()=>{}
+      );
+
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "❌ Não foi possível abrir o episódio."
+    );
+
+  }
+
+}
+
+
+function srtToVtt(text){
+
+  return (
+    "WEBVTT\n\n"+
+    text.replace(
+      /(\d{2}:\d{2}:\d{2}),(\d{3})/g,
+      "$1.$2"
+    )
+  );
+
+}
+
+
+$("playerClose").onclick =
+  closePlayer;
+
+
+$("playerModal").onclick =
+  function(event){
+
+    if(
+      event.target ===
+      $("playerModal")
+    ){
+
+      closePlayer();
+
+    }
+
+  };
+
+
+function closePlayer(){
+
+  const video =
+    $("videoPlayer");
+
+
+  video.pause();
+
+  video.removeAttribute(
+    "src"
+  );
+
+  video.load();
+
+
+  $("playerModal")
+    .classList
+    .add("hide");
+
+}
+
+
+/* =========================================
    START
-===================================== */
+========================================= */
 
-(async()=>{
+(async function(){
 
-try{
+  try{
 
-await openDB();
+    await openDB();
 
-await render();
+    updateTime();
 
-}catch(error){
+    await render();
 
-console.error(error);
+  }catch(error){
 
-alert(
-"O armazenamento do navegador não pôde ser iniciado."
-);
+    console.error(
+      "Erro inicial:",
+      error
+    );
 
-}
+    /*
+     * Mesmo que o IndexedDB falhe,
+     * o site continua a funcionar.
+     */
+
+    updateTime();
+
+    await render();
+
+  }
 
 })();
 
