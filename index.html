@@ -8,33 +8,27 @@
 <style>
 :root{
   --bg:#07070a;
-  --panel:#111116;
+  --p:#111116;
   --line:#292933;
-  --text:#f7f7fb;
+  --txt:#f7f7fb;
   --muted:#aaaab5;
-  --red:#e62b45;
-  --green:#24c96b;
+  --red:#e62b45
 }
 
 *{box-sizing:border-box}
 
-html{scroll-behavior:smooth}
-
 body{
   margin:0;
   background:radial-gradient(circle at 80% 0,#32101a,#07070a 38%);
-  color:var(--text);
-  font:15px system-ui,sans-serif;
+  color:var(--txt);
+  font:15px system-ui,sans-serif
 }
 
-button,input,textarea,select{font:inherit}
+a{color:inherit;text-decoration:none}
+
+button,input,textarea{font:inherit}
 
 button{cursor:pointer}
-
-a{
-  color:inherit;
-  text-decoration:none;
-}
 
 .top{
   min-height:70px;
@@ -47,28 +41,27 @@ a{
   position:sticky;
   top:0;
   z-index:10;
-  backdrop-filter:blur(12px);
+  backdrop-filter:blur(12px)
 }
 
 .brand{
   font-size:22px;
   font-weight:900;
-  white-space:nowrap;
+  white-space:nowrap
 }
 
 .brand span{color:var(--red)}
 
 .update{
-  color:var(--muted);
   font-size:11px;
-  white-space:nowrap;
+  color:var(--muted);
+  flex:1
 }
 
 nav{
   display:flex;
-  gap:22px;
-  color:var(--muted);
-  flex:1;
+  gap:20px;
+  color:var(--muted)
 }
 
 .btn{
@@ -76,40 +69,35 @@ nav{
   background:#121218;
   color:#fff;
   border-radius:10px;
-  padding:10px 15px;
+  padding:10px 15px
 }
 
 .primary{
   background:var(--red);
-  border-color:var(--red);
-}
-
-.btn:disabled{
-  opacity:.5;
-  cursor:not-allowed;
+  border-color:var(--red)
 }
 
 .hero{
-  min-height:520px;
-  padding:90px 8vw;
+  min-height:430px;
+  padding:70px 8vw;
   display:grid;
   grid-template-columns:1.3fr .7fr;
   gap:40px;
-  align-items:center;
+  align-items:center
 }
 
 .ey{
   font-size:11px;
   letter-spacing:2px;
   color:#ff6377;
-  font-weight:800;
+  font-weight:800
 }
 
 .hero h1{
-  font-size:clamp(46px,7vw,82px);
+  font-size:clamp(45px,7vw,82px);
   line-height:.95;
   letter-spacing:-4px;
-  margin:10px 0;
+  margin:10px 0
 }
 
 .hero h1 span{color:var(--red)}
@@ -118,29 +106,29 @@ nav{
   color:var(--muted);
   font-size:18px;
   line-height:1.6;
-  max-width:620px;
+  max-width:620px
 }
 
 .actions{
   display:flex;
   gap:10px;
   margin-top:25px;
+  flex-wrap:wrap
 }
 
 .showcase{
-  height:300px;
+  height:260px;
   border:1px solid #3a2028;
   border-radius:25px;
   background:linear-gradient(145deg,#29111a,#101015);
   display:grid;
   place-items:center;
-  font-size:85px;
-  box-shadow:0 30px 100px #0008;
+  font-size:85px
 }
 
 .sec{
-  padding:70px 8vw;
-  border-top:1px solid #14141a;
+  padding:60px 8vw;
+  border-top:1px solid #14141a
 }
 
 .head{
@@ -148,47 +136,36 @@ nav{
   justify-content:space-between;
   align-items:end;
   gap:15px;
-  margin-bottom:25px;
+  margin-bottom:25px
 }
 
-h2{
+.head h2,.sec h2{
   font-size:35px;
   margin:5px 0;
-  letter-spacing:-1.5px;
+  letter-spacing:-1.5px
 }
 
-.search,
-input,
-textarea,
-select{
+.search,input,textarea{
   background:#09090d;
   border:1px solid var(--line);
   color:#fff;
   border-radius:10px;
-  padding:12px;
-  width:100%;
+  padding:12px
 }
 
-.search{
-  width:min(330px,100%);
-}
-
-textarea{
-  min-height:100px;
-  resize:vertical;
-}
+.search{width:min(330px,100%)}
 
 .grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:15px;
+  gap:15px
 }
 
 .card{
-  background:var(--panel);
+  background:var(--p);
   border:1px solid var(--line);
   border-radius:16px;
-  overflow:hidden;
+  overflow:hidden
 }
 
 .thumb{
@@ -197,135 +174,49 @@ textarea{
   display:grid;
   place-items:center;
   font-size:40px;
-  overflow:hidden;
-  cursor:pointer;
-  position:relative;
+  overflow:hidden
 }
 
 .thumb img{
   width:100%;
   height:100%;
-  object-fit:cover;
+  object-fit:cover
 }
 
-.play{
-  position:absolute;
-  inset:0;
-  display:grid;
-  place-items:center;
-  background:#0007;
-  opacity:0;
-  transition:.2s;
-}
-
-.thumb:hover .play{
-  opacity:1;
-}
-
-.play span{
-  width:55px;
-  height:55px;
-  border-radius:50%;
-  background:var(--red);
-  display:grid;
-  place-items:center;
-  font-size:23px;
-}
-
-.body{
-  padding:14px;
-}
+.body{padding:14px}
 
 .meta{
   color:#858591;
   font-size:12px;
-  margin-top:6px;
+  margin-top:6px
 }
 
 .muted{
   color:var(--muted);
-  line-height:1.7;
-}
-
-.badge{
-  display:inline-block;
-  padding:4px 8px;
-  border-radius:7px;
-  font-size:11px;
-  margin-top:8px;
-}
-
-.global{
-  background:#12351f;
-  color:#7dffa4;
-}
-
-.local{
-  background:#30240f;
-  color:#ffd477;
-}
-
-.features{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-
-.feature{
-  background:var(--panel);
-  border:1px solid var(--line);
-  padding:18px;
-  border-radius:14px;
-}
-
-.feature span{
-  display:block;
-  color:var(--muted);
-  font-size:13px;
-  margin-top:4px;
-}
-
-.announcement{
-  background:var(--panel);
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:18px;
-  margin-bottom:10px;
-}
-
-.announcement h3{
-  margin:0 0 5px;
-}
-
-footer{
-  padding:30px 8vw;
-  color:#70707b;
-  border-top:1px solid #14141a;
+  line-height:1.7
 }
 
 .modal{
   position:fixed;
   inset:0;
-  background:#000d;
+  background:#000c;
   display:grid;
   place-items:center;
-  padding:20px;
-  z-index:50;
+  padding:15px;
+  z-index:100
 }
 
-.hide{
-  display:none!important;
-}
+.hide{display:none!important}
 
 .box{
   position:relative;
-  width:min(760px,100%);
-  max-height:90vh;
+  width:min(720px,100%);
+  max-height:92vh;
   overflow:auto;
   background:#101015;
   border:1px solid var(--line);
   border-radius:20px;
-  padding:28px;
+  padding:28px
 }
 
 .close{
@@ -335,35 +226,29 @@ footer{
   background:none;
   border:0;
   color:#aaa;
-  font-size:28px;
+  font-size:28px
+}
+
+.box input,
+.box textarea{
+  width:100%;
+  margin:6px 0
 }
 
 .form{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:8px;
+  gap:8px
 }
 
 .form textarea{
-  grid-column:1/-1;
-}
-
-.file{
-  background:#09090d;
-  border:1px solid var(--line);
-  border-radius:10px;
-  padding:10px;
-}
-
-.file input{
-  border:0;
-  padding:8px 0;
+  grid-column:1/-1
 }
 
 .stats{
   display:flex;
   gap:10px;
-  margin:18px 0;
+  margin:18px 0
 }
 
 .stat{
@@ -371,65 +256,29 @@ footer{
   border:1px solid var(--line);
   padding:12px;
   border-radius:10px;
-  flex:1;
-}
-
-.tabs{
-  display:flex;
-  gap:8px;
-  margin:20px 0;
-}
-
-.tab{
-  background:#09090d;
-  border:1px solid var(--line);
-  color:#aaa;
-  border-radius:8px;
-  padding:9px 13px;
-}
-
-.tab.active{
-  background:var(--red);
-  border-color:var(--red);
-  color:#fff;
-}
-
-.panel{
-  display:none;
-}
-
-.panel.active{
-  display:block;
+  flex:1
 }
 
 .list{
+  margin:18px 0;
   display:grid;
-  gap:8px;
-  margin-top:18px;
+  gap:8px
 }
 
 .item{
   display:flex;
   justify-content:space-between;
-  gap:12px;
+  gap:10px;
   padding:12px;
   background:#09090d;
   border:1px solid var(--line);
-  border-radius:10px;
+  border-radius:10px
 }
 
-.item-buttons{
+.item-actions{
   display:flex;
   gap:6px;
-  align-items:center;
-}
-
-.edit{
-  background:#18182a;
-  border:1px solid #393950;
-  color:#b9b9ff;
-  border-radius:8px;
-  padding:7px;
+  flex-wrap:wrap
 }
 
 .danger{
@@ -437,73 +286,33 @@ footer{
   border:1px solid #5a1a26;
   color:#ff8a99;
   border-radius:8px;
-  padding:7px;
+  padding:7px
 }
 
-.status{
-  display:none;
-  margin:15px 0;
-  padding:12px 14px;
+.notice{
+  padding:12px;
+  border:1px solid var(--line);
+  background:#09090d;
   border-radius:10px;
-  font-weight:600;
+  margin:10px 0
 }
 
-.status.show{
-  display:block;
-}
+.success{color:#70e090}
+.error{color:#ff6377}
 
-.status.success{
-  background:#10351f;
-  border:1px solid #1d7040;
-  color:#7dffa4;
-}
-
-.status.error{
-  background:#3a1118;
-  border:1px solid #702331;
-  color:#ff9aaa;
-}
-
-.status.loading{
-  background:#30250d;
-  border:1px solid #70581c;
-  color:#ffd477;
-}
-
-.playerBox{
-  width:min(1000px,100%);
-  background:#08080b;
-  padding:0;
-  overflow:hidden;
-}
-
-.playerHeader{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:15px 20px;
-  border-bottom:1px solid var(--line);
-}
-
-.playerHeader h2{
-  font-size:20px;
-  margin:0;
-}
-
-.videoWrap{
-  background:#000;
+.player video{
   width:100%;
-}
-
-#videoPlayer{
-  display:block;
-  width:100%;
-  max-height:75vh;
+  max-height:65vh;
   background:#000;
+  border-radius:12px
 }
 
-.playerInfo{
-  padding:15px 20px;
+.announcement{
+  border-left:3px solid var(--red);
+  padding:12px 15px;
+  background:var(--p);
+  border-radius:8px;
+  margin-bottom:10px
 }
 
 @media(max-width:850px){
@@ -512,81 +321,55 @@ footer{
 
   .hero{
     grid-template-columns:1fr;
-    padding-top:55px;
+    padding-top:50px
   }
 
-  .showcase{
-    display:none;
-  }
+  .showcase{display:none}
 
   .grid{
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:repeat(2,1fr)
   }
 
   .head{
     flex-direction:column;
-    align-items:stretch;
+    align-items:stretch
   }
 
   .search{
-    width:100%;
+    width:100%
   }
 }
 
 @media(max-width:520px){
 
-  .top{
-    padding:12px 16px;
-    gap:9px;
-  }
-
-  .brand{
-    font-size:19px;
-  }
-
-  .update{
-    font-size:9px;
-  }
-
-  .hero{
-    padding:55px 6vw;
-  }
-
-  .hero h1{
-    letter-spacing:-2px;
-  }
-
-  .sec{
-    padding:50px 6vw;
-  }
-
   .grid{
-    grid-template-columns:1fr;
-  }
-
-  .features{
-    grid-template-columns:1fr;
+    grid-template-columns:1fr
   }
 
   .form{
-    grid-template-columns:1fr;
+    grid-template-columns:1fr
   }
 
   .form textarea{
-    grid-column:auto;
+    grid-column:auto
+  }
+
+  .hero h1{
+    letter-spacing:-2px
   }
 
   .stats{
-    flex-direction:column;
+    flex-direction:column
   }
 
-  .item{
-    flex-direction:column;
+  .box{
+    padding:22px
   }
 
-  .item-buttons{
-    justify-content:flex-end;
+  .top{
+    gap:10px
   }
+
 }
 </style>
 </head>
@@ -599,15 +382,13 @@ footer{
 miraculous<span>.kk</span>
 </a>
 
-<span id="updateText" class="update">
-Update feita há 0 seg
-</span>
+<div class="update" id="updateText">
+Update feita agora
+</div>
 
 <nav>
 <a href="#catalogo">Catálogo</a>
 <a href="#anuncios">Anúncios</a>
-<a href="#func">Funcionalidades</a>
-<a href="#sobre">Sobre</a>
 </nav>
 
 <button class="btn" id="loginOpen">
@@ -623,15 +404,16 @@ Admin
 
 <div>
 
-<div class="ey">THE MIRACULOUS HUB</div>
+<div class="ey">
+THE MIRACULOUS HUB
+</div>
 
 <h1>
 O teu lugar para <span>Miraculous.</span>
 </h1>
 
 <p>
-Catálogo, episódios, especiais, idiomas,
-legendas e novidades — tudo num só lugar.
+Catálogo, episódios, especiais, idiomas, legendas e novidades — tudo num só lugar.
 </p>
 
 <div class="actions">
@@ -648,7 +430,28 @@ Anúncios
 
 </div>
 
-<div class="showcase">🐞</div>
+<div class="showcase">
+🐞
+</div>
+
+</section>
+
+
+<section class="sec" id="anuncios">
+
+<div class="ey">
+ANÚNCIOS
+</div>
+
+<h2>
+Últimas novidades
+</h2>
+
+<div id="announcements">
+<p class="muted">
+Ainda não existem anúncios.
+</p>
+</div>
 
 </section>
 
@@ -658,14 +461,21 @@ Anúncios
 <div class="head">
 
 <div>
-<div class="ey">CATÁLOGO</div>
-<h2>Temporadas e episódios</h2>
+
+<div class="ey">
+CATÁLOGO
+</div>
+
+<h2>
+Temporadas e episódios
+</h2>
+
 </div>
 
 <input
 id="search"
 class="search"
-placeholder="Pesquisar..."
+placeholder="Pesquisar episódios..."
 >
 
 </div>
@@ -674,68 +484,10 @@ placeholder="Pesquisar..."
 
 </section>
 
-
-<section class="sec" id="anuncios">
-
-<div class="ey">NOVIDADES</div>
-
-<h2>Anúncios</h2>
-
-<div id="publicAnnouncements"></div>
-
-</section>
-
-
-<section class="sec" id="func">
-
-<div class="ey">PLATAFORMA</div>
-
-<h2>Feito para crescer</h2>
-
-<div class="features">
-
-<div class="feature">
-🎬 <b>Player</b>
-<span>Vídeo e legendas.</span>
-</div>
-
-<div class="feature">
-💾 <b>Progresso</b>
-<span>Continuar de onde ficaste.</span>
-</div>
-
-<div class="feature">
-🌍 <b>Idiomas</b>
-<span>Dobragens e legendas organizadas.</span>
-</div>
-
-<div class="feature">
-👥 <b>Watch Together</b>
-<span>Salas para ver em conjunto.</span>
-</div>
-
-</div>
-
-</section>
-
-
-<section class="sec" id="sobre">
-
-<div class="ey">MIRACULOUS.KK</div>
-
-<h2>Feito para fãs.</h2>
-
-<p class="muted">
-Starter de um projecto de fã.
-Não inclui episódios protegidos por direitos de autor.
-</p>
-
-</section>
-
 </main>
 
 
-<footer>
+<footer class="sec">
 © miraculous.kk — fan project
 </footer>
 
@@ -750,13 +502,16 @@ Não inclui episódios protegidos por direitos de autor.
 ×
 </button>
 
-<div class="ey">ADMIN</div>
+<div class="ey">
+ADMIN
+</div>
 
-<h2>Entrar</h2>
+<h2>
+Entrar
+</h2>
 
 <input
 id="user"
-type="text"
 placeholder="Utilizador"
 autocomplete="username"
 >
@@ -770,15 +525,47 @@ autocomplete="current-password"
 
 <button
 class="btn primary"
-id="loginBtn"
 style="width:100%;margin-top:8px"
+id="loginBtn"
 >
 Entrar
 </button>
 
-<p id="err" style="color:#ff6377"></p>
+<p id="err" class="error"></p>
 
 </div>
+
+</div>
+
+
+<!-- PLAYER -->
+
+<div id="playerModal" class="modal hide">
+
+<div class="box">
+
+<button class="close" id="playerClose">
+×
+</button>
+
+<h2 id="playerTitle">
+Episódio
+</h2>
+
+<div class="player">
+
+<video
+id="videoPlayer"
+controls
+playsinline
+></video>
+
+</div>
+
+<p id="playerInfo" class="muted"></p>
+
+</div>
+
 </div>
 
 
@@ -792,162 +579,105 @@ Entrar
 ×
 </button>
 
-<div class="ey">DASHBOARD</div>
+<div class="ey">
+DASHBOARD
+</div>
 
-<h2>Painel miraculous.kk</h2>
+<h2>
+Painel miraculous.kk
+</h2>
+
 
 <div class="stats">
 
 <div class="stat">
-<b id="count">0</b>
+
+<b id="count">
+0
+</b>
+
 <br>
-<small class="muted">episódios</small>
+
+<small class="muted">
+episódios
+</small>
+
 </div>
+
 
 <div class="stat">
-<b id="announcementCount">0</b>
+
+<b id="announcementCount">
+0
+</b>
+
 <br>
-<small class="muted">anúncios</small>
-</div>
+
+<small class="muted">
+anúncios
+</small>
 
 </div>
-
-
-<div class="tabs">
-
-<button class="tab active" id="episodesTab">
-🎬 Episódios
-</button>
-
-<button class="tab" id="announcementsTab">
-📢 Anúncios
-</button>
 
 </div>
 
 
-<div id="episodesPanel" class="panel active">
-
-<h3 id="episodeTitleText">
+<h3 id="episodeFormTitle">
 Adicionar episódio
 </h3>
 
-<div id="publishStatus" class="status"></div>
 
 <div class="form">
 
-<input id="title" placeholder="Título">
-
-<input id="season" placeholder="Temporada">
-
-<input id="number" placeholder="Episódio">
-
-<input id="lang" placeholder="Idioma">
-
-
-<div class="file">
-
-<label>🖼️ Thumbnail</label>
+<input
+id="title"
+placeholder="Título"
+>
 
 <input
-id="thumbFile"
+id="season"
+placeholder="Temporada"
+>
+
+<input
+id="number"
+placeholder="Episódio"
+>
+
+<input
+id="lang"
+placeholder="Idioma"
+>
+
+
+<label>
+Thumbnail
+<input
+id="thumb"
 type="file"
 accept="image/*"
 >
-
-<small id="thumbName" class="muted">
-Nenhuma imagem selecionada
-</small>
-
-</div>
+</label>
 
 
-<div class="file">
-
-<label>🎬 Vídeo MP4</label>
-
+<label>
+Vídeo MP4
 <input
-id="videoFile"
+id="video"
 type="file"
 accept="video/mp4,video/*"
 >
-
-<small id="videoName" class="muted">
-Nenhum vídeo selecionado
-</small>
-
-</div>
-
-
-<div>
-
-<label class="muted">
-Disponibilidade
 </label>
 
-<select id="visibility">
 
-<option value="global">
-🌐 Global
-</option>
-
-<option value="local">
-📱 Local
-</option>
-
-</select>
-
-</div>
-
-
-<div>
-
-<label class="muted">
-Idioma das legendas
-</label>
-
-<select id="subtitleLang">
-
-<option value="">
-Sem legendas
-</option>
-
-<option value="PT-PT">
-🇵🇹 Português (PT-PT)
-</option>
-
-<option value="EN">
-🇬🇧 Inglês
-</option>
-
-<option value="FR">
-🇫🇷 Francês
-</option>
-
-<option value="ES">
-🇪🇸 Espanhol
-</option>
-
-</select>
-
-</div>
-
-
-<div class="file" style="grid-column:1/-1">
-
-<label>📄 Legendas SRT/VTT</label>
-
+<label>
+Legendas
 <input
-id="subtitleFile"
+id="subs"
 type="file"
-accept=".srt,.vtt,text/plain"
+accept=".srt,.vtt,text/vtt,text/plain"
 >
-
-<small id="subtitleName" class="muted">
-Nenhum ficheiro selecionado
-</small>
-
-</div>
+</label>
 
 
 <textarea
@@ -958,61 +688,51 @@ placeholder="Descrição"
 </div>
 
 
-<div style="display:flex;gap:8px;margin-top:10px">
+<p class="muted">
+🖼️ Thumbnail · 🎬 MP4 · 📝 .SRT/.VTT
+</p>
+
 
 <button
 class="btn primary"
 id="add"
+style="margin-top:8px"
 >
 Guardar episódio
 </button>
 
+
 <button
-class="btn hide"
+class="btn"
 id="cancelEdit"
+style="margin-top:8px;display:none"
 >
-Cancelar
+Cancelar edição
 </button>
 
-</div>
+
+<div id="status"></div>
 
 
-<div id="list" class="list"></div>
-
-</div>
+<hr style="border-color:#292933;margin:25px 0">
 
 
-<!-- ANÚNCIOS -->
+<h3>
+Novo anúncio
+</h3>
 
-<div id="announcementsPanel" class="panel">
-
-<h3>Criar anúncio</h3>
 
 <input
 id="announcementTitle"
 placeholder="Título do anúncio"
 >
 
+
 <textarea
 id="announcementText"
 placeholder="Texto do anúncio"
 ></textarea>
 
-<select id="announcementType">
-
-<option value="Informação">
-ℹ️ Informação
-</option>
-
-<option value="Atualização">
-🆕 Atualização
-</option>
-
-<option value="Importante">
-⚠️ Importante
-</option>
-
-</select>
 
 <button
 class="btn primary"
@@ -1022,50 +742,19 @@ style="margin-top:8px"
 Publicar anúncio
 </button>
 
-<div id="announcementList" class="list"></div>
 
-</div>
-
-</div>
-</div>
+<div id="announcementStatus"></div>
 
 
-<!-- PLAYER -->
+<hr style="border-color:#292933;margin:25px 0">
 
-<div id="playerModal" class="modal hide">
 
-<div class="box playerBox">
+<h3>
+Episódios publicados
+</h3>
 
-<div class="playerHeader">
 
-<h2 id="playerTitle">
-Episódio
-</h2>
-
-<button class="close" id="playerClose">
-×
-</button>
-
-</div>
-
-<div class="videoWrap">
-
-<video
-id="videoPlayer"
-controls
-playsinline
-preload="metadata"
-></video>
-
-</div>
-
-<div class="playerInfo">
-
-<div id="playerMeta" class="meta"></div>
-
-<div id="subtitleStatus" class="subtitleStatus"></div>
-
-</div>
+<div id="list" class="list"></div>
 
 </div>
 
@@ -1076,1932 +765,1200 @@ preload="metadata"
 
 "use strict";
 
-/* =========================================
-   ELEMENTOS
-========================================= */
+
+/* =========================
+   CONFIGURAÇÃO
+========================= */
+
+const ADMIN_USER = "miguel";
+const ADMIN_PASS = "nemesis6";
+
+const DB_NAME = "miraculousKK";
+const DB_VERSION = 1;
+
+let db = null;
+let episodes = [];
+let announcements = [];
+let editingId = null;
+
+
+/* =========================
+   ATALHO
+========================= */
 
 const $ = id => document.getElementById(id);
 
 
-/* =========================================
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function esc(value = ""){
+
+return String(value).replace(
+/[&<>"']/g,
+
+char => ({
+
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#39;"
+
+}[char])
+
+);
+
+}
+
+
+/* =========================
    INDEXEDDB
-========================================= */
-
-const DB_NAME = "miraculousKK";
-const DB_VERSION = 1;
-const STORE_NAME = "files";
-
-let db = null;
-
+========================= */
 
 function openDB(){
 
-  return new Promise((resolve,reject)=>{
+return new Promise((resolve,reject)=>{
 
-    if(!window.indexedDB){
+const request =
+indexedDB.open(DB_NAME,DB_VERSION);
 
-      reject(
-        new Error(
-          "Este navegador não suporta IndexedDB."
-        )
-      );
 
-      return;
-    }
+request.onupgradeneeded = event => {
 
-    const request =
-      indexedDB.open(
-        DB_NAME,
-        DB_VERSION
-      );
+const database = event.target.result;
 
-    request.onupgradeneeded = function(){
 
-      const database = request.result;
+if(!database.objectStoreNames.contains("episodes")){
 
-      if(
-        !database.objectStoreNames.contains(
-          STORE_NAME
-        )
-      ){
-
-        database.createObjectStore(
-          STORE_NAME,
-          {keyPath:"id"}
-        );
-
-      }
-
-    };
-
-    request.onsuccess = function(){
-
-      db = request.result;
-
-      resolve(db);
-
-    };
-
-    request.onerror = function(){
-
-      reject(
-        request.error ||
-        new Error(
-          "Erro ao abrir armazenamento."
-        )
-      );
-
-    };
-
-  });
+database.createObjectStore(
+"episodes",
+{keyPath:"id"}
+);
 
 }
 
 
-function saveFile(id,file){
+if(!database.objectStoreNames.contains("announcements")){
 
-  return new Promise((resolve,reject)=>{
+database.createObjectStore(
+"announcements",
+{keyPath:"id"}
+);
 
-    if(!db){
+}
 
-      reject(
-        new Error(
-          "Armazenamento ainda não está pronto."
-        )
-      );
+};
 
-      return;
-    }
 
-    const transaction =
-      db.transaction(
-        STORE_NAME,
-        "readwrite"
-      );
+request.onsuccess = event => {
 
-    const store =
-      transaction.objectStore(
-        STORE_NAME
-      );
+db = event.target.result;
 
-    store.put({
-      id:id,
-      file:file
-    });
+resolve(db);
 
-    transaction.oncomplete =
-      () => resolve();
+};
 
-    transaction.onerror =
-      () => reject(
-        transaction.error ||
-        new Error(
-          "Erro ao guardar ficheiro."
-        )
-      );
 
-    transaction.onabort =
-      () => reject(
-        transaction.error ||
-        new Error(
-          "Operação cancelada."
-        )
-      );
+request.onerror = () => {
 
-  });
+reject(request.error);
+
+};
+
+});
 
 }
 
 
-function getFile(id){
+function getAll(store){
 
-  return new Promise((resolve,reject)=>{
+return new Promise((resolve,reject)=>{
 
-    if(!id){
+const transaction =
+db.transaction(store,"readonly");
 
-      resolve(null);
-      return;
-    }
+const request =
+transaction
+.objectStore(store)
+.getAll();
 
-    if(!db){
 
-      reject(
-        new Error(
-          "Armazenamento não está pronto."
-        )
-      );
+request.onsuccess = () => {
 
-      return;
-    }
+resolve(request.result || []);
 
-    const transaction =
-      db.transaction(
-        STORE_NAME,
-        "readonly"
-      );
+};
 
-    const request =
-      transaction
-        .objectStore(STORE_NAME)
-        .get(id);
 
-    request.onsuccess =
-      () => resolve(
-        request.result
-          ? request.result.file
-          : null
-      );
+request.onerror = () => {
 
-    request.onerror =
-      () => reject(
-        request.error
-      );
+reject(request.error);
 
-  });
+};
+
+});
 
 }
 
 
-function removeFile(id){
+function put(store,data){
 
-  return new Promise(resolve=>{
+return new Promise((resolve,reject)=>{
 
-    if(!id || !db){
+const transaction =
+db.transaction(store,"readwrite");
 
-      resolve();
-      return;
-    }
 
-    try{
+transaction.objectStore(store).put(data);
 
-      const transaction =
-        db.transaction(
-          STORE_NAME,
-          "readwrite"
-        );
 
-      transaction
-        .objectStore(STORE_NAME)
-        .delete(id);
+transaction.oncomplete = () => {
 
-      transaction.oncomplete =
-        () => resolve();
+resolve();
 
-      transaction.onerror =
-        () => resolve();
+};
 
-      transaction.onabort =
-        () => resolve();
 
-    }catch{
+transaction.onerror = () => {
 
-      resolve();
+reject(transaction.error);
 
-    }
+};
 
-  });
+});
 
 }
 
 
-/* =========================================
-   DADOS
-========================================= */
+function remove(store,id){
 
-const seed = [
+return new Promise((resolve,reject)=>{
 
-  {
-    id:"seed",
-    title:"Catálogo em construção",
-    season:"S6",
-    number:"—",
-    lang:"PT-PT",
-    visibility:"global",
-    videoId:"",
-    thumbId:"",
-    subtitleId:"",
-    subtitleLang:"",
-    desc:"",
-    updated:Date.now()
-  }
-
-];
+const transaction =
+db.transaction(store,"readwrite");
 
 
-function readArray(key,fallback){
+transaction.objectStore(store).delete(id);
 
-  try{
 
-    const value =
-      JSON.parse(
-        localStorage.getItem(key)
-      );
+transaction.oncomplete = () => {
 
-    return Array.isArray(value)
-      ? value
-      : fallback;
+resolve();
 
-  }catch{
+};
 
-    return fallback;
 
-  }
+transaction.onerror = () => {
+
+reject(transaction.error);
+
+};
+
+});
 
 }
 
 
-let episodes =
-  readArray(
-    "mkEpisodes",
-    seed
-  );
+/* =========================
+   FILE → DATA URL
+========================= */
 
+function fileToDataURL(file){
 
-let announcements =
-  readArray(
-    "mkAnnouncements",
-    []
-  );
+return new Promise((resolve,reject)=>{
 
+if(!file){
 
-let editingIndex = -1;
+resolve("");
 
+return;
 
-let lastUpdate =
-  Number(
-    localStorage.getItem(
-      "mkLastUpdate"
-    )
-  ) || Date.now();
+}
 
+const reader =
+new FileReader();
 
-function saveData(){
+reader.onload = () => {
 
-  localStorage.setItem(
-    "mkEpisodes",
-    JSON.stringify(episodes)
-  );
+resolve(reader.result);
 
-  localStorage.setItem(
-    "mkAnnouncements",
-    JSON.stringify(announcements)
-  );
+};
+
+reader.onerror = () => {
+
+reject(reader.error);
+
+};
+
+reader.readAsDataURL(file);
+
+});
 
 }
 
 
-function markUpdated(){
+/* =========================
+   CARREGAR DADOS
+========================= */
 
-  lastUpdate = Date.now();
+async function loadData(){
 
-  localStorage.setItem(
-    "mkLastUpdate",
-    String(lastUpdate)
-  );
+episodes =
+await getAll("episodes");
 
-  updateTime();
+announcements =
+await getAll("announcements");
 
-}
+render();
 
-
-function updateTime(){
-
-  const seconds =
-    Math.floor(
-      (Date.now()-lastUpdate)/1000
-    );
-
-  let text;
-
-  if(seconds < 60){
-
-    text =
-      `Update feita há ${seconds} seg`;
-
-  }else if(seconds < 3600){
-
-    text =
-      `Update feita há ${Math.floor(seconds/60)} min`;
-
-  }else if(seconds < 86400){
-
-    text =
-      `Update feita há ${Math.floor(seconds/3600)} hrs`;
-
-  }else{
-
-    text =
-      `Update feita há ${Math.floor(seconds/86400)} dias`;
-
-  }
-
-  $("updateText").textContent = text;
+renderAnnouncements();
 
 }
 
 
-setInterval(
-  updateTime,
-  1000
+/* =========================
+   RENDER CATÁLOGO
+========================= */
+
+function render(){
+
+const query =
+$("search").value
+.toLowerCase()
+.trim();
+
+
+const filtered =
+episodes.filter(episode => {
+
+const text =
+`${episode.title}
+${episode.season}
+${episode.number}
+${episode.lang}`.toLowerCase();
+
+return text.includes(query);
+
+});
+
+
+$("grid").innerHTML =
+filtered.map(episode => {
+
+const thumbnail =
+episode.thumbnail
+? `<img src="${episode.thumbnail}" alt="">`
+: "🐞";
+
+
+return `
+
+<article class="card">
+
+<div
+class="thumb"
+onclick="openPlayer('${episode.id}')"
+style="cursor:pointer"
+>
+
+${thumbnail}
+
+</div>
+
+
+<div class="body">
+
+<b>
+${esc(episode.title)}
+</b>
+
+<div class="meta">
+
+${esc(episode.season)}
+·
+${esc(episode.number)}
+·
+${esc(episode.lang || "—")}
+
+</div>
+
+
+<button
+class="btn primary"
+style="width:100%;margin-top:12px"
+onclick="openPlayer('${episode.id}')"
+>
+
+▶ Ver episódio
+
+</button>
+
+</div>
+
+</article>
+
+`;
+
+}).join("")
+
+
+||
+
+'<p class="muted">Nenhum episódio encontrado.</p>';
+
+
+$("count").textContent =
+episodes.length;
+
+
+renderAdminList();
+
+}
+
+
+/* =========================
+   LISTA ADMIN
+========================= */
+
+function renderAdminList(){
+
+$("list").innerHTML =
+
+episodes.map(episode => `
+
+<div class="item">
+
+<div>
+
+<b>
+${esc(episode.title)}
+</b>
+
+<div class="meta">
+
+${esc(episode.season)}
+·
+${esc(episode.number)}
+
+</div>
+
+</div>
+
+
+<div class="item-actions">
+
+<button
+class="btn"
+onclick="editEpisode('${episode.id}')"
+>
+✏️ Editar
+</button>
+
+
+<button
+class="danger"
+onclick="deleteEpisode('${episode.id}')"
+>
+🗑️ Apagar
+</button>
+
+</div>
+
+</div>
+
+`).join("")
+
+||
+
+'<p class="muted">Ainda não existem episódios.</p>';
+
+}
+
+
+/* =========================
+   PLAYER
+========================= */
+
+window.openPlayer = function(id){
+
+const episode =
+episodes.find(
+episode => episode.id === id
 );
 
 
-/* =========================================
-   ESCAPE HTML
-========================================= */
+if(!episode){
 
-function esc(value=""){
-
-  return String(value).replace(
-    /[&<>"']/g,
-    char => ({
-
-      "&":"&amp;",
-      "<":"&lt;",
-      ">":"&gt;",
-      '"':"&quot;",
-      "'":"&#39;"
-
-    }[char])
-  );
+return;
 
 }
 
 
-/* =========================================
-   STATUS
-========================================= */
+if(!episode.video){
 
-function status(message,type){
+alert(
+"Este episódio ainda não tem vídeo."
+);
 
-  const element =
-    $("publishStatus");
-
-  element.textContent =
-    message;
-
-  element.className =
-    "status show "+type;
+return;
 
 }
 
 
-/* =========================================
-   RENDER
-========================================= */
-
-async function render(){
-
-  const query =
-    $("search")
-      .value
-      .toLowerCase()
-      .trim();
+$("playerTitle").textContent =
+episode.title;
 
 
-  const filtered =
-    episodes.filter(
-      episode => {
-
-        const text =
-          [
-            episode.title,
-            episode.season,
-            episode.number,
-            episode.lang
-          ]
-          .join(" ")
-          .toLowerCase();
-
-        return text.includes(query);
-
-      }
-    );
+$("playerInfo").textContent =
+`${episode.season} · Episódio ${episode.number} · ${episode.lang || "—"}`;
 
 
-  let html = "";
+const video =
+$("videoPlayer");
 
 
-  for(const episode of filtered){
+video.pause();
 
-    let thumbnail = null;
+video.removeAttribute("src");
 
-    if(episode.thumbId){
-
-      try{
-
-        thumbnail =
-          await getFile(
-            episode.thumbId
-          );
-
-      }catch{
-
-        thumbnail = null;
-
-      }
-
-    }
+video.innerHTML = "";
 
 
-    let image = "";
-
-    if(thumbnail){
-
-      const url =
-        URL.createObjectURL(
-          thumbnail
-        );
-
-      image =
-        `<img src="${url}" alt="">`;
-
-    }
+video.src =
+episode.video;
 
 
-    html += `
+if(episode.subtitle){
 
-      <article class="card">
-
-        <div
-          class="thumb"
-          data-open="${esc(episode.id)}"
-        >
-
-          ${
-            image || "🐞"
-          }
-
-          <div class="play">
-            <span>▶</span>
-          </div>
-
-        </div>
-
-        <div class="body">
-
-          <b>
-            ${esc(episode.title)}
-          </b>
-
-          <div class="meta">
-            ${esc(episode.season)}
-            ·
-            ${esc(episode.number)}
-            ·
-            ${esc(episode.lang || "—")}
-          </div>
-
-          <span class="badge ${
-            episode.visibility === "global"
-              ? "global"
-              : "local"
-          }">
-
-            ${
-              episode.visibility === "global"
-                ? "🌐 Global"
-                : "📱 Local"
-            }
-
-          </span>
-
-          ${
-            episode.subtitleId
-              ? `<div class="meta">
-                   💬 Legendas disponíveis
-                 </div>`
-              : ""
-          }
-
-        </div>
-
-      </article>
-
-    `;
-
-  }
+const track =
+document.createElement("track");
 
 
-  $("grid").innerHTML =
-    html ||
-    `<p class="muted">
-      Nenhum resultado.
-    </p>`;
+track.kind =
+"subtitles";
+
+track.label =
+"Português";
+
+track.srclang =
+"pt";
+
+track.src =
+episode.subtitle;
+
+track.default =
+true;
 
 
-  document
-    .querySelectorAll("[data-open]")
-    .forEach(element=>{
-
-      element.onclick =
-        () => openEpisode(
-          element.dataset.open
-        );
-
-    });
-
-
-  $("count").textContent =
-    episodes.length;
-
-  $("announcementCount").textContent =
-    announcements.length;
-
-
-  renderAdmin();
-
-  renderAnnouncements();
+video.appendChild(track);
 
 }
 
 
-/* =========================================
-   ADMIN LIST
-========================================= */
-
-function renderAdmin(){
-
-  $("list").innerHTML =
-    episodes.map(
-      (episode,index)=>`
-
-        <div class="item">
-
-          <div>
-
-            <b>
-              ${esc(episode.title)}
-            </b>
-
-            <div class="meta">
-              ${esc(episode.season)}
-              ·
-              ${esc(episode.number)}
-              ·
-              ${esc(episode.lang || "—")}
-            </div>
-
-            <span class="badge ${
-              episode.visibility === "global"
-                ? "global"
-                : "local"
-            }">
-
-              ${
-                episode.visibility === "global"
-                  ? "🌐 Global"
-                  : "📱 Local"
-              }
-
-            </span>
-
-            ${
-              episode.videoId
-                ? `<div class="meta">
-                     🎬 Vídeo carregado
-                   </div>`
-                : `<div class="meta">
-                     ⚠️ Sem vídeo
-                   </div>`
-            }
-
-            ${
-              episode.subtitleId
-                ? `<div class="meta">
-                     📄 Legendas carregadas
-                   </div>`
-                : ""
-            }
-
-          </div>
-
-          <div class="item-buttons">
-
-            <button
-              class="edit"
-              data-edit="${index}"
-            >
-              ✏️
-            </button>
-
-            <button
-              class="danger"
-              data-delete="${index}"
-            >
-              🗑️
-            </button>
-
-          </div>
-
-        </div>
-
-      `
-    )
-    .join("");
+video.load();
 
 
-  document
-    .querySelectorAll("[data-edit]")
-    .forEach(button=>{
+$("playerModal")
+.classList.remove("hide");
 
-      button.onclick =
-        () => editEpisode(
-          Number(
-            button.dataset.edit
-          )
-        );
-
-    });
+};
 
 
-  document
-    .querySelectorAll("[data-delete]")
-    .forEach(button=>{
+/* =========================
+   FECHAR PLAYER
+========================= */
 
-      button.onclick =
-        () => deleteEpisode(
-          Number(
-            button.dataset.delete
-          )
-        );
+$("playerClose").onclick = () => {
 
-    });
+const video =
+$("videoPlayer");
 
+video.pause();
 
-  $("announcementList").innerHTML =
-    announcements.map(
-      (announcement,index)=>`
+video.removeAttribute("src");
 
-        <div class="item">
+video.innerHTML = "";
 
-          <div>
+$("playerModal")
+.classList.add("hide");
 
-            <b>
-              ${esc(
-                announcement.title
-              )}
-            </b>
-
-            <div class="meta">
-              ${esc(
-                announcement.type
-              )}
-              ·
-              ${esc(
-                announcement.date
-              )}
-            </div>
-
-          </div>
-
-          <button
-            class="danger"
-            data-ann-delete="${index}"
-          >
-            🗑️
-          </button>
-
-        </div>
-
-      `
-    )
-    .join("");
+};
 
 
-  document
-    .querySelectorAll("[data-ann-delete]")
-    .forEach(button=>{
+/* =========================
+   APAGAR
+========================= */
 
-      button.onclick =
-        () => deleteAnnouncement(
-          Number(
-            button.dataset.annDelete
-          )
-        );
+window.deleteEpisode =
+async function(id){
 
-    });
+if(!confirm(
+"Queres mesmo apagar este episódio?"
+)){
+
+return;
 
 }
 
 
-/* =========================================
-   ANÚNCIOS PÚBLICOS
-========================================= */
+await remove(
+"episodes",
+id
+);
+
+await loadData();
+
+};
+
+
+/* =========================
+   EDITAR
+========================= */
+
+window.editEpisode =
+function(id){
+
+const episode =
+episodes.find(
+episode => episode.id === id
+);
+
+
+if(!episode){
+
+return;
+
+}
+
+
+editingId = id;
+
+
+$("episodeFormTitle")
+.textContent =
+"Editar episódio";
+
+
+$("title").value =
+episode.title || "";
+
+$("season").value =
+episode.season || "";
+
+$("number").value =
+episode.number || "";
+
+$("lang").value =
+episode.lang || "";
+
+$("desc").value =
+episode.desc || "";
+
+
+$("add").textContent =
+"Guardar alterações";
+
+
+$("cancelEdit")
+.style.display =
+"inline-block";
+
+};
+
+
+/* =========================
+   RESET FORM
+========================= */
+
+function resetForm(){
+
+editingId = null;
+
+
+$("episodeFormTitle")
+.textContent =
+"Adicionar episódio";
+
+
+$("add").textContent =
+"Guardar episódio";
+
+
+$("cancelEdit")
+.style.display =
+"none";
+
+
+[
+"title",
+"season",
+"number",
+"lang",
+"thumb",
+"video",
+"subs",
+"desc"
+].forEach(id => {
+
+$(id).value = "";
+
+});
+
+}
+
+
+/* =========================
+   CANCELAR EDIÇÃO
+========================= */
+
+$("cancelEdit").onclick =
+resetForm;
+
+
+/* =========================
+   GUARDAR EPISÓDIO
+========================= */
+
+$("add").onclick =
+async function(){
+
+const title =
+$("title").value.trim();
+
+
+if(!title){
+
+$("status").innerHTML =
+`
+<div class="notice error">
+Escreve um título.
+</div>
+`;
+
+return;
+
+}
+
+
+const button =
+$("add");
+
+
+button.disabled =
+true;
+
+button.textContent =
+"A guardar...";
+
+
+try{
+
+const oldEpisode =
+editingId
+? episodes.find(
+episode =>
+episode.id === editingId
+)
+: null;
+
+
+const thumbnailFile =
+$("thumb").files[0];
+
+
+const videoFile =
+$("video").files[0];
+
+
+const subtitleFile =
+$("subs").files[0];
+
+
+const thumbnail =
+thumbnailFile
+? await fileToDataURL(thumbnailFile)
+: oldEpisode?.thumbnail || "";
+
+
+const video =
+videoFile
+? await fileToDataURL(videoFile)
+: oldEpisode?.video || "";
+
+
+let subtitle =
+subtitleFile
+? await fileToDataURL(subtitleFile)
+: oldEpisode?.subtitle || "";
+
+
+/*
+   Se for SRT, o browser pode não
+   aceitar diretamente como track.
+   Convertimos para VTT.
+*/
+
+if(
+subtitleFile &&
+subtitleFile.name
+.toLowerCase()
+.endsWith(".srt")
+){
+
+const text =
+await subtitleFile.text();
+
+
+const vtt =
+"WEBVTT\n\n" +
+text.replace(
+/(\d{2}:\d{2}:\d{2}),(\d{3})/g,
+"$1.$2"
+);
+
+
+subtitle =
+"data:text/vtt;charset=utf-8," +
+encodeURIComponent(vtt);
+
+}
+
+
+const episode = {
+
+id:
+editingId ||
+crypto.randomUUID(),
+
+title:title,
+
+season:
+$("season").value || "—",
+
+number:
+$("number").value || "—",
+
+lang:
+$("lang").value || "—",
+
+desc:
+$("desc").value || "",
+
+thumbnail:thumbnail,
+
+video:video,
+
+subtitle:subtitle,
+
+updatedAt:Date.now()
+
+};
+
+
+await put(
+"episodes",
+episode
+);
+
+
+await loadData();
+
+
+resetForm();
+
+
+$("status").innerHTML =
+`
+<div class="notice success">
+✅ Episódio guardado com sucesso!
+</div>
+`;
+
+
+setTimeout(()=>{
+
+$("status").innerHTML = "";
+
+},3000);
+
+
+}catch(error){
+
+console.error(error);
+
+
+$("status").innerHTML =
+`
+<div class="notice error">
+❌ Erro ao guardar o episódio.
+</div>
+`;
+
+}
+
+
+button.disabled =
+false;
+
+button.textContent =
+"Guardar episódio";
+
+};
+
+
+/* =========================
+   ANÚNCIOS
+========================= */
 
 function renderAnnouncements(){
 
-  if(!announcements.length){
-
-    $("publicAnnouncements").innerHTML =
-      `<p class="muted">
-        Ainda não existem anúncios.
-      </p>`;
-
-    return;
-
-  }
+$("announcementCount")
+.textContent =
+announcements.length;
 
 
-  $("publicAnnouncements").innerHTML =
-    announcements.map(
-      announcement=>`
-
-        <div class="announcement">
-
-          <h3>
-            ${esc(
-              announcement.title
-            )}
-          </h3>
-
-          <div class="meta">
-            ${esc(
-              announcement.type
-            )}
-            ·
-            ${esc(
-              announcement.date
-            )}
-          </div>
-
-          <p class="muted">
-            ${esc(
-              announcement.text
-            )}
-          </p>
-
-        </div>
-
-      `
-    )
-    .join("");
-
-}
-
-
-/* =========================================
-   LOGIN
-========================================= */
-
-$("loginOpen").onclick =
-  function(){
-
-    $("login")
-      .classList
-      .remove("hide");
-
-    $("user").focus();
-
-  };
-
-
-$("loginClose").onclick =
-  function(){
-
-    $("login")
-      .classList
-      .add("hide");
-
-  };
-
-
-$("adminClose").onclick =
-  function(){
-
-    $("admin")
-      .classList
-      .add("hide");
-
-  };
-
-
-function login(){
-
-  const username =
-    $("user").value.trim();
-
-  const password =
-    $("pass").value;
-
-
-  const valid =
-    (
-      username === "miguel" &&
-      password === "nemesis6"
-    )
-    ||
-    (
-      username === "admin" &&
-      password === "miraculous"
-    );
-
-
-  if(valid){
-
-    $("err").textContent = "";
-
-    $("login")
-      .classList
-      .add("hide");
-
-    $("admin")
-      .classList
-      .remove("hide");
-
-    render();
-
-  }else{
-
-    $("err").textContent =
-      "Utilizador ou palavra-passe inválidos.";
-
-  }
-
-}
-
-
-$("loginBtn").onclick =
-  login;
-
-
-$("pass").addEventListener(
-  "keydown",
-  event=>{
-
-    if(event.key === "Enter"){
-      login();
-    }
-
-  }
+const sorted =
+[...announcements]
+.sort(
+(a,b) =>
+b.createdAt - a.createdAt
 );
 
 
-/* =========================================
-   PESQUISA
-========================================= */
+$("announcements").innerHTML =
 
-$("search").oninput =
-  render;
+sorted.map(
+announcement => `
 
+<div class="announcement">
 
-/* =========================================
-   TABS
-========================================= */
+<b>
+${esc(announcement.title)}
+</b>
 
-$("episodesTab").onclick =
-  function(){
+<div class="muted">
 
-    $("episodesTab")
-      .classList
-      .add("active");
+${esc(announcement.text)}
 
-    $("announcementsTab")
-      .classList
-      .remove("active");
+</div>
 
-    $("episodesPanel")
-      .classList
-      .add("active");
+</div>
 
-    $("announcementsPanel")
-      .classList
-      .remove("active");
+`
+).join("")
 
-  };
+||
 
-
-$("announcementsTab").onclick =
-  function(){
-
-    $("announcementsTab")
-      .classList
-      .add("active");
-
-    $("episodesTab")
-      .classList
-      .remove("active");
-
-    $("announcementsPanel")
-      .classList
-      .add("active");
-
-    $("episodesPanel")
-      .classList
-      .remove("active");
-
-  };
-
-
-/* =========================================
-   FILE INPUTS
-========================================= */
-
-$("thumbFile").onchange =
-  function(){
-
-    const file =
-      this.files[0];
-
-    $("thumbName").textContent =
-      file
-        ? "🖼️ "+file.name
-        : "Nenhuma imagem selecionada";
-
-  };
-
-
-$("videoFile").onchange =
-  function(){
-
-    const file =
-      this.files[0];
-
-    $("videoName").textContent =
-      file
-        ? "🎬 "+file.name
-        : "Nenhum vídeo selecionado";
-
-  };
-
-
-$("subtitleFile").onchange =
-  function(){
-
-    const file =
-      this.files[0];
-
-    $("subtitleName").textContent =
-      file
-        ? "📄 "+file.name
-        : "Nenhum ficheiro selecionado";
-
-  };
-
-
-/* =========================================
-   PUBLICAR / EDITAR EPISÓDIO
-========================================= */
-
-$("add").onclick =
-  async function(){
-
-    const button = $("add");
-
-    if(button.disabled){
-      return;
-    }
-
-
-    const title =
-      $("title")
-        .value
-        .trim();
-
-
-    if(!title){
-
-      status(
-        "⚠️ Escreve um título antes de publicar.",
-        "error"
-      );
-
-      $("title").focus();
-
-      return;
-
-    }
-
-
-    const isEditing =
-      editingIndex >= 0;
-
-
-    const oldEpisode =
-      isEditing
-        ? episodes[editingIndex]
-        : null;
-
-
-    const thumbnailFile =
-      $("thumbFile")
-        .files[0];
-
-
-    const videoFile =
-      $("videoFile")
-        .files[0];
-
-
-    const subtitleFile =
-      $("subtitleFile")
-        .files[0];
-
-
-    const id =
-      oldEpisode?.id ||
-      "episode_"+Date.now();
-
-
-    let videoId =
-      oldEpisode?.videoId || "";
-
-
-    let thumbId =
-      oldEpisode?.thumbId || "";
-
-
-    let subtitleId =
-      oldEpisode?.subtitleId || "";
-
-
-    try{
-
-      button.disabled = true;
-
-
-      status(
-        isEditing
-          ? "⏳ A atualizar o episódio..."
-          : "⏳ A publicar o episódio...",
-        "loading"
-      );
-
-
-      /* VÍDEO */
-
-      if(videoFile){
-
-        if(
-          !videoFile.type.startsWith(
-            "video/"
-          )
-        ){
-
-          throw new Error(
-            "O ficheiro selecionado não é um vídeo."
-          );
-
-        }
-
-
-        status(
-          "⏳ A guardar o vídeo...",
-          "loading"
-        );
-
-
-        videoId =
-          id+"_video";
-
-
-        await saveFile(
-          videoId,
-          videoFile
-        );
-
-      }
-
-
-      /* THUMBNAIL */
-
-      if(thumbnailFile){
-
-        if(
-          !thumbnailFile.type.startsWith(
-            "image/"
-          )
-        ){
-
-          throw new Error(
-            "A thumbnail tem de ser uma imagem."
-          );
-
-        }
-
-
-        status(
-          "⏳ A guardar a thumbnail...",
-          "loading"
-        );
-
-
-        thumbId =
-          id+"_thumb";
-
-
-        await saveFile(
-          thumbId,
-          thumbnailFile
-        );
-
-      }
-
-
-      /* LEGENDAS */
-
-      if(subtitleFile){
-
-        const filename =
-          subtitleFile.name
-            .toLowerCase();
-
-
-        if(
-          !filename.endsWith(".srt") &&
-          !filename.endsWith(".vtt")
-        ){
-
-          throw new Error(
-            "As legendas têm de estar em formato .srt ou .vtt."
-          );
-
-        }
-
-
-        status(
-          "⏳ A guardar as legendas...",
-          "loading"
-        );
-
-
-        subtitleId =
-          id+"_subtitle";
-
-
-        await saveFile(
-          subtitleId,
-          subtitleFile
-        );
-
-      }
-
-
-      /* OBJETO */
-
-      const episode = {
-
-        id:id,
-
-        title:title,
-
-        season:
-          $("season").value ||
-          "—",
-
-        number:
-          $("number").value ||
-          "—",
-
-        lang:
-          $("lang").value ||
-          "—",
-
-        visibility:
-          $("visibility").value,
-
-        videoId:videoId,
-
-        thumbId:thumbId,
-
-        subtitleId:subtitleId,
-
-        subtitleLang:
-          $("subtitleLang").value,
-
-        desc:
-          $("desc").value,
-
-        updated:
-          Date.now()
-
-      };
-
-
-      status(
-        "⏳ A guardar dados...",
-        "loading"
-      );
-
-
-      if(isEditing){
-
-        episodes[editingIndex] =
-          episode;
-
-      }else{
-
-        episodes.push(
-          episode
-        );
-
-      }
-
-
-      saveData();
-
-      markUpdated();
-
-      await render();
-
-
-      /*
-       * NÃO limpamos a mensagem antes
-       * de a mostrar.
-       */
-
-      status(
-        isEditing
-          ? "✅ Episódio atualizado com sucesso!"
-          : "✅ Episódio publicado com sucesso!",
-        "success"
-      );
-
-
-      clearForm();
-
-
-      /*
-       * Volta a mostrar a confirmação
-       * depois de limpar o formulário.
-       */
-
-      status(
-        isEditing
-          ? "✅ Episódio atualizado com sucesso!"
-          : "✅ Episódio publicado com sucesso!",
-        "success"
-      );
-
-
-    }catch(error){
-
-      console.error(
-        "Erro ao guardar episódio:",
-        error
-      );
-
-
-      status(
-        "❌ "+(
-          error?.message ||
-          "Não foi possível guardar o episódio."
-        ),
-        "error"
-      );
-
-
-    }finally{
-
-      button.disabled = false;
-
-    }
-
-  };
-
-
-/* =========================================
-   LIMPAR FORMULÁRIO
-========================================= */
-
-function clearForm(){
-
-  $("title").value = "";
-  $("season").value = "";
-  $("number").value = "";
-  $("lang").value = "";
-  $("desc").value = "";
-
-  $("visibility").value =
-    "global";
-
-  $("subtitleLang").value =
-    "";
-
-  $("thumbFile").value =
-    "";
-
-  $("videoFile").value =
-    "";
-
-  $("subtitleFile").value =
-    "";
-
-  $("thumbName").textContent =
-    "Nenhuma imagem selecionada";
-
-  $("videoName").textContent =
-    "Nenhum vídeo selecionado";
-
-  $("subtitleName").textContent =
-    "Nenhum ficheiro selecionado";
-
-  $("episodeTitleText").textContent =
-    "Adicionar episódio";
-
-  $("add").textContent =
-    "Guardar episódio";
-
-  $("cancelEdit")
-    .classList
-    .add("hide");
-
-  editingIndex = -1;
+'<p class="muted">Ainda não existem anúncios.</p>';
 
 }
 
-
-$("cancelEdit").onclick =
-  function(){
-
-    clearForm();
-
-  };
-
-
-/* =========================================
-   EDITAR
-========================================= */
-
-function editEpisode(index){
-
-  const episode =
-    episodes[index];
-
-
-  if(!episode){
-    return;
-  }
-
-
-  editingIndex =
-    index;
-
-
-  $("title").value =
-    episode.title || "";
-
-  $("season").value =
-    episode.season || "";
-
-  $("number").value =
-    episode.number || "";
-
-  $("lang").value =
-    episode.lang || "";
-
-  $("visibility").value =
-    episode.visibility || "global";
-
-  $("subtitleLang").value =
-    episode.subtitleLang || "";
-
-  $("desc").value =
-    episode.desc || "";
-
-
-  $("episodeTitleText").textContent =
-    "Editar episódio";
-
-
-  $("add").textContent =
-    "Guardar alterações";
-
-
-  $("cancelEdit")
-    .classList
-    .remove("hide");
-
-
-  $("videoName").textContent =
-    episode.videoId
-      ? "🎬 Vídeo atual guardado — seleciona outro para substituir"
-      : "Nenhum vídeo selecionado";
-
-
-  $("thumbName").textContent =
-    episode.thumbId
-      ? "🖼️ Thumbnail atual guardada — seleciona outra para substituir"
-      : "Nenhuma imagem selecionada";
-
-
-  $("subtitleName").textContent =
-    episode.subtitleId
-      ? "📄 Legendas atuais guardadas — seleciona outras para substituir"
-      : "Nenhum ficheiro selecionado";
-
-
-  status(
-    "✏️ A editar "+episode.title,
-    "loading"
-  );
-
-}
-
-
-/* =========================================
-   APAGAR
-========================================= */
-
-async function deleteEpisode(index){
-
-  const episode =
-    episodes[index];
-
-
-  if(!episode){
-    return;
-  }
-
-
-  const confirmed =
-    confirm(
-      `Apagar "${episode.title}"?`
-    );
-
-
-  if(!confirmed){
-    return;
-  }
-
-
-  try{
-
-    await removeFile(
-      episode.videoId
-    );
-
-    await removeFile(
-      episode.thumbId
-    );
-
-    await removeFile(
-      episode.subtitleId
-    );
-
-
-    episodes.splice(
-      index,
-      1
-    );
-
-
-    saveData();
-
-    markUpdated();
-
-    await render();
-
-
-    status(
-      "🗑️ Episódio apagado.",
-      "success"
-    );
-
-  }catch(error){
-
-    console.error(error);
-
-    status(
-      "❌ Não foi possível apagar o episódio.",
-      "error"
-    );
-
-  }
-
-}
-
-
-/* =========================================
-   ANÚNCIOS
-========================================= */
 
 $("addAnnouncement").onclick =
-  function(){
+async function(){
 
-    const title =
-      $("announcementTitle")
-        .value
-        .trim();
-
-    const text =
-      $("announcementText")
-        .value
-        .trim();
+const title =
+$("announcementTitle")
+.value
+.trim();
 
 
-    if(!title || !text){
-
-      alert(
-        "Preenche o título e o texto do anúncio."
-      );
-
-      return;
-
-    }
+const text =
+$("announcementText")
+.value
+.trim();
 
 
-    announcements.unshift({
+if(!title || !text){
 
-      title:title,
+$("announcementStatus")
+.innerHTML =
+`
+<div class="notice error">
+Preenche o título e o texto.
+</div>
+`;
 
-      text:text,
-
-      type:
-        $("announcementType")
-          .value,
-
-      date:
-        new Date()
-          .toLocaleString(
-            "pt-PT"
-          )
-
-    });
-
-
-    $("announcementTitle").value =
-      "";
-
-    $("announcementText").value =
-      "";
-
-
-    saveData();
-
-    markUpdated();
-
-    render();
-
-    alert(
-      "📢 Anúncio publicado com sucesso!"
-    );
-
-  };
-
-
-function deleteAnnouncement(index){
-
-  if(
-    !confirm(
-      "Apagar este anúncio?"
-    )
-  ){
-    return;
-  }
-
-
-  announcements.splice(
-    index,
-    1
-  );
-
-
-  saveData();
-
-  markUpdated();
-
-  render();
+return;
 
 }
 
 
-/* =========================================
-   PLAYER
-========================================= */
+try{
 
-async function openEpisode(id){
+await put(
+"announcements",
+{
 
-  try{
+id:
+crypto.randomUUID(),
 
-    const episode =
-      episodes.find(
-        e => e.id === id
-      );
+title:title,
 
+text:text,
 
-    if(!episode){
-      return;
-    }
+createdAt:
+Date.now()
 
+}
 
-    if(!episode.videoId){
+);
 
-      alert(
-        "⚠️ Este episódio ainda não tem um vídeo."
-      );
 
-      return;
+announcements =
+await getAll(
+"announcements"
+);
 
-    }
 
+renderAnnouncements();
 
-    const videoFile =
-      await getFile(
-        episode.videoId
-      );
 
+$("announcementTitle").value =
+"";
 
-    if(!videoFile){
+$("announcementText").value =
+"";
 
-      alert(
-        "⚠️ O vídeo não foi encontrado neste dispositivo."
-      );
 
-      return;
+$("announcementStatus")
+.innerHTML =
+`
+<div class="notice success">
+✅ Anúncio publicado!
+</div>
+`;
 
-    }
 
+}catch(error){
 
-    const video =
-      $("videoPlayer");
+console.error(error);
 
 
-    const videoURL =
-      URL.createObjectURL(
-        videoFile
-      );
+$("announcementStatus")
+.innerHTML =
+`
+<div class="notice error">
+❌ Erro ao publicar.
+</div>
+`;
 
+}
 
-    video.pause();
+};
 
-    video.removeAttribute(
-      "src"
-    );
 
-    video.load();
+/* =========================
+   LOGIN
+========================= */
 
+$("loginOpen").onclick =
+() => {
 
-    video.src =
-      videoURL;
+$("login")
+.classList.remove("hide");
 
+};
 
-    $("playerTitle").textContent =
-      episode.title;
 
+$("loginClose").onclick =
+() => {
 
-    $("playerMeta").textContent =
-      `${episode.season} · ${episode.number} · ${episode.lang || "—"}`;
+$("login")
+.classList.add("hide");
 
+};
 
-    $("subtitleStatus").textContent =
-      episode.subtitleId
-        ? `💬 Legendas: ${episode.subtitleLang || "disponíveis"}`
-        : "Sem legendas";
 
+$("adminClose").onclick =
+() => {
 
-    video
-      .querySelectorAll("track")
-      .forEach(
-        track => track.remove()
-      );
+$("admin")
+.classList.add("hide");
 
+};
 
-    if(episode.subtitleId){
 
-      const subtitleFile =
-        await getFile(
-          episode.subtitleId
-        );
+$("loginBtn").onclick =
+() => {
 
+const username =
+$("user").value.trim();
 
-      if(subtitleFile){
 
-        let text =
-          await subtitleFile.text();
+const password =
+$("pass").value;
 
 
-        if(
-          subtitleFile.name
-            .toLowerCase()
-            .endsWith(".srt")
-        ){
+if(
+username === ADMIN_USER &&
+password === ADMIN_PASS
+){
 
-          text =
-            srtToVtt(
-              text
-            );
+$("err").textContent = "";
 
-        }
+$("login")
+.classList.add("hide");
 
+$("admin")
+.classList.remove("hide");
 
-        if(
-          !text.startsWith(
-            "WEBVTT"
-          )
-        ){
+renderAdminList();
 
-          text =
-            "WEBVTT\n\n"+
-            text;
+}else{
 
-        }
+$("err").textContent =
+"Credenciais inválidas.";
 
+}
 
-        const blob =
-          new Blob(
-            [text],
-            {
-              type:"text/vtt"
-            }
-          );
+};
 
 
-        const subtitleURL =
-          URL.createObjectURL(
-            blob
-          );
+$("pass").addEventListener(
+"keydown",
+event => {
 
+if(event.key === "Enter"){
 
-        const track =
-          document.createElement(
-            "track"
-          );
+$("loginBtn").click();
 
+}
 
-        track.kind =
-          "subtitles";
+});
 
-        track.label =
-          episode.subtitleLang ||
-          "Legendas";
 
-        track.srclang =
-          episode.subtitleLang ===
-          "PT-PT"
-            ? "pt"
-            : "en";
+/* =========================
+   PESQUISA
+========================= */
 
-        track.src =
-          subtitleURL;
+$("search").oninput =
+render;
 
-        track.default =
-          true;
 
+/* =========================
+   UPDATE
+========================= */
 
-        video.appendChild(
-          track
-        );
+const UPDATE_KEY =
+"miraculousKK_update";
 
-      }
 
-    }
+if(
+!localStorage.getItem(
+UPDATE_KEY
+)
+){
 
-
-    $("playerModal")
-      .classList
-      .remove("hide");
-
-
-    video
-      .play()
-      .catch(
-        ()=>{}
-      );
-
-
-  }catch(error){
-
-    console.error(error);
-
-    alert(
-      "❌ Não foi possível abrir o episódio."
-    );
-
-  }
+localStorage.setItem(
+UPDATE_KEY,
+Date.now()
+);
 
 }
 
 
-function srtToVtt(text){
+function updateText(){
 
-  return (
-    "WEBVTT\n\n"+
-    text.replace(
-      /(\d{2}:\d{2}:\d{2}),(\d{3})/g,
-      "$1.$2"
-    )
-  );
+const seconds =
+Math.floor(
+(
+Date.now() -
+Number(
+localStorage.getItem(
+UPDATE_KEY
+)
+)
+) / 1000
+);
+
+
+let text =
+"agora";
+
+
+if(seconds >= 86400){
+
+const n =
+Math.floor(
+seconds / 86400
+);
+
+text =
+`há ${n} ${n === 1 ? "dia" : "dias"}`;
+
+}
+
+else if(seconds >= 3600){
+
+const n =
+Math.floor(
+seconds / 3600
+);
+
+text =
+`há ${n} ${n === 1 ? "hora" : "horas"}`;
+
+}
+
+else if(seconds >= 60){
+
+const n =
+Math.floor(
+seconds / 60
+);
+
+text =
+`há ${n} ${n === 1 ? "minuto" : "minutos"}`;
 
 }
 
 
-$("playerClose").onclick =
-  closePlayer;
-
-
-$("playerModal").onclick =
-  function(event){
-
-    if(
-      event.target ===
-      $("playerModal")
-    ){
-
-      closePlayer();
-
-    }
-
-  };
-
-
-function closePlayer(){
-
-  const video =
-    $("videoPlayer");
-
-
-  video.pause();
-
-  video.removeAttribute(
-    "src"
-  );
-
-  video.load();
-
-
-  $("playerModal")
-    .classList
-    .add("hide");
+$("updateText")
+.textContent =
+"Update feita " + text;
 
 }
 
 
-/* =========================================
-   START
-========================================= */
+updateText();
+
+setInterval(
+updateText,
+30000
+);
+
+
+/* =========================
+   INICIAR
+========================= */
 
 (async function(){
 
-  try{
+try{
 
-    await openDB();
+await openDB();
 
-    updateTime();
+await loadData();
 
-    await render();
+}catch(error){
 
-  }catch(error){
+console.error(error);
 
-    console.error(
-      "Erro inicial:",
-      error
-    );
+$("grid").innerHTML =
+`
+<p class="muted">
+Não foi possível iniciar o armazenamento local.
+</p>
+`;
 
-    /*
-     * Mesmo que o IndexedDB falhe,
-     * o site continua a funcionar.
-     */
-
-    updateTime();
-
-    await render();
-
-  }
+}
 
 })();
 
 </script>
 
 </body>
-   </html>
+</html>
