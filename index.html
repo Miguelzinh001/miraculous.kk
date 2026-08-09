@@ -10,7 +10,8 @@
 body{margin:0;background:radial-gradient(circle at 80% 0,#32101a,#07070a 38%);color:var(--txt);font:15px system-ui,sans-serif}
 a{color:inherit;text-decoration:none}
 .top{height:70px;display:flex;align-items:center;gap:30px;padding:0 6vw;border-bottom:1px solid #17171c;background:#08080bdd;position:sticky;top:0;z-index:5}
-.brand{font-size:22px;font-weight:900}.brand span{color:var(--red)}
+.brand{font-size:22px;font-weight:900}
+.brand span{color:var(--red)}
 nav{display:flex;gap:22px;color:var(--muted);flex:1}
 .btn{border:1px solid var(--line);background:#121218;color:#fff;border-radius:10px;padding:10px 15px;cursor:pointer}
 .hero{min-height:520px;padding:90px 8vw;display:grid;grid-template-columns:1.3fr .7fr;gap:40px;align-items:center}
@@ -25,12 +26,12 @@ nav{display:flex;gap:22px;color:var(--muted);flex:1}
 .head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:25px}
 .head h2,.sec h2{font-size:35px;margin:5px 0;letter-spacing:-1.5px}
 .search,input,textarea,select{background:#09090d;border:1px solid var(--line);color:#fff;border-radius:10px;padding:12px;font:inherit}
-select{width:100%;margin:6px 0}
 .search{width:min(330px,100%)}
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
 .card{background:var(--p);border:1px solid var(--line);border-radius:16px;overflow:hidden}
 .thumb{aspect-ratio:16/9;background:linear-gradient(135deg,#271018,#17171d);display:grid;place-items:center;font-size:40px}
-.body{padding:14px}.meta{color:#858591;font-size:12px;margin-top:6px}
+.body{padding:14px}
+.meta{color:#858591;font-size:12px;margin-top:6px}
 .muted{color:var(--muted);line-height:1.7}
 .features{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .feature{background:var(--p);border:1px solid var(--line);padding:18px;border-radius:14px}
@@ -52,104 +53,139 @@ footer{padding:30px 8vw;color:#70707b;border-top:1px solid #14141a}
 .badge.global{background:#12351f;color:#7dffa4}
 .badge.local{background:#30240f;color:#ffd477}
 .file-name{font-size:12px;color:var(--muted);margin:5px 0 8px}
+.file-box{background:#09090d;border:1px solid var(--line);border-radius:10px;padding:10px;margin-top:6px}
 @media(max-width:850px){
-nav{display:none}.hero{grid-template-columns:1fr;padding-top:55px}
-.showcase{display:none}.grid{grid-template-columns:repeat(2,1fr)}
-.head{flex-direction:column;align-items:stretch}.search{width:100%}
+nav{display:none}
+.hero{grid-template-columns:1fr;padding-top:55px}
+.showcase{display:none}
+.grid{grid-template-columns:repeat(2,1fr)}
+.head{flex-direction:column;align-items:stretch}
+.search{width:100%}
 }
 @media(max-width:520px){
-.grid{grid-template-columns:1fr}.form{grid-template-columns:1fr}
-.form textarea{grid-column:auto}.hero h1{letter-spacing:-2px}
+.grid{grid-template-columns:1fr}
+.form{grid-template-columns:1fr}
+.form textarea{grid-column:auto}
+.hero h1{letter-spacing:-2px}
 }
 </style></head><body><header class="top">
-<a class="brand" href="#">miraculous<span>.kk</span></a>
-<nav>
+<a class="brand" href="#">miraculous<span>.kk</span></a><nav>
 <a href="#catalogo">Catálogo</a>
 <a href="#func">Funcionalidades</a>
 <a href="#sobre">Sobre</a>
-</nav>
-<button class="btn" id="loginOpen">Admin</button>
+</nav><button class="btn" id="loginOpen">Admin</button>
+
 </header><main><section class="hero">
 <div>
-<div class="ey">THE MIRACULOUS HUB</div>
-<h1>O teu lugar para <span>Miraculous.</span></h1>
-<p>Catálogo, episódios, especiais, idiomas, legendas e novidades — tudo num só lugar.</p>
-<div class="actions">
+<div class="ey">THE MIRACULOUS HUB</div><h1>O teu lugar para <span>Miraculous.</span></h1><p>
+Catálogo, episódios, especiais, idiomas,
+legendas e novidades — tudo num só lugar.
+</p><div class="actions">
 <a class="btn primary" href="#catalogo">Explorar catálogo</a>
 <a class="btn" href="#func">Funcionalidades</a>
 </div>
-</div>
-<div class="showcase">🐞</div>
-</section><section class="sec" id="catalogo">
-<div class="head">
-<div>
+</div><div class="showcase">🐞</div>
+</section><section class="sec" id="catalogo"><div class="head"><div>
 <div class="ey">CATÁLOGO</div>
 <h2>Temporadas e episódios</h2>
-</div>
-<input id="search" class="search" placeholder="Pesquisar...">
-</div>
-<div id="grid" class="grid"></div>
-</section><section class="sec" id="func">
-<div class="ey">PLATAFORMA</div>
-<h2>Feito para crescer</h2>
-<div class="features">
-<div class="feature">🎬 <b>Player</b><span>Vídeo, legendas e áudio autorizado.</span></div>
-<div class="feature">💾 <b>Progresso</b><span>Continuar de onde ficaste.</span></div>
-<div class="feature">🌍 <b>Idiomas</b><span>Dobragens e legendas organizadas.</span></div>
-<div class="feature">👥 <b>Watch Together</b><span>Salas para ver em conjunto.</span></div>
-</div>
-</section><section class="sec" id="sobre">
-<div class="ey">MIRACULOUS.KK</div>
-<h2>Feito para fãs.</h2>
-<p class="muted">Starter de um projecto de fã. Não inclui episódios protegidos por direitos de autor.</p>
-</section></main><footer>© miraculous.kk — fan project</footer><!-- LOGIN --><div id="login" class="modal hide">
-<div class="box" style="max-width:420px">
-<button class="close" id="loginClose">×</button>
-<div class="ey">ADMIN</div>
-<h2>Entrar</h2>
-<p class="muted">Demo inicial.</p>
-<input id="user" placeholder="Utilizador">
-<input id="pass" type="password" placeholder="Palavra-passe">
-<button class="btn primary" style="width:100%;margin-top:8px" id="loginBtn">Entrar</button>
-<p id="err" style="color:#ff6377"></p>
-</div>
-</div><!-- ADMIN --><div id="admin" class="modal hide">
-<div class="box"><button class="close" id="adminClose">×</button>
+</div><input id="search" class="search" placeholder="Pesquisar..."></div><div id="grid" class="grid"></div></section><section class="sec" id="func"><div class="ey">PLATAFORMA</div>
+<h2>Feito para crescer</h2><div class="features"><div class="feature">
+🎬 <b>Player</b>
+<span>Vídeo, legendas e áudio autorizado.</span>
+</div><div class="feature">
+💾 <b>Progresso</b>
+<span>Continuar de onde ficaste.</span>
+</div><div class="feature">
+🌍 <b>Idiomas</b>
+<span>Dobragens e legendas organizadas.</span>
+</div><div class="feature">
+👥 <b>Watch Together</b>
+<span>Salas para ver em conjunto.</span>
+</div></div>
+</section><section class="sec" id="sobre"><div class="ey">MIRACULOUS.KK</div><h2>Feito para fãs.</h2><p class="muted">
+Starter de um projecto de fã.
+Não inclui episódios protegidos por direitos de autor.
+</p></section></main><footer>
+© miraculous.kk — fan project
+</footer><!-- LOGIN --><div id="login" class="modal hide"><div class="box" style="max-width:420px"><button class="close" id="loginClose">×</button>
 
-<div class="ey">DASHBOARD</div>
-<h2>Painel miraculous.kk</h2><div class="stats">
-<div class="stat">
-<b id="count">0</b><br>
+<div class="ey">ADMIN</div><h2>Entrar</h2><p class="muted">
+Escolhe uma das contas autorizadas.
+</p><input id="user" placeholder="Utilizador"><input id="pass" type="password" placeholder="Palavra-passe"><button
+class="btn primary"
+style="width:100%;margin-top:8px"
+id="loginBtn">
+Entrar
+</button>
+
+<p id="err" style="color:#ff6377"></p></div>
+</div><!-- ADMIN --><div id="admin" class="modal hide"><div class="box"><button class="close" id="adminClose">×</button>
+
+<div class="ey">DASHBOARD</div><h2>Painel miraculous.kk</h2><div class="stats"><div class="stat">
+<b id="count">0</b>
+<br>
 <small class="muted">episódios</small>
 </div><div class="stat">
-<b>0</b><br>
+<b>0</b>
+<br>
 <small class="muted">utilizadores</small>
-</div>
-</div><h3>Adicionar episódio</h3><div class="form"><input id="title" placeholder="Título">
-<input id="season" placeholder="Temporada">
-<input id="number" placeholder="Episódio">
-<input id="lang" placeholder="Idioma"><input id="thumb" placeholder="URL thumbnail">
-<input id="video" placeholder="URL de vídeo autorizado"><!-- GLOBAL / LOCAL --><div>
-<label class="muted">Disponibilidade</label>
-<select id="visibility">
-<option value="global">🌐 Global</option>
-<option value="local">📱 Local</option>
-</select>
-</div><div>
-<label class="muted">Idioma das legendas</label>
-<select id="subtitleLang">
-<option value="">Sem legendas</option>
-<option value="PT-PT">🇵🇹 Português (PT-PT)</option>
-<option value="EN">🇬🇧 Inglês</option>
-<option value="FR">🇫🇷 Francês</option>
-<option value="ES">🇪🇸 Espanhol</option>
-</select>
-</div><!-- UPLOAD SRT --><div style="grid-column:1/-1">
-<label class="muted">Legendas (.srt)</label>
-<input id="subtitleFile" type="file" accept=".srt,.vtt,text/plain">
-<div id="subtitleName" class="file-name">Nenhum ficheiro selecionado.</div>
-</div><textarea id="desc" placeholder="Descrição"></textarea></div><button class="btn primary" id="add" style="margin-top:8px">
+</div></div><h3>Adicionar episódio</h3><div class="form"><input id="title" placeholder="Título"><input id="season" placeholder="Temporada"><input id="number" placeholder="Episódio"><input id="lang" placeholder="Idioma"><!-- THUMBNAIL --><div class="file-box"><label class="muted">
+🖼️ Thumbnail
+</label><input
+id="thumbFile"
+type="file"
+accept="image/*">
+
+<div id="thumbName" class="file-name">
+Nenhuma imagem selecionada.
+</div></div><!-- VIDEO --><div class="file-box"><label class="muted">
+🎬 Vídeo
+</label><input
+id="videoFile"
+type="file"
+accept="video/*">
+
+<div id="videoName" class="file-name">
+Nenhum vídeo selecionado.
+</div></div><!-- VISIBILIDADE --><div><label class="muted">
+Disponibilidade
+</label><select id="visibility"><option value="global">
+🌐 Global
+</option><option value="local">
+📱 Local
+</option></select></div><!-- IDIOMA LEGENDAS --><div><label class="muted">
+Idioma das legendas
+</label><select id="subtitleLang"><option value="">
+Sem legendas
+</option><option value="PT-PT">
+🇵🇹 Português (PT-PT)
+</option><option value="EN">
+🇬🇧 Inglês
+</option><option value="FR">
+🇫🇷 Francês
+</option><option value="ES">
+🇪🇸 Espanhol
+</option></select></div><!-- SRT --><div
+class="file-box"
+style="grid-column:1/-1"><label class="muted">
+📄 Legendas
+</label><input
+id="subtitleFile"
+type="file"
+accept=".srt,.vtt,text/plain">
+
+<div id="subtitleName" class="file-name">
+Nenhum ficheiro selecionado.
+</div></div><textarea
+id="desc"
+placeholder="Descrição">
+</textarea></div><button
+class="btn primary"
+id="add"
+style="margin-top:8px">
+
 Guardar episódio
+
 </button><div id="list" class="list"></div></div>
 </div><script>
 
@@ -161,7 +197,10 @@ number:'—',
 lang:'PT-PT',
 visibility:'global',
 subtitleLang:'',
-subtitle:''
+subtitle:'',
+video:'',
+thumb:'',
+desc:''
 }
 ];
 
@@ -169,15 +208,21 @@ let eps=JSON.parse(localStorage.mkEps||'null')||seed;
 
 const $=x=>document.getElementById(x);
 
+
 function esc(s=''){
-return s.replace(/[&<>"']/g,m=>({
+
+return String(s).replace(/[&<>"']/g,m=>({
+
 '&':'&amp;',
 '<':'&lt;',
 '>':'&gt;',
 '"':'&quot;',
 "'":'&#39;'
+
 }[m]));
+
 }
+
 
 function render(){
 
@@ -189,39 +234,69 @@ let a=eps.filter(e=>
 .includes(q)
 );
 
+
 $('grid').innerHTML=a.map(e=>`
 
 <article class="card">
 
-<div class="thumb">🐞</div>
+<div class="thumb">
+
+${e.thumb
+? `<img src="${esc(e.thumb)}"
+style="width:100%;height:100%;object-fit:cover">`
+: '🐞'}
+
+</div>
 
 <div class="body">
 
 <b>${esc(e.title)}</b>
 
 <div class="meta">
-${esc(e.season)} ·
-${esc(e.number)} ·
+${esc(e.season)}
+·
+${esc(e.number)}
+·
 ${esc(e.lang||'—')}
 </div>
 
-<div class="badge ${e.visibility==='global'?'global':'local'}">
-${e.visibility==='global'?'🌐 Global':'📱 Local'}
+<div class="badge ${
+e.visibility==='global'
+?'global'
+:'local'
+}">
+
+${
+e.visibility==='global'
+?'🌐 Global'
+:'📱 Local'
+}
+
 </div>
 
-${e.subtitle ? `
-<div class="meta">
-💬 Legendas: ${esc(e.subtitleLang||'SRT')}
-</div>
-` : ''}
+
+${
+e.subtitle
+?
+`<div class="meta">
+💬 Legendas:
+${esc(e.subtitleLang||'SRT')}
+</div>`
+:
+''
+}
 
 </div>
 
 </article>
 
-`).join('')||'<p class="muted">Nenhum resultado.</p>';
+`).join('') ||
+
+'<p class="muted">Nenhum resultado.</p>';
+
 
 $('count').textContent=eps.length;
+
 
 $('list').innerHTML=eps.map((e,i)=>`
 
@@ -232,25 +307,55 @@ $('list').innerHTML=eps.map((e,i)=>`
 <b>${esc(e.title)}</b>
 
 <div class="meta">
-${esc(e.season)} · ${esc(e.number)}
+${esc(e.season)}
+·
+${esc(e.number)}
 </div>
 
-<div class="badge ${e.visibility==='global'?'global':'local'}">
-${e.visibility==='global'?'🌐 Global':'📱 Local'}
+
+<div class="badge ${
+e.visibility==='global'
+?'global'
+:'local'
+}">
+
+${
+e.visibility==='global'
+?'🌐 Global'
+:'📱 Local'
+}
+
 </div>
 
-${e.subtitle ? `
-<div class="meta">
+
+${
+e.video
+?
+`<div class="meta">🎬 Vídeo selecionado</div>`
+:
+`<div class="meta">Sem vídeo</div>`
+}
+
+
+${
+e.subtitle
+?
+`<div class="meta">
 💬 Legendas ${esc(e.subtitleLang||'SRT')}
-</div>
-` : `
-<div class="meta">Sem legendas</div>
-`}
+</div>`
+:
+`<div class="meta">Sem legendas</div>`
+}
 
 </div>
 
-<button class="danger" onclick="del(${i})">
+
+<button
+class="danger"
+onclick="del(${i})">
+
 Apagar
+
 </button>
 
 </div>
@@ -259,95 +364,177 @@ Apagar
 
 }
 
+
 window.del=i=>{
+
 eps.splice(i,1);
-localStorage.mkEps=JSON.stringify(eps);
+
+localStorage.mkEps=
+JSON.stringify(eps);
+
 render();
+
 };
+
 
 $('search').oninput=render;
 
+
 $('loginOpen').onclick=()=>{
+
 $('login').classList.remove('hide');
+
 };
+
 
 $('loginClose').onclick=()=>{
+
 $('login').classList.add('hide');
+
 };
 
+
 $('adminClose').onclick=()=>{
+
 $('admin').classList.add('hide');
+
 };
+
+
+/* LOGIN */
 
 $('loginBtn').onclick=()=>{
 
-if(
-$('user').value==='admin' &&
-$('pass').value==='miraculous'
-){
+const u=$('user').value.trim();
+const p=$('pass').value;
+
+
+const valid=
+
+(u==='admin' && p==='miraculous') ||
+
+(u==='miguel' && p==='nemesis6');
+
+
+if(valid){
 
 $('login').classList.add('hide');
+
 $('admin').classList.remove('hide');
+
+$('err').textContent='';
+
 render();
 
 }else{
 
-$('err').textContent='Credenciais inválidas.';
+$('err').textContent=
+'Credenciais inválidas.';
 
 }
 
 };
 
-/* Mostrar nome do SRT */
+
+/* THUMBNAIL */
+
+$('thumbFile').onchange=()=>{
+
+const file=$('thumbFile').files[0];
+
+$('thumbName').textContent=file
+?'🖼️ '+file.name
+:'Nenhuma imagem selecionada.';
+
+};
+
+
+/* VIDEO */
+
+$('videoFile').onchange=()=>{
+
+const file=$('videoFile').files[0];
+
+$('videoName').textContent=file
+?'🎬 '+file.name
+:'Nenhum vídeo selecionado.';
+
+};
+
+
+/* LEGENDAS */
 
 $('subtitleFile').onchange=()=>{
 
 const file=$('subtitleFile').files[0];
 
-if(file){
-
-$('subtitleName').textContent=
-'📄 '+file.name;
-
-}else{
-
-$('subtitleName').textContent=
-'Nenhum ficheiro selecionado.';
-
-}
+$('subtitleName').textContent=file
+?'📄 '+file.name
+:'Nenhum ficheiro selecionado.';
 
 };
 
-/* ADICIONAR EPISÓDIO */
+
+/* ADICIONAR */
 
 $('add').onclick=async()=>{
 
-let t=$('title').value.trim();
+const t=$('title').value.trim();
 
 if(!t){
+
 alert('Escreve um título.');
+
 return;
+
 }
+
+
+const videoFile=
+$('videoFile').files[0];
+
+const subtitleFile=
+$('subtitleFile').files[0];
+
+const thumbFile=
+$('thumbFile').files[0];
+
 
 let subtitleText='';
 
-const subtitleFile=$('subtitleFile').files[0];
-
 if(subtitleFile){
 
-if(!subtitleFile.name.toLowerCase().endsWith('.srt') &&
-!subtitleFile.name.toLowerCase().endsWith('.vtt')){
+const name=
+subtitleFile.name.toLowerCase();
 
-alert('Escolhe um ficheiro .srt ou .vtt.');
+if(
+!name.endsWith('.srt') &&
+!name.endsWith('.vtt')
+){
+
+alert(
+'Escolhe um ficheiro .srt ou .vtt.'
+);
+
 return;
 
 }
 
-subtitleText=await subtitleFile.text();
+subtitleText=
+await subtitleFile.text();
 
 }
 
-eps.push({
+
+/*
+Neste momento guardamos apenas
+informação local sobre o ficheiro.
+
+O upload global será ligado ao
+storage online numa próxima etapa.
+*/
+
+const episode={
 
 title:t,
 
@@ -357,42 +544,80 @@ number:$('number').value||'—',
 
 lang:$('lang').value||'—',
 
-thumb:$('thumb').value,
+visibility:
+$('visibility').value,
 
-video:$('video').value,
+subtitleLang:
+$('subtitleLang').value,
 
-desc:$('desc').value,
+subtitle:
+subtitleText,
 
-visibility:$('visibility').value,
+video:
+videoFile
+?videoFile.name
+:'',
 
-subtitleLang:$('subtitleLang').value,
+thumb:
+thumbFile
+?URL.createObjectURL(thumbFile)
+:$('thumb').value||'',
 
-subtitle:subtitleText
+desc:
+$('desc').value||''
 
-});
+};
 
-localStorage.mkEps=JSON.stringify(eps);
+
+eps.push(episode);
+
+localStorage.mkEps=
+JSON.stringify(eps);
+
+
+/* limpar */
 
 [
 'title',
 'season',
 'number',
 'lang',
-'thumb',
-'video',
 'desc'
-].forEach(x=>$(x).value='');
+].forEach(id=>{
+
+$(id).value='';
+
+});
+
+
+$('videoFile').value='';
+
+$('subtitleFile').value='';
+
+$('thumbFile').value='';
 
 $('visibility').value='global';
+
 $('subtitleLang').value='';
-$('subtitleFile').value='';
-$('subtitleName').textContent='Nenhum ficheiro selecionado.';
+
+
+$('videoName').textContent=
+'Nenhum vídeo selecionado.';
+
+$('subtitleName').textContent=
+'Nenhum ficheiro selecionado.';
+
+$('thumbName').textContent=
+'Nenhuma imagem selecionada.';
+
 
 render();
+
 
 alert('Episódio guardado!');
 
 };
+
 
 render();
 
