@@ -4,259 +4,3482 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>miraculous.kk</title>
+
 <style>
-:root{--bg:#07070a;--p:#111116;--line:#292933;--txt:#f7f7fb;--muted:#aaaab5;--red:#e62b45}
+:root{
+  --bg:#07070a;
+  --p:#111116;
+  --line:#292933;
+  --txt:#f7f7fb;
+  --muted:#aaaab5;
+  --red:#e62b45;
+}
+
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--txt);font:15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
-button,input,textarea,select{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}.hide{display:none!important}
-#backgroundLayer{position:fixed;inset:0;z-index:-2;overflow:hidden;pointer-events:none;background:#07070a}
-#backgroundImage,#backgroundVideo{width:100%;height:100%;object-fit:cover;display:none}
-#backgroundOverlay{position:absolute;inset:0;background:rgba(0,0,0,.62)}
-.top{min-height:70px;display:flex;align-items:center;gap:18px;padding:12px 6vw;border-bottom:1px solid #17171c;background:rgba(8,8,11,.92);backdrop-filter:blur(14px);position:sticky;top:0;z-index:20}
-.brand{font-size:22px;font-weight:900;white-space:nowrap}
-.brand span{color:var(--red)}
-nav{display:flex;gap:20px;color:var(--muted)}
-.profileArea{display:flex;align-items:center;gap:10px;position:relative;margin-left:auto}
-.profileButton{border:0;background:none;padding:0;color:#fff;display:flex;align-items:center;gap:9px;cursor:pointer}
-.profilePhoto,.profileFallback{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid #34343e;background:#18181e;display:block}
-.profileFallback{display:grid;place-items:center;font-size:20px}
-.profileName{max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700}
-.profileMenu{position:absolute;right:0;top:55px;width:230px;background:#101015;border:1px solid var(--line);border-radius:15px;padding:12px;box-shadow:0 20px 60px #000b;z-index:50}
-.profileMenuHeader{display:flex;align-items:center;gap:10px;padding:8px;border-bottom:1px solid var(--line);margin-bottom:8px}
-.profileMenuHeader img{width:45px;height:45px;border-radius:50%;object-fit:cover}
-.profileMenuHeader b{display:block;overflow:hidden;text-overflow:ellipsis}
-.profileMenu button{width:100%;margin-top:6px;text-align:left}
-.adminButton{display:none}
-.btn{border:1px solid var(--line);background:#121218;color:#fff;border-radius:10px;padding:10px 15px;transition:.15s}
-.btn:hover{border-color:#444450}.primary{background:var(--red);border-color:var(--red)}
-.hero{min-height:460px;padding:75px 8vw;display:grid;grid-template-columns:1.3fr .7fr;gap:40px;align-items:center}
-.ey{font-size:11px;letter-spacing:2px;color:#ff6377;font-weight:800}
-.hero h1{font-size:clamp(45px,7vw,82px);line-height:.95;letter-spacing:-4px;margin:10px 0}
-.hero h1 span{color:var(--red)}.hero p{color:var(--muted);font-size:18px;line-height:1.6;max-width:620px}
-.actions{display:flex;gap:10px;margin-top:25px;flex-wrap:wrap}
-.showcase{height:270px;border:1px solid #3a2028;border-radius:25px;background:linear-gradient(145deg,#29111a,#101015);display:grid;place-items:center;font-size:85px;box-shadow:0 30px 100px #0008}
-.sec{padding:60px 8vw;border-top:1px solid #14141a;background:rgba(7,7,10,.35)}
-.head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:25px}
-.head h2,.sec h2{font-size:35px;margin:5px 0;letter-spacing:-1.5px}
-.search,input,textarea,select{background:#09090d;border:1px solid var(--line);color:#fff;border-radius:10px;padding:12px}
-input[type=file]{padding:9px}.search{width:min(330px,100%)}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
-.card{background:rgba(17,17,22,.95);border:1px solid var(--line);border-radius:16px;overflow:hidden}
-.thumb{aspect-ratio:16/9;background:linear-gradient(135deg,#271018,#17171d);display:grid;place-items:center;font-size:40px;overflow:hidden}
-.thumb img{width:100%;height:100%;object-fit:cover;display:block}
-.body{padding:14px}.meta{color:#858591;font-size:12px;margin-top:6px}.muted{color:var(--muted);line-height:1.7}
-.features{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.feature{background:rgba(17,17,22,.95);border:1px solid var(--line);padding:18px;border-radius:14px}
-.feature span{display:block;color:var(--muted);font-size:13px;margin-top:4px}
-.announcement{background:rgba(17,17,22,.95);border:1px solid var(--line);padding:16px;border-radius:14px;margin:10px 0}
-.announcement-label{display:inline-block;padding:5px 9px;border-radius:7px;color:#fff;font-size:10px;font-weight:900;letter-spacing:1px;margin-bottom:8px}
-.announcement-title{font-size:18px;font-weight:800;margin-bottom:5px}
-footer{padding:30px 8vw;color:#70707b;border-top:1px solid #14141a}
-.modal{position:fixed;inset:0;background:#000c;display:grid;place-items:center;padding:15px;z-index:100}
-.box{position:relative;width:min(760px,100%);max-height:92vh;overflow:auto;background:#101015;border:1px solid var(--line);border-radius:20px;padding:28px}
-.close{position:absolute;right:15px;top:8px;background:none;border:0;color:#aaa;font-size:28px}
-.box input,.box textarea,.box select{width:100%;margin:6px 0}
-.form{display:grid;grid-template-columns:1fr 1fr;gap:8px}.full{grid-column:1/-1}
-.field{display:flex;flex-direction:column;gap:3px}.field label{color:var(--muted);font-size:12px}
-.notice{padding:12px;border:1px solid var(--line);background:#09090d;border-radius:10px;margin:10px 0}
-.success{color:#70e090}.error{color:#ff6377}
-.authTabs{display:flex;gap:6px;margin-bottom:15px}.authTabs button{flex:1}
-.authTabActive{background:var(--red)!important;border-color:var(--red)!important}
-.avatarPicker{display:flex;align-items:center;gap:15px;margin:10px 0}
-.avatarPreview{width:70px;height:70px;border-radius:50%;object-fit:cover;background:#18181e;border:2px solid var(--line)}
-.passwordWrap{position:relative}.passwordWrap input{padding-right:50px}
-.showPassword{position:absolute;right:8px;top:12px;background:none;border:0;color:#aaa;cursor:pointer}
-.stats{display:flex;gap:10px;margin:18px 0}.stat{background:#09090d;border:1px solid var(--line);padding:12px;border-radius:10px;flex:1}
-.list{margin:18px 0;display:grid;gap:8px}.item{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px;background:#09090d;border:1px solid var(--line);border-radius:10px}
-.item-actions{display:flex;gap:6px;flex-wrap:wrap}.danger{background:#38111a;border:1px solid #5a1a26;color:#ff8a99;border-radius:8px;padding:7px 10px}
-.color-row{display:flex;align-items:center;gap:10px}.color-row input[type=color]{width:60px;height:45px;padding:3px}
-.preview-label{display:inline-block;padding:5px 9px;border-radius:7px;color:#fff;font-size:10px;font-weight:900;letter-spacing:1px}
-.progress{height:6px;background:#24242b;border-radius:20px;overflow:hidden;margin-top:10px;display:none}
-.progress div{height:100%;width:0%;background:var(--red);transition:width .1s}
-@media(max-width:850px){nav{display:none}.hero{grid-template-columns:1fr;padding-top:50px}.showcase{display:none}.grid{grid-template-columns:repeat(2,1fr)}.head{flex-direction:column;align-items:stretch}.search{width:100%}}
-@media(max-width:520px){.grid{grid-template-columns:1fr}.form{grid-template-columns:1fr}.full{grid-column:auto}.hero h1{letter-spacing:-2px}.stats{flex-direction:column}.box{padding:22px}.top{gap:8px;padding:10px 4vw}.brand{font-size:19px}.profileName{max-width:85px;font-size:13px}.profilePhoto,.profileFallback{width:38px;height:38px}.profileMenu{right:-5px}}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--txt);
+  font:15px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  min-height:100vh;
+}
+
+button,input,textarea,select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+.hide{
+  display:none!important;
+}
+
+/* FUNDO */
+
+#backgroundLayer{
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  overflow:hidden;
+  pointer-events:none;
+  background:#07070a;
+}
+
+#backgroundImage,
+#backgroundVideo{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:none;
+}
+
+#backgroundOverlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.62);
+}
+
+/* HEADER */
+
+.top{
+  min-height:70px;
+  display:flex;
+  align-items:center;
+  gap:18px;
+  padding:12px 6vw;
+  border-bottom:1px solid #17171c;
+  background:rgba(8,8,11,.92);
+  backdrop-filter:blur(14px);
+  position:sticky;
+  top:0;
+  z-index:20;
+}
+
+.brand{
+  font-size:22px;
+  font-weight:900;
+  white-space:nowrap;
+}
+
+.brand span{
+  color:var(--red);
+}
+
+nav{
+  display:flex;
+  gap:20px;
+  color:var(--muted);
+}
+
+nav a:hover{
+  color:#fff;
+}
+
+/* PERFIL */
+
+.profileArea{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  position:relative;
+  margin-left:auto;
+}
+
+.profileButton{
+  border:0;
+  background:none;
+  padding:0;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  cursor:pointer;
+}
+
+.profilePhoto,
+.profileFallback{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  object-fit:cover;
+  border:2px solid #34343e;
+  background:#18181e;
+  display:block;
+}
+
+.profileFallback{
+  display:grid;
+  place-items:center;
+  font-size:20px;
+}
+
+.profileName{
+  max-width:130px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  font-weight:700;
+}
+
+.profileMenu{
+  position:absolute;
+  right:0;
+  top:55px;
+  width:230px;
+  background:#101015!important;
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:12px;
+  box-shadow:0 20px 60px #000b;
+  z-index:50;
+}
+
+.profileMenuHeader{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:8px;
+  border-bottom:1px solid var(--line);
+  margin-bottom:8px;
+}
+
+.profileMenuHeader img{
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+.profileMenuHeader b{
+  display:block;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.profileMenu button{
+  width:100%;
+  margin-top:6px;
+  text-align:left;
+}
+
+.adminButton{
+  display:none;
+}
+
+/* BOTÕES */
+
+.btn{
+  border:1px solid var(--line);
+  background:#121218;
+  color:#fff;
+  border-radius:10px;
+  padding:10px 15px;
+  transition:.15s;
+}
+
+.btn:hover{
+  border-color:#444450;
+}
+
+.primary{
+  background:var(--red);
+  border-color:var(--red);
+}
+
+/* HERO */
+
+.hero{
+  min-height:460px;
+  padding:75px 8vw;
+  display:grid;
+  grid-template-columns:1.3fr .7fr;
+  gap:40px;
+  align-items:center;
+}
+
+.ey{
+  font-size:11px;
+  letter-spacing:2px;
+  color:#ff6377;
+  font-weight:800;
+}
+
+.hero h1{
+  font-size:clamp(45px,7vw,82px);
+  line-height:.95;
+  letter-spacing:-4px;
+  margin:10px 0;
+}
+
+.hero h1 span{
+  color:var(--red);
+}
+
+.hero p{
+  color:var(--muted);
+  font-size:18px;
+  line-height:1.6;
+  max-width:620px;
+}
+
+.actions{
+  display:flex;
+  gap:10px;
+  margin-top:25px;
+  flex-wrap:wrap;
+}
+
+.showcase{
+  height:270px;
+  border:1px solid #3a2028;
+  border-radius:25px;
+  background:linear-gradient(145deg,#29111a,#101015);
+  display:grid;
+  place-items:center;
+  font-size:85px;
+  box-shadow:0 30px 100px #0008;
+}
+
+/* SECÇÕES */
+
+.sec{
+  padding:60px 8vw;
+  border-top:1px solid #14141a;
+  background:rgba(7,7,10,.35);
+}
+
+.head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:15px;
+  margin-bottom:25px;
+}
+
+.head h2,
+.sec h2{
+  font-size:35px;
+  margin:5px 0;
+  letter-spacing:-1.5px;
+}
+
+.search,
+input,
+textarea,
+select{
+  background:#09090d;
+  border:1px solid var(--line);
+  color:#fff;
+  border-radius:10px;
+  padding:12px;
+}
+
+input[type=file]{
+  padding:9px;
+}
+
+.search{
+  width:min(330px,100%);
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+
+.card{
+  background:rgba(17,17,22,.95);
+  border:1px solid var(--line);
+  border-radius:16px;
+  overflow:hidden;
+}
+
+.thumb{
+  aspect-ratio:16/9;
+  background:linear-gradient(135deg,#271018,#17171d);
+  display:grid;
+  place-items:center;
+  font-size:40px;
+  overflow:hidden;
+}
+
+.thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.body{
+  padding:14px;
+}
+
+.meta{
+  color:#858591;
+  font-size:12px;
+  margin-top:6px;
+}
+
+.muted{
+  color:var(--muted);
+  line-height:1.7;
+}
+
+/* FUNCIONALIDADES */
+
+.features{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.feature{
+  background:rgba(17,17,22,.95);
+  border:1px solid var(--line);
+  padding:18px;
+  border-radius:14px;
+}
+
+.feature span{
+  display:block;
+  color:var(--muted);
+  font-size:13px;
+  margin-top:4px;
+}
+
+/* ANÚNCIOS */
+
+.announcement{
+  background:rgba(17,17,22,.95);
+  border:1px solid var(--line);
+  padding:16px;
+  border-radius:14px;
+  margin:10px 0;
+}
+
+.announcement-label{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:7px;
+  color:#fff;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:1px;
+  margin-bottom:8px;
+}
+
+.announcement-title{
+  font-size:18px;
+  font-weight:800;
+  margin-bottom:5px;
+}
+
+/* FOOTER */
+
+footer{
+  padding:30px 8vw;
+  color:#70707b;
+  border-top:1px solid #14141a;
+}
+
+/* MODAIS */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.80);
+  display:grid;
+  place-items:center;
+  padding:15px;
+  z-index:100;
+}
+
+.box{
+  position:relative;
+  width:min(760px,100%);
+  max-height:92vh;
+  overflow:auto;
+  background:#101015!important;
+  color:#f7f7fb!important;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:28px;
+  box-shadow:0 25px 100px #000;
+}
+
+.close{
+  position:absolute;
+  right:15px;
+  top:8px;
+  background:none;
+  border:0;
+  color:#aaa;
+  font-size:28px;
+}
+
+.box input,
+.box textarea,
+.box select{
+  width:100%;
+  margin:6px 0;
+}
+
+.form{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+
+.full{
+  grid-column:1/-1;
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+}
+
+.field label{
+  color:var(--muted);
+  font-size:12px;
+}
+
+.notice{
+  padding:12px;
+  border:1px solid var(--line);
+  background:#09090d;
+  border-radius:10px;
+  margin:10px 0;
+}
+
+.success{
+  color:#70e090;
+}
+
+.error{
+  color:#ff6377;
+}
+
+/* LOGIN */
+
+.authTabs{
+  display:flex;
+  gap:6px;
+  margin-bottom:15px;
+}
+
+.authTabs button{
+  flex:1;
+}
+
+.authTabActive{
+  background:var(--red)!important;
+  border-color:var(--red)!important;
+}
+
+.avatarPicker{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  margin:10px 0;
+}
+
+.avatarPreview{
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  object-fit:cover;
+  background:#18181e;
+  border:2px solid var(--line);
+}
+
+.passwordWrap{
+  position:relative;
+}
+
+.passwordWrap input{
+  padding-right:50px;
+}
+
+.showPassword{
+  position:absolute;
+  right:8px;
+  top:12px;
+  background:none;
+  border:0;
+  color:#aaa;
+  cursor:pointer;
+}
+
+/* ADMIN */
+
+.stats{
+  display:flex;
+  gap:10px;
+  margin:18px 0;
+}
+
+.stat{
+  background:#09090d;
+  border:1px solid var(--line);
+  padding:12px;
+  border-radius:10px;
+  flex:1;
+}
+
+.list{
+  margin:18px 0;
+  display:grid;
+  gap:8px;
+}
+
+.item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  padding:12px;
+  background:#09090d;
+  border:1px solid var(--line);
+  border-radius:10px;
+}
+
+.item-actions{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+}
+
+.danger{
+  background:#38111a;
+  border:1px solid #5a1a26;
+  color:#ff8a99;
+  border-radius:8px;
+  padding:7px 10px;
+}
+
+.color-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.color-row input[type=color]{
+  width:60px;
+  height:45px;
+  padding:3px;
+}
+
+.preview-label{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:7px;
+  color:#fff;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:1px;
+}
+
+.seriesBadge{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:8px;
+  background:#1d1d26;
+  border:1px solid #34343e;
+  color:#fff;
+  font-size:11px;
+  font-weight:800;
+  margin-bottom:8px;
+}
+
+.progress{
+  height:6px;
+  background:#24242b;
+  border-radius:20px;
+  overflow:hidden;
+  margin-top:10px;
+  display:none;
+}
+
+.progress div{
+  height:100%;
+  width:0%;
+  background:var(--red);
+  transition:width .1s;
+}
+
+/* RESPONSIVO */
+
+@media(max-width:850px){
+
+  nav{
+    display:none;
+  }
+
+  .hero{
+    grid-template-columns:1fr;
+    padding-top:50px;
+  }
+
+  .showcase{
+    display:none;
+  }
+
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .head{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .search{
+    width:100%;
+  }
+}
+
+@media(max-width:520px){
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .form{
+    grid-template-columns:1fr;
+  }
+
+  .full{
+    grid-column:auto;
+  }
+
+  .hero h1{
+    letter-spacing:-2px;
+  }
+
+  .stats{
+    flex-direction:column;
+  }
+
+  .box{
+    padding:22px;
+  }
+
+  .top{
+    gap:8px;
+    padding:10px 4vw;
+  }
+
+  .brand{
+    font-size:19px;
+  }
+
+  .profileName{
+    max-width:85px;
+    font-size:13px;
+  }
+
+  .profilePhoto,
+  .profileFallback{
+    width:38px;
+    height:38px;
+  }
+
+  .profileMenu{
+    right:-5px;
+  }
+}
 </style>
 </head>
-<body>
-<div id="backgroundLayer"><img id="backgroundImage" alt=""><video id="backgroundVideo" autoplay muted loop playsinline></video><div id="backgroundOverlay"></div></div>
 
+<body>
+
+<!-- FUNDO -->
+<div id="backgroundLayer">
+  <img id="backgroundImage" alt="">
+  <video id="backgroundVideo" autoplay muted loop playsinline></video>
+  <div id="backgroundOverlay"></div>
+</div>
+
+<!-- HEADER -->
 <header class="top">
-<a class="brand" href="#">miraculous<span>.kk</span></a>
-<nav><a href="#catalogo">Catálogo</a><a href="#anuncios">Anúncios</a><a href="#func">Funcionalidades</a></nav>
+
+<a class="brand" href="#">
+  miraculous<span>.kk</span>
+</a>
+
+<nav>
+  <a href="#catalogo">Catálogo</a>
+  <a href="#anuncios">Anúncios</a>
+  <a href="#func">Funcionalidades</a>
+</nav>
 
 <div class="profileArea">
+
 <button class="profileButton" id="profileButton">
-<div id="profileFallback" class="profileFallback">👤</div>
-<img id="profilePhoto" class="profilePhoto hide" alt="Perfil">
-<span id="profileName" class="profileName">Entrar</span>
+  <div id="profileFallback" class="profileFallback">👤</div>
+  <img id="profilePhoto" class="profilePhoto hide" alt="Perfil">
+  <span id="profileName" class="profileName">Entrar</span>
 </button>
 
 <div id="profileMenu" class="profileMenu hide">
-<div class="profileMenuHeader">
-<div id="menuFallback" class="profileFallback">👤</div>
-<img id="menuPhoto" class="hide" alt="">
-<div><b id="menuName">Visitante</b><small class="muted" id="menuRole">Sem sessão</small></div>
+
+  <div class="profileMenuHeader">
+
+    <div id="menuFallback" class="profileFallback">
+      👤
+    </div>
+
+    <img id="menuPhoto" class="hide" alt="">
+
+    <div>
+      <b id="menuName">Visitante</b>
+      <small class="muted" id="menuRole">Sem sessão</small>
+    </div>
+
+  </div>
+
+  <button class="btn" id="loginFromMenu">
+    🔐 Entrar / Criar conta
+  </button>
+
+  <button class="btn adminButton" id="adminOpen">
+    ⚙️ Painel Admin
+  </button>
+
+  <button class="btn hide" id="changeProfile">
+    🖼️ Alterar foto
+  </button>
+
+  <input id="profileFile" type="file" accept="image/*" class="hide">
+
+  <button class="btn hide" id="logoutButton">
+    🚪 Terminar sessão
+  </button>
+
 </div>
-<button class="btn" id="loginFromMenu">🔐 Entrar / Criar conta</button>
-<button class="btn adminButton" id="adminOpen">⚙️ Painel Admin</button>
-<button class="btn hide" id="changeProfile">🖼️ Alterar foto</button>
-<input id="profileFile" type="file" accept="image/*" class="hide">
-<button class="btn hide" id="logoutButton">🚪 Terminar sessão</button>
-</div>
+
 </div>
 </header>
 
 <main>
+
+<!-- HERO -->
 <section class="hero">
-<div><div class="ey">THE MIRACULOUS HUB</div><h1>O teu lugar para <span>Miraculous.</span></h1><p>Catálogo, episódios, especiais, idiomas, legendas e novidades — tudo num só lugar.</p><div class="actions"><a class="btn primary" href="#catalogo">Explorar catálogo</a><a class="btn" href="#anuncios">Anúncios</a></div></div>
-<div class="showcase">🐞</div>
+
+<div>
+
+<div class="ey">
+THE MIRACULOUS HUB
+</div>
+
+<h1>
+O teu lugar para <span>Miraculous.</span>
+</h1>
+
+<p>
+Catálogo, episódios, especiais, idiomas, legendas e novidades — tudo num só lugar.
+</p>
+
+<div class="actions">
+<a class="btn primary" href="#catalogo">
+Explorar catálogo
+</a>
+
+<a class="btn" href="#anuncios">
+Anúncios
+</a>
+</div>
+
+</div>
+
+<div class="showcase">
+🐞
+</div>
+
 </section>
 
-<section class="sec" id="anuncios"><div class="ey">ANÚNCIOS</div><h2>Últimas novidades</h2><div id="announcements"><p class="muted">Ainda não existem anúncios.</p></div></section>
+<!-- ANÚNCIOS -->
+<section class="sec" id="anuncios">
 
+<div class="ey">
+ANÚNCIOS
+</div>
+
+<h2>
+Últimas novidades
+</h2>
+
+<div id="announcements">
+<p class="muted">
+Ainda não existem anúncios.
+</p>
+</div>
+
+</section>
+
+<!-- CATÁLOGO -->
 <section class="sec" id="catalogo">
-<div class="head"><div><div class="ey">CATÁLOGO</div><h2>Temporadas e episódios</h2></div><input id="search" class="search" placeholder="Pesquisar episódios..."></div>
+
+<div class="head">
+
+<div>
+
+<div class="ey">
+CATÁLOGO
+</div>
+
+<h2>
+Temporadas e episódios
+</h2>
+
+</div>
+
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+
+<select id="seriesFilter" class="search seriesFilter">
+
+<option value="all">
+Todas as séries
+</option>
+
+<option value="Miraculous">
+Miraculous
+</option>
+
+<option value="Big City Greens">
+Big City Greens
+</option>
+
+</select>
+
+<input
+id="search"
+class="search"
+placeholder="Pesquisar episódios..."
+>
+
+</div>
+
+</div>
+
 <div id="grid" class="grid"></div>
+
 </section>
 
-<section class="sec" id="func"><div class="ey">PLATAFORMA</div><h2>Feito para crescer</h2><div class="features">
-<div class="feature">🎬 <b>Episódios</b><span>Catálogo organizado por temporadas e episódios.</span></div>
-<div class="feature">🖼️ <b>Thumbnails</b><span>Imagem personalizada para cada episódio.</span></div>
-<div class="feature">🌍 <b>Idiomas</b><span>Organiza PT-PT e outros idiomas.</span></div>
-<div class="feature">📢 <b>Anúncios</b><span>Destaca novidades com cores personalizadas.</span></div>
-</div></section>
+<!-- FUNCIONALIDADES -->
+<section class="sec" id="func">
+
+<div class="ey">
+PLATAFORMA
+</div>
+
+<h2>
+Feito para crescer
+</h2>
+
+<div class="features">
+
+<div class="feature">
+🎬 <b>Episódios</b>
+<span>
+Catálogo organizado por temporadas e episódios.
+</span>
+</div>
+
+<div class="feature">
+🖼️ <b>Thumbnails</b>
+<span>
+Imagem personalizada para cada episódio.
+</span>
+</div>
+
+<div class="feature">
+🌍 <b>Idiomas</b>
+<span>
+Organiza PT-PT e outros idiomas.
+</span>
+</div>
+
+<div class="feature">
+📢 <b>Anúncios</b>
+<span>
+Destaca novidades com cores personalizadas.
+</span>
+</div>
+
+</div>
+</section>
+
 </main>
-<footer>© miraculous.kk — fan project</footer>
 
-<div id="authModal" class="modal hide"><div class="box" style="max-width:440px">
-<button class="close" id="authClose">×</button><div class="ey">CONTA</div><h2 id="authTitle">Entrar</h2>
-<div class="authTabs"><button class="btn authTabActive" id="loginTab">Entrar</button><button class="btn" id="registerTab">Criar conta</button></div>
+<footer>
+© miraculous.kk — fan project
+</footer>
+
+
+<!-- LOGIN -->
+<div id="authModal" class="modal hide">
+
+<div class="box" style="max-width:440px">
+
+<button class="close" id="authClose">
+×
+</button>
+
+<div class="ey">
+CONTA
+</div>
+
+<h2 id="authTitle">
+Entrar
+</h2>
+
+<div class="authTabs">
+
+<button class="btn authTabActive" id="loginTab">
+Entrar
+</button>
+
+<button class="btn" id="registerTab">
+Criar conta
+</button>
+
+</div>
+
+<!-- LOGIN -->
 <div id="loginForm">
-<input id="loginUser" placeholder="Nome de utilizador" autocomplete="username">
-<div class="passwordWrap"><input id="loginPass" type="password" placeholder="Palavra-passe" autocomplete="current-password"><button class="showPassword" data-target="loginPass">👁️</button></div>
-<button class="btn primary" id="loginBtn" style="width:100%;margin-top:8px">Entrar</button>
-</div>
-<div id="registerForm" class="hide">
-<input id="registerUser" placeholder="Escolhe um nome de utilizador" autocomplete="username">
-<div class="passwordWrap"><input id="registerPass" type="password" placeholder="Escolhe uma palavra-passe" autocomplete="new-password"><button class="showPassword" data-target="registerPass">👁️</button></div>
-<div class="passwordWrap"><input id="registerPass2" type="password" placeholder="Repetir palavra-passe" autocomplete="new-password"><button class="showPassword" data-target="registerPass2">👁️</button></div>
-<div class="avatarPicker"><div id="registerAvatarFallback" class="profileFallback">👤</div><img id="registerAvatar" class="avatarPreview hide" alt=""><div><button class="btn" id="chooseRegisterAvatar" type="button">🖼️ Escolher foto</button><input id="registerAvatarFile" type="file" accept="image/*" class="hide"></div></div>
-<button class="btn primary" id="registerBtn" style="width:100%;margin-top:8px">Criar conta</button>
-</div>
-<p id="authMessage"></p>
-</div></div>
 
-<div id="admin" class="modal hide"><div class="box">
-<button class="close" id="adminClose">×</button><div class="ey">DASHBOARD</div><h2>Painel miraculous.kk</h2>
-<div class="stats"><div class="stat"><b id="count">0</b><br><small class="muted">episódios</small></div><div class="stat"><b id="announcementCount">0</b><br><small class="muted">anúncios</small></div></div>
-<h3 id="episodeFormTitle">Adicionar episódio</h3>
-<div class="form">
-<div class="field"><label>Título</label><input id="title" placeholder="Título"></div>
-<div class="field"><label>Temporada</label><input id="season" placeholder="S6"></div>
-<div class="field"><label>Número</label><input id="number" placeholder="1"></div>
-<div class="field"><label>Idioma</label><input id="lang" placeholder="PT-PT"></div>
-<div class="field full"><label>Thumbnail</label><input id="thumb" type="file" accept="image/*"></div>
-<div class="field full"><label>Descrição</label><textarea id="desc" placeholder="Descrição do episódio"></textarea></div>
+<input
+id="loginUser"
+placeholder="Nome de utilizador"
+autocomplete="username"
+>
+
+<div class="passwordWrap">
+
+<input
+id="loginPass"
+type="password"
+placeholder="Palavra-passe"
+autocomplete="current-password"
+>
+
+<button
+class="showPassword"
+data-target="loginPass"
+>
+👁️
+</button>
+
 </div>
-<div style="margin-top:10px"><button class="btn primary" id="add">Guardar episódio</button><button class="btn" id="cancelEdit" style="display:none">Cancelar edição</button></div>
-<div class="progress" id="uploadProgress"><div id="progressBar"></div></div><div id="status"></div>
-<hr style="border-color:#292933;margin:25px 0">
-<h3>📢 Criar anúncio</h3>
-<div class="form">
-<div class="field"><label>Etiqueta</label><input id="announcementLabel" placeholder="NOVIDADE" value="NOVIDADE"></div>
-<div class="field"><label>Título</label><input id="announcementTitle" placeholder="Nova atualização!"></div>
-<div class="field full"><label>Texto</label><textarea id="announcementText" placeholder="Escreve aqui o anúncio..."></textarea></div>
-<div class="field full"><label>Cor da etiqueta</label><div class="color-row"><input id="announcementColor" type="color" value="#e62b45"><span id="colorPreview" class="preview-label" style="background:#e62b45">NOVIDADE</span></div></div>
+
+<button
+class="btn primary"
+id="loginBtn"
+style="width:100%;margin-top:8px"
+>
+Entrar
+</button>
+
 </div>
-<button class="btn primary" id="addAnnouncement" style="margin-top:8px">Publicar anúncio</button><div id="announcementStatus"></div>
+
+
+<!-- REGISTO -->
+<div id="registerForm" class="hide">
+
+<input
+id="registerUser"
+placeholder="Escolhe um nome de utilizador"
+autocomplete="username"
+>
+
+<div class="passwordWrap">
+
+<input
+id="registerPass"
+type="password"
+placeholder="Escolhe uma palavra-passe"
+autocomplete="new-password"
+>
+
+<button
+class="showPassword"
+data-target="registerPass"
+>
+👁️
+</button>
+
+</div>
+
+<div class="passwordWrap">
+
+<input
+id="registerPass2"
+type="password"
+placeholder="Repetir palavra-passe"
+autocomplete="new-password"
+>
+
+<button
+class="showPassword"
+data-target="registerPass2"
+>
+👁️
+</button>
+
+</div>
+
+<div class="avatarPicker">
+
+<div id="registerAvatarFallback" class="profileFallback">
+👤
+</div>
+
+<img
+id="registerAvatar"
+class="avatarPreview hide"
+alt=""
+>
+
+<div>
+
+<button
+class="btn"
+id="chooseRegisterAvatar"
+type="button"
+>
+🖼️ Escolher foto
+</button>
+
+<input
+id="registerAvatarFile"
+type="file"
+accept="image/*"
+class="hide"
+>
+
+</div>
+
+</div>
+
+<button
+class="btn primary"
+id="registerBtn"
+style="width:100%;margin-top:8px"
+>
+Criar conta
+</button>
+
+</div>
+
+<p id="authMessage"></p>
+
+</div>
+</div>
+
+
+<!-- ADMIN -->
+<div id="admin" class="modal hide">
+
+<div class="box">
+
+<button class="close" id="adminClose">
+×
+</button>
+
+<div class="ey">
+DASHBOARD
+</div>
+
+<h2>
+Painel miraculous.kk
+</h2>
+
+<div class="stats">
+
+<div class="stat">
+<b id="count">0</b>
+<br>
+<small class="muted">
+episódios
+</small>
+</div>
+
+<div class="stat">
+<b id="announcementCount">0</b>
+<br>
+<small class="muted">
+anúncios
+</small>
+</div>
+
+</div>
+
+
+<!-- EPISÓDIO -->
+
+<h3 id="episodeFormTitle">
+Adicionar episódio
+</h3>
+
+<div class="form">
+
+<div class="field">
+
+<label>
+Série
+</label>
+
+<select id="series">
+
+<option value="Miraculous">
+Miraculous
+</option>
+
+<option value="Big City Greens">
+Big City Greens
+</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>
+Título
+</label>
+
+<input
+id="title"
+placeholder="Título"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+Temporada
+</label>
+
+<input
+id="season"
+placeholder="S6"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+Número
+</label>
+
+<input
+id="number"
+placeholder="1"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+Idioma
+</label>
+
+<input
+id="lang"
+placeholder="PT-PT"
+>
+
+</div>
+
+
+<div class="field full">
+
+<label>
+Thumbnail
+</label>
+
+<input
+id="thumb"
+type="file"
+accept="image/*"
+>
+
+</div>
+
+
+<div class="field full">
+
+<label>
+Descrição
+</label>
+
+<textarea
+id="desc"
+placeholder="Descrição do episódio"
+></textarea>
+
+</div>
+
+
+<!-- TRAILER INDIVIDUAL -->
+<div class="field full">
+
+<label>
+Trailer do YouTube (opcional)
+</label>
+
+<input
+id="trailerUrl"
+placeholder="https://www.youtube.com/watch?v=..."
+>
+
+<small class="muted">
+Coloca aqui o URL do trailer oficial do episódio.
+</small>
+
+</div>
+
+</div>
+
+
+<div style="margin-top:10px">
+
+<button
+class="btn primary"
+id="add"
+>
+Guardar episódio
+</button>
+
+<button
+class="btn"
+id="cancelEdit"
+style="display:none"
+>
+Cancelar edição
+</button>
+
+</div>
+
+
+<div
+class="progress"
+id="uploadProgress"
+>
+
+<div id="progressBar"></div>
+
+</div>
+
+<div id="status"></div>
+
+
 <hr style="border-color:#292933;margin:25px 0">
-<h3>🎨 Fundo do site</h3><p class="muted">Escolhe uma imagem ou vídeo para o fundo.</p>
-<div class="form"><div class="field"><label>Imagem</label><input id="backgroundImageFile" type="file" accept="image/*"></div><div class="field"><label>Vídeo</label><input id="backgroundVideoFile" type="file" accept="video/*"></div></div>
-<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><button class="btn primary" id="saveBackground">Guardar fundo</button><button class="btn" id="removeBackground">Remover fundo</button></div><div id="backgroundStatus"></div>
-<hr style="border-color:#292933;margin:25px 0"><h3>📚 Episódios publicados</h3><div id="list" class="list"></div>
-</div></div>
+
+
+<!-- ANÚNCIO -->
+
+<h3>
+📢 Criar anúncio
+</h3>
+
+<div class="form">
+
+<div class="field">
+
+<label>
+Etiqueta
+</label>
+
+<input
+id="announcementLabel"
+placeholder="NOVIDADE"
+value="NOVIDADE"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+Título
+</label>
+
+<input
+id="announcementTitle"
+placeholder="Nova atualização!"
+>
+
+</div>
+
+
+<div class="field full">
+
+<label>
+Texto
+</label>
+
+<textarea
+id="announcementText"
+placeholder="Escreve aqui o anúncio..."
+></textarea>
+
+</div>
+
+
+<div class="field full">
+
+<label>
+Cor da etiqueta
+</label>
+
+<div class="color-row">
+
+<input
+id="announcementColor"
+type="color"
+value="#e62b45"
+>
+
+<span
+id="colorPreview"
+class="preview-label"
+style="background:#e62b45"
+>
+NOVIDADE
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+<button
+class="btn primary"
+id="addAnnouncement"
+style="margin-top:8px"
+>
+Publicar anúncio
+</button>
+
+<div id="announcementStatus"></div>
+
+
+<hr style="border-color:#292933;margin:25px 0">
+
+
+<!-- FUNDO -->
+
+<h3>
+🎨 Fundo do site
+</h3>
+
+<p class="muted">
+Escolhe uma imagem ou vídeo para o fundo.
+</p>
+
+<div class="form">
+
+<div class="field">
+
+<label>
+Imagem
+</label>
+
+<input
+id="backgroundImageFile"
+type="file"
+accept="image/*"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+Vídeo
+</label>
+
+<input
+id="backgroundVideoFile"
+type="file"
+accept="video/*"
+>
+
+</div>
+
+</div>
+
+
+<div
+style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"
+>
+
+<button
+class="btn primary"
+id="saveBackground"
+>
+Guardar fundo
+</button>
+
+<button
+class="btn"
+id="removeBackground"
+>
+Remover fundo
+</button>
+
+</div>
+
+<div id="backgroundStatus"></div>
+
+
+<hr style="border-color:#292933;margin:25px 0">
+
+
+<!-- LISTA -->
+
+<h3>
+📚 Episódios publicados
+</h3>
+
+<div
+id="list"
+class="list"
+></div>
+
+</div>
+</div>
+
 
 <script>
 "use strict";
-const ADMIN_USER="miguel",ADMIN_PASS="nemesis6",DB_NAME="miraculousKK",DB_VERSION=5;
-let db=null,episodes=[],announcements=[],accounts=[],currentUser=null,editingId=null;
-const $=id=>document.getElementById(id);
-function esc(value=""){return String(value).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
-function makeId(){return typeof crypto!=="undefined"&&crypto.randomUUID?crypto.randomUUID():Date.now().toString(36)+Math.random().toString(36).slice(2)}
-function openDB(){return new Promise((resolve,reject)=>{const request=indexedDB.open(DB_NAME,DB_VERSION);request.onupgradeneeded=e=>{const d=e.target.result;if(!d.objectStoreNames.contains("episodes"))d.createObjectStore("episodes",{keyPath:"id"});if(!d.objectStoreNames.contains("announcements"))d.createObjectStore("announcements",{keyPath:"id"});if(!d.objectStoreNames.contains("settings"))d.createObjectStore("settings",{keyPath:"id"});if(!d.objectStoreNames.contains("accounts"))d.createObjectStore("accounts",{keyPath:"username"})};request.onsuccess=e=>{db=e.target.result;resolve(db)};request.onerror=()=>reject(request.error)})}
-function getAll(store){return new Promise((resolve,reject)=>{const r=db.transaction(store,"readonly").objectStore(store).getAll();r.onsuccess=()=>resolve(r.result||[]);r.onerror=()=>reject(r.error)})}
-function getItem(store,id){return new Promise((resolve,reject)=>{const r=db.transaction(store,"readonly").objectStore(store).get(id);r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error)})}
-function put(store,data){return new Promise((resolve,reject)=>{const tx=db.transaction(store,"readwrite");tx.objectStore(store).put(data);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error)})}
-function remove(store,id){return new Promise((resolve,reject)=>{const tx=db.transaction(store,"readwrite");tx.objectStore(store).delete(id);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error)})}
-function fileToDataURL(file){return new Promise((resolve,reject)=>{if(!file)return resolve("");const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=()=>reject(r.error);r.readAsDataURL(file)})}
-async function loadData(){episodes=await getAll("episodes");announcements=await getAll("announcements");accounts=await getAll("accounts");render();renderAnnouncements();await loadBackground()}
-function saveCurrentSession(){currentUser?localStorage.setItem("miraculous_current_user",currentUser.username):localStorage.removeItem("miraculous_current_user")}
-async function restoreSession(){const username=localStorage.getItem("miraculous_current_user");if(!username)return;const account=await getItem("accounts",username);if(account)currentUser=account}
-function updateProfileUI(){
- const photo=currentUser?.photo||"",name=currentUser?.username||"Entrar";
- $("profileName").textContent=name;$("menuName").textContent=name;$("menuRole").textContent=currentUser?(currentUser.admin?"Administrador":"Conta"):"Sem sessão";
- if(photo){$("profilePhoto").src=photo;$("profilePhoto").classList.remove("hide");$("profileFallback").classList.add("hide");$("menuPhoto").src=photo;$("menuPhoto").classList.remove("hide");$("menuFallback").classList.add("hide")}
- else{$("profilePhoto").classList.add("hide");$("profileFallback").classList.remove("hide");$("menuPhoto").classList.add("hide");$("menuFallback").classList.remove("hide")}
- if(currentUser){$("loginFromMenu").classList.add("hide");$("changeProfile").classList.remove("hide");$("logoutButton").classList.remove("hide");$("adminOpen").style.display=currentUser.admin?"block":"none"}
- else{$("loginFromMenu").classList.remove("hide");$("changeProfile").classList.add("hide");$("logoutButton").classList.add("hide");$("adminOpen").style.display="none"}
+
+/* =========================================================
+   CONFIGURAÇÃO
+========================================================= */
+
+const ADMIN_USER = "miguel";
+const ADMIN_PASS = "nemesis6";
+
+const DB_NAME = "miraculousKK";
+const DB_VERSION = 6;
+
+let db = null;
+let dbPromise = null;
+
+let episodes = [];
+let announcements = [];
+let accounts = [];
+
+let currentUser = null;
+let editingId = null;
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+const $ = id => document.getElementById(id);
+
+function esc(value = ""){
+  return String(value).replace(
+    /[&<>"']/g,
+    m => ({
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#39;"
+    }[m])
+  );
 }
-$("profileButton").onclick=e=>{e.stopPropagation();$("profileMenu").classList.toggle("hide")};
-document.addEventListener("click",e=>{if(!$("profileMenu").contains(e.target)&&!$("profileButton").contains(e.target))$("profileMenu").classList.add("hide")});
-$("loginFromMenu").onclick=()=>{$("profileMenu").classList.add("hide");$("authModal").classList.remove("hide")};
-$("changeProfile").onclick=()=>$("profileFile").click();
-$("profileFile").onchange=async function(){const file=this.files[0];if(!file||!currentUser)return;try{currentUser.photo=await fileToDataURL(file);await put("accounts",currentUser);saveCurrentSession();updateProfileUI()}catch(e){alert("Não foi possível alterar a foto.")}this.value=""};
-$("loginTab").onclick=()=>{ $("loginForm").classList.remove("hide");$("registerForm").classList.add("hide");$("loginTab").classList.add("authTabActive");$("registerTab").classList.remove("authTabActive");$("authTitle").textContent="Entrar";$("authMessage").textContent=""};
-$("registerTab").onclick=()=>{ $("loginForm").classList.add("hide");$("registerForm").classList.remove("hide");$("registerTab").classList.add("authTabActive");$("loginTab").classList.remove("authTabActive");$("authTitle").textContent="Criar conta";$("authMessage").textContent=""};
-document.querySelectorAll(".showPassword").forEach(b=>b.onclick=()=>{const i=$(b.dataset.target);i.type=i.type==="password"?"text":"password";b.textContent=i.type==="password"?"👁️":"🙈"});
-let registerPhoto="";
-$("chooseRegisterAvatar").onclick=()=>$("registerAvatarFile").click();
-$("registerAvatarFile").onchange=async function(){if(!this.files[0])return;try{registerPhoto=await fileToDataURL(this.files[0]);$("registerAvatar").src=registerPhoto;$("registerAvatar").classList.remove("hide");$("registerAvatarFallback").classList.add("hide")}catch(e){}};
-$("loginBtn").onclick=async()=>{
- const username=$("loginUser").value.trim(),password=$("loginPass").value;
- if(!username||!password){$("authMessage").innerHTML='<span class="error">❌ Preenche o utilizador e a palavra-passe.</span>';return}
- if(username===ADMIN_USER&&password===ADMIN_PASS){currentUser={username:ADMIN_USER,password:ADMIN_PASS,admin:true,photo:localStorage.getItem("miraculous_admin_photo")||""};await put("accounts",currentUser)}
- else{const account=accounts.find(a=>a.username.toLowerCase()===username.toLowerCase());if(!account){$("authMessage").innerHTML='<span class="error">❌ Conta não encontrada.</span>';return}if(account.password!==password){$("authMessage").innerHTML='<span class="error">❌ Palavra-passe incorreta.</span>';return}currentUser=account}
- saveCurrentSession();updateProfileUI();$("authModal").classList.add("hide");$("loginUser").value="";$("loginPass").value="";
+
+function makeId(){
+  return typeof crypto !== "undefined" &&
+         crypto.randomUUID
+    ? crypto.randomUUID()
+    : Date.now().toString(36) +
+      Math.random().toString(36).slice(2);
+}
+
+
+/* =========================================================
+   INDEXED DB
+========================================================= */
+
+function openDB(){
+
+  if(dbPromise){
+    return dbPromise;
+  }
+
+  dbPromise = new Promise((resolve,reject)=>{
+
+    const request =
+      indexedDB.open(DB_NAME,DB_VERSION);
+
+    request.onupgradeneeded = e => {
+
+      const d = e.target.result;
+
+      if(!d.objectStoreNames.contains("episodes")){
+        d.createObjectStore(
+          "episodes",
+          {keyPath:"id"}
+        );
+      }
+
+      if(!d.objectStoreNames.contains("announcements")){
+        d.createObjectStore(
+          "announcements",
+          {keyPath:"id"}
+        );
+      }
+
+      if(!d.objectStoreNames.contains("settings")){
+        d.createObjectStore(
+          "settings",
+          {keyPath:"id"}
+        );
+      }
+
+      if(!d.objectStoreNames.contains("accounts")){
+        d.createObjectStore(
+          "accounts",
+          {keyPath:"username"}
+        );
+      }
+
+    };
+
+    request.onsuccess = e => {
+
+      db = e.target.result;
+
+      db.onclose = () => {
+        db = null;
+        dbPromise = null;
+      };
+
+      db.onerror = e => {
+        console.error(
+          "IndexedDB error:",
+          e.target.error
+        );
+      };
+
+      resolve(db);
+
+    };
+
+    request.onerror = () => {
+
+      dbPromise = null;
+
+      reject(request.error);
+
+    };
+
+  });
+
+  return dbPromise;
+}
+
+
+/*
+   ESTA É A CORREÇÃO PRINCIPAL DO BUG.
+
+   Antes, algumas funções tentavam usar:
+   db.transaction(...)
+
+   quando o IndexedDB ainda não tinha acabado de abrir.
+
+   Agora todas esperam primeiro pela base de dados.
+*/
+
+async function ensureDB(){
+
+  if(db){
+    return db;
+  }
+
+  return await openDB();
+}
+
+
+async function getAll(store){
+
+  const database = await ensureDB();
+
+  return new Promise((resolve,reject)=>{
+
+    const tx =
+      database.transaction(
+        store,
+        "readonly"
+      );
+
+    const request =
+      tx.objectStore(store).getAll();
+
+    request.onsuccess = () => {
+      resolve(request.result || []);
+    };
+
+    request.onerror = () => {
+      reject(request.error);
+    };
+
+  });
+
+}
+
+
+async function getItem(store,id){
+
+  const database = await ensureDB();
+
+  return new Promise((resolve,reject)=>{
+
+    const tx =
+      database.transaction(
+        store,
+        "readonly"
+      );
+
+    const request =
+      tx.objectStore(store).get(id);
+
+    request.onsuccess = () => {
+      resolve(request.result);
+    };
+
+    request.onerror = () => {
+      reject(request.error);
+    };
+
+  });
+
+}
+
+
+async function put(store,data){
+
+  const database = await ensureDB();
+
+  return new Promise((resolve,reject)=>{
+
+    const tx =
+      database.transaction(
+        store,
+        "readwrite"
+      );
+
+    tx.objectStore(store).put(data);
+
+    tx.oncomplete = () => {
+      resolve();
+    };
+
+    tx.onerror = () => {
+      reject(tx.error);
+    };
+
+  });
+
+}
+
+
+async function remove(store,id){
+
+  const database = await ensureDB();
+
+  return new Promise((resolve,reject)=>{
+
+    const tx =
+      database.transaction(
+        store,
+        "readwrite"
+      );
+
+    tx.objectStore(store).delete(id);
+
+    tx.oncomplete = () => {
+      resolve();
+    };
+
+    tx.onerror = () => {
+      reject(tx.error);
+    };
+
+  });
+
+}
+
+
+/* =========================================================
+   FICHEIROS
+========================================================= */
+
+function fileToDataURL(file){
+
+  return new Promise((resolve,reject)=>{
+
+    if(!file){
+      resolve("");
+      return;
+    }
+
+    const reader =
+      new FileReader();
+
+    reader.onload = () => {
+      resolve(reader.result);
+    };
+
+    reader.onerror = () => {
+      reject(reader.error);
+    };
+
+    reader.readAsDataURL(file);
+
+  });
+
+}
+
+
+/* =========================================================
+   CARREGAMENTO
+========================================================= */
+
+async function loadData(){
+
+  await ensureDB();
+
+  episodes =
+    await getAll("episodes");
+
+  announcements =
+    await getAll("announcements");
+
+  accounts =
+    await getAll("accounts");
+
+  render();
+
+  renderAnnouncements();
+
+  await loadBackground();
+
+}
+
+
+/* =========================================================
+   SESSÃO
+========================================================= */
+
+function saveCurrentSession(){
+
+  if(currentUser){
+
+    localStorage.setItem(
+      "miraculous_current_user",
+      currentUser.username
+    );
+
+  }else{
+
+    localStorage.removeItem(
+      "miraculous_current_user"
+    );
+
+  }
+
+}
+
+
+async function restoreSession(){
+
+  const username =
+    localStorage.getItem(
+      "miraculous_current_user"
+    );
+
+  if(!username){
+    return;
+  }
+
+  try{
+
+    const account =
+      await getItem(
+        "accounts",
+        username
+      );
+
+    if(account){
+      currentUser = account;
+    }
+
+  }catch(error){
+
+    console.error(
+      "Erro ao restaurar sessão:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   PERFIL
+========================================================= */
+
+function updateProfileUI(){
+
+  const photo =
+    currentUser?.photo || "";
+
+  const name =
+    currentUser?.username || "Entrar";
+
+  $("profileName").textContent = name;
+
+  $("menuName").textContent = name;
+
+  $("menuRole").textContent =
+    currentUser
+      ? (
+          currentUser.admin
+            ? "Administrador"
+            : "Conta"
+        )
+      : "Sem sessão";
+
+
+  if(photo){
+
+    $("profilePhoto").src = photo;
+
+    $("profilePhoto")
+      .classList
+      .remove("hide");
+
+    $("profileFallback")
+      .classList
+      .add("hide");
+
+
+    $("menuPhoto").src = photo;
+
+    $("menuPhoto")
+      .classList
+      .remove("hide");
+
+    $("menuFallback")
+      .classList
+      .add("hide");
+
+  }else{
+
+    $("profilePhoto")
+      .classList
+      .add("hide");
+
+    $("profileFallback")
+      .classList
+      .remove("hide");
+
+
+    $("menuPhoto")
+      .classList
+      .add("hide");
+
+    $("menuFallback")
+      .classList
+      .remove("hide");
+
+  }
+
+
+  if(currentUser){
+
+    $("loginFromMenu")
+      .classList
+      .add("hide");
+
+    $("changeProfile")
+      .classList
+      .remove("hide");
+
+    $("logoutButton")
+      .classList
+      .remove("hide");
+
+    $("adminOpen").style.display =
+      currentUser.admin
+        ? "block"
+        : "none";
+
+  }else{
+
+    $("loginFromMenu")
+      .classList
+      .remove("hide");
+
+    $("changeProfile")
+      .classList
+      .add("hide");
+
+    $("logoutButton")
+      .classList
+      .add("hide");
+
+    $("adminOpen").style.display =
+      "none";
+
+  }
+
+}
+
+
+/* =========================================================
+   MENU DO PERFIL
+========================================================= */
+
+$("profileButton").onclick = e => {
+
+  e.stopPropagation();
+
+  $("profileMenu")
+    .classList
+    .toggle("hide");
+
 };
-$("registerBtn").onclick=async()=>{
- const username=$("registerUser").value.trim(),password=$("registerPass").value,password2=$("registerPass2").value;
- if(username.length<3){$("authMessage").innerHTML='<span class="error">❌ O nome precisa de ter pelo menos 3 caracteres.</span>';return}
- if(password.length<4){$("authMessage").innerHTML='<span class="error">❌ A palavra-passe precisa de ter pelo menos 4 caracteres.</span>';return}
- if(password!==password2){$("authMessage").innerHTML='<span class="error">❌ As palavras-passe não coincidem.</span>';return}
- if(username.toLowerCase()===ADMIN_USER.toLowerCase()||accounts.some(a=>a.username.toLowerCase()===username.toLowerCase())){$("authMessage").innerHTML='<span class="error">❌ Esse utilizador já existe ou não está disponível.</span>';return}
- try{const account={username,password,photo:registerPhoto||"",admin:false,createdAt:Date.now()};await put("accounts",account);accounts=await getAll("accounts");currentUser=account;saveCurrentSession();updateProfileUI();$("authModal").classList.add("hide");$("registerUser").value="";$("registerPass").value="";$("registerPass2").value="";registerPhoto="";$("registerAvatar").classList.add("hide");$("registerAvatarFallback").classList.remove("hide")}catch(e){$("authMessage").innerHTML='<span class="error">❌ Não foi possível criar a conta.</span>'}
+
+
+document.addEventListener("click",e=>{
+
+  if(
+    !$("profileMenu").contains(e.target) &&
+    !$("profileButton").contains(e.target)
+  ){
+
+    $("profileMenu")
+      .classList
+      .add("hide");
+
+  }
+
+});
+
+
+$("loginFromMenu").onclick = () => {
+
+  $("profileMenu")
+    .classList
+    .add("hide");
+
+  $("authModal")
+    .classList
+    .remove("hide");
+
 };
-$("logoutButton").onclick=()=>{currentUser=null;saveCurrentSession();updateProfileUI();$("profileMenu").classList.add("hide");$("admin").classList.add("hide")};
-$("authClose").onclick=()=>$("authModal").classList.add("hide");
-$("adminOpen").onclick=()=>{if(!currentUser?.admin)return;$("profileMenu").classList.add("hide");$("admin").classList.remove("hide");renderAdminList()};
-$("adminClose").onclick=()=>$("admin").classList.add("hide");
-function render(){const q=$("search").value.toLowerCase().trim(),filtered=episodes.filter(e=>`${e.title} ${e.season} ${e.number} ${e.lang}`.toLowerCase().includes(q));$("grid").innerHTML=filtered.map(e=>`<article class="card"><div class="thumb">${e.thumbnail?`<img src="${e.thumbnail}" alt="" loading="lazy">`:"🐞"}</div><div class="body"><b>${esc(e.title)}</b><div class="meta">${esc(e.season)} · ${esc(e.number)} · ${esc(e.lang||"—")}</div>${e.desc?`<p class="muted">${esc(e.desc)}</p>`:""}</div></article>`).join("")||'<p class="muted">Nenhum episódio encontrado.</p>';$("count").textContent=episodes.length;renderAdminList()}
-function renderAdminList(){if(!currentUser?.admin)return;$("list").innerHTML=episodes.map(e=>`<div class="item"><div><b>${esc(e.title)}</b><div class="meta">${esc(e.season)} · ${esc(e.number)} · ${esc(e.lang||"—")}</div></div><div class="item-actions"><button class="btn" onclick="editEpisode('${e.id}')">✏️</button><button class="danger" onclick="deleteEpisode('${e.id}')">🗑️</button></div></div>`).join("")||'<p class="muted">Ainda não existem episódios.</p>'}
-window.deleteEpisode=async id=>{if(!currentUser?.admin||!confirm("Queres mesmo apagar este episódio?"))return;try{await remove("episodes",id);await loadData()}catch(e){alert("Não foi possível apagar o episódio.")}};
-window.editEpisode=id=>{if(!currentUser?.admin)return;const e=episodes.find(x=>x.id===id);if(!e)return;editingId=id;$("episodeFormTitle").textContent="Editar episódio";$("title").value=e.title||"";$("season").value=e.season||"";$("number").value=e.number||"";$("lang").value=e.lang||"";$("desc").value=e.desc||"";$("thumb").value="";$("add").textContent="Guardar alterações";$("cancelEdit").style.display="inline-block"};
-$("cancelEdit").onclick=resetForm;
-function resetForm(){editingId=null;$("episodeFormTitle").textContent="Adicionar episódio";$("add").textContent="Guardar episódio";$("cancelEdit").style.display="none";["title","season","number","lang","desc"].forEach(id=>$(id).value="");$("thumb").value=""}
-$("add").onclick=async()=>{
- if(!currentUser?.admin){$("status").innerHTML='<div class="notice error">❌ Precisas de ser administrador.</div>';return}
- const title=$("title").value.trim();if(!title){$("status").innerHTML='<div class="notice error">❌ Escreve um título.</div>';return}
- const button=$("add");button.disabled=true;button.textContent="A guardar...";$("uploadProgress").style.display="block";$("progressBar").style.width="20%";
- try{const old=editingId?episodes.find(e=>e.id===editingId):null;const episode={id:editingId||makeId(),title,season:$("season").value.trim()||"—",number:$("number").value.trim()||"—",lang:$("lang").value.trim()||"—",desc:$("desc").value.trim()||"",thumbnail:old?.thumbnail||"",updatedAt:Date.now()};await put("episodes",episode);$("progressBar").style.width="60%";const file=$("thumb").files[0];if(file){const data=await fileToDataURL(file);if(data){episode.thumbnail=data;await put("episodes",episode)}}$("progressBar").style.width="100%";await loadData();resetForm();$("status").innerHTML='<div class="notice success">✅ Episódio guardado com sucesso!</div>';setTimeout(()=>{$("status").innerHTML="";$("uploadProgress").style.display="none";$("progressBar").style.width="0%"},2500)}catch(e){$("status").innerHTML=`<div class="notice error">❌ Erro ao guardar episódio.<br><small>${esc(e?.message||"Erro desconhecido")}</small></div>`;$("uploadProgress").style.display="none"}button.disabled=false;button.textContent=editingId?"Guardar alterações":"Guardar episódio";
+
+
+$("changeProfile").onclick = () => {
+
+  $("profileFile").click();
+
 };
-function renderAnnouncements(){$("announcementCount").textContent=announcements.length;const sorted=[...announcements].sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));$("announcements").innerHTML=sorted.map(a=>`<div class="announcement"><span class="announcement-label" style="background:${esc(a.color||"#e62b45")}">${esc(a.label||"NOVIDADE")}</span><div class="announcement-title">${esc(a.title)}</div><div class="muted">${esc(a.text)}</div></div>`).join("")||'<p class="muted">Ainda não existem anúncios.</p>'}
-$("announcementColor").oninput=function(){$("colorPreview").style.background=this.value;$("colorPreview").textContent=$("announcementLabel").value||"NOVIDADE"};
-$("announcementLabel").oninput=function(){$("colorPreview").textContent=this.value||"NOVIDADE"};
-$("addAnnouncement").onclick=async()=>{
- if(!currentUser?.admin){$("announcementStatus").innerHTML='<div class="notice error">❌ Apenas o administrador pode publicar anúncios.</div>';return}
- const label=$("announcementLabel").value.trim()||"NOVIDADE",title=$("announcementTitle").value.trim(),text=$("announcementText").value.trim(),color=$("announcementColor").value;
- if(!title||!text){$("announcementStatus").innerHTML='<div class="notice error">❌ Preenche o título e o texto.</div>';return}
- try{await put("announcements",{id:makeId(),label,title,text,color,createdAt:Date.now()});announcements=await getAll("announcements");renderAnnouncements();$("announcementTitle").value="";$("announcementText").value="";$("announcementStatus").innerHTML='<div class="notice success">✅ Anúncio publicado!</div>'}catch(e){$("announcementStatus").innerHTML='<div class="notice error">❌ Erro ao publicar anúncio.</div>'}
+
+
+$("profileFile").onchange =
+async function(){
+
+  const file =
+    this.files[0];
+
+  if(!file || !currentUser){
+    return;
+  }
+
+  try{
+
+    currentUser.photo =
+      await fileToDataURL(file);
+
+    await put(
+      "accounts",
+      currentUser
+    );
+
+    saveCurrentSession();
+
+    updateProfileUI();
+
+  }catch(error){
+
+    alert(
+      "Não foi possível alterar a foto."
+    );
+
+  }
+
+  this.value = "";
+
 };
-async function loadBackground(){try{const s=await getItem("settings","background");$("backgroundImage").style.display="none";$("backgroundVideo").style.display="none";if(!s)return;if(s.type==="image"){$("backgroundImage").src=s.data;$("backgroundImage").style.display="block"}if(s.type==="video"){$("backgroundVideo").src=s.data;$("backgroundVideo").style.display="block";$("backgroundVideo").play().catch(()=>{})}}catch(e){console.warn(e)}}
-$("saveBackground").onclick=async()=>{if(!currentUser?.admin)return;const image=$("backgroundImageFile").files[0],video=$("backgroundVideoFile").files[0];if(!image&&!video){$("backgroundStatus").innerHTML='<div class="notice error">❌ Seleciona uma imagem ou vídeo.</div>';return}try{const file=video||image,data=await fileToDataURL(file);await put("settings",{id:"background",type:video?"video":"image",data});await loadBackground();$("backgroundImageFile").value="";$("backgroundVideoFile").value="";$("backgroundStatus").innerHTML='<div class="notice success">✅ Fundo atualizado!</div>'}catch(e){$("backgroundStatus").innerHTML='<div class="notice error">❌ Não foi possível guardar o fundo.</div>'}};
-$("removeBackground").onclick=async()=>{if(!currentUser?.admin)return;try{await remove("settings","background");$("backgroundImage").removeAttribute("src");$("backgroundVideo").pause();$("backgroundVideo").removeAttribute("src");$("backgroundImage").style.display="none";$("backgroundVideo").style.display="none";$("backgroundStatus").innerHTML='<div class="notice success">✅ Fundo removido.</div>'}catch(e){}};
-$("search").oninput=render;
-(async()=>{try{await openDB();await loadData();await restoreSession();updateProfileUI()}catch(e){console.error(e);$("grid").innerHTML='<p class="muted">Erro ao iniciar o catálogo.</p>'}})();
+
+
+/* =========================================================
+   LOGIN / REGISTO
+========================================================= */
+
+$("loginTab").onclick = () => {
+
+  $("loginForm")
+    .classList
+    .remove("hide");
+
+  $("registerForm")
+    .classList
+    .add("hide");
+
+  $("loginTab")
+    .classList
+    .add("authTabActive");
+
+  $("registerTab")
+    .classList
+    .remove("authTabActive");
+
+  $("authTitle").textContent =
+    "Entrar";
+
+  $("authMessage").textContent =
+    "";
+
+};
+
+
+$("registerTab").onclick = () => {
+
+  $("loginForm")
+    .classList
+    .add("hide");
+
+  $("registerForm")
+    .classList
+    .remove("hide");
+
+  $("registerTab")
+    .classList
+    .add("authTabActive");
+
+  $("loginTab")
+    .classList
+    .remove("authTabActive");
+
+  $("authTitle").textContent =
+    "Criar conta";
+
+  $("authMessage").textContent =
+    "";
+
+};
+
+
+document
+.querySelectorAll(".showPassword")
+.forEach(button=>{
+
+  button.onclick = () => {
+
+    const input =
+      $(button.dataset.target);
+
+    input.type =
+      input.type === "password"
+        ? "text"
+        : "password";
+
+    button.textContent =
+      input.type === "password"
+        ? "👁️"
+        : "🙈";
+
+  };
+
+});
+
+
+let registerPhoto = "";
+
+
+$("chooseRegisterAvatar").onclick =
+() => {
+
+  $("registerAvatarFile").click();
+
+};
+
+
+$("registerAvatarFile").onchange =
+async function(){
+
+  if(!this.files[0]){
+    return;
+  }
+
+  try{
+
+    registerPhoto =
+      await fileToDataURL(
+        this.files[0]
+      );
+
+    $("registerAvatar").src =
+      registerPhoto;
+
+    $("registerAvatar")
+      .classList
+      .remove("hide");
+
+    $("registerAvatarFallback")
+      .classList
+      .add("hide");
+
+  }catch(error){
+
+    console.error(error);
+
+  }
+
+};
+
+
+/* LOGIN */
+
+$("loginBtn").onclick =
+async () => {
+
+  const button =
+    $("loginBtn");
+
+  button.disabled = true;
+
+  button.textContent =
+    "A entrar...";
+
+  try{
+
+    await ensureDB();
+
+    const username =
+      $("loginUser")
+      .value
+      .trim();
+
+    const password =
+      $("loginPass")
+      .value;
+
+
+    if(!username || !password){
+
+      $("authMessage").innerHTML =
+        '<span class="error">❌ Preenche o utilizador e a palavra-passe.</span>';
+
+      return;
+    }
+
+
+    /* ADMIN */
+
+    if(
+      username.toLowerCase() ===
+      ADMIN_USER.toLowerCase() &&
+      password === ADMIN_PASS
+    ){
+
+      currentUser = {
+
+        username: ADMIN_USER,
+
+        password: ADMIN_PASS,
+
+        admin: true,
+
+        photo:
+          localStorage.getItem(
+            "miraculous_admin_photo"
+          ) || ""
+
+      };
+
+      await put(
+        "accounts",
+        currentUser
+      );
+
+    }else{
+
+      const account =
+        accounts.find(
+          a =>
+            a.username.toLowerCase() ===
+            username.toLowerCase()
+        );
+
+
+      if(!account){
+
+        $("authMessage").innerHTML =
+          '<span class="error">❌ Conta não encontrada.</span>';
+
+        return;
+      }
+
+
+      if(account.password !== password){
+
+        $("authMessage").innerHTML =
+          '<span class="error">❌ Palavra-passe incorreta.</span>';
+
+        return;
+      }
+
+
+      currentUser = account;
+
+    }
+
+
+    saveCurrentSession();
+
+    updateProfileUI();
+
+    $("authModal")
+      .classList
+      .add("hide");
+
+    $("loginUser").value = "";
+
+    $("loginPass").value = "";
+
+  }catch(error){
+
+    console.error(error);
+
+    $("authMessage").innerHTML =
+      '<span class="error">❌ Ocorreu um erro ao entrar. Tenta novamente.</span>';
+
+  }finally{
+
+    button.disabled = false;
+
+    button.textContent =
+      "Entrar";
+
+  }
+
+};
+
+
+/* REGISTO */
+
+$("registerBtn").onclick =
+async () => {
+
+  const button =
+    $("registerBtn");
+
+  button.disabled = true;
+
+  button.textContent =
+    "A criar conta...";
+
+  try{
+
+    await ensureDB();
+
+    const username =
+      $("registerUser")
+      .value
+      .trim();
+
+    const password =
+      $("registerPass")
+      .value;
+
+    const password2 =
+      $("registerPass2")
+      .value;
+
+
+    if(username.length < 3){
+
+      $("authMessage").innerHTML =
+        '<span class="error">❌ O nome precisa de ter pelo menos 3 caracteres.</span>';
+
+      return;
+    }
+
+
+    if(password.length < 4){
+
+      $("authMessage").innerHTML =
+        '<span class="error">❌ A palavra-passe precisa de ter pelo menos 4 caracteres.</span>';
+
+      return;
+    }
+
+
+    if(password !== password2){
+
+      $("authMessage").innerHTML =
+        '<span class="error">❌ As palavras-passe não coincidem.</span>';
+
+      return;
+    }
+
+
+    if(
+      username.toLowerCase() ===
+      ADMIN_USER.toLowerCase() ||
+      accounts.some(
+        a =>
+          a.username.toLowerCase() ===
+          username.toLowerCase()
+      )
+    ){
+
+      $("authMessage").innerHTML =
+        '<span class="error">❌ Esse utilizador já existe ou não está disponível.</span>';
+
+      return;
+    }
+
+
+    const account = {
+
+      username,
+
+      password,
+
+      photo:
+        registerPhoto || "",
+
+      admin:false,
+
+      createdAt:
+        Date.now()
+
+    };
+
+
+    await put(
+      "accounts",
+      account
+    );
+
+
+    accounts =
+      await getAll("accounts");
+
+
+    currentUser =
+      account;
+
+
+    saveCurrentSession();
+
+    updateProfileUI();
+
+
+    $("authModal")
+      .classList
+      .add("hide");
+
+
+    $("registerUser").value = "";
+
+    $("registerPass").value = "";
+
+    $("registerPass2").value = "";
+
+    registerPhoto = "";
+
+    $("registerAvatar")
+      .classList
+      .add("hide");
+
+    $("registerAvatarFallback")
+      .classList
+      .remove("hide");
+
+
+  }catch(error){
+
+    console.error(error);
+
+    $("authMessage").innerHTML =
+      '<span class="error">❌ Não foi possível criar a conta.</span>';
+
+  }finally{
+
+    button.disabled = false;
+
+    button.textContent =
+      "Criar conta";
+
+  }
+
+};
+
+
+/* LOGOUT */
+
+$("logoutButton").onclick = () => {
+
+  currentUser = null;
+
+  saveCurrentSession();
+
+  updateProfileUI();
+
+  $("profileMenu")
+    .classList
+    .add("hide");
+
+  $("admin")
+    .classList
+    .add("hide");
+
+};
+
+
+/* FECHAR LOGIN */
+
+$("authClose").onclick = () => {
+
+  $("authModal")
+    .classList
+    .add("hide");
+
+};
+
+
+/* =========================================================
+   ADMIN
+========================================================= */
+
+$("adminOpen").onclick = () => {
+
+  if(!currentUser?.admin){
+    return;
+  }
+
+  $("profileMenu")
+    .classList
+    .add("hide");
+
+  $("admin")
+    .classList
+    .remove("hide");
+
+  renderAdminList();
+
+};
+
+
+$("adminClose").onclick = () => {
+
+  $("admin")
+    .classList
+    .add("hide");
+
+};
+
+
+/* =========================================================
+   CATÁLOGO
+========================================================= */
+
+function render(){
+
+  const q =
+    $("search")
+    .value
+    .toLowerCase()
+    .trim();
+
+  const selectedSeries =
+    $("seriesFilter").value;
+
+
+  const filtered =
+    episodes.filter(e=>{
+
+      const text =
+        `${e.title} ${e.season} ${e.number} ${e.lang} ${e.series || "Miraculous"}`
+        .toLowerCase();
+
+      return (
+        text.includes(q) &&
+        (
+          selectedSeries === "all" ||
+          (e.series || "Miraculous") ===
+          selectedSeries
+        )
+      );
+
+    });
+
+
+  $("grid").innerHTML =
+    filtered.map(e=>`
+
+<article class="card">
+
+<div class="thumb">
+
+${
+  e.thumbnail
+    ? `<img src="${esc(e.thumbnail)}" alt="" loading="lazy">`
+    : "🐞"
+}
+
+</div>
+
+<div class="body">
+
+<span class="seriesBadge">
+${esc(e.series || "Miraculous")}
+</span>
+
+<b>
+${esc(e.title)}
+</b>
+
+<div class="meta">
+${esc(e.series || "Miraculous")}
+· ${esc(e.season)}
+· ${esc(e.number)}
+· ${esc(e.lang || "—")}
+</div>
+
+${
+  e.desc
+    ? `<p class="muted">${esc(e.desc)}</p>`
+    : ""
+}
+
+${
+  e.trailerUrl
+    ? `
+<a
+class="btn"
+href="${esc(e.trailerUrl)}"
+target="_blank"
+rel="noopener"
+style="display:inline-block;margin-top:8px"
+>
+▶️ Trailer
+</a>
+`
+    : ""
+}
+
+</div>
+
+</article>
+
+`).join("")
+||
+'<p class="muted">Nenhum episódio encontrado.</p>';
+
+
+$("count").textContent =
+  episodes.length;
+
+renderAdminList();
+
+}
+
+
+/* =========================================================
+   LISTA ADMIN
+========================================================= */
+
+function renderAdminList(){
+
+  if(!currentUser?.admin){
+    return;
+  }
+
+
+  $("list").innerHTML =
+    episodes.map(e=>`
+
+<div class="item">
+
+<div>
+
+<b>
+${esc(e.title)}
+</b>
+
+<div class="meta">
+${esc(e.series || "Miraculous")}
+· ${esc(e.season)}
+· ${esc(e.number)}
+· ${esc(e.lang || "—")}
+</div>
+
+</div>
+
+<div class="item-actions">
+
+<button
+class="btn"
+onclick="editEpisode('${esc(e.id)}')"
+>
+✏️
+</button>
+
+<button
+class="danger"
+onclick="deleteEpisode('${esc(e.id)}')"
+>
+🗑️
+</button>
+
+</div>
+
+</div>
+
+`).join("")
+||
+'<p class="muted">Ainda não existem episódios.</p>';
+
+}
+
+
+/* =========================================================
+   APAGAR
+========================================================= */
+
+window.deleteEpisode =
+async id => {
+
+  if(
+    !currentUser?.admin ||
+    !confirm(
+      "Queres mesmo apagar este episódio?"
+    )
+  ){
+    return;
+  }
+
+  try{
+
+    await remove(
+      "episodes",
+      id
+    );
+
+    await loadData();
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Não foi possível apagar o episódio."
+    );
+
+  }
+
+};
+
+
+/* =========================================================
+   EDITAR
+========================================================= */
+
+window.editEpisode =
+id => {
+
+  if(!currentUser?.admin){
+    return;
+  }
+
+  const e =
+    episodes.find(
+      x => x.id === id
+    );
+
+  if(!e){
+    return;
+  }
+
+
+  editingId = id;
+
+
+  $("episodeFormTitle")
+    .textContent =
+    "Editar episódio";
+
+
+  $("series").value =
+    e.series || "Miraculous";
+
+  $("title").value =
+    e.title || "";
+
+  $("season").value =
+    e.season || "";
+
+  $("number").value =
+    e.number || "";
+
+  $("lang").value =
+    e.lang || "";
+
+  $("desc").value =
+    e.desc || "";
+
+  $("trailerUrl").value =
+    e.trailerUrl || "";
+
+  $("thumb").value =
+    "";
+
+  $("add").textContent =
+    "Guardar alterações";
+
+  $("cancelEdit").style.display =
+    "inline-block";
+
+};
+
+
+$("cancelEdit").onclick =
+resetForm;
+
+
+function resetForm(){
+
+  editingId = null;
+
+  $("episodeFormTitle")
+    .textContent =
+    "Adicionar episódio";
+
+  $("add").textContent =
+    "Guardar episódio";
+
+  $("cancelEdit").style.display =
+    "none";
+
+
+  [
+    "title",
+    "season",
+    "number",
+    "lang",
+    "desc",
+    "trailerUrl"
+  ].forEach(id=>{
+    $(id).value = "";
+  });
+
+
+  $("series").value =
+    "Miraculous";
+
+  $("thumb").value =
+    "";
+
+}
+
+
+/* =========================================================
+   GUARDAR EPISÓDIO
+========================================================= */
+
+$("add").onclick =
+async () => {
+
+  if(!currentUser?.admin){
+
+    $("status").innerHTML =
+      '<div class="notice error">❌ Precisas de ser administrador.</div>';
+
+    return;
+  }
+
+
+  const title =
+    $("title")
+    .value
+    .trim();
+
+
+  if(!title){
+
+    $("status").innerHTML =
+      '<div class="notice error">❌ Escreve um título.</div>';
+
+    return;
+  }
+
+
+  const button =
+    $("add");
+
+  button.disabled = true;
+
+  button.textContent =
+    "A guardar...";
+
+  $("uploadProgress")
+    .style
+    .display =
+    "block";
+
+  $("progressBar")
+    .style
+    .width =
+    "20%";
+
+
+  try{
+
+    const old =
+      editingId
+        ? episodes.find(
+            e => e.id === editingId
+          )
+        : null;
+
+
+    const episode = {
+
+      id:
+        editingId ||
+        makeId(),
+
+      series:
+        $("series").value,
+
+      title,
+
+      season:
+        $("season")
+        .value
+        .trim() || "—",
+
+      number:
+        $("number")
+        .value
+        .trim() || "—",
+
+      lang:
+        $("lang")
+        .value
+        .trim() || "—",
+
+      desc:
+        $("desc")
+        .value
+        .trim() || "",
+
+      /*
+        CORRIGIDO:
+        O trailer agora é realmente guardado.
+      */
+
+      trailerUrl:
+        $("trailerUrl")
+        .value
+        .trim() || "",
+
+      thumbnail:
+        old?.thumbnail || "",
+
+      updatedAt:
+        Date.now()
+
+    };
+
+
+    await put(
+      "episodes",
+      episode
+    );
+
+
+    $("progressBar")
+      .style
+      .width =
+      "60%";
+
+
+    const file =
+      $("thumb")
+      .files[0];
+
+
+    if(file){
+
+      const data =
+        await fileToDataURL(file);
+
+      if(data){
+
+        episode.thumbnail =
+          data;
+
+        await put(
+          "episodes",
+          episode
+        );
+
+      }
+
+    }
+
+
+    $("progressBar")
+      .style
+      .width =
+      "100%";
+
+
+    await loadData();
+
+    resetForm();
+
+
+    $("status").innerHTML =
+      '<div class="notice success">✅ Episódio guardado com sucesso!</div>';
+
+
+    setTimeout(()=>{
+
+      $("status").innerHTML =
+        "";
+
+      $("uploadProgress")
+        .style
+        .display =
+        "none";
+
+      $("progressBar")
+        .style
+        .width =
+        "0%";
+
+    },2500);
+
+
+  }catch(error){
+
+    console.error(error);
+
+    $("status").innerHTML =
+      `
+      <div class="notice error">
+      ❌ Erro ao guardar episódio.
+      <br>
+      <small>
+      ${esc(error?.message || "Erro desconhecido")}
+      </small>
+      </div>
+      `;
+
+    $("uploadProgress")
+      .style
+      .display =
+      "none";
+
+  }finally{
+
+    button.disabled = false;
+
+    button.textContent =
+      editingId
+        ? "Guardar alterações"
+        : "Guardar episódio";
+
+  }
+
+};
+
+
+/* =========================================================
+   ANÚNCIOS
+========================================================= */
+
+function renderAnnouncements(){
+
+  $("announcementCount")
+    .textContent =
+    announcements.length;
+
+
+  const sorted =
+    [...announcements]
+    .sort(
+      (a,b)=>
+        (b.createdAt || 0) -
+        (a.createdAt || 0)
+    );
+
+
+  $("announcements").innerHTML =
+    sorted.map(a=>`
+
+<div class="announcement">
+
+<span
+class="announcement-label"
+style="background:${esc(a.color || "#e62b45")}"
+>
+${esc(a.label || "NOVIDADE")}
+</span>
+
+<div class="announcement-title">
+${esc(a.title)}
+</div>
+
+<div class="muted">
+${esc(a.text)}
+</div>
+
+</div>
+
+`).join("")
+||
+'<p class="muted">Ainda não existem anúncios.</p>';
+
+}
+
+
+$("announcementColor").oninput =
+function(){
+
+  $("colorPreview")
+    .style
+    .background =
+    this.value;
+
+  $("colorPreview")
+    .textContent =
+    $("announcementLabel")
+      .value ||
+    "NOVIDADE";
+
+};
+
+
+$("announcementLabel").oninput =
+function(){
+
+  $("colorPreview")
+    .textContent =
+    this.value ||
+    "NOVIDADE";
+
+};
+
+
+$("addAnnouncement").onclick =
+async () => {
+
+  if(!currentUser?.admin){
+
+    $("announcementStatus").innerHTML =
+      '<div class="notice error">❌ Apenas o administrador pode publicar anúncios.</div>';
+
+    return;
+  }
+
+
+  const label =
+    $("announcementLabel")
+    .value
+    .trim() ||
+    "NOVIDADE";
+
+  const title =
+    $("announcementTitle")
+    .value
+    .trim();
+
+  const text =
+    $("announcementText")
+    .value
+    .trim();
+
+  const color =
+    $("announcementColor").value;
+
+
+  if(!title || !text){
+
+    $("announcementStatus").innerHTML =
+      '<div class="notice error">❌ Preenche o título e o texto.</div>';
+
+    return;
+  }
+
+
+  try{
+
+    await put(
+      "announcements",
+      {
+        id:makeId(),
+        label,
+        title,
+        text,
+        color,
+        createdAt:Date.now()
+      }
+    );
+
+
+    announcements =
+      await getAll(
+        "announcements"
+      );
+
+
+    renderAnnouncements();
+
+
+    $("announcementTitle")
+      .value = "";
+
+    $("announcementText")
+      .value = "";
+
+
+    $("announcementStatus").innerHTML =
+      '<div class="notice success">✅ Anúncio publicado!</div>';
+
+
+  }catch(error){
+
+    console.error(error);
+
+    $("announcementStatus").innerHTML =
+      '<div class="notice error">❌ Erro ao publicar anúncio.</div>';
+
+  }
+
+};
+
+
+/* =========================================================
+   FUNDO
+========================================================= */
+
+async function loadBackground(){
+
+  try{
+
+    const s =
+      await getItem(
+        "settings",
+        "background"
+      );
+
+
+    $("backgroundImage")
+      .style
+      .display =
+      "none";
+
+    $("backgroundVideo")
+      .style
+      .display =
+      "none";
+
+
+    if(!s){
+      return;
+    }
+
+
+    if(s.type === "image"){
+
+      $("backgroundImage")
+        .src =
+        s.data;
+
+      $("backgroundImage")
+        .style
+        .display =
+        "block";
+
+    }
+
+
+    if(s.type === "video"){
+
+      $("backgroundVideo")
+        .src =
+        s.data;
+
+      $("backgroundVideo")
+        .style
+        .display =
+        "block";
+
+      $("backgroundVideo")
+        .play()
+        .catch(()=>{});
+
+    }
+
+  }catch(error){
+
+    console.warn(
+      "Erro ao carregar fundo:",
+      error
+    );
+
+  }
+
+}
+
+
+$("saveBackground").onclick =
+async () => {
+
+  if(!currentUser?.admin){
+    return;
+  }
+
+
+  const image =
+    $("backgroundImageFile")
+    .files[0];
+
+  const video =
+    $("backgroundVideoFile")
+    .files[0];
+
+
+  if(!image && !video){
+
+    $("backgroundStatus").innerHTML =
+      '<div class="notice error">❌ Seleciona uma imagem ou vídeo.</div>';
+
+    return;
+  }
+
+
+  try{
+
+    const file =
+      video || image;
+
+    const data =
+      await fileToDataURL(file);
+
+
+    await put(
+      "settings",
+      {
+        id:"background",
+        type:
+          video
+            ? "video"
+            : "image",
+        data
+      }
+    );
+
+
+    await loadBackground();
+
+
+    $("backgroundImageFile")
+      .value = "";
+
+    $("backgroundVideoFile")
+      .value = "";
+
+
+    $("backgroundStatus").innerHTML =
+      '<div class="notice success">✅ Fundo atualizado!</div>';
+
+
+  }catch(error){
+
+    console.error(error);
+
+    $("backgroundStatus").innerHTML =
+      '<div class="notice error">❌ Não foi possível guardar o fundo.</div>';
+
+  }
+
+};
+
+
+$("removeBackground").onclick =
+async () => {
+
+  if(!currentUser?.admin){
+    return;
+  }
+
+
+  try{
+
+    await remove(
+      "settings",
+      "background"
+    );
+
+
+    $("backgroundImage")
+      .removeAttribute("src");
+
+    $("backgroundVideo")
+      .pause();
+
+    $("backgroundVideo")
+      .removeAttribute("src");
+
+
+    $("backgroundImage")
+      .style
+      .display =
+      "none";
+
+    $("backgroundVideo")
+      .style
+      .display =
+      "none";
+
+
+    $("backgroundStatus").innerHTML =
+      '<div class="notice success">✅ Fundo removido.</div>';
+
+
+  }catch(error){
+
+    console.error(error);
+
+  }
+
+};
+
+
+/* =========================================================
+   PESQUISA
+========================================================= */
+
+$("search").oninput =
+render;
+
+$("seriesFilter").onchange =
+render;
+
+
+/* =========================================================
+   ARRANQUE
+========================================================= */
+
+(async()=>{
+
+  try{
+
+    await ensureDB();
+
+    await loadData();
+
+    await restoreSession();
+
+    updateProfileUI();
+
+  }catch(error){
+
+    console.error(
+      "Erro ao iniciar:",
+      error
+    );
+
+    $("grid").innerHTML =
+      `
+      <p class="muted">
+      ❌ Erro ao iniciar o catálogo.
+      </p>
+      `;
+
+  }
+
+})();
+
 </script>
+
 </body>
-                                                                                                                                                                      </html>
+ </html>
