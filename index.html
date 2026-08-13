@@ -8,17 +8,20 @@
 <style>
 :root{
   --bg:#07070a;
-  --p:#111116;
+  --panel:#111116;
+  --panel2:#0d0d12;
   --line:#292933;
   --txt:#f7f7fb;
   --muted:#aaaab5;
   --red:#e62b45;
+  --green:#43d17c;
+  --yellow:#ffd45c;
 }
 
 *{box-sizing:border-box}
 
 html{
-  scroll-behavior:smooth;
+  scroll-behavior:smooth
 }
 
 body{
@@ -30,23 +33,36 @@ body{
 }
 
 button,input,textarea,select{
-  font:inherit;
+  font:inherit
 }
 
 button{
-  cursor:pointer;
+  cursor:pointer
 }
 
 a{
   color:inherit;
-  text-decoration:none;
+  text-decoration:none
 }
 
 .hide{
-  display:none!important;
+  display:none!important
 }
 
-/* FUNDO */
+.muted{
+  color:var(--muted);
+  line-height:1.6
+}
+
+.error{
+  color:#ff7183
+}
+
+.success{
+  color:#70e090
+}
+
+/* BACKGROUND */
 
 #backgroundLayer{
   position:fixed;
@@ -68,7 +84,7 @@ a{
 #backgroundOverlay{
   position:absolute;
   inset:0;
-  background:rgba(0,0,0,.62);
+  background:rgba(0,0,0,.68);
 }
 
 /* HEADER */
@@ -77,10 +93,10 @@ a{
   min-height:70px;
   display:flex;
   align-items:center;
-  gap:18px;
+  gap:20px;
   padding:12px 6vw;
   border-bottom:1px solid #17171c;
-  background:rgba(8,8,11,.92);
+  background:rgba(8,8,11,.94);
   backdrop-filter:blur(14px);
   position:sticky;
   top:0;
@@ -94,7 +110,7 @@ a{
 }
 
 .brand span{
-  color:var(--red);
+  color:var(--red)
 }
 
 nav{
@@ -104,10 +120,21 @@ nav{
 }
 
 nav a:hover{
-  color:#fff;
+  color:#fff
 }
 
-/* PERFIL */
+.quickActions{display:flex;align-items:center;gap:6px}
+.quickIcon{width:40px;height:40px;padding:0;display:grid;place-items:center;border:1px solid var(--line);background:#121218;color:#fff;border-radius:11px;font-size:18px}
+.quickIcon:hover{border-color:#666673;transform:translateY(-1px)}
+.chatBox{background:rgba(17,17,22,.94);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.chatTabs{display:flex;gap:8px;padding:12px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.chatMessages{min-height:260px;max-height:420px;overflow:auto;padding:14px;display:flex;flex-direction:column;gap:9px}
+.chatMessage{max-width:82%;padding:9px 12px;border:1px solid var(--line);border-radius:13px;background:#0d0d12}
+.chatMessage.mine{align-self:flex-end;background:#261018;border-color:#4c1c28}
+.chatMeta{font-size:12px;color:var(--muted);margin-bottom:3px}
+.chatComposer{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
+.chatComposer input{flex:1}
+@media(max-width:850px){.quickActions{order:3;width:100%;justify-content:center}.top{flex-wrap:wrap}}
 
 .profileArea{
   display:flex;
@@ -125,7 +152,6 @@ nav a:hover{
   display:flex;
   align-items:center;
   gap:9px;
-  cursor:pointer;
 }
 
 .profilePhoto,
@@ -157,8 +183,8 @@ nav a:hover{
   position:absolute;
   right:0;
   top:55px;
-  width:230px;
-  background:#101015!important;
+  width:250px;
+  background:#101015;
   border:1px solid var(--line);
   border-radius:15px;
   padding:12px;
@@ -175,17 +201,18 @@ nav a:hover{
   margin-bottom:8px;
 }
 
-.profileMenuHeader img{
+.profileMenuHeader img,
+.profileMenuHeader .profileFallback{
   width:45px;
   height:45px;
-  border-radius:50%;
-  object-fit:cover;
 }
 
 .profileMenuHeader b{
   display:block;
   overflow:hidden;
   text-overflow:ellipsis;
+  white-space:nowrap;
+  max-width:155px;
 }
 
 .profileMenu button{
@@ -194,11 +221,7 @@ nav a:hover{
   text-align:left;
 }
 
-.adminButton{
-  display:none;
-}
-
-/* BOTÕES */
+/* BUTTONS */
 
 .btn{
   border:1px solid var(--line);
@@ -210,12 +233,27 @@ nav a:hover{
 }
 
 .btn:hover{
-  border-color:#444450;
+  border-color:#555563;
+  transform:translateY(-1px);
 }
 
 .primary{
   background:var(--red);
   border-color:var(--red);
+}
+
+.danger{
+  background:#38111a;
+  border:1px solid #5a1a26;
+  color:#ff8a99;
+  border-radius:8px;
+  padding:8px 11px;
+}
+
+.green{
+  background:#12351f;
+  border-color:#245e38;
+  color:#8af0ad;
 }
 
 /* HERO */
@@ -244,7 +282,7 @@ nav a:hover{
 }
 
 .hero h1 span{
-  color:var(--red);
+  color:var(--red)
 }
 
 .hero p{
@@ -272,12 +310,12 @@ nav a:hover{
   box-shadow:0 30px 100px #0008;
 }
 
-/* SECÇÕES */
+/* SECTIONS */
 
 .sec{
   padding:60px 8vw;
   border-top:1px solid #14141a;
-  background:rgba(7,7,10,.35);
+  background:rgba(7,7,10,.45);
 }
 
 .head{
@@ -295,7 +333,8 @@ nav a:hover{
   letter-spacing:-1.5px;
 }
 
-.search,
+/* INPUTS */
+
 input,
 textarea,
 select{
@@ -306,13 +345,24 @@ select{
   padding:12px;
 }
 
+textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
 input[type=file]{
-  padding:9px;
+  padding:9px
 }
 
 .search{
   width:min(330px,100%);
 }
+
+.seriesFilter{
+  min-width:180px;
+}
+
+/* GRID */
 
 .grid{
   display:grid;
@@ -321,7 +371,7 @@ input[type=file]{
 }
 
 .card{
-  background:rgba(17,17,22,.95);
+  background:rgba(17,17,22,.96);
   border:1px solid var(--line);
   border-radius:16px;
   overflow:hidden;
@@ -353,12 +403,19 @@ input[type=file]{
   margin-top:6px;
 }
 
-.muted{
-  color:var(--muted);
-  line-height:1.7;
+.seriesBadge{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:8px;
+  background:#1d1d26;
+  border:1px solid #34343e;
+  color:#fff;
+  font-size:11px;
+  font-weight:800;
+  margin-bottom:8px;
 }
 
-/* FUNCIONALIDADES */
+/* FEATURES */
 
 .features{
   display:grid;
@@ -380,7 +437,7 @@ input[type=file]{
   margin-top:4px;
 }
 
-/* ANÚNCIOS */
+/* ANNOUNCEMENTS */
 
 .announcement{
   background:rgba(17,17,22,.95);
@@ -407,20 +464,12 @@ input[type=file]{
   margin-bottom:5px;
 }
 
-/* FOOTER */
-
-footer{
-  padding:30px 8vw;
-  color:#70707b;
-  border-top:1px solid #14141a;
-}
-
-/* MODAIS */
+/* MODALS */
 
 .modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.80);
+  background:rgba(0,0,0,.82);
   display:grid;
   place-items:center;
   padding:15px;
@@ -429,15 +478,13 @@ footer{
 
 .box{
   position:relative;
-  width:min(760px,100%);
+  width:min(850px,100%);
   max-height:92vh;
   overflow:auto;
-  background:#101015!important;
-  color:#f7f7fb!important;
+  background:#101015;
   border:1px solid var(--line);
   border-radius:20px;
   padding:28px;
-  box-shadow:0 25px 100px #000;
 }
 
 .close{
@@ -448,13 +495,6 @@ footer{
   border:0;
   color:#aaa;
   font-size:28px;
-}
-
-.box input,
-.box textarea,
-.box select{
-  width:100%;
-  margin:6px 0;
 }
 
 .form{
@@ -478,23 +518,7 @@ footer{
   font-size:12px;
 }
 
-.notice{
-  padding:12px;
-  border:1px solid var(--line);
-  background:#09090d;
-  border-radius:10px;
-  margin:10px 0;
-}
-
-.success{
-  color:#70e090;
-}
-
-.error{
-  color:#ff6377;
-}
-
-/* LOGIN */
+/* AUTH */
 
 .authTabs{
   display:flex;
@@ -509,6 +533,26 @@ footer{
 .authTabActive{
   background:var(--red)!important;
   border-color:var(--red)!important;
+}
+
+.passwordWrap{
+  position:relative;
+}
+
+.passwordWrap input{
+  width:100%;
+  padding-right:50px;
+  margin:6px 0;
+}
+
+.showPassword{
+  position:absolute;
+  right:8px;
+  top:12px;
+  background:none;
+  border:0;
+  color:#aaa;
+  cursor:pointer;
 }
 
 .avatarPicker{
@@ -527,25 +571,146 @@ footer{
   border:2px solid var(--line);
 }
 
-.passwordWrap{
-  position:relative;
+/* PROFILE */
+
+.profileLarge{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  padding:18px;
+  background:#09090d;
+  border:1px solid var(--line);
+  border-radius:15px;
+  margin-bottom:15px;
 }
 
-.passwordWrap input{
-  padding-right:50px;
+.profileLarge img,
+.profileLarge .profileFallback{
+  width:85px;
+  height:85px;
+  border-radius:50%;
 }
 
-.showPassword{
-  position:absolute;
-  right:8px;
-  top:12px;
-  background:none;
-  border:0;
-  color:#aaa;
-  cursor:pointer;
+.profilePhrase{
+  color:#ff6377;
+  font-weight:800;
+  margin-top:5px;
 }
 
-/* ADMIN */
+.flag{
+  font-size:20px;
+}
+
+/* FRIENDS */
+
+.friendSearch{
+  display:flex;
+  gap:8px;
+  margin-bottom:15px;
+}
+
+.userResult,
+.friendItem{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:12px;
+  background:#09090d;
+  border:1px solid var(--line);
+  border-radius:12px;
+  margin:7px 0;
+}
+
+.userInfo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+}
+
+.miniAvatar,
+.miniFallback{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  object-fit:cover;
+  background:#18181e;
+  border:1px solid var(--line);
+}
+
+.miniFallback{
+  display:grid;
+  place-items:center;
+}
+
+.friendButtons{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+}
+
+/* ACHIEVEMENTS */
+
+.achievementGrid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+
+.achievement{
+  padding:15px;
+  border:1px solid var(--line);
+  background:#09090d;
+  border-radius:13px;
+  opacity:.45;
+}
+
+.achievement.unlocked{
+  opacity:1;
+  border-color:#765c17;
+  background:#17140a;
+}
+
+.achievementIcon{
+  font-size:30px;
+  margin-bottom:8px;
+}
+
+/* POLLS */
+
+.poll{
+  background:#09090d;
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:16px;
+  margin:10px 0;
+}
+
+.pollOption{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:10px;
+  border:1px solid var(--line);
+  border-radius:9px;
+  margin:6px 0;
+}
+
+.pollBar{
+  height:7px;
+  border-radius:10px;
+  background:#24242b;
+  overflow:hidden;
+  margin-top:4px;
+}
+
+.pollBar div{
+  height:100%;
+  background:var(--red);
+}
+
+/* STATS */
 
 .stats{
   display:flex;
@@ -584,12 +749,12 @@ footer{
   flex-wrap:wrap;
 }
 
-.danger{
-  background:#38111a;
-  border:1px solid #5a1a26;
-  color:#ff8a99;
-  border-radius:8px;
-  padding:7px 10px;
+.notice{
+  padding:12px;
+  border:1px solid var(--line);
+  background:#09090d;
+  border-radius:10px;
+  margin:10px 0;
 }
 
 .color-row{
@@ -611,116 +776,130 @@ footer{
   color:#fff;
   font-size:10px;
   font-weight:900;
-  letter-spacing:1px;
 }
 
-.seriesBadge{
-  display:inline-block;
-  padding:5px 9px;
-  border-radius:8px;
-  background:#1d1d26;
-  border:1px solid #34343e;
-  color:#fff;
-  font-size:11px;
-  font-weight:800;
-  margin-bottom:8px;
+.episodeWatched{
+  margin-top:9px;
 }
 
-.progress{
-  height:6px;
-  background:#24242b;
-  border-radius:20px;
-  overflow:hidden;
-  margin-top:10px;
+/* MAINTENANCE */
+
+#maintenanceScreen{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  background:#07070a;
   display:none;
+  place-items:center;
+  text-align:center;
+  padding:30px;
 }
 
-.progress div{
-  height:100%;
-  width:0%;
-  background:var(--red);
-  transition:width .1s;
+#maintenanceScreen.active{
+  display:grid;
 }
 
-/* RESPONSIVO */
+.maintenanceBox{
+  max-width:550px;
+}
+
+.maintenanceIcon{
+  font-size:70px;
+}
+
+/* FOOTER */
+
+footer{
+  padding:30px 8vw;
+  color:#70707b;
+  border-top:1px solid #14141a;
+}
+
+/* MOBILE */
 
 @media(max-width:850px){
-
   nav{
-    display:none;
+    display:none
   }
 
   .hero{
     grid-template-columns:1fr;
-    padding-top:50px;
+    padding-top:50px
   }
 
   .showcase{
-    display:none;
+    display:none
   }
 
   .grid{
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:repeat(2,1fr)
   }
 
   .head{
     flex-direction:column;
-    align-items:stretch;
+    align-items:stretch
   }
 
   .search{
-    width:100%;
+    width:100%
+  }
+
+  .achievementGrid{
+    grid-template-columns:1fr 1fr
   }
 }
 
 @media(max-width:520px){
-
   .grid{
-    grid-template-columns:1fr;
+    grid-template-columns:1fr
   }
 
   .form{
-    grid-template-columns:1fr;
+    grid-template-columns:1fr
   }
 
   .full{
-    grid-column:auto;
+    grid-column:auto
   }
 
   .hero h1{
-    letter-spacing:-2px;
+    letter-spacing:-2px
   }
 
   .stats{
-    flex-direction:column;
+    flex-direction:column
   }
 
   .box{
-    padding:22px;
+    padding:22px
   }
 
   .top{
     gap:8px;
-    padding:10px 4vw;
+    padding:10px 4vw
   }
 
   .brand{
-    font-size:19px;
+    font-size:19px
   }
 
   .profileName{
     max-width:85px;
-    font-size:13px;
+    font-size:13px
   }
 
   .profilePhoto,
   .profileFallback{
     width:38px;
-    height:38px;
+    height:38px
   }
 
   .profileMenu{
-    right:-5px;
+    right:-5px
+  }
+
+  .achievementGrid{
+    grid-template-columns:1fr
   }
 }
 </style>
@@ -728,91 +907,121 @@ footer{
 
 <body>
 
-<!-- FUNDO -->
 <div id="backgroundLayer">
   <img id="backgroundImage" alt="">
   <video id="backgroundVideo" autoplay muted loop playsinline></video>
   <div id="backgroundOverlay"></div>
 </div>
 
-<!-- HEADER -->
+<div id="maintenanceScreen">
+  <div class="maintenanceBox">
+    <div class="maintenanceIcon">🛠️</div>
+    <h1>Site em manutenção</h1>
+    <p class="muted">
+      O miraculous.kk está temporariamente indisponível.
+      Volta mais tarde!
+    </p>
+  </div>
+</div>
+
 <header class="top">
 
-<a class="brand" href="#">
-  miraculous<span>.kk</span>
-</a>
+<a class="brand" href="#">miraculous<span>.kk</span></a>
 
 <nav>
-  <a href="#catalogo">Catálogo</a>
-  <a href="#anuncios">Anúncios</a>
-  <a href="#func">Funcionalidades</a>
+<a href="#catalogo">Catálogo</a>
+<a href="#amigos">Amigos</a>
+<a href="#conquistas">Conquistas</a>
+<a href="#votacoes">Votações</a>
+<a href="#anuncios">Anúncios</a>
 </nav>
+
+<div class="quickActions">
+<button class="quickIcon" title="Amigos" onclick="document.getElementById('amigos').scrollIntoView({behavior:'smooth'})">👥</button>
+<button class="quickIcon" title="Chat da comunidade" onclick="document.getElementById('chat').scrollIntoView({behavior:'smooth'})">💬</button>
+<button class="quickIcon" title="Votações" onclick="document.getElementById('votacoes').scrollIntoView({behavior:'smooth'})">🗳️</button>
+</div>
 
 <div class="profileArea">
 
 <button class="profileButton" id="profileButton">
-  <div id="profileFallback" class="profileFallback">👤</div>
-  <img id="profilePhoto" class="profilePhoto hide" alt="Perfil">
-  <span id="profileName" class="profileName">Entrar</span>
+
+<div id="profileFallback" class="profileFallback">👤</div>
+
+<img id="profilePhoto"
+     class="profilePhoto hide"
+     alt="Perfil">
+
+<span id="profileName" class="profileName">Entrar</span>
+
 </button>
 
 <div id="profileMenu" class="profileMenu hide">
 
-  <div class="profileMenuHeader">
+<div class="profileMenuHeader">
 
-    <div id="menuFallback" class="profileFallback">
-      👤
-    </div>
+<div id="menuFallback" class="profileFallback">👤</div>
 
-    <img id="menuPhoto" class="hide" alt="">
+<img id="menuPhoto"
+     class="hide"
+     alt="">
 
-    <div>
-      <b id="menuName">Visitante</b>
-      <small class="muted" id="menuRole">Sem sessão</small>
-    </div>
-
-  </div>
-
-  <button class="btn" id="loginFromMenu">
-    🔐 Entrar / Criar conta
-  </button>
-
-  <button class="btn adminButton" id="adminOpen">
-    ⚙️ Painel Admin
-  </button>
-
-  <button class="btn hide" id="changeProfile">
-    🖼️ Alterar foto
-  </button>
-
-  <input id="profileFile" type="file" accept="image/*" class="hide">
-
-  <button class="btn hide" id="logoutButton">
-    🚪 Terminar sessão
-  </button>
+<div>
+<b id="menuName">Visitante</b>
+<small class="muted" id="menuRole">Sem sessão</small>
+</div>
 
 </div>
 
+<button class="btn" id="loginFromMenu">
+🔐 Entrar / Criar conta
+</button>
+
+<button class="btn hide" id="myProfileButton">
+👤 O meu perfil
+</button>
+
+<button class="btn hide" id="friendsButton">
+👥 Amigos
+</button>
+
+<button class="btn hide" id="adminOpen">
+⚙️ Painel Admin
+</button>
+
+<button class="btn hide" id="changeProfile">
+🖼️ Alterar foto
+</button>
+
+<input id="profileFile"
+       type="file"
+       accept="image/*"
+       class="hide">
+
+<button class="btn hide" id="logoutButton">
+🚪 Terminar sessão
+</button>
+
+</div>
 </div>
 </header>
 
 <main>
 
-<!-- HERO -->
 <section class="hero">
 
 <div>
 
-<div class="ey">
-THE MIRACULOUS HUB
-</div>
+<div class="ey">THE MIRACULOUS HUB</div>
 
 <h1>
-O teu lugar para <span>Miraculous.</span>
+O teu lugar para
+<span>Miraculous.</span>
 </h1>
 
 <p>
-Catálogo, episódios, especiais, idiomas, legendas e novidades — tudo num só lugar.
+Catálogo, episódios, especiais, amigos,
+conquistas, votações, perfis e novidades.
 </p>
 
 <div class="actions">
@@ -820,8 +1029,8 @@ Catálogo, episódios, especiais, idiomas, legendas e novidades — tudo num só
 Explorar catálogo
 </a>
 
-<a class="btn" href="#anuncios">
-Anúncios
+<a class="btn" href="#votacoes">
+Votações
 </a>
 </div>
 
@@ -833,65 +1042,44 @@ Anúncios
 
 </section>
 
+
 <!-- ANÚNCIOS -->
+
 <section class="sec" id="anuncios">
 
-<div class="ey">
-ANÚNCIOS
-</div>
+<div class="ey">ANÚNCIOS</div>
 
-<h2>
-Últimas novidades
-</h2>
+<h2>Últimas novidades</h2>
 
 <div id="announcements">
-<p class="muted">
-Ainda não existem anúncios.
-</p>
+<p class="muted">Ainda não existem anúncios.</p>
 </div>
 
 </section>
 
+
 <!-- CATÁLOGO -->
+
 <section class="sec" id="catalogo">
 
 <div class="head">
 
 <div>
-
-<div class="ey">
-CATÁLOGO
-</div>
-
-<h2>
-Temporadas e episódios
-</h2>
-
+<div class="ey">CATÁLOGO</div>
+<h2>Temporadas e episódios</h2>
 </div>
 
 <div style="display:flex;gap:8px;flex-wrap:wrap">
 
 <select id="seriesFilter" class="search seriesFilter">
-
-<option value="all">
-Todas as séries
-</option>
-
-<option value="Miraculous">
-Miraculous
-</option>
-
-<option value="Big City Greens">
-Big City Greens
-</option>
-
+<option value="all">Todas as séries</option>
+<option value="Miraculous">Miraculous</option>
+<option value="Big City Greens">Big City Greens</option>
 </select>
 
-<input
-id="search"
-class="search"
-placeholder="Pesquisar episódios..."
->
+<input id="search"
+       class="search"
+       placeholder="Pesquisar episódios...">
 
 </div>
 
@@ -901,48 +1089,139 @@ placeholder="Pesquisar episódios..."
 
 </section>
 
-<!-- FUNCIONALIDADES -->
-<section class="sec" id="func">
 
-<div class="ey">
-PLATAFORMA
+<!-- AMIGOS -->
+
+<section class="sec" id="amigos">
+
+<div class="ey">SOCIAL</div>
+
+<h2>Amigos</h2>
+
+<div id="friendsLoginMessage" class="notice">
+Entra na tua conta para adicionares amigos.
 </div>
 
-<h2>
-Feito para crescer
-</h2>
+<div id="friendsContent" class="hide">
+
+<div class="friendSearch">
+
+<input id="friendSearchInput"
+       style="flex:1"
+       placeholder="Procurar utilizador...">
+
+<button class="btn primary" id="friendSearchButton">
+Procurar
+</button>
+
+</div>
+
+<div id="friendResults"></div>
+
+<h3>Pedidos recebidos</h3>
+
+<div id="friendRequests"></div>
+
+<h3>Os meus amigos</h3>
+
+<div id="friendsList"></div>
+
+</div>
+
+</section>
+
+
+<!-- CHAT -->
+<section class="sec" id="chat">
+<div class="ey">COMUNIDADE</div>
+<h2>Chats</h2>
+<div id="chatLoginMessage" class="notice">Entra na tua conta para participares nos chats.</div>
+<div id="chatContent" class="hide">
+<div class="chatBox">
+<div class="chatTabs">
+<button class="btn primary" id="communityChatTab">💬 Comunidade</button>
+<button class="btn" id="friendsChatTab">👥 Chat de amigos</button>
+</div>
+<div id="communityChatPane">
+<div id="communityMessages" class="chatMessages"></div>
+<div class="chatComposer"><input id="communityMessageInput" maxlength="500" placeholder="Escreve uma mensagem..."><button class="btn primary" id="sendCommunityMessage">Enviar</button></div>
+</div>
+<div id="friendsChatPane" class="hide">
+<div style="padding:12px;border-bottom:1px solid var(--line)"><select id="chatFriendSelect" class="search" style="width:100%"><option value="">Escolhe um amigo...</option></select></div>
+<div id="friendMessages" class="chatMessages"></div>
+<div class="chatComposer"><input id="friendMessageInput" maxlength="500" placeholder="Escreve uma mensagem para o teu amigo..."><button class="btn primary" id="sendFriendMessage">Enviar</button></div>
+</div>
+</div>
+</div>
+</section>
+
+
+<!-- CONQUISTAS -->
+
+<section class="sec" id="conquistas">
+
+<div class="ey">PROGRESSO</div>
+
+<h2>Conquistas</h2>
+
+<div id="achievementContent">
+
+<p class="muted">
+Entra na tua conta para veres as tuas conquistas.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- VOTAÇÕES -->
+
+<section class="sec" id="votacoes">
+
+<div class="ey">COMUNIDADE</div>
+
+<h2>Votações</h2>
+
+<div id="polls">
+<p class="muted">Ainda não existem votações.</p>
+</div>
+
+</section>
+
+
+<!-- FUNCIONALIDADES -->
+
+<section class="sec">
+
+<div class="ey">PLATAFORMA</div>
+
+<h2>Feito para crescer</h2>
 
 <div class="features">
 
 <div class="feature">
 🎬 <b>Episódios</b>
-<span>
-Catálogo organizado por temporadas e episódios.
-</span>
+<span>Catálogo organizado por temporadas e episódios.</span>
 </div>
 
 <div class="feature">
-🖼️ <b>Thumbnails</b>
-<span>
-Imagem personalizada para cada episódio.
-</span>
+👥 <b>Amigos</b>
+<span>Adiciona amigos e visita os seus perfis.</span>
 </div>
 
 <div class="feature">
-🌍 <b>Idiomas</b>
-<span>
-Organiza PT-PT e outros idiomas.
-</span>
+🏆 <b>Conquistas</b>
+<span>Desbloqueia conquistas enquanto usas o site.</span>
 </div>
 
 <div class="feature">
-📢 <b>Anúncios</b>
-<span>
-Destaca novidades com cores personalizadas.
-</span>
+🗳️ <b>Votações</b>
+<span>Participa nas votações da comunidade.</span>
 </div>
 
 </div>
+
 </section>
 
 </main>
@@ -952,22 +1231,17 @@ Destaca novidades com cores personalizadas.
 </footer>
 
 
-<!-- LOGIN -->
+<!-- AUTH -->
+
 <div id="authModal" class="modal hide">
 
 <div class="box" style="max-width:440px">
 
-<button class="close" id="authClose">
-×
-</button>
+<button class="close" id="authClose">×</button>
 
-<div class="ey">
-CONTA
-</div>
+<div class="ey">CONTA</div>
 
-<h2 id="authTitle">
-Entrar
-</h2>
+<h2 id="authTitle">Entrar</h2>
 
 <div class="authTabs">
 
@@ -981,66 +1255,53 @@ Criar conta
 
 </div>
 
-<!-- LOGIN -->
+
 <div id="loginForm">
 
-<input
-id="loginUser"
-placeholder="Nome de utilizador"
-autocomplete="username"
->
+<input id="loginUser"
+       placeholder="Nome de utilizador"
+       autocomplete="username">
 
 <div class="passwordWrap">
 
-<input
-id="loginPass"
-type="password"
-placeholder="Palavra-passe"
-autocomplete="current-password"
->
+<input id="loginPass"
+       type="password"
+       placeholder="Palavra-passe"
+       autocomplete="current-password">
 
-<button
-class="showPassword"
-data-target="loginPass"
->
+<button class="showPassword"
+        data-target="loginPass">
 👁️
 </button>
 
 </div>
 
-<button
-class="btn primary"
-id="loginBtn"
-style="width:100%;margin-top:8px"
->
+<button class="btn primary"
+        id="loginBtn"
+        style="width:100%;margin-top:8px">
+
 Entrar
+
 </button>
 
 </div>
 
 
-<!-- REGISTO -->
 <div id="registerForm" class="hide">
 
-<input
-id="registerUser"
-placeholder="Escolhe um nome de utilizador"
-autocomplete="username"
->
+<input id="registerUser"
+       placeholder="Escolhe um nome de utilizador"
+       autocomplete="username">
 
 <div class="passwordWrap">
 
-<input
-id="registerPass"
-type="password"
-placeholder="Escolhe uma palavra-passe"
-autocomplete="new-password"
->
+<input id="registerPass"
+       type="password"
+       placeholder="Escolhe uma palavra-passe"
+       autocomplete="new-password">
 
-<button
-class="showPassword"
-data-target="registerPass"
->
+<button class="showPassword"
+        data-target="registerPass">
 👁️
 </button>
 
@@ -1048,17 +1309,13 @@ data-target="registerPass"
 
 <div class="passwordWrap">
 
-<input
-id="registerPass2"
-type="password"
-placeholder="Repetir palavra-passe"
-autocomplete="new-password"
->
+<input id="registerPass2"
+       type="password"
+       placeholder="Repetir palavra-passe"
+       autocomplete="new-password">
 
-<button
-class="showPassword"
-data-target="registerPass2"
->
+<button class="showPassword"
+        data-target="registerPass2">
 👁️
 </button>
 
@@ -1066,43 +1323,38 @@ data-target="registerPass2"
 
 <div class="avatarPicker">
 
-<div id="registerAvatarFallback" class="profileFallback">
+<div id="registerAvatarFallback"
+     class="profileFallback">
 👤
 </div>
 
-<img
-id="registerAvatar"
-class="avatarPreview hide"
-alt=""
->
+<img id="registerAvatar"
+     class="avatarPreview hide"
+     alt="">
 
 <div>
 
-<button
-class="btn"
-id="chooseRegisterAvatar"
-type="button"
->
+<button class="btn"
+        id="chooseRegisterAvatar"
+        type="button">
 🖼️ Escolher foto
 </button>
 
-<input
-id="registerAvatarFile"
-type="file"
-accept="image/*"
-class="hide"
->
+<input id="registerAvatarFile"
+       type="file"
+       accept="image/*"
+       class="hide">
 
 </div>
 
 </div>
 
-<button
-class="btn primary"
-id="registerBtn"
-style="width:100%;margin-top:8px"
->
+<button class="btn primary"
+        id="registerBtn"
+        style="width:100%;margin-top:8px">
+
 Criar conta
+
 </button>
 
 </div>
@@ -1113,39 +1365,54 @@ Criar conta
 </div>
 
 
+<!-- PERFIL -->
+
+<div id="profileModal" class="modal hide">
+
+<div class="box">
+
+<button class="close" id="profileClose">×</button>
+
+<div class="ey">PERFIL</div>
+
+<div id="profileModalContent"></div>
+
+</div>
+
+</div>
+
+
 <!-- ADMIN -->
+
 <div id="admin" class="modal hide">
 
 <div class="box">
 
-<button class="close" id="adminClose">
-×
-</button>
+<button class="close" id="adminClose">×</button>
 
-<div class="ey">
-DASHBOARD
-</div>
+<div class="ey">DASHBOARD</div>
 
-<h2>
-Painel miraculous.kk
-</h2>
+<h2>Painel miraculous.kk</h2>
+
 
 <div class="stats">
 
 <div class="stat">
 <b id="count">0</b>
 <br>
-<small class="muted">
-episódios
-</small>
+<small class="muted">episódios</small>
 </div>
 
 <div class="stat">
 <b id="announcementCount">0</b>
 <br>
-<small class="muted">
-anúncios
-</small>
+<small class="muted">anúncios</small>
+</div>
+
+<div class="stat">
+<b id="userCount">0</b>
+<br>
+<small class="muted">utilizadores</small>
 </div>
 
 </div>
@@ -1160,159 +1427,78 @@ Adicionar episódio
 <div class="form">
 
 <div class="field">
-
-<label>
-Série
-</label>
+<label>Série</label>
 
 <select id="series">
-
-<option value="Miraculous">
-Miraculous
-</option>
-
-<option value="Big City Greens">
-Big City Greens
-</option>
-
+<option value="Miraculous">Miraculous</option>
+<option value="Big City Greens">Big City Greens</option>
 </select>
 
 </div>
 
-
 <div class="field">
-
-<label>
-Título
-</label>
-
-<input
-id="title"
-placeholder="Título"
->
-
+<label>Título</label>
+<input id="title" placeholder="Título">
 </div>
 
-
 <div class="field">
-
-<label>
-Temporada
-</label>
-
-<input
-id="season"
-placeholder="S6"
->
-
+<label>Temporada</label>
+<input id="season" placeholder="S6">
 </div>
 
-
 <div class="field">
-
-<label>
-Número
-</label>
-
-<input
-id="number"
-placeholder="1"
->
-
+<label>Número</label>
+<input id="number" placeholder="1">
 </div>
 
-
 <div class="field">
-
-<label>
-Idioma
-</label>
-
-<input
-id="lang"
-placeholder="PT-PT"
->
-
+<label>Idioma</label>
+<input id="lang" placeholder="PT-PT">
 </div>
-
 
 <div class="field full">
-
-<label>
-Thumbnail
-</label>
-
-<input
-id="thumb"
-type="file"
-accept="image/*"
->
-
+<label>Thumbnail</label>
+<input id="thumb"
+       type="file"
+       accept="image/*">
 </div>
 
-
 <div class="field full">
-
-<label>
-Descrição
-</label>
-
-<textarea
-id="desc"
-placeholder="Descrição do episódio"
-></textarea>
-
+<label>Descrição</label>
+<textarea id="desc"
+          placeholder="Descrição do episódio"></textarea>
 </div>
 
-
-<!-- TRAILER INDIVIDUAL -->
 <div class="field full">
+<label>Trailer do YouTube (opcional)</label>
 
-<label>
-Trailer do YouTube (opcional)
-</label>
-
-<input
-id="trailerUrl"
-placeholder="https://www.youtube.com/watch?v=..."
->
+<input id="trailerUrl"
+       placeholder="https://www.youtube.com/watch?v=...">
 
 <small class="muted">
-Coloca aqui o URL do trailer oficial do episódio.
+O trailer fica associado apenas a este episódio.
 </small>
 
 </div>
 
 </div>
 
-
 <div style="margin-top:10px">
 
-<button
-class="btn primary"
-id="add"
->
+<button class="btn primary" id="add">
 Guardar episódio
 </button>
 
-<button
-class="btn"
-id="cancelEdit"
-style="display:none"
->
+<button class="btn"
+        id="cancelEdit"
+        style="display:none">
 Cancelar edição
 </button>
 
 </div>
 
-
-<div
-class="progress"
-id="uploadProgress"
->
-
+<div class="progress hide" id="uploadProgress">
 <div id="progressBar"></div>
-
 </div>
 
 <div id="status"></div>
@@ -1321,76 +1507,139 @@ id="uploadProgress"
 <hr style="border-color:#292933;margin:25px 0">
 
 
+<!-- FRASE PERFIL -->
+
+<h3>💬 Frase do meu perfil</h3>
+
+<p class="muted">
+Escolhe a frase que aparece por baixo do teu nome.
+</p>
+
+<select id="myPhraseSelect">
+
+<option value="Claws out!">
+Claws out!
+</option>
+
+<option value="Pound it!">
+Pound it!
+</option>
+
+<option value="Spots on!">
+Spots on!
+</option>
+
+<option value="Tikki, spots on!">
+Tikki, spots on!
+</option>
+
+<option value="Purr-fect!">
+Purr-fect!
+</option>
+
+<option value="Cataclysm!">
+Cataclysm!
+</option>
+
+<option value="Own phrase">
+Escrever frase personalizada
+</option>
+
+</select>
+
+<input id="customPhrase"
+       class="hide"
+       placeholder="Escreve a tua frase...">
+
+<button class="btn primary"
+        id="savePhrase"
+        style="margin-top:8px">
+
+Guardar frase
+
+</button>
+
+<div id="phraseStatus"></div>
+
+
+<hr style="border-color:#292933;margin:25px 0">
+
+
 <!-- ANÚNCIO -->
 
-<h3>
-📢 Criar anúncio
-</h3>
+<h3>📢 Criar anúncio</h3>
 
 <div class="form">
 
 <div class="field">
-
-<label>
-Etiqueta
-</label>
-
-<input
-id="announcementLabel"
-placeholder="NOVIDADE"
-value="NOVIDADE"
->
-
+<label>Etiqueta</label>
+<input id="announcementLabel"
+       placeholder="NOVIDADE"
+       value="NOVIDADE">
 </div>
 
+<div class="field">
+<label>Título</label>
+<input id="announcementTitle"
+       placeholder="Nova atualização!">
+</div>
+
+<div class="field full">
+<label>Texto</label>
+<textarea id="announcementText"
+          placeholder="Escreve aqui o anúncio..."></textarea>
+</div>
+
+<div class="field">
+<label>Duração</label>
+
+<select id="announcementDuration">
+
+<option value="0">
+Sem limite
+</option>
+
+<option value="3600000">
+1 hora
+</option>
+
+<option value="21600000">
+6 horas
+</option>
+
+<option value="86400000">
+1 dia
+</option>
+
+<option value="259200000">
+3 dias
+</option>
+
+<option value="604800000">
+7 dias
+</option>
+
+<option value="2592000000">
+30 dias
+</option>
+
+</select>
+
+</div>
 
 <div class="field">
 
-<label>
-Título
-</label>
-
-<input
-id="announcementTitle"
-placeholder="Nova atualização!"
->
-
-</div>
-
-
-<div class="field full">
-
-<label>
-Texto
-</label>
-
-<textarea
-id="announcementText"
-placeholder="Escreve aqui o anúncio..."
-></textarea>
-
-</div>
-
-
-<div class="field full">
-
-<label>
-Cor da etiqueta
-</label>
+<label>Cor</label>
 
 <div class="color-row">
 
-<input
-id="announcementColor"
-type="color"
-value="#e62b45"
->
+<input id="announcementColor"
+       type="color"
+       value="#e62b45">
 
-<span
-id="colorPreview"
-class="preview-label"
-style="background:#e62b45"
->
+<span id="colorPreview"
+      class="preview-label"
+      style="background:#e62b45">
 NOVIDADE
 </span>
 
@@ -1400,13 +1649,12 @@ NOVIDADE
 
 </div>
 
+<button class="btn primary"
+        id="addAnnouncement"
+        style="margin-top:8px">
 
-<button
-class="btn primary"
-id="addAnnouncement"
-style="margin-top:8px"
->
 Publicar anúncio
+
 </button>
 
 <div id="announcementStatus"></div>
@@ -1415,11 +1663,75 @@ Publicar anúncio
 <hr style="border-color:#292933;margin:25px 0">
 
 
+<!-- POLL -->
+
+<h3>🗳️ Criar votação</h3>
+
+<div class="field">
+<label>Pergunta</label>
+
+<input id="pollQuestion"
+       placeholder="Qual é o teu episódio favorito?">
+
+</div>
+
+<div class="field">
+<label>Opções — uma por linha</label>
+
+<textarea id="pollOptions"
+          placeholder="Opção 1&#10;Opção 2&#10;Opção 3"></textarea>
+
+</div>
+
+<button class="btn primary"
+        id="addPoll"
+        style="margin-top:8px">
+
+Criar votação
+
+</button>
+
+<div id="pollStatus"></div>
+<h4>Votações existentes</h4>
+<div id="adminPolls"></div>
+
+<hr style="border-color:#292933;margin:25px 0">
+
+
+<!-- UTILIZADORES -->
+
+<h3>👥 Utilizadores</h3>
+
+<div id="adminUsers"></div>
+
+
+<hr style="border-color:#292933;margin:25px 0">
+
+
+<!-- MANUTENÇÃO -->
+
+<h3>🛠️ Modo de manutenção</h3>
+
+<p class="muted">
+Quando ativo, apenas administradores conseguem entrar no site.
+</p>
+
+<button class="btn"
+        id="toggleMaintenance">
+
+Ativar / desativar manutenção
+
+</button>
+
+<div id="maintenanceStatus"></div>
+
+
+<hr style="border-color:#292933;margin:25px 0">
+
+
 <!-- FUNDO -->
 
-<h3>
-🎨 Fundo do site
-</h3>
+<h3>🎨 Fundo do site</h3>
 
 <p class="muted">
 Escolhe uma imagem ou vídeo para o fundo.
@@ -1428,52 +1740,30 @@ Escolhe uma imagem ou vídeo para o fundo.
 <div class="form">
 
 <div class="field">
-
-<label>
-Imagem
-</label>
-
-<input
-id="backgroundImageFile"
-type="file"
-accept="image/*"
->
-
+<label>Imagem</label>
+<input id="backgroundImageFile"
+       type="file"
+       accept="image/*">
 </div>
-
 
 <div class="field">
-
-<label>
-Vídeo
-</label>
-
-<input
-id="backgroundVideoFile"
-type="file"
-accept="video/*"
->
-
+<label>Vídeo</label>
+<input id="backgroundVideoFile"
+       type="file"
+       accept="video/*">
 </div>
 
 </div>
 
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
 
-<div
-style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"
->
-
-<button
-class="btn primary"
-id="saveBackground"
->
+<button class="btn primary"
+        id="saveBackground">
 Guardar fundo
 </button>
 
-<button
-class="btn"
-id="removeBackground"
->
+<button class="btn"
+        id="removeBackground">
 Remover fundo
 </button>
 
@@ -1485,16 +1775,9 @@ Remover fundo
 <hr style="border-color:#292933;margin:25px 0">
 
 
-<!-- LISTA -->
+<h3>📚 Episódios publicados</h3>
 
-<h3>
-📚 Episódios publicados
-</h3>
-
-<div
-id="list"
-class="list"
-></div>
+<div id="list" class="list"></div>
 
 </div>
 </div>
@@ -1503,502 +1786,402 @@ class="list"
 <script>
 "use strict";
 
-/* =========================================================
+/* =========================
    CONFIGURAÇÃO
-========================================================= */
+========================= */
 
-const ADMIN_USER = "miguel";
-const ADMIN_PASS = "nemesis6";
+const DB_NAME="miraculousKK";
+const DB_VERSION=9;
 
-const DB_NAME = "miraculousKK";
-const DB_VERSION = 6;
+/*
+  IMPORTANTE:
+  Para segurança real, a administração deve ser feita
+  num servidor. Este projeto continua a ser client-side.
+*/
 
-let db = null;
-let dbPromise = null;
+const ADMIN_USER="miguel";
 
-let episodes = [];
-let announcements = [];
-let accounts = [];
+let db=null;
 
-let currentUser = null;
-let editingId = null;
+let episodes=[];
+let announcements=[];
+let accounts=[];
+let friendships=[];
+let polls=[];
+let achievements=[];
+let settings={};
+
+let currentUser=null;
+let editingId=null;
+let registerPhoto="";
 
 
-/* =========================================================
+/* =========================
    HELPERS
-========================================================= */
+========================= */
 
-const $ = id => document.getElementById(id);
+const $=id=>document.getElementById(id);
 
-function esc(value = ""){
-  return String(value).replace(
-    /[&<>"']/g,
-    m => ({
-      "&":"&amp;",
-      "<":"&lt;",
-      ">":"&gt;",
-      '"':"&quot;",
-      "'":"&#39;"
-    }[m])
-  );
+function esc(value=""){
+  return String(value).replace(/[&<>"']/g,m=>({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  }[m]));
 }
 
 function makeId(){
-  return typeof crypto !== "undefined" &&
-         crypto.randomUUID
-    ? crypto.randomUUID()
-    : Date.now().toString(36) +
-      Math.random().toString(36).slice(2);
-}
-
-
-/* =========================================================
-   INDEXED DB
-========================================================= */
-
-function openDB(){
-
-  if(dbPromise){
-    return dbPromise;
+  if(typeof crypto!=="undefined" && crypto.randomUUID){
+    return crypto.randomUUID();
   }
 
-  dbPromise = new Promise((resolve,reject)=>{
-
-    const request =
-      indexedDB.open(DB_NAME,DB_VERSION);
-
-    request.onupgradeneeded = e => {
-
-      const d = e.target.result;
-
-      if(!d.objectStoreNames.contains("episodes")){
-        d.createObjectStore(
-          "episodes",
-          {keyPath:"id"}
-        );
-      }
-
-      if(!d.objectStoreNames.contains("announcements")){
-        d.createObjectStore(
-          "announcements",
-          {keyPath:"id"}
-        );
-      }
-
-      if(!d.objectStoreNames.contains("settings")){
-        d.createObjectStore(
-          "settings",
-          {keyPath:"id"}
-        );
-      }
-
-      if(!d.objectStoreNames.contains("accounts")){
-        d.createObjectStore(
-          "accounts",
-          {keyPath:"username"}
-        );
-      }
-
-    };
-
-    request.onsuccess = e => {
-
-      db = e.target.result;
-
-      db.onclose = () => {
-        db = null;
-        dbPromise = null;
-      };
-
-      db.onerror = e => {
-        console.error(
-          "IndexedDB error:",
-          e.target.error
-        );
-      };
-
-      resolve(db);
-
-    };
-
-    request.onerror = () => {
-
-      dbPromise = null;
-
-      reject(request.error);
-
-    };
-
-  });
-
-  return dbPromise;
+  return Date.now().toString(36)+
+         Math.random().toString(36).slice(2);
 }
-
-
-/*
-   ESTA É A CORREÇÃO PRINCIPAL DO BUG.
-
-   Antes, algumas funções tentavam usar:
-   db.transaction(...)
-
-   quando o IndexedDB ainda não tinha acabado de abrir.
-
-   Agora todas esperam primeiro pela base de dados.
-*/
-
-async function ensureDB(){
-
-  if(db){
-    return db;
-  }
-
-  return await openDB();
-}
-
-
-async function getAll(store){
-
-  const database = await ensureDB();
-
-  return new Promise((resolve,reject)=>{
-
-    const tx =
-      database.transaction(
-        store,
-        "readonly"
-      );
-
-    const request =
-      tx.objectStore(store).getAll();
-
-    request.onsuccess = () => {
-      resolve(request.result || []);
-    };
-
-    request.onerror = () => {
-      reject(request.error);
-    };
-
-  });
-
-}
-
-
-async function getItem(store,id){
-
-  const database = await ensureDB();
-
-  return new Promise((resolve,reject)=>{
-
-    const tx =
-      database.transaction(
-        store,
-        "readonly"
-      );
-
-    const request =
-      tx.objectStore(store).get(id);
-
-    request.onsuccess = () => {
-      resolve(request.result);
-    };
-
-    request.onerror = () => {
-      reject(request.error);
-    };
-
-  });
-
-}
-
-
-async function put(store,data){
-
-  const database = await ensureDB();
-
-  return new Promise((resolve,reject)=>{
-
-    const tx =
-      database.transaction(
-        store,
-        "readwrite"
-      );
-
-    tx.objectStore(store).put(data);
-
-    tx.oncomplete = () => {
-      resolve();
-    };
-
-    tx.onerror = () => {
-      reject(tx.error);
-    };
-
-  });
-
-}
-
-
-async function remove(store,id){
-
-  const database = await ensureDB();
-
-  return new Promise((resolve,reject)=>{
-
-    const tx =
-      database.transaction(
-        store,
-        "readwrite"
-      );
-
-    tx.objectStore(store).delete(id);
-
-    tx.oncomplete = () => {
-      resolve();
-    };
-
-    tx.onerror = () => {
-      reject(tx.error);
-    };
-
-  });
-
-}
-
-
-/* =========================================================
-   FICHEIROS
-========================================================= */
 
 function fileToDataURL(file){
-
   return new Promise((resolve,reject)=>{
-
     if(!file){
       resolve("");
       return;
     }
 
-    const reader =
-      new FileReader();
+    const r=new FileReader();
 
-    reader.onload = () => {
-      resolve(reader.result);
+    r.onload=()=>resolve(r.result);
+    r.onerror=()=>reject(r.error);
+
+    r.readAsDataURL(file);
+  });
+}
+
+function normalizeUsername(name){
+  return String(name||"").trim().toLowerCase();
+}
+
+function getFlagFromLanguage(){
+  const lang=(navigator.language||"pt-PT").toUpperCase();
+
+  const map={
+    "PT":"🇵🇹",
+    "BR":"🇧🇷",
+    "ES":"🇪🇸",
+    "FR":"🇫🇷",
+    "GB":"🇬🇧",
+    "US":"🇺🇸",
+    "DE":"🇩🇪",
+    "IT":"🇮🇹",
+    "JP":"🇯🇵",
+    "KR":"🇰🇷",
+    "CA":"🇨🇦",
+    "AU":"🇦🇺"
+  };
+
+  const country=lang.includes("-")
+    ?lang.split("-")[1]
+    :lang.slice(0,2);
+
+  return map[country]||"🌍";
+}
+
+
+/* =========================
+   INDEXED DB
+========================= */
+
+function openDB(){
+
+  return new Promise((resolve,reject)=>{
+
+    const request=indexedDB.open(
+      DB_NAME,
+      DB_VERSION
+    );
+
+    request.onupgradeneeded=e=>{
+
+      const d=e.target.result;
+
+      if(!d.objectStoreNames.contains("episodes")){
+        d.createObjectStore("episodes",{keyPath:"id"});
+      }
+
+      if(!d.objectStoreNames.contains("announcements")){
+        d.createObjectStore("announcements",{keyPath:"id"});
+      }
+
+      if(!d.objectStoreNames.contains("accounts")){
+        d.createObjectStore("accounts",{keyPath:"username"});
+      }
+
+      if(!d.objectStoreNames.contains("friendships")){
+        d.createObjectStore("friendships",{keyPath:"id"});
+      }
+
+      if(!d.objectStoreNames.contains("messages")){
+        d.createObjectStore("messages",{keyPath:"id"});
+      }
+
+      if(!d.objectStoreNames.contains("polls")){
+        d.createObjectStore("polls",{keyPath:"id"});
+      }
+
+      if(!d.objectStoreNames.contains("achievements")){
+        d.createObjectStore("achievements",{keyPath:"id"});
+      }
+
+      if(!d.objectStoreNames.contains("settings")){
+        d.createObjectStore("settings",{keyPath:"id"});
+      }
+
     };
 
-    reader.onerror = () => {
-      reject(reader.error);
+    request.onsuccess=e=>{
+      db=e.target.result;
+      resolve(db);
     };
 
-    reader.readAsDataURL(file);
+    request.onerror=()=>{
+      reject(request.error);
+    };
 
   });
-
 }
 
 
-/* =========================================================
-   CARREGAMENTO
-========================================================= */
+function getAll(store){
 
-async function loadData(){
+  return new Promise((resolve,reject)=>{
 
-  await ensureDB();
+    if(!db){
+      reject(new Error("Base de dados não inicializada."));
+      return;
+    }
 
-  episodes =
-    await getAll("episodes");
+    const tx=db.transaction(store,"readonly");
+    const r=tx.objectStore(store).getAll();
 
-  announcements =
-    await getAll("announcements");
+    r.onsuccess=()=>resolve(r.result||[]);
+    r.onerror=()=>reject(r.error);
 
-  accounts =
-    await getAll("accounts");
-
-  render();
-
-  renderAnnouncements();
-
-  await loadBackground();
-
+  });
 }
 
 
-/* =========================================================
-   SESSÃO
-========================================================= */
+function getItem(store,id){
+
+  return new Promise((resolve,reject)=>{
+
+    if(!db){
+      reject(new Error("Base de dados não inicializada."));
+      return;
+    }
+
+    const tx=db.transaction(store,"readonly");
+    const r=tx.objectStore(store).get(id);
+
+    r.onsuccess=()=>resolve(r.result);
+    r.onerror=()=>reject(r.error);
+
+  });
+}
+
+
+function put(store,data){
+
+  return new Promise((resolve,reject)=>{
+
+    if(!db){
+      reject(new Error("Base de dados não inicializada."));
+      return;
+    }
+
+    const tx=db.transaction(store,"readwrite");
+
+    tx.objectStore(store).put(data);
+
+    tx.oncomplete=()=>resolve();
+    tx.onerror=()=>reject(tx.error);
+    tx.onabort=()=>reject(tx.error);
+
+  });
+}
+
+
+function remove(store,id){
+
+  return new Promise((resolve,reject)=>{
+
+    if(!db){
+      reject(new Error("Base de dados não inicializada."));
+      return;
+    }
+
+    const tx=db.transaction(store,"readwrite");
+
+    tx.objectStore(store).delete(id);
+
+    tx.oncomplete=()=>resolve();
+    tx.onerror=()=>reject(tx.error);
+
+  });
+}
+
+
+/* =========================
+   SESSION
+========================= */
 
 function saveCurrentSession(){
 
   if(currentUser){
-
     localStorage.setItem(
       "miraculous_current_user",
       currentUser.username
     );
-
   }else{
-
     localStorage.removeItem(
       "miraculous_current_user"
     );
-
   }
-
 }
 
 
 async function restoreSession(){
 
-  const username =
+  const username=
     localStorage.getItem(
       "miraculous_current_user"
     );
 
-  if(!username){
-    return;
-  }
+  if(!username)return;
 
-  try{
-
-    const account =
-      await getItem(
-        "accounts",
-        username
-      );
-
-    if(account){
-      currentUser = account;
-    }
-
-  }catch(error){
-
-    console.error(
-      "Erro ao restaurar sessão:",
-      error
+  const account=
+    await getItem(
+      "accounts",
+      username
     );
 
+  if(account){
+    currentUser=account;
   }
 
 }
 
 
-/* =========================================================
-   PERFIL
-========================================================= */
+/* =========================
+   LOAD DATA
+========================= */
+
+async function loadData(){
+
+  episodes=await getAll("episodes");
+  announcements=await getAll("announcements");
+  accounts=await getAll("accounts");
+  friendships=await getAll("friendships");
+  polls=await getAll("polls");
+  achievements=await getAll("achievements");
+
+  const settingRows=
+    await getAll("settings");
+
+  settings={};
+
+  settingRows.forEach(s=>{
+    settings[s.id]=s;
+  });
+
+  cleanExpiredAnnouncements();
+
+  render();
+  renderAnnouncements();
+  renderPolls();
+  renderFriends();
+  renderAchievements();
+  renderAdminUsers();
+  if(currentUser?.admin) renderAdminList();
+  renderChat();
+  await loadBackground();
+  updateProfileUI();
+}
+
+
+/* =========================
+   PROFILE UI
+========================= */
 
 function updateProfileUI(){
 
-  const photo =
-    currentUser?.photo || "";
+  const photo=currentUser?.photo||"";
+  const name=currentUser?.username||"Entrar";
 
-  const name =
-    currentUser?.username || "Entrar";
+  $("profileName").textContent=name;
+  $("menuName").textContent=name;
 
-  $("profileName").textContent = name;
-
-  $("menuName").textContent = name;
-
-  $("menuRole").textContent =
+  $("menuRole").textContent=
     currentUser
-      ? (
-          currentUser.admin
-            ? "Administrador"
-            : "Conta"
-        )
-      : "Sem sessão";
-
+      ?(currentUser.admin?"Administrador":"Conta")
+      :"Sem sessão";
 
   if(photo){
 
-    $("profilePhoto").src = photo;
+    $("profilePhoto").src=photo;
+    $("profilePhoto").classList.remove("hide");
+    $("profileFallback").classList.add("hide");
 
-    $("profilePhoto")
-      .classList
-      .remove("hide");
-
-    $("profileFallback")
-      .classList
-      .add("hide");
-
-
-    $("menuPhoto").src = photo;
-
-    $("menuPhoto")
-      .classList
-      .remove("hide");
-
-    $("menuFallback")
-      .classList
-      .add("hide");
+    $("menuPhoto").src=photo;
+    $("menuPhoto").classList.remove("hide");
+    $("menuFallback").classList.add("hide");
 
   }else{
 
-    $("profilePhoto")
-      .classList
-      .add("hide");
+    $("profilePhoto").classList.add("hide");
+    $("profileFallback").classList.remove("hide");
 
-    $("profileFallback")
-      .classList
-      .remove("hide");
-
-
-    $("menuPhoto")
-      .classList
-      .add("hide");
-
-    $("menuFallback")
-      .classList
-      .remove("hide");
+    $("menuPhoto").classList.add("hide");
+    $("menuFallback").classList.remove("hide");
 
   }
-
 
   if(currentUser){
 
-    $("loginFromMenu")
-      .classList
-      .add("hide");
+    $("loginFromMenu").classList.add("hide");
 
-    $("changeProfile")
-      .classList
-      .remove("hide");
+    $("myProfileButton").classList.remove("hide");
+    $("friendsButton").classList.remove("hide");
+    $("changeProfile").classList.remove("hide");
+    $("logoutButton").classList.remove("hide");
 
-    $("logoutButton")
-      .classList
-      .remove("hide");
-
-    $("adminOpen").style.display =
-      currentUser.admin
-        ? "block"
-        : "none";
+    if(currentUser.admin){
+      $("adminOpen").classList.remove("hide");
+    }else{
+      $("adminOpen").classList.add("hide");
+    }
 
   }else{
 
-    $("loginFromMenu")
-      .classList
-      .remove("hide");
+    $("loginFromMenu").classList.remove("hide");
 
-    $("changeProfile")
-      .classList
-      .add("hide");
-
-    $("logoutButton")
-      .classList
-      .add("hide");
-
-    $("adminOpen").style.display =
-      "none";
+    $("myProfileButton").classList.add("hide");
+    $("friendsButton").classList.add("hide");
+    $("changeProfile").classList.add("hide");
+    $("logoutButton").classList.add("hide");
+    $("adminOpen").classList.add("hide");
 
   }
+
+  renderChat();
 
 }
 
 
-/* =========================================================
-   MENU DO PERFIL
-========================================================= */
+/* =========================
+   PROFILE MENU
+========================= */
 
-$("profileButton").onclick = e => {
+$("profileButton").onclick=e=>{
 
   e.stopPropagation();
 
@@ -2015,49 +2198,54 @@ document.addEventListener("click",e=>{
     !$("profileMenu").contains(e.target) &&
     !$("profileButton").contains(e.target)
   ){
-
-    $("profileMenu")
-      .classList
-      .add("hide");
-
+    $("profileMenu").classList.add("hide");
   }
 
 });
 
 
-$("loginFromMenu").onclick = () => {
+$("loginFromMenu").onclick=()=>{
 
-  $("profileMenu")
-    .classList
-    .add("hide");
-
-  $("authModal")
-    .classList
-    .remove("hide");
+  $("profileMenu").classList.add("hide");
+  $("authModal").classList.remove("hide");
 
 };
 
 
-$("changeProfile").onclick = () => {
+$("myProfileButton").onclick=()=>{
 
-  $("profileFile").click();
+  $("profileMenu").classList.add("hide");
 
-};
-
-
-$("profileFile").onchange =
-async function(){
-
-  const file =
-    this.files[0];
-
-  if(!file || !currentUser){
-    return;
+  if(currentUser){
+    openProfile(currentUser.username);
   }
+
+};
+
+
+$("friendsButton").onclick=()=>{
+
+  $("profileMenu").classList.add("hide");
+
+  document
+    .getElementById("amigos")
+    .scrollIntoView();
+
+};
+
+
+$("changeProfile").onclick=()=>$("profileFile").click();
+
+
+$("profileFile").onchange=async function(){
+
+  const file=this.files[0];
+
+  if(!file||!currentUser)return;
 
   try{
 
-    currentUser.photo =
+    currentUser.photo=
       await fileToDataURL(file);
 
     await put(
@@ -2065,11 +2253,15 @@ async function(){
       currentUser
     );
 
+    accounts=await getAll("accounts");
+
     saveCurrentSession();
 
     updateProfileUI();
 
-  }catch(error){
+    renderFriends();
+
+  }catch(e){
 
     alert(
       "Não foi possível alterar a foto."
@@ -2077,119 +2269,103 @@ async function(){
 
   }
 
-  this.value = "";
+  this.value="";
 
 };
 
 
-/* =========================================================
-   LOGIN / REGISTO
-========================================================= */
+$("logoutButton").onclick=()=>{
 
-$("loginTab").onclick = () => {
+  currentUser=null;
 
-  $("loginForm")
-    .classList
-    .remove("hide");
+  saveCurrentSession();
 
-  $("registerForm")
-    .classList
-    .add("hide");
+  updateProfileUI();
 
-  $("loginTab")
-    .classList
-    .add("authTabActive");
+  $("profileMenu").classList.add("hide");
 
-  $("registerTab")
-    .classList
-    .remove("authTabActive");
-
-  $("authTitle").textContent =
-    "Entrar";
-
-  $("authMessage").textContent =
-    "";
+  renderFriends();
+  renderAchievements();
+  render();
 
 };
 
 
-$("registerTab").onclick = () => {
+/* =========================
+   AUTH
+========================= */
 
-  $("loginForm")
-    .classList
-    .add("hide");
+$("authClose").onclick=()=>
+  $("authModal").classList.add("hide");
 
-  $("registerForm")
-    .classList
-    .remove("hide");
 
-  $("registerTab")
-    .classList
-    .add("authTabActive");
+$("loginTab").onclick=()=>{
 
-  $("loginTab")
-    .classList
-    .remove("authTabActive");
+  $("loginForm").classList.remove("hide");
+  $("registerForm").classList.add("hide");
 
-  $("authTitle").textContent =
-    "Criar conta";
+  $("loginTab").classList.add("authTabActive");
+  $("registerTab").classList.remove("authTabActive");
 
-  $("authMessage").textContent =
-    "";
+  $("authTitle").textContent="Entrar";
+  $("authMessage").textContent="";
+
+};
+
+
+$("registerTab").onclick=()=>{
+
+  $("loginForm").classList.add("hide");
+  $("registerForm").classList.remove("hide");
+
+  $("registerTab").classList.add("authTabActive");
+  $("loginTab").classList.remove("authTabActive");
+
+  $("authTitle").textContent="Criar conta";
+  $("authMessage").textContent="";
 
 };
 
 
 document
 .querySelectorAll(".showPassword")
-.forEach(button=>{
+.forEach(b=>{
 
-  button.onclick = () => {
+  b.onclick=()=>{
 
-    const input =
-      $(button.dataset.target);
+    const i=$(b.dataset.target);
 
-    input.type =
-      input.type === "password"
-        ? "text"
-        : "password";
+    i.type=
+      i.type==="password"
+      ?"text"
+      :"password";
 
-    button.textContent =
-      input.type === "password"
-        ? "👁️"
-        : "🙈";
+    b.textContent=
+      i.type==="password"
+      ?"👁️"
+      :"🙈";
 
   };
 
 });
 
 
-let registerPhoto = "";
-
-
-$("chooseRegisterAvatar").onclick =
-() => {
-
+$("chooseRegisterAvatar").onclick=()=>
   $("registerAvatarFile").click();
 
-};
 
+$("registerAvatarFile").onchange=async function(){
 
-$("registerAvatarFile").onchange =
-async function(){
-
-  if(!this.files[0]){
-    return;
-  }
+  if(!this.files[0])return;
 
   try{
 
-    registerPhoto =
+    registerPhoto=
       await fileToDataURL(
         this.files[0]
       );
 
-    $("registerAvatar").src =
+    $("registerAvatar").src=
       registerPhoto;
 
     $("registerAvatar")
@@ -2200,266 +2376,196 @@ async function(){
       .classList
       .add("hide");
 
-  }catch(error){
-
-    console.error(error);
-
-  }
+  }catch(e){}
 
 };
 
 
-/* LOGIN */
+$("loginBtn").onclick=async()=>{
 
-$("loginBtn").onclick =
-async () => {
+  const username=
+    $("loginUser").value.trim();
 
-  const button =
-    $("loginBtn");
+  const password=
+    $("loginPass").value;
 
-  button.disabled = true;
+  if(!username||!password){
 
-  button.textContent =
-    "A entrar...";
+    $("authMessage").innerHTML=
+      '<span class="error">❌ Preenche o utilizador e a palavra-passe.</span>';
 
-  try{
-
-    await ensureDB();
-
-    const username =
-      $("loginUser")
-      .value
-      .trim();
-
-    const password =
-      $("loginPass")
-      .value;
-
-
-    if(!username || !password){
-
-      $("authMessage").innerHTML =
-        '<span class="error">❌ Preenche o utilizador e a palavra-passe.</span>';
-
-      return;
-    }
-
-
-    /* ADMIN */
-
-    if(
-      username.toLowerCase() ===
-      ADMIN_USER.toLowerCase() &&
-      password === ADMIN_PASS
-    ){
-
-      currentUser = {
-
-        username: ADMIN_USER,
-
-        password: ADMIN_PASS,
-
-        admin: true,
-
-        photo:
-          localStorage.getItem(
-            "miraculous_admin_photo"
-          ) || ""
-
-      };
-
-      await put(
-        "accounts",
-        currentUser
-      );
-
-    }else{
-
-      const account =
-        accounts.find(
-          a =>
-            a.username.toLowerCase() ===
-            username.toLowerCase()
-        );
-
-
-      if(!account){
-
-        $("authMessage").innerHTML =
-          '<span class="error">❌ Conta não encontrada.</span>';
-
-        return;
-      }
-
-
-      if(account.password !== password){
-
-        $("authMessage").innerHTML =
-          '<span class="error">❌ Palavra-passe incorreta.</span>';
-
-        return;
-      }
-
-
-      currentUser = account;
-
-    }
-
-
-    saveCurrentSession();
-
-    updateProfileUI();
-
-    $("authModal")
-      .classList
-      .add("hide");
-
-    $("loginUser").value = "";
-
-    $("loginPass").value = "";
-
-  }catch(error){
-
-    console.error(error);
-
-    $("authMessage").innerHTML =
-      '<span class="error">❌ Ocorreu um erro ao entrar. Tenta novamente.</span>';
-
-  }finally{
-
-    button.disabled = false;
-
-    button.textContent =
-      "Entrar";
-
+    return;
   }
 
-};
+  // Recarrega as contas directamente da IndexedDB para evitar listas desactualizadas.
+  accounts=await getAll("accounts");
 
+  let account=
+    accounts.find(
+      a=>
+        normalizeUsername(a.username)===
+        normalizeUsername(username)
+    );
 
-/* REGISTO */
-
-$("registerBtn").onclick =
-async () => {
-
-  const button =
-    $("registerBtn");
-
-  button.disabled = true;
-
-  button.textContent =
-    "A criar conta...";
-
-  try{
-
-    await ensureDB();
-
-    const username =
-      $("registerUser")
-      .value
-      .trim();
-
-    const password =
-      $("registerPass")
-      .value;
-
-    const password2 =
-      $("registerPass2")
-      .value;
-
-
-    if(username.length < 3){
-
-      $("authMessage").innerHTML =
-        '<span class="error">❌ O nome precisa de ter pelo menos 3 caracteres.</span>';
-
-      return;
-    }
-
-
-    if(password.length < 4){
-
-      $("authMessage").innerHTML =
-        '<span class="error">❌ A palavra-passe precisa de ter pelo menos 4 caracteres.</span>';
-
-      return;
-    }
-
-
-    if(password !== password2){
-
-      $("authMessage").innerHTML =
-        '<span class="error">❌ As palavras-passe não coincidem.</span>';
-
-      return;
-    }
-
-
-    if(
-      username.toLowerCase() ===
-      ADMIN_USER.toLowerCase() ||
-      accounts.some(
-        a =>
-          a.username.toLowerCase() ===
-          username.toLowerCase()
-      )
-    ){
-
-      $("authMessage").innerHTML =
-        '<span class="error">❌ Esse utilizador já existe ou não está disponível.</span>';
-
-      return;
-    }
-
-
-    const account = {
-
-      username,
-
-      password,
-
-      photo:
-        registerPhoto || "",
-
-      admin:false,
-
-      createdAt:
-        Date.now()
-
+  // Recuperação da conta Miguel caso ela exista no site antigo mas não tenha
+  // sido migrada para esta versão da base de dados.
+  if(!account && normalizeUsername(username)==="miguel" && password==="nemesis6"){
+    account={
+      username:"miguel",
+      password:"nemesis6",
+      photo:"",
+      admin:true,
+      flag:getFlagFromLanguage(),
+      phrase:"Claws out!",
+      watched:[],
+      createdAt:Date.now()
     };
 
+    await put("accounts",account);
+    accounts=await getAll("accounts");
+  }
+
+  if(!account){
+
+    $("authMessage").innerHTML=
+      '<span class="error">❌ Conta não encontrada.</span>';
+
+    return;
+  }
+
+  // A conta Miguel é a conta administradora principal.
+  // Corrige contas antigas que ficaram guardadas com admin:false.
+  if(normalizeUsername(account.username)==="miguel" && password==="nemesis6" && !account.admin){
+    account.admin=true;
+    await put("accounts",account);
+    accounts=await getAll("accounts");
+  }
+
+  if(account.password!==password){
+
+    $("authMessage").innerHTML=
+      '<span class="error">❌ Palavra-passe incorreta.</span>';
+
+    return;
+  }
+
+  currentUser=account;
+
+  /*
+    Guarda a bandeira no momento do login.
+    Não altera a bandeira posteriormente.
+  */
+
+  if(!currentUser.flag){
+    currentUser.flag=
+      getFlagFromLanguage();
+  }
+
+  await put(
+    "accounts",
+    currentUser
+  );
+
+  accounts=await getAll("accounts");
+
+  saveCurrentSession();
+  updateProfileUI();
+
+  $("authModal").classList.add("hide");
+
+  $("loginUser").value="";
+  $("loginPass").value="";
+
+  renderFriends();
+  renderAchievements();
+  render();
+
+  checkMaintenance();
+
+};
+
+
+$("registerBtn").onclick=async()=>{
+
+  const username=
+    $("registerUser").value.trim();
+
+  const password=
+    $("registerPass").value;
+
+  const password2=
+    $("registerPass2").value;
+
+  if(username.length<3){
+
+    $("authMessage").innerHTML=
+      '<span class="error">❌ O nome precisa de ter pelo menos 3 caracteres.</span>';
+
+    return;
+  }
+
+  if(password.length<4){
+
+    $("authMessage").innerHTML=
+      '<span class="error">❌ A palavra-passe precisa de ter pelo menos 4 caracteres.</span>';
+
+    return;
+  }
+
+  if(password!==password2){
+
+    $("authMessage").innerHTML=
+      '<span class="error">❌ As palavras-passe não coincidem.</span>';
+
+    return;
+  }
+
+  if(
+    accounts.some(
+      a=>
+        normalizeUsername(a.username)===
+        normalizeUsername(username)
+    )
+  ){
+
+    $("authMessage").innerHTML=
+      '<span class="error">❌ Esse utilizador já existe.</span>';
+
+    return;
+  }
+
+  try{
+
+    const account={
+      username,
+      password,
+      photo:registerPhoto||"",
+      admin:false,
+      flag:getFlagFromLanguage(),
+      phrase:"Claws out!",
+      watched:[],
+      createdAt:Date.now()
+    };
 
     await put(
       "accounts",
       account
     );
 
+    accounts=await getAll("accounts");
 
-    accounts =
-      await getAll("accounts");
-
-
-    currentUser =
-      account;
-
+    currentUser=account;
 
     saveCurrentSession();
-
     updateProfileUI();
 
+    $("authModal").classList.add("hide");
 
-    $("authModal")
-      .classList
-      .add("hide");
+    $("registerUser").value="";
+    $("registerPass").value="";
+    $("registerPass2").value="";
 
-
-    $("registerUser").value = "";
-
-    $("registerPass").value = "";
-
-    $("registerPass2").value = "";
-
-    registerPhoto = "";
+    registerPhoto="";
 
     $("registerAvatar")
       .classList
@@ -2469,372 +2575,1049 @@ async () => {
       .classList
       .remove("hide");
 
+    renderFriends();
+    renderAchievements();
+    render();
 
-  }catch(error){
+  }catch(e){
 
-    console.error(error);
-
-    $("authMessage").innerHTML =
+    $("authMessage").innerHTML=
       '<span class="error">❌ Não foi possível criar a conta.</span>';
-
-  }finally{
-
-    button.disabled = false;
-
-    button.textContent =
-      "Criar conta";
 
   }
 
 };
 
 
-/* LOGOUT */
+/* =========================
+   EPISODES
+========================= */
 
-$("logoutButton").onclick = () => {
+function render(){
 
-  currentUser = null;
+  const q=
+    $("search")
+      .value
+      .toLowerCase()
+      .trim();
+
+  const selectedSeries=
+    $("seriesFilter").value;
+
+  const filtered=
+    episodes.filter(e=>{
+
+      const text=
+        `${e.title} ${e.season} ${e.number} ${e.lang} ${e.series||"Miraculous"}`
+        .toLowerCase();
+
+      return text.includes(q) &&
+        (
+          selectedSeries==="all" ||
+          (e.series||"Miraculous")===
+          selectedSeries
+        );
+
+    });
+
+  $("grid").innerHTML=
+    filtered.map(e=>{
+
+      const watched=
+        currentUser &&
+        Array.isArray(currentUser.watched) &&
+        currentUser.watched.includes(e.id);
+
+      return `
+      <article class="card">
+
+        <div class="thumb">
+          ${
+            e.thumbnail
+            ?`<img src="${esc(e.thumbnail)}" alt="" loading="lazy">`
+            :"🐞"
+          }
+        </div>
+
+        <div class="body">
+
+          <span class="seriesBadge">
+            ${esc(e.series||"Miraculous")}
+          </span>
+
+          <b>${esc(e.title)}</b>
+
+          <div class="meta">
+            ${esc(e.season)}
+            ·
+            ${esc(e.number)}
+            ·
+            ${esc(e.lang||"—")}
+          </div>
+
+          ${
+            e.desc
+            ?`<p class="muted">${esc(e.desc)}</p>`
+            :""
+          }
+
+          ${
+            e.trailerUrl
+            ?`
+            <a class="btn"
+               href="${esc(e.trailerUrl)}"
+               target="_blank"
+               rel="noopener"
+               style="display:inline-block;margin-top:8px">
+              ▶️ Trailer
+            </a>
+            `
+            :""
+          }
+
+          ${
+            currentUser
+            ?`
+            <div class="episodeWatched">
+
+              <button
+                class="btn ${watched?"green":""}"
+                onclick="toggleWatched('${esc(e.id)}')">
+
+                ${watched?"✅ Visto":"☑️ Marcar como visto"}
+
+              </button>
+
+            </div>
+            `
+            :""
+          }
+
+        </div>
+
+      </article>
+      `;
+
+    }).join("")
+    ||
+    '<p class="muted">Nenhum episódio encontrado.</p>';
+
+  $("count").textContent=
+    episodes.length;
+
+  renderAdminList();
+
+}
+
+
+window.toggleWatched=async id=>{
+
+  if(!currentUser)return;
+
+  if(!Array.isArray(currentUser.watched)){
+    currentUser.watched=[];
+  }
+
+  const index=
+    currentUser.watched.indexOf(id);
+
+  if(index>=0){
+    currentUser.watched.splice(index,1);
+  }else{
+    currentUser.watched.push(id);
+  }
+
+  await put(
+    "accounts",
+    currentUser
+  );
+
+  accounts=await getAll("accounts");
 
   saveCurrentSession();
 
-  updateProfileUI();
+  await checkAchievements();
 
-  $("profileMenu")
-    .classList
-    .add("hide");
-
-  $("admin")
-    .classList
-    .add("hide");
+  render();
+  renderAchievements();
 
 };
 
 
-/* FECHAR LOGIN */
+/* =========================
+   ACHIEVEMENTS
+========================= */
 
-$("authClose").onclick = () => {
+const ACHIEVEMENT_LIST=[
 
-  $("authModal")
-    .classList
-    .add("hide");
+  {
+    id:"first_episode",
+    icon:"🎬",
+    title:"Primeiro episódio",
+    desc:"Marca um episódio como visto."
+  },
 
-};
+  {
+    id:"season_complete",
+    icon:"🏆",
+    title:"Vê uma temporada inteira",
+    desc:"Marca todos os episódios de uma temporada como vistos."
+  },
+
+  {
+    id:"five_episodes",
+    icon:"🔥",
+    title:"Maratona",
+    desc:"Vê 5 episódios."
+  },
+
+  {
+    id:"ten_episodes",
+    icon:"⭐",
+    title:"Fã dedicado",
+    desc:"Vê 10 episódios."
+  }
+
+];
 
 
-/* =========================================================
-   ADMIN
-========================================================= */
+async function checkAchievements(){
 
-$("adminOpen").onclick = () => {
+  if(!currentUser)return;
 
-  if(!currentUser?.admin){
+  const watched=
+    Array.isArray(currentUser.watched)
+    ?currentUser.watched
+    :[];
+
+  const unlocked=[];
+
+  if(watched.length>=1){
+    unlocked.push("first_episode");
+  }
+
+  if(watched.length>=5){
+    unlocked.push("five_episodes");
+  }
+
+  if(watched.length>=10){
+    unlocked.push("ten_episodes");
+  }
+
+  /*
+    TEMPORADAS COMPLETAS
+
+    Cada temporada é avaliada separadamente.
+    Só desbloqueia quando EXISTEM episódios nessa temporada
+    e todos estão vistos.
+  */
+
+  const groups={};
+
+  episodes.forEach(e=>{
+
+    const key=
+      `${e.series||"Miraculous"}|||${e.season}`;
+
+    if(!groups[key]){
+      groups[key]=[];
+    }
+
+    groups[key].push(e.id);
+
+  });
+
+  const completeSeason=
+    Object.values(groups).some(ids=>
+      ids.length>0 &&
+      ids.every(id=>watched.includes(id))
+    );
+
+  if(completeSeason){
+    unlocked.push("season_complete");
+  }
+
+  for(const id of unlocked){
+
+    const exists=
+      achievements.find(a=>
+        a.username===currentUser.username &&
+        a.achievementId===id
+      );
+
+    if(!exists){
+
+      await put(
+        "achievements",
+        {
+          id:makeId(),
+          username:currentUser.username,
+          achievementId:id,
+          unlockedAt:Date.now()
+        }
+      );
+
+    }
+
+  }
+
+  achievements=
+    await getAll("achievements");
+
+}
+
+
+function renderAchievements(){
+
+  if(!currentUser){
+
+    $("achievementContent").innerHTML=
+      '<p class="muted">Entra na tua conta para veres as tuas conquistas.</p>';
+
     return;
   }
 
-  $("profileMenu")
+  const unlocked=
+    achievements.filter(
+      a=>a.username===currentUser.username
+    );
+
+  $("achievementContent").innerHTML=`
+
+    <div class="achievementGrid">
+
+      ${ACHIEVEMENT_LIST.map(a=>{
+
+        const isUnlocked=
+          unlocked.some(
+            x=>x.achievementId===a.id
+          );
+
+        return `
+          <div class="achievement ${isUnlocked?"unlocked":""}">
+
+            <div class="achievementIcon">
+              ${isUnlocked?a.icon:"🔒"}
+            </div>
+
+            <b>${esc(a.title)}</b>
+
+            <div class="muted">
+              ${esc(a.desc)}
+            </div>
+
+            <small class="${isUnlocked?"success":"muted"}">
+              ${isUnlocked?"Desbloqueada":"Bloqueada"}
+            </small>
+
+          </div>
+        `;
+
+      }).join("")}
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================
+   FRIENDS
+========================= */
+
+/*
+  IMPORTANTE:
+  O sistema usa uma chave determinística.
+
+  A amizade entre A e B tem SEMPRE:
+  menor username + maior username
+
+  Assim não existem duas amizades diferentes
+  entre as mesmas pessoas.
+*/
+
+function friendshipKey(a,b){
+
+  const x=normalizeUsername(a);
+  const y=normalizeUsername(b);
+
+  return [x,y].sort().join("|||");
+
+}
+
+
+function getFriendship(a,b){
+
+  const key=
+    friendshipKey(a,b);
+
+  return friendships.find(
+    f=>f.id===key
+  );
+
+}
+
+
+function isFriend(a,b){
+
+  const f=getFriendship(a,b);
+
+  return !!f && f.status==="accepted";
+
+}
+
+
+function renderFriends(){
+
+  if(!currentUser){
+
+    $("friendsLoginMessage").classList.remove("hide");
+    $("friendsContent").classList.add("hide");
+
+    return;
+  }
+
+  $("friendsLoginMessage").classList.add("hide");
+  $("friendsContent").classList.remove("hide");
+
+  renderFriendRequests();
+  renderFriendList();
+
+}
+
+
+$("friendSearchButton").onclick=searchUsers;
+
+
+$("friendSearchInput").addEventListener(
+  "keydown",
+  e=>{
+    if(e.key==="Enter"){
+      searchUsers();
+    }
+  }
+);
+
+
+function searchUsers(){
+
+  if(!currentUser)return;
+
+  const q=
+    $("friendSearchInput")
+      .value
+      .trim()
+      .toLowerCase();
+
+  if(!q){
+
+    $("friendResults").innerHTML=
+      '<p class="muted">Escreve um nome para procurar.</p>';
+
+    return;
+  }
+
+  const results=
+    accounts.filter(a=>
+      a.username.toLowerCase().includes(q) &&
+      normalizeUsername(a.username)!==
+      normalizeUsername(currentUser.username)
+    );
+
+  $("friendResults").innerHTML=
+    results.map(a=>{
+
+      const f=
+        getFriendship(
+          currentUser.username,
+          a.username
+        );
+
+      let action="";
+
+      if(!f){
+
+        action=`
+          <button
+            class="btn primary"
+            onclick="sendFriendRequest('${esc(a.username)}')">
+            ➕ Adicionar
+          </button>
+        `;
+
+      }else if(f.status==="pending"){
+
+        if(
+          normalizeUsername(f.from)===
+          normalizeUsername(currentUser.username)
+        ){
+
+          action=`
+            <button class="btn" disabled>
+              Pedido enviado
+            </button>
+          `;
+
+        }else{
+
+          action=`
+            <button
+              class="btn green"
+              onclick="acceptFriend('${esc(f.id)}')">
+              Aceitar
+            </button>
+
+            <button
+              class="danger"
+              onclick="deleteFriend('${esc(f.id)}')">
+              Recusar
+            </button>
+          `;
+
+        }
+
+      }else if(f.status==="accepted"){
+
+        action=`
+          <button
+            class="btn"
+            onclick="openProfile('${esc(a.username)}')">
+            👤 Ver perfil
+          </button>
+        `;
+
+      }
+
+      return userResultHTML(a,action);
+
+    }).join("")
+    ||
+    '<p class="muted">Nenhum utilizador encontrado.</p>';
+
+}
+
+
+function userResultHTML(account,action){
+
+  const photo=account.photo
+    ?`<img class="miniAvatar" src="${esc(account.photo)}" alt="">`
+    :`<div class="miniFallback">👤</div>`;
+
+  return `
+    <div class="userResult">
+
+      <div class="userInfo">
+
+        ${photo}
+
+        <div>
+          <b>
+            ${esc(account.username)}
+            ${esc(account.flag||"🌍")}
+          </b>
+
+          <div class="muted">
+            ${esc(account.phrase||"Claws out!")}
+          </div>
+        </div>
+
+      </div>
+
+      <div class="friendButtons">
+        ${action}
+      </div>
+
+    </div>
+  `;
+
+}
+
+
+window.sendFriendRequest=async username=>{
+
+  if(!currentUser)return;
+
+  /*
+    CORREÇÃO DO BUG:
+    nunca permitir amizade consigo próprio.
+  */
+
+  if(
+    normalizeUsername(username)===
+    normalizeUsername(currentUser.username)
+  ){
+
+    alert(
+      "❌ Não podes adicionar a tua própria conta."
+    );
+
+    return;
+  }
+
+  const target=
+    accounts.find(
+      a=>
+        normalizeUsername(a.username)===
+        normalizeUsername(username)
+    );
+
+  if(!target)return;
+
+  const key=
+    friendshipKey(
+      currentUser.username,
+      target.username
+    );
+
+  const existing=
+    friendships.find(f=>f.id===key);
+
+  if(existing){
+
+    alert(
+      existing.status==="accepted"
+      ?"Já são amigos."
+      :"Já existe um pedido."
+    );
+
+    return;
+  }
+
+  await put(
+    "friendships",
+    {
+      id:key,
+      from:currentUser.username,
+      to:target.username,
+      status:"pending",
+      createdAt:Date.now()
+    }
+  );
+
+  friendships=
+    await getAll("friendships");
+
+  searchUsers();
+  renderFriendRequests();
+
+};
+
+
+window.acceptFriend=async id=>{
+
+  const f=
+    friendships.find(x=>x.id===id);
+
+  if(!f||!currentUser)return;
+
+  if(
+    normalizeUsername(f.to)!==
+    normalizeUsername(currentUser.username)
+  )return;
+
+  f.status="accepted";
+  f.acceptedAt=Date.now();
+
+  await put(
+    "friendships",
+    f
+  );
+
+  friendships=
+    await getAll("friendships");
+
+  renderFriends();
+  searchUsers();
+
+};
+
+
+window.deleteFriend=async id=>{
+
+  await remove(
+    "friendships",
+    id
+  );
+
+  friendships=
+    await getAll("friendships");
+
+  renderFriends();
+  searchUsers();
+
+};
+
+
+function renderFriendRequests(){
+
+  if(!currentUser)return;
+
+  const incoming=
+    friendships.filter(f=>
+      f.status==="pending" &&
+      normalizeUsername(f.to)===
+      normalizeUsername(currentUser.username)
+  );
+
+  $("friendRequests").innerHTML=
+    incoming.map(f=>{
+
+      const user=
+        accounts.find(
+          a=>
+            normalizeUsername(a.username)===
+            normalizeUsername(f.from)
+        );
+
+      if(!user)return "";
+
+      return userResultHTML(
+        user,
+        `
+          <button
+            class="btn green"
+            onclick="acceptFriend('${esc(f.id)}')">
+            ✅ Aceitar
+          </button>
+
+          <button
+            class="danger"
+            onclick="deleteFriend('${esc(f.id)}')">
+            ❌ Recusar
+          </button>
+        `
+      );
+
+    }).join("")
+    ||
+    '<p class="muted">Não tens pedidos de amizade.</p>';
+
+}
+
+
+function renderFriendList(){
+
+  if(!currentUser)return;
+
+  const mine=
+    friendships.filter(f=>
+      f.status==="accepted" &&
+      (
+        normalizeUsername(f.from)===
+        normalizeUsername(currentUser.username)
+        ||
+        normalizeUsername(f.to)===
+        normalizeUsername(currentUser.username)
+      )
+    );
+
+  $("friendsList").innerHTML=
+    mine.map(f=>{
+
+      const other=
+        normalizeUsername(f.from)===
+        normalizeUsername(currentUser.username)
+        ?f.to
+        :f.from;
+
+      const account=
+        accounts.find(
+          a=>
+            normalizeUsername(a.username)===
+            normalizeUsername(other)
+        );
+
+      if(!account)return "";
+
+      return userResultHTML(
+        account,
+        `
+          <button
+            class="btn"
+            onclick="openProfile('${esc(account.username)}')">
+            👤 Perfil
+          </button>
+
+          <button
+            class="danger"
+            onclick="deleteFriend('${esc(f.id)}')">
+            Remover
+          </button>
+        `
+      );
+
+    }).join("")
+    ||
+    '<p class="muted">Ainda não tens amigos.</p>';
+
+}
+
+
+/* =========================
+   PROFILE
+========================= */
+
+window.openProfile=username=>{
+
+  const account=
+    accounts.find(
+      a=>
+        normalizeUsername(a.username)===
+        normalizeUsername(username)
+    );
+
+  if(!account)return;
+
+  const photo=
+    account.photo
+    ?`<img src="${esc(account.photo)}" alt="">`
+    :`<div class="profileFallback">👤</div>`;
+
+  const watched=
+    Array.isArray(account.watched)
+    ?account.watched.length
+    :0;
+
+  const userAchievements=
+    achievements.filter(
+      a=>a.username===account.username
+    );
+
+  $("profileModalContent").innerHTML=`
+
+    <div class="profileLarge">
+
+      ${photo}
+
+      <div>
+
+        <h2 style="margin:0">
+          ${esc(account.username)}
+        </h2>
+
+        <div class="flag">
+          ${esc(account.flag||"🌍")}
+        </div>
+
+        <div class="profilePhrase">
+          “${esc(account.phrase||"Claws out!")}"
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="stats">
+
+      <div class="stat">
+        <b>${watched}</b>
+        <br>
+        <small class="muted">episódios vistos</small>
+      </div>
+
+      <div class="stat">
+        <b>${userAchievements.length}</b>
+        <br>
+        <small class="muted">conquistas</small>
+      </div>
+
+    </div>
+
+
+    <h3>🏆 Conquistas</h3>
+
+    <div class="achievementGrid">
+
+      ${ACHIEVEMENT_LIST.map(a=>{
+
+        const yes=
+          userAchievements.some(
+            x=>x.achievementId===a.id
+          );
+
+        return `
+          <div class="achievement ${yes?"unlocked":""}">
+            <div class="achievementIcon">
+              ${yes?a.icon:"🔒"}
+            </div>
+            <b>${esc(a.title)}</b>
+          </div>
+        `;
+
+      }).join("")}
+
+    </div>
+
+  `;
+
+  $("profileModal")
     .classList
-    .add("hide");
+    .remove("hide");
+
+};
+
+
+$("profileClose").onclick=()=>
+  $("profileModal").classList.add("hide");
+
+
+/* =========================
+   ADMIN
+========================= */
+
+$("adminOpen").onclick=()=>{
+
+  if(!currentUser?.admin)return;
+
+  $("profileMenu").classList.add("hide");
 
   $("admin")
     .classList
     .remove("hide");
 
   renderAdminList();
+  renderAdminUsers();
+  renderAdminPolls();
+
+  $("myPhraseSelect").value=
+    currentUser.phrase||"Claws out!";
+
+  updatePhraseUI();
 
 };
 
 
-$("adminClose").onclick = () => {
+$("adminClose").onclick=()=>
+  $("admin").classList.add("hide");
 
-  $("admin")
-    .classList
-    .add("hide");
-
-};
-
-
-/* =========================================================
-   CATÁLOGO
-========================================================= */
-
-function render(){
-
-  const q =
-    $("search")
-    .value
-    .toLowerCase()
-    .trim();
-
-  const selectedSeries =
-    $("seriesFilter").value;
-
-
-  const filtered =
-    episodes.filter(e=>{
-
-      const text =
-        `${e.title} ${e.season} ${e.number} ${e.lang} ${e.series || "Miraculous"}`
-        .toLowerCase();
-
-      return (
-        text.includes(q) &&
-        (
-          selectedSeries === "all" ||
-          (e.series || "Miraculous") ===
-          selectedSeries
-        )
-      );
-
-    });
-
-
-  $("grid").innerHTML =
-    filtered.map(e=>`
-
-<article class="card">
-
-<div class="thumb">
-
-${
-  e.thumbnail
-    ? `<img src="${esc(e.thumbnail)}" alt="" loading="lazy">`
-    : "🐞"
-}
-
-</div>
-
-<div class="body">
-
-<span class="seriesBadge">
-${esc(e.series || "Miraculous")}
-</span>
-
-<b>
-${esc(e.title)}
-</b>
-
-<div class="meta">
-${esc(e.series || "Miraculous")}
-· ${esc(e.season)}
-· ${esc(e.number)}
-· ${esc(e.lang || "—")}
-</div>
-
-${
-  e.desc
-    ? `<p class="muted">${esc(e.desc)}</p>`
-    : ""
-}
-
-${
-  e.trailerUrl
-    ? `
-<a
-class="btn"
-href="${esc(e.trailerUrl)}"
-target="_blank"
-rel="noopener"
-style="display:inline-block;margin-top:8px"
->
-▶️ Trailer
-</a>
-`
-    : ""
-}
-
-</div>
-
-</article>
-
-`).join("")
-||
-'<p class="muted">Nenhum episódio encontrado.</p>';
-
-
-$("count").textContent =
-  episodes.length;
-
-renderAdminList();
-
-}
-
-
-/* =========================================================
-   LISTA ADMIN
-========================================================= */
 
 function renderAdminList(){
 
-  if(!currentUser?.admin){
-    return;
-  }
+  if(!currentUser?.admin)return;
 
-
-  $("list").innerHTML =
+  $("list").innerHTML=
     episodes.map(e=>`
 
-<div class="item">
+      <div class="item">
 
-<div>
+        <div>
 
-<b>
-${esc(e.title)}
-</b>
+          <b>${esc(e.title)}</b>
 
-<div class="meta">
-${esc(e.series || "Miraculous")}
-· ${esc(e.season)}
-· ${esc(e.number)}
-· ${esc(e.lang || "—")}
-</div>
+          <div class="meta">
+            ${esc(e.series||"Miraculous")}
+            ·
+            ${esc(e.season)}
+            ·
+            ${esc(e.number)}
+          </div>
 
-</div>
+        </div>
 
-<div class="item-actions">
+        <div class="item-actions">
 
-<button
-class="btn"
-onclick="editEpisode('${esc(e.id)}')"
->
-✏️
-</button>
+          <button
+            class="btn"
+            onclick="editEpisode('${esc(e.id)}')">
+            ✏️
+          </button>
 
-<button
-class="danger"
-onclick="deleteEpisode('${esc(e.id)}')"
->
-🗑️
-</button>
+          <button
+            class="danger"
+            onclick="deleteEpisode('${esc(e.id)}')">
+            🗑️
+          </button>
 
-</div>
+        </div>
 
-</div>
+      </div>
 
-`).join("")
-||
-'<p class="muted">Ainda não existem episódios.</p>';
+    `).join("")
+    ||
+    '<p class="muted">Ainda não existem episódios.</p>';
 
 }
 
 
-/* =========================================================
-   APAGAR
-========================================================= */
-
-window.deleteEpisode =
-async id => {
-
-  if(
-    !currentUser?.admin ||
-    !confirm(
-      "Queres mesmo apagar este episódio?"
-    )
-  ){
-    return;
-  }
-
+window.deleteEpisode=async id=>{
+  if(!currentUser?.admin)return;
+  const episode=episodes.find(e=>e.id===id);
+  if(!episode)return;
+  if(!confirm(`Queres mesmo apagar "${episode.title}"?`))return;
   try{
-
-    await remove(
-      "episodes",
-      id
-    );
-
-    await loadData();
-
-  }catch(error){
-
-    console.error(error);
-
-    alert(
-      "Não foi possível apagar o episódio."
-    );
-
+    await remove("episodes",id);
+    episodes=await getAll("episodes");
+    renderAdminList();
+    render();
+    $("status").innerHTML='<div class="notice success">✅ Episódio apagado com sucesso!</div>';
+  }catch(e){
+    $("status").innerHTML=`<div class="notice error">❌ Não foi possível apagar o episódio.<br><small>${esc(e.message||"Erro desconhecido")}</small></div>`;
   }
-
 };
 
+window.editEpisode=id=>{
 
-/* =========================================================
-   EDITAR
-========================================================= */
+  if(!currentUser?.admin)return;
 
-window.editEpisode =
-id => {
+  const e=
+    episodes.find(x=>x.id===id);
 
-  if(!currentUser?.admin){
-    return;
-  }
+  if(!e)return;
 
-  const e =
-    episodes.find(
-      x => x.id === id
-    );
+  editingId=id;
 
-  if(!e){
-    return;
-  }
-
-
-  editingId = id;
-
-
-  $("episodeFormTitle")
-    .textContent =
+  $("episodeFormTitle").textContent=
     "Editar episódio";
 
+  $("series").value=
+    e.series||"Miraculous";
 
-  $("series").value =
-    e.series || "Miraculous";
+  $("title").value=
+    e.title||"";
 
-  $("title").value =
-    e.title || "";
+  $("season").value=
+    e.season||"";
 
-  $("season").value =
-    e.season || "";
+  $("number").value=
+    e.number||"";
 
-  $("number").value =
-    e.number || "";
+  $("lang").value=
+    e.lang||"";
 
-  $("lang").value =
-    e.lang || "";
+  $("desc").value=
+    e.desc||"";
 
-  $("desc").value =
-    e.desc || "";
+  $("trailerUrl").value=
+    e.trailerUrl||"";
 
-  $("trailerUrl").value =
-    e.trailerUrl || "";
+  $("thumb").value="";
 
-  $("thumb").value =
-    "";
-
-  $("add").textContent =
+  $("add").textContent=
     "Guardar alterações";
 
-  $("cancelEdit").style.display =
+  $("cancelEdit").style.display=
     "inline-block";
 
 };
 
 
-$("cancelEdit").onclick =
-resetForm;
+$("cancelEdit").onclick=resetForm;
 
 
 function resetForm(){
 
-  editingId = null;
+  editingId=null;
 
-  $("episodeFormTitle")
-    .textContent =
+  $("episodeFormTitle").textContent=
     "Adicionar episódio";
 
-  $("add").textContent =
+  $("add").textContent=
     "Guardar episódio";
 
-  $("cancelEdit").style.display =
+  $("cancelEdit").style.display=
     "none";
-
 
   [
     "title",
@@ -2844,452 +3627,751 @@ function resetForm(){
     "desc",
     "trailerUrl"
   ].forEach(id=>{
-    $(id).value = "";
+    $(id).value="";
   });
 
-
-  $("series").value =
+  $("series").value=
     "Miraculous";
 
-  $("thumb").value =
-    "";
+  $("thumb").value="";
 
 }
 
 
-/* =========================================================
-   GUARDAR EPISÓDIO
-========================================================= */
+/* =========================
+   SAVE EPISODE
+========================= */
 
-$("add").onclick =
-async () => {
+$("add").onclick=async()=>{
 
   if(!currentUser?.admin){
 
-    $("status").innerHTML =
+    $("status").innerHTML=
       '<div class="notice error">❌ Precisas de ser administrador.</div>';
 
     return;
   }
 
-
-  const title =
-    $("title")
-    .value
-    .trim();
-
+  const title=
+    $("title").value.trim();
 
   if(!title){
 
-    $("status").innerHTML =
+    $("status").innerHTML=
       '<div class="notice error">❌ Escreve um título.</div>';
 
     return;
   }
 
+  const old=
+    editingId
+    ?episodes.find(e=>e.id===editingId)
+    :null;
 
-  const button =
-    $("add");
+  const episode={
 
-  button.disabled = true;
+    id:editingId||makeId(),
 
-  button.textContent =
-    "A guardar...";
+    series:$("series").value,
 
-  $("uploadProgress")
-    .style
-    .display =
-    "block";
+    title,
 
-  $("progressBar")
-    .style
-    .width =
-    "20%";
+    season:
+      $("season").value.trim()||"—",
 
+    number:
+      $("number").value.trim()||"—",
+
+    lang:
+      $("lang").value.trim()||"—",
+
+    desc:
+      $("desc").value.trim()||"",
+
+    trailerUrl:
+      $("trailerUrl").value.trim()||"",
+
+    thumbnail:
+      old?.thumbnail||"",
+
+    updatedAt:Date.now()
+
+  };
 
   try{
-
-    const old =
-      editingId
-        ? episodes.find(
-            e => e.id === editingId
-          )
-        : null;
-
-
-    const episode = {
-
-      id:
-        editingId ||
-        makeId(),
-
-      series:
-        $("series").value,
-
-      title,
-
-      season:
-        $("season")
-        .value
-        .trim() || "—",
-
-      number:
-        $("number")
-        .value
-        .trim() || "—",
-
-      lang:
-        $("lang")
-        .value
-        .trim() || "—",
-
-      desc:
-        $("desc")
-        .value
-        .trim() || "",
-
-      /*
-        CORRIGIDO:
-        O trailer agora é realmente guardado.
-      */
-
-      trailerUrl:
-        $("trailerUrl")
-        .value
-        .trim() || "",
-
-      thumbnail:
-        old?.thumbnail || "",
-
-      updatedAt:
-        Date.now()
-
-    };
-
 
     await put(
       "episodes",
       episode
     );
 
-
-    $("progressBar")
-      .style
-      .width =
-      "60%";
-
-
-    const file =
-      $("thumb")
-      .files[0];
-
+    const file=
+      $("thumb").files[0];
 
     if(file){
 
-      const data =
+      episode.thumbnail=
         await fileToDataURL(file);
 
-      if(data){
-
-        episode.thumbnail =
-          data;
-
-        await put(
-          "episodes",
-          episode
-        );
-
-      }
+      await put(
+        "episodes",
+        episode
+      );
 
     }
 
-
-    $("progressBar")
-      .style
-      .width =
-      "100%";
-
-
-    await loadData();
+    $("status").innerHTML=
+      '<div class="notice success">✅ Episódio guardado!</div>';
 
     resetForm();
 
+    await loadData();
 
-    $("status").innerHTML =
-      '<div class="notice success">✅ Episódio guardado com sucesso!</div>';
+  }catch(e){
 
-
-    setTimeout(()=>{
-
-      $("status").innerHTML =
-        "";
-
-      $("uploadProgress")
-        .style
-        .display =
-        "none";
-
-      $("progressBar")
-        .style
-        .width =
-        "0%";
-
-    },2500);
-
-
-  }catch(error){
-
-    console.error(error);
-
-    $("status").innerHTML =
-      `
-      <div class="notice error">
-      ❌ Erro ao guardar episódio.
-      <br>
-      <small>
-      ${esc(error?.message || "Erro desconhecido")}
-      </small>
-      </div>
-      `;
-
-    $("uploadProgress")
-      .style
-      .display =
-      "none";
-
-  }finally{
-
-    button.disabled = false;
-
-    button.textContent =
-      editingId
-        ? "Guardar alterações"
-        : "Guardar episódio";
+    $("status").innerHTML=
+      `<div class="notice error">
+        ❌ Erro ao guardar episódio.
+        <br>
+        <small>${esc(e.message||"Erro desconhecido")}</small>
+      </div>`;
 
   }
 
 };
 
 
-/* =========================================================
-   ANÚNCIOS
-========================================================= */
+/* =========================
+   CHAT
+========================= */
+let activeFriendChat="";
+function friendChatRoom(a,b){return "friend:"+[normalizeUsername(a),normalizeUsername(b)].sort().join("|");}
+function isAcceptedFriend(username){if(!currentUser)return false;return friendships.some(f=>f.status==="accepted"&&((normalizeUsername(f.from)===normalizeUsername(currentUser.username)&&normalizeUsername(f.to)===normalizeUsername(username))||(normalizeUsername(f.to)===normalizeUsername(currentUser.username)&&normalizeUsername(f.from)===normalizeUsername(username))));}
+async function getMessages(roomId){const all=await getAll("messages");return all.filter(m=>m.roomId===roomId).sort((a,b)=>(a.createdAt||0)-(b.createdAt||0));}
+function messageHTML(m){const mine=currentUser&&normalizeUsername(m.from)===normalizeUsername(currentUser.username);const u=accounts.find(a=>normalizeUsername(a.username)===normalizeUsername(m.from));return `<div class="chatMessage ${mine?"mine":""}"><div class="chatMeta">${mine?"Tu":esc(u?.username||m.from)} · ${new Date(m.createdAt||Date.now()).toLocaleString("pt-PT",{dateStyle:"short",timeStyle:"short"})}</div><div>${esc(m.text)}</div></div>`;}
+async function renderCommunityChat(){if(!currentUser)return;const ms=await getMessages("community");$("communityMessages").innerHTML=ms.map(messageHTML).join("")||'<p class="muted">Ainda não existem mensagens. Sê o primeiro a escrever! 🐾</p>';$("communityMessages").scrollTop=$("communityMessages").scrollHeight;}
+async function renderFriendChat(){if(!currentUser)return;const sel=$("chatFriendSelect");const friends=accounts.filter(a=>normalizeUsername(a.username)!==normalizeUsername(currentUser.username)&&isAcceptedFriend(a.username));sel.innerHTML='<option value="">Escolhe um amigo...</option>'+friends.map(a=>`<option value="${esc(a.username)}">👤 ${esc(a.username)}</option>`).join("");if(friends.some(a=>normalizeUsername(a.username)===normalizeUsername(activeFriendChat)))sel.value=activeFriendChat;else activeFriendChat="";if(!activeFriendChat){$("friendMessages").innerHTML='<p class="muted">Escolhe um amigo para abrir a conversa.</p>';return;}const ms=await getMessages(friendChatRoom(currentUser.username,activeFriendChat));$("friendMessages").innerHTML=ms.map(messageHTML).join("")||'<p class="muted">Ainda não existem mensagens nesta conversa.</p>';$("friendMessages").scrollTop=$("friendMessages").scrollHeight;}
+async function renderChat(){if(!$("chatContent"))return;if(!currentUser){$("chatLoginMessage").classList.remove("hide");$("chatContent").classList.add("hide");return;}$("chatLoginMessage").classList.add("hide");$("chatContent").classList.remove("hide");await renderCommunityChat();await renderFriendChat();}
+async function sendChatMessage(roomId,inputId){if(!currentUser)return;const input=$(inputId),text=input.value.trim();if(!text)return;await put("messages",{id:makeId(),roomId,from:currentUser.username,text:text.slice(0,500),createdAt:Date.now()});input.value="";roomId==="community"?await renderCommunityChat():await renderFriendChat();}
+$("communityChatTab").onclick=async()=>{$("communityChatTab").classList.add("primary");$("friendsChatTab").classList.remove("primary");$("communityChatPane").classList.remove("hide");$("friendsChatPane").classList.add("hide");await renderCommunityChat();};
+$("friendsChatTab").onclick=async()=>{$("friendsChatTab").classList.add("primary");$("communityChatTab").classList.remove("primary");$("friendsChatPane").classList.remove("hide");$("communityChatPane").classList.add("hide");await renderFriendChat();};
+$("chatFriendSelect").onchange=async e=>{activeFriendChat=e.target.value;await renderFriendChat();};
+$("sendCommunityMessage").onclick=()=>sendChatMessage("community","communityMessageInput");
+$("sendFriendMessage").onclick=()=>{if(!activeFriendChat){alert("Escolhe primeiro um amigo.");return;}sendChatMessage(friendChatRoom(currentUser.username,activeFriendChat),"friendMessageInput");};
+$("communityMessageInput").onkeydown=e=>{if(e.key==="Enter")sendChatMessage("community","communityMessageInput");};
+$("friendMessageInput").onkeydown=e=>{if(e.key==="Enter"&&activeFriendChat)sendChatMessage(friendChatRoom(currentUser.username,activeFriendChat),"friendMessageInput");};
 
-function renderAnnouncements(){
 
-  $("announcementCount")
-    .textContent =
-    announcements.length;
+/* =========================
+   PROFILE PHRASE
+========================= */
 
+function updatePhraseUI(){
 
-  const sorted =
-    [...announcements]
-    .sort(
-      (a,b)=>
-        (b.createdAt || 0) -
-        (a.createdAt || 0)
-    );
+  const value=
+    $("myPhraseSelect").value;
 
-
-  $("announcements").innerHTML =
-    sorted.map(a=>`
-
-<div class="announcement">
-
-<span
-class="announcement-label"
-style="background:${esc(a.color || "#e62b45")}"
->
-${esc(a.label || "NOVIDADE")}
-</span>
-
-<div class="announcement-title">
-${esc(a.title)}
-</div>
-
-<div class="muted">
-${esc(a.text)}
-</div>
-
-</div>
-
-`).join("")
-||
-'<p class="muted">Ainda não existem anúncios.</p>';
+  if(value==="Own phrase"){
+    $("customPhrase")
+      .classList
+      .remove("hide");
+  }else{
+    $("customPhrase")
+      .classList
+      .add("hide");
+  }
 
 }
 
 
-$("announcementColor").oninput =
-function(){
+$("myPhraseSelect").onchange=
+  updatePhraseUI;
 
-  $("colorPreview")
-    .style
-    .background =
+
+$("savePhrase").onclick=async()=>{
+
+  if(!currentUser)return;
+
+  let phrase=
+    $("myPhraseSelect").value;
+
+  if(phrase==="Own phrase"){
+
+    phrase=
+      $("customPhrase")
+        .value
+        .trim();
+
+    if(!phrase){
+
+      $("phraseStatus").innerHTML=
+        '<div class="notice error">❌ Escreve uma frase.</div>';
+
+      return;
+    }
+
+  }
+
+  phrase=phrase.slice(0,80);
+
+  currentUser.phrase=phrase;
+
+  await put(
+    "accounts",
+    currentUser
+  );
+
+  accounts=
+    await getAll("accounts");
+
+  saveCurrentSession();
+
+  updateProfileUI();
+
+  $("phraseStatus").innerHTML=
+    '<div class="notice success">✅ Frase atualizada!</div>';
+
+};
+
+
+/* =========================
+   ANNOUNCEMENTS
+========================= */
+
+function cleanExpiredAnnouncements(){
+
+  const now=Date.now();
+
+  announcements=
+    announcements.filter(a=>
+      !a.expiresAt ||
+      a.expiresAt>now
+    );
+
+  /*
+    A limpeza física é feita sem bloquear a página.
+  */
+
+  getAll("announcements")
+    .then(all=>{
+
+      all
+      .filter(a=>
+        a.expiresAt &&
+        a.expiresAt<=now
+      )
+      .forEach(a=>
+        remove(
+          "announcements",
+          a.id
+        )
+      );
+
+    })
+    .catch(()=>{});
+
+}
+
+
+function renderAnnouncements(){
+
+  const now=Date.now();
+
+  const sorted=
+    [...announcements]
+    .filter(a=>
+      !a.expiresAt ||
+      a.expiresAt>now
+    )
+    .sort(
+      (a,b)=>
+        (b.createdAt||0)-
+        (a.createdAt||0)
+    );
+
+  $("announcementCount").textContent=
+    sorted.length;
+
+  $("announcements").innerHTML=
+    sorted.map(a=>`
+
+      <div class="announcement">
+
+        <span
+          class="announcement-label"
+          style="background:${esc(a.color||"#e62b45")}">
+
+          ${esc(a.label||"NOVIDADE")}
+
+        </span>
+
+        <div class="announcement-title">
+          ${esc(a.title)}
+        </div>
+
+        <div class="muted">
+          ${esc(a.text)}
+        </div>
+
+      </div>
+
+    `).join("")
+    ||
+    '<p class="muted">Ainda não existem anúncios.</p>';
+
+}
+
+
+$("announcementColor").oninput=function(){
+
+  $("colorPreview").style.background=
     this.value;
 
-  $("colorPreview")
-    .textContent =
-    $("announcementLabel")
-      .value ||
-    "NOVIDADE";
+};
+
+
+$("announcementLabel").oninput=function(){
+
+  $("colorPreview").textContent=
+    this.value||"NOVIDADE";
 
 };
 
 
-$("announcementLabel").oninput =
-function(){
-
-  $("colorPreview")
-    .textContent =
-    this.value ||
-    "NOVIDADE";
-
-};
-
-
-$("addAnnouncement").onclick =
-async () => {
+$("addAnnouncement").onclick=async()=>{
 
   if(!currentUser?.admin){
 
-    $("announcementStatus").innerHTML =
-      '<div class="notice error">❌ Apenas o administrador pode publicar anúncios.</div>';
+    $("announcementStatus").innerHTML=
+      '<div class="notice error">❌ Apenas administradores podem publicar anúncios.</div>';
 
     return;
   }
 
-
-  const label =
-    $("announcementLabel")
-    .value
-    .trim() ||
+  const label=
+    $("announcementLabel").value.trim()||
     "NOVIDADE";
 
-  const title =
-    $("announcementTitle")
-    .value
-    .trim();
+  const title=
+    $("announcementTitle").value.trim();
 
-  const text =
-    $("announcementText")
-    .value
-    .trim();
+  const text=
+    $("announcementText").value.trim();
 
-  const color =
-    $("announcementColor").value;
+  const duration=
+    Number(
+      $("announcementDuration").value
+    );
 
+  if(!title||!text){
 
-  if(!title || !text){
-
-    $("announcementStatus").innerHTML =
+    $("announcementStatus").innerHTML=
       '<div class="notice error">❌ Preenche o título e o texto.</div>';
 
     return;
   }
 
+  const announcement={
 
-  try{
+    id:makeId(),
 
-    await put(
-      "announcements",
-      {
-        id:makeId(),
-        label,
-        title,
-        text,
-        color,
-        createdAt:Date.now()
-      }
-    );
+    label,
 
+    title,
 
-    announcements =
-      await getAll(
-        "announcements"
-      );
+    text,
 
+    color:
+      $("announcementColor").value,
 
-    renderAnnouncements();
+    createdAt:Date.now(),
 
+    expiresAt:
+      duration>0
+      ?Date.now()+duration
+      :0
 
-    $("announcementTitle")
-      .value = "";
+  };
 
-    $("announcementText")
-      .value = "";
+  await put(
+    "announcements",
+    announcement
+  );
 
+  announcements=
+    await getAll("announcements");
 
-    $("announcementStatus").innerHTML =
-      '<div class="notice success">✅ Anúncio publicado!</div>';
+  renderAnnouncements();
 
+  $("announcementTitle").value="";
+  $("announcementText").value="";
 
-  }catch(error){
-
-    console.error(error);
-
-    $("announcementStatus").innerHTML =
-      '<div class="notice error">❌ Erro ao publicar anúncio.</div>';
-
-  }
+  $("announcementStatus").innerHTML=
+    '<div class="notice success">✅ Anúncio publicado!</div>';
 
 };
 
 
-/* =========================================================
-   FUNDO
-========================================================= */
+/* =========================
+   POLLS
+========================= */
+
+function getPollVotes(poll){
+  if(!poll.votes || typeof poll.votes!=="object")poll.votes={};
+  const normalized={};
+  Object.entries(poll.votes).forEach(([user,option])=>{
+    normalized[pollUserKey(user)]=option;
+  });
+  poll.votes=normalized;
+  return poll.votes;
+}
+function pollUserKey(username){return normalizeUsername(username);}
+function hasVoted(poll){
+  if(!currentUser)return false;
+  return Object.prototype.hasOwnProperty.call(getPollVotes(poll),pollUserKey(currentUser.username));
+}
+function renderPolls(){
+  const activePolls=polls.filter(p=>p&&p.closed!==true).sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
+  if(!activePolls.length){$("polls").innerHTML='<p class="muted">Ainda não existem votações ativas.</p>';return;}
+  $("polls").innerHTML=activePolls.map(p=>{
+    const votes=getPollVotes(p), total=Object.keys(votes).length, voted=hasVoted(p), counts={}, options=Array.isArray(p.options)?p.options:[];
+    options.forEach(o=>counts[o]=0);
+    Object.values(votes).forEach(o=>{if(Object.prototype.hasOwnProperty.call(counts,o))counts[o]++;});
+    return `<div class="poll"><div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start"><h3 style="margin-top:0">🗳️ ${esc(p.question||"Votação")}</h3><span class="muted">${total} voto${total===1?"":"s"}</span></div>
+    ${!currentUser?'<div class="notice">Entra na tua conta para votar.</div>':''}
+    ${currentUser&&!voted?options.map(o=>`<label class="pollOption"><input type="radio" name="poll_${esc(p.id)}" value="${esc(o)}"><span>${esc(o)}</span></label>`).join(""):""}
+    ${currentUser&&!voted?`<button class="btn primary" onclick="votePoll('${esc(p.id)}')">🗳️ Votar</button>`:""}
+    ${voted?'<div class="notice success">✅ O teu voto foi registado.</div>':''}
+    <div style="margin-top:12px">${options.map(o=>{const count=counts[o]||0,percent=total?Math.round(count/total*100):0;return `<div style="margin-top:10px"><div style="display:flex;justify-content:space-between"><span>${esc(o)}</span><span>${percent}% (${count})</span></div><div class="pollBar"><div style="width:${percent}%"></div></div></div>`;}).join("")}</div></div>`;
+  }).join("");
+}
+window.votePoll=async pollId=>{
+  if(!currentUser){alert("Tens de entrar para votar.");return;}
+  const poll=polls.find(p=>String(p.id)===String(pollId));
+  if(!poll||poll.closed===true)return;
+  if(hasVoted(poll)){alert("Já votaste nesta votação.");return;}
+  const selected=document.querySelector(`input[name="poll_${pollId}"]:checked`);
+  if(!selected){alert("Escolhe uma opção.");return;}
+  if(!(Array.isArray(poll.options)&&poll.options.includes(selected.value))){alert("Opção inválida.");return;}
+  const votes=getPollVotes(poll);
+  votes[pollUserKey(currentUser.username)]=selected.value;
+  try{await put("polls",poll);polls=await getAll("polls");renderPolls();renderAdminPolls();}catch(e){alert("Não foi possível guardar o voto.");}
+};
+
+function renderAdminPolls(){
+  if(!currentUser?.admin||!$("adminPolls"))return;
+  $("adminPolls").innerHTML=polls.map(p=>`<div class="item"><div><b>${esc(p.question||"Votação")}</b><div class="meta">${Object.keys(getPollVotes(p)).length} votos · ${p.closed?"fechada":"ativa"}</div></div><div class="item-actions"><button class="danger" onclick="deletePoll('${esc(p.id)}')">🗑️</button></div></div>`).join("")||'<p class="muted">Ainda não existem votações.</p>';
+}
+window.deletePoll=async id=>{
+  if(!currentUser?.admin)return;
+  if(!confirm("Queres mesmo apagar esta votação?"))return;
+  try{await remove("polls",id);polls=await getAll("polls");renderPolls();renderAdminPolls();}catch(e){$("pollStatus").innerHTML='<div class="notice error">❌ Não foi possível apagar a votação.</div>';}};
+
+$("addPoll").onclick=async()=>{
+
+  if(!currentUser?.admin){
+
+    $("pollStatus").innerHTML=
+      '<div class="notice error">❌ Apenas administradores podem criar votações.</div>';
+
+    return;
+  }
+
+  const question=
+    $("pollQuestion")
+      .value
+      .trim();
+
+  const options=
+    $("pollOptions")
+      .value
+      .split("\n")
+      .map(x=>x.trim())
+      .filter(Boolean);
+
+  /*
+    Remove opções duplicadas.
+  */
+
+  const unique=
+    [...new Set(options)];
+
+  if(
+    !question ||
+    unique.length<2
+  ){
+
+    $("pollStatus").innerHTML=
+      '<div class="notice error">❌ Precisas de uma pergunta e pelo menos 2 opções diferentes.</div>';
+
+    return;
+  }
+
+  const poll={
+
+    id:makeId(),
+
+    question,
+
+    options:unique,
+
+    votes:{},
+
+    closed:false,
+
+    createdAt:Date.now()
+
+  };
+
+  await put(
+    "polls",
+    poll
+  );
+
+  polls=
+    await getAll("polls");
+
+  renderAdminPolls();
+
+  $("pollQuestion").value="";
+  $("pollOptions").value="";
+
+  $("pollStatus").innerHTML=
+    '<div class="notice success">✅ Votação criada!</div>';
+
+  renderPolls();
+
+};
+
+
+/* =========================
+   ADMIN USERS
+========================= */
+
+function renderAdminUsers(){
+
+  if(!currentUser?.admin)return;
+
+  $("userCount").textContent=
+    accounts.length;
+
+  $("adminUsers").innerHTML=
+    accounts.map(a=>{
+
+      const isSelf=
+        normalizeUsername(a.username)===
+        normalizeUsername(currentUser.username);
+
+      return `
+
+        <div class="item">
+
+          <div>
+
+            <b>
+              ${esc(a.flag||"🌍")}
+              ${esc(a.username)}
+            </b>
+
+            <div class="meta">
+              ${a.admin?"Administrador":"Utilizador"}
+              ·
+              ${esc(a.phrase||"Claws out!")}
+            </div>
+
+          </div>
+
+          <div class="item-actions">
+
+            <button
+              class="btn"
+              onclick="openProfile('${esc(a.username)}')">
+              👤
+            </button>
+
+            ${
+              !isSelf
+              ?
+              `
+                <button
+                  class="btn"
+                  onclick="toggleAdmin('${esc(a.username)}')">
+
+                  ${a.admin
+                    ?"⬇️ Remover admin"
+                    :"⬆️ Promover admin"}
+
+                </button>
+              `
+              :""
+            }
+
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
+
+}
+
+
+window.toggleAdmin=async username=>{
+
+  if(!currentUser?.admin)return;
+
+  const account=
+    accounts.find(
+      a=>
+        normalizeUsername(a.username)===
+        normalizeUsername(username)
+    );
+
+  if(!account)return;
+
+  /*
+    Um admin não pode remover o próprio admin
+    através desta função.
+  */
+
+  if(
+    normalizeUsername(account.username)===
+    normalizeUsername(currentUser.username)
+  ){
+    return;
+  }
+
+  account.admin=!account.admin;
+
+  await put(
+    "accounts",
+    account
+  );
+
+  accounts=
+    await getAll("accounts");
+
+  renderAdminUsers();
+
+};
+
+
+/* =========================
+   MAINTENANCE
+========================= */
+
+async function checkMaintenance(){
+
+  const maintenance=
+    await getItem(
+      "settings",
+      "maintenance"
+    );
+
+  const active=
+    maintenance?.active===true;
+
+  /*
+    Admins conseguem continuar a utilizar o site.
+  */
+
+  if(
+    active &&
+    !currentUser?.admin
+  ){
+
+    $("maintenanceScreen")
+      .classList
+      .add("active");
+
+  }else{
+
+    $("maintenanceScreen")
+      .classList
+      .remove("active");
+
+  }
+
+}
+
+
+$("toggleMaintenance").onclick=async()=>{
+
+  if(!currentUser?.admin)return;
+
+  const old=
+    await getItem(
+      "settings",
+      "maintenance"
+    );
+
+  const active=
+    !(old?.active===true);
+
+  await put(
+    "settings",
+    {
+      id:"maintenance",
+      active
+    }
+  );
+
+  settings.maintenance={
+    id:"maintenance",
+    active
+  };
+
+  $("maintenanceStatus").innerHTML=
+    `<div class="notice ${active?"error":"success"}">
+      ${active
+        ?"🔴 Modo de manutenção ativado."
+        :"🟢 Modo de manutenção desativado."}
+    </div>`;
+
+  checkMaintenance();
+
+};
+
+
+/* =========================
+   BACKGROUND
+========================= */
 
 async function loadBackground(){
 
   try{
 
-    const s =
+    const s=
       await getItem(
         "settings",
         "background"
       );
 
-
-    $("backgroundImage")
-      .style
-      .display =
+    $("backgroundImage").style.display=
       "none";
 
-    $("backgroundVideo")
-      .style
-      .display =
+    $("backgroundVideo").style.display=
       "none";
 
+    if(!s)return;
 
-    if(!s){
-      return;
-    }
+    if(s.type==="image"){
 
-
-    if(s.type === "image"){
-
-      $("backgroundImage")
-        .src =
+      $("backgroundImage").src=
         s.data;
 
-      $("backgroundImage")
-        .style
-        .display =
+      $("backgroundImage").style.display=
         "block";
 
     }
 
+    if(s.type==="video"){
 
-    if(s.type === "video"){
-
-      $("backgroundVideo")
-        .src =
+      $("backgroundVideo").src=
         s.data;
 
-      $("backgroundVideo")
-        .style
-        .display =
+      $("backgroundVideo").style.display=
         "block";
 
       $("backgroundVideo")
@@ -3298,85 +4380,61 @@ async function loadBackground(){
 
     }
 
-  }catch(error){
+  }catch(e){
 
-    console.warn(
-      "Erro ao carregar fundo:",
-      error
-    );
+    console.warn(e);
 
   }
 
 }
 
 
-$("saveBackground").onclick =
-async () => {
+$("saveBackground").onclick=async()=>{
 
-  if(!currentUser?.admin){
-    return;
-  }
+  if(!currentUser?.admin)return;
 
+  const image=
+    $("backgroundImageFile").files[0];
 
-  const image =
-    $("backgroundImageFile")
-    .files[0];
+  const video=
+    $("backgroundVideoFile").files[0];
 
-  const video =
-    $("backgroundVideoFile")
-    .files[0];
+  if(!image&&!video){
 
-
-  if(!image && !video){
-
-    $("backgroundStatus").innerHTML =
+    $("backgroundStatus").innerHTML=
       '<div class="notice error">❌ Seleciona uma imagem ou vídeo.</div>';
 
     return;
   }
 
-
   try{
 
-    const file =
-      video || image;
+    const file=
+      video||image;
 
-    const data =
+    const data=
       await fileToDataURL(file);
-
 
     await put(
       "settings",
       {
         id:"background",
-        type:
-          video
-            ? "video"
-            : "image",
+        type:video?"video":"image",
         data
       }
     );
 
-
     await loadBackground();
 
+    $("backgroundImageFile").value="";
+    $("backgroundVideoFile").value="";
 
-    $("backgroundImageFile")
-      .value = "";
-
-    $("backgroundVideoFile")
-      .value = "";
-
-
-    $("backgroundStatus").innerHTML =
+    $("backgroundStatus").innerHTML=
       '<div class="notice success">✅ Fundo atualizado!</div>';
 
+  }catch(e){
 
-  }catch(error){
-
-    console.error(error);
-
-    $("backgroundStatus").innerHTML =
+    $("backgroundStatus").innerHTML=
       '<div class="notice error">❌ Não foi possível guardar o fundo.</div>';
 
   }
@@ -3384,13 +4442,9 @@ async () => {
 };
 
 
-$("removeBackground").onclick =
-async () => {
+$("removeBackground").onclick=async()=>{
 
-  if(!currentUser?.admin){
-    return;
-  }
-
+  if(!currentUser?.admin)return;
 
   try{
 
@@ -3399,87 +4453,84 @@ async () => {
       "background"
     );
 
-
     $("backgroundImage")
       .removeAttribute("src");
 
-    $("backgroundVideo")
-      .pause();
+    $("backgroundVideo").pause();
 
     $("backgroundVideo")
       .removeAttribute("src");
 
-
-    $("backgroundImage")
-      .style
-      .display =
+    $("backgroundImage").style.display=
       "none";
 
-    $("backgroundVideo")
-      .style
-      .display =
+    $("backgroundVideo").style.display=
       "none";
 
-
-    $("backgroundStatus").innerHTML =
+    $("backgroundStatus").innerHTML=
       '<div class="notice success">✅ Fundo removido.</div>';
 
-
-  }catch(error){
-
-    console.error(error);
-
-  }
+  }catch(e){}
 
 };
 
 
-/* =========================================================
-   PESQUISA
-========================================================= */
+/* =========================
+   SEARCH / FILTER
+========================= */
 
-$("search").oninput =
-render;
+$("search").oninput=render;
 
-$("seriesFilter").onchange =
-render;
+$("seriesFilter").onchange=render;
 
 
-/* =========================================================
-   ARRANQUE
-========================================================= */
+/* =========================
+   START
+========================= */
 
 (async()=>{
 
   try{
 
-    await ensureDB();
+    await openDB();
 
-    await loadData();
+    /*
+      NÃO usamos getAll antes de abrir a BD.
+      Isto corrige o erro:
+      "Cannot read properties of null (reading transaction)"
+    */
 
     await restoreSession();
 
+    await loadData();
+
+    await checkAchievements();
+
+    renderAchievements();
+
+    renderFriends();
+
+    renderPolls();
+
     updateProfileUI();
 
-  }catch(error){
+    await checkMaintenance();
 
-    console.error(
-      "Erro ao iniciar:",
-      error
-    );
+  }catch(e){
 
-    $("grid").innerHTML =
-      `
-      <p class="muted">
-      ❌ Erro ao iniciar o catálogo.
-      </p>
-      `;
+    console.error(e);
+
+    $("grid").innerHTML=
+      `<p class="muted">
+        ❌ Erro ao iniciar o catálogo.
+        <br>
+        <small>${esc(e.message||"Erro desconhecido")}</small>
+      </p>`;
 
   }
 
 })();
-
 </script>
 
 </body>
- </html>
+</html>
