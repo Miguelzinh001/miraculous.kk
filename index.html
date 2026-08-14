@@ -6037,5 +6037,24 @@ $("langFilter").onchange=render;
 })();
 </script>
 
+
+<!-- SUPABASE CONNECTION -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const SUPABASE_URL = "https://gfnpyzmhhwkpzvjwkckg.supabase.co";
+  const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_CGhjWdOcexqk0ac_WyYfOg_3jif0Bwz";
+
+  const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+  // Disponível para o resto do site.
+  window.supabaseClient = supabaseClient;
+  window.SUPABASE_URL = SUPABASE_URL;
+
+  console.log("[Supabase] Cliente inicializado.");
+</script>
+
 </body>
   </html>
