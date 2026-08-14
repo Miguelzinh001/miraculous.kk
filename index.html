@@ -4520,13 +4520,8 @@ async function getVideoOPFSRoot(){
 async function saveLargeVideoToOPFS(file,id,onProgress){
   if(file.size>MAX_EPISODE_VIDEO_SIZE) throw new Error("O MP4 ultrapassa o limite de 2 GB por episódio.");
   if(!file.size) throw new Error("O ficheiro MP4 está vazio.");
-
-  // OPFS funciona por origem e exige um contexto seguro (HTTPS).
-  // Não fazemos dezenas/centenas de writes: alguns browsers devolvem
-  // SecurityError quando são feitas demasiadas chamadas de escrita ao mesmo ficheiro.
-  // Um único write(File) permite ao browser fazer a transferência de forma nativa.
   if(!window.isSecureContext){
-    throw new Error("O armazenamento de vídeos grandes precisa de HTTPS. Abre o site pelo endereço HTTPS (não por ficheiro local file://).");
+    throw new Error("O armazenamento de vídeos grandes precisa de HTTPS. Abre o site pelo endereço HTTPS.");
   }
   if(!navigator.storage?.getDirectory){
     throw new Error("Este navegador não suporta OPFS. Usa Chrome/Edge atualizado em HTTPS.");
@@ -4534,14 +4529,13 @@ async function saveLargeVideoToOPFS(file,id,onProgress){
 
   const estimate=navigator.storage?.estimate ? await navigator.storage.estimate() : {};
   const quota=Number(estimate.quota||0), usage=Number(estimate.usage||0);
-  // Deixamos uma pequena margem para os metadados da aplicação.
   const available=Math.max(0,quota-usage);
   if(quota && available < file.size){
     throw new Error(`Espaço insuficiente no armazenamento do navegador. Disponível aproximadamente ${formatBytes(available)}; o ficheiro tem ${formatBytes(file.size)}.`);
   }
 
   if(navigator.storage?.persist){
-    try{await navigator.storage.persist();}catch(_){ }
+    try{await navigator.storage.persist();}catch(_){}
   }
 
   const root=await navigator.storage.getDirectory();
@@ -4551,28 +4545,40 @@ async function saveLargeVideoToOPFS(file,id,onProgress){
   const handle=await dir.getFileHandle(name,{create:true});
   const writable=await handle.createWritable({keepExistingData:false});
 
+  // Não usamos pipeTo(): em alguns browsers/versões móveis essa combinação
+  // File -> OPFS pode devolver "network error" mesmo sem existir uma rede.
+  // Também não usamos milhares de writes pequenos. 64 MiB mantém o número
+  // de operações baixo (cerca de 32 para um vídeo de 2 GB).
+  const CHUNK_SIZE=64*1024*1024;
+
   try{
     if(onProgress) onProgress(0);
 
-    // Stream nativo do File -> OPFS. Isto evita materializar o MP4 em memória
-    // e evita centenas de chamadas write() feitas manualmente.
-    if(typeof file.stream === "function") {
-      await file.stream().pipeTo(writable);
-    } else {
-      // Fallback para browsers mais antigos.
-      await writable.write(file);
+    for(let offset=0; offset<file.size; offset+=CHUNK_SIZE){
+      const chunk=file.slice(offset,Math.min(offset+CHUNK_SIZE,file.size));
+      await writable.write(chunk);
+      if(onProgress){
+        onProgress(Math.min(99,Math.round(((offset+chunk.size)/file.size)*100)));
+      }
     }
-    if(onProgress) onProgress(100);
+
     await writable.close();
+    if(onProgress) onProgress(100);
   }catch(err){
-    try{await writable.abort();}catch(_){ }
-    try{await dir.removeEntry(name);}catch(_){ }
-    throw err;
+    try{await writable.abort();}catch(_){}
+    try{await dir.removeEntry(name);}catch(_){}
+    const detail=err?.message||String(err);
+    console.error("Falha ao escrever MP4 no OPFS:",{
+      name:err?.name||"Error",
+      message:detail,
+      fileName:file.name,
+      fileSize:file.size
+    });
+    throw new Error(`${err?.name||"Erro"}: ${detail}`);
   }
 
   return {kind:"opfs",name,videoType:file.type||"video/mp4",videoSize:file.size};
 }
-
 async function getVideoFromOPFS(meta){
   if(!meta?.name) return null;
   const root=await getVideoOPFSRoot();
@@ -4752,14 +4758,13 @@ $("add").onclick=async()=>{
     if(wasNew && window.miraculousMega?.notifyAllUsers)await window.miraculousMega.notifyAllUsers("🎬 Novo episódio disponível!",`${episode.season} — ${episode.title}`);
 
   }catch(e){
-
+    console.error("Erro ao guardar episódio:", e);
     $("status").innerHTML=
       `<div class="notice error">
         ❌ Erro ao guardar episódio.
         <br>
         <small>${esc(e.message||"Erro desconhecido")}</small>
       </div>`;
-
   }
 
 };
