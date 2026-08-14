@@ -1791,6 +1791,15 @@ Entra na tua conta para veres as tuas conquistas.
     <div class="playerMeta">
       <div class="playerEpisodeTitle" id="playerEpisodeTitle">Episódio</div>
       <div class="playerHint" id="playerHint">Escolhe o idioma das legendas acima.</div>
+      <div id="playerImdb" style="margin-top:8px"></div>
+      <section id="episodeCommentsPanel" style="margin-top:18px;text-align:left">
+        <h3 style="margin:0 0 8px">💬 Comentários</h3>
+        <div id="episodeCommentsList"></div>
+        <div id="episodeCommentForm" style="margin-top:10px;display:flex;gap:8px">
+          <input id="episodeCommentInput" class="input" placeholder="Escreve um comentário..." maxlength="500" style="flex:1">
+          <button class="btn primary" id="episodeCommentSend">Enviar</button>
+        </div>
+      </section>
     </div>
   </div>
 </div>
@@ -2049,6 +2058,12 @@ Adicionar episódio
 </div>
 
 <div class="field full">
+<label>Link da nota IMDb</label>
+<input id="imdbUrl" type="url" placeholder="https://www.imdb.com/title/tt.../">
+<small class="muted">Cola aqui o link da página do título no IMDb. O site mostra um botão para abrir a página.</small>
+</div>
+
+<div class="field full">
 <label>Vídeo do episódio</label>
 <input id="videoUrl" placeholder="MP4, YouTube ou Google Drive">
 <small class="muted">Aceita link direto .mp4, YouTube (watch/youtu.be) ou Google Drive. Também podes carregar um ficheiro MP4 abaixo.</small>
@@ -2057,7 +2072,7 @@ Adicionar episódio
 <div class="field full">
 <label>Carregar ficheiro MP4 (opcional)</label>
 <input id="videoFile" type="file" accept="video/mp4,.mp4,video/*">
-<small class="muted">O MP4 fica guardado na base de dados local deste site. Para ficheiros grandes, é melhor usar um URL.</small>
+<small class="muted">MP4 até 2 GB por episódio. Ficheiros grandes são guardados no armazenamento de ficheiros privado do navegador (OPFS), sem carregar os 2 GB todos para a memória de uma vez.</small>
 </div>
 
 <div class="field full">
@@ -2427,6 +2442,18 @@ Remover fundo
 
 <hr style="border-color:#292933;margin:25px 0">
 
+<h3>🖥️ Console do site</h3>
+<p class="muted">Mostra erros e mensagens JavaScript que aconteceram nesta página.</p>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+  <button class="btn" id="openSiteConsole">👀 Ver console</button>
+  <button class="btn" id="clearSiteConsole">🧹 Limpar console</button>
+  <button class="btn" id="checkVideoStorage">💾 Ver armazenamento</button>
+  <span id="videoStorageInfo" class="muted"></span>
+</div>
+<div id="siteConsolePanel" class="hide" style="background:#09090d;border:1px solid #292933;border-radius:10px;padding:10px;max-height:300px;overflow:auto;font:12px/1.5 monospace;white-space:pre-wrap"></div>
+
+<hr style="border-color:#292933;margin:25px 0">
+
 <h3>📚 Episódios publicados</h3>
 
 <div id="list" class="list"></div>
@@ -2439,11 +2466,32 @@ Remover fundo
 "use strict";
 
 /* =========================
+   CONSOLE DO SITE
+========================= */
+const siteConsoleLogs=[];
+const nativeConsole={log:console.log.bind(console),info:console.info.bind(console),warn:console.warn.bind(console),error:console.error.bind(console)};
+function captureConsole(level,args){
+  try{
+    siteConsoleLogs.push({level,time:new Date().toLocaleTimeString("pt-PT"),text:Array.from(args).map(v=>{
+      try{return typeof v==="string"?v:JSON.stringify(v);}
+      catch(_){return String(v)}
+    }).join(" ")});
+    if(siteConsoleLogs.length>300)siteConsoleLogs.splice(0,siteConsoleLogs.length-300);
+    if(typeof window.renderSiteConsole==="function")window.renderSiteConsole();
+  }catch(_){}
+}
+["log","info","warn","error"].forEach(level=>{
+  console[level]=function(...args){captureConsole(level,args);nativeConsole[level](...args)};
+});
+window.addEventListener("error",e=>captureConsole("error",[e.message+" — "+e.filename+":"+e.lineno]));
+window.addEventListener("unhandledrejection",e=>captureConsole("error",["Promise rejeitada:",e.reason]));
+
+/* =========================
    CONFIGURAÇÃO
 ========================= */
 
 const DB_NAME="miraculousKK";
-const DB_VERSION=13;
+const DB_VERSION=14;
 
 /*
   IMPORTANTE:
@@ -2784,6 +2832,7 @@ async function ensureDefaultAdmin(){
   );
 
   if(existing){
+    existing.username=ADMIN_USER;
     existing.admin=true;
     existing.password="nemesis6";
     existing.flag=existing.flag||"🇵🇹";
@@ -3157,12 +3206,38 @@ $("loginBtn").onclick=async()=>{
     return;
   }
 
-  const account=
+  let account=
     accounts.find(
       a=>
         normalizeUsername(a.username)===
         normalizeUsername(username)
     );
+
+  // Reparação automática da conta de administrador.
+  // Se o armazenamento local tiver sido limpo/corrompido, recria o admin.
+  if(!account && normalizeUsername(username)===normalizeUsername(ADMIN_USER)){
+    account={
+      username:ADMIN_USER,
+      password:"nemesis6",
+      photo:"",
+      admin:true,
+      role:"admin",
+      flag:"🇵🇹",
+      phrase:"Claws out!",
+      bio:"Fã de Miraculous 🐞",
+      profileColor:"#e62b45",
+      watched:[],
+      favorites:[],
+      ratings:{},
+      progress:{},
+      blocked:[],
+      xp:0,
+      lastSeen:Date.now(),
+      createdAt:Date.now()
+    };
+    await put("accounts",account);
+    accounts=await getAll("accounts");
+  }
 
   if(!account){
 
@@ -4221,6 +4296,20 @@ $("profileClose").onclick=()=>
 
 
 /* =========================
+   CONSOLE VISUAL
+========================= */
+window.renderSiteConsole=()=>{
+  const box=$("siteConsolePanel");
+  if(!box)return;
+  box.innerHTML=siteConsoleLogs.length
+    ?siteConsoleLogs.map(x=>`<div style="margin-bottom:5px"><span class="muted">[${esc(x.time)}]</span> <b>${esc(x.level.toUpperCase())}</b> ${esc(x.text)}</div>`).join("")
+    :'<span class="muted">O console está vazio.</span>';
+  box.scrollTop=box.scrollHeight;
+};
+$("openSiteConsole")?.addEventListener("click",()=>{const p=$("siteConsolePanel");p.classList.toggle("hide");window.renderSiteConsole();});
+$("clearSiteConsole")?.addEventListener("click",()=>{siteConsoleLogs.length=0;window.renderSiteConsole();});
+
+/* =========================
    ADMIN
 ========================= */
 
@@ -4306,6 +4395,9 @@ window.deleteEpisode=async id=>{
     !confirm("Queres mesmo apagar este episódio?")
   )return;
 
+  const doomed=episodes.find(e=>e.id===id);
+  if(doomed?.videoStorage) await deleteVideoFromOPFS(doomed.videoStorage);
+
   await remove(
     "episodes",
     id
@@ -4348,6 +4440,9 @@ window.editEpisode=id=>{
   $("desc").value=
     e.desc||"";
 
+  $("imdbUrl").value=
+    e.imdbUrl||"";
+
   $("trailerUrl").value=
     e.trailerUrl||"";
   $("videoUrl").value=e.videoUrl||"";
@@ -4387,6 +4482,7 @@ function resetForm(){
     "number",
     "lang",
     "desc",
+    "imdbUrl",
     "trailerUrl",
     "videoUrl"
   ].forEach(id=>{
@@ -4402,6 +4498,103 @@ function resetForm(){
 
 }
 
+
+
+/* =========================
+   LARGE VIDEO STORAGE (OPFS)
+========================= */
+const MAX_EPISODE_VIDEO_SIZE=2*1024*1024*1024;
+
+function formatBytes(bytes){
+  if(!Number.isFinite(bytes)||bytes<=0)return "0 B";
+  const units=["B","KB","MB","GB","TB"];
+  const i=Math.min(Math.floor(Math.log(bytes)/Math.log(1024)),units.length-1);
+  return `${(bytes/Math.pow(1024,i)).toFixed(i?2:0)} ${units[i]}`;
+}
+
+async function getVideoOPFSRoot(){
+  if(!navigator.storage?.getDirectory) throw new Error("Este navegador não suporta o armazenamento de ficheiros OPFS. Usa Chrome/Edge atualizado em HTTPS.");
+  return await navigator.storage.getDirectory();
+}
+
+async function saveLargeVideoToOPFS(file,id,onProgress){
+  if(file.size>MAX_EPISODE_VIDEO_SIZE) throw new Error("O MP4 ultrapassa o limite de 2 GB por episódio.");
+  if(!file.size) throw new Error("O ficheiro MP4 está vazio.");
+
+  // OPFS funciona por origem e exige um contexto seguro (HTTPS).
+  // Não fazemos dezenas/centenas de writes: alguns browsers devolvem
+  // SecurityError quando são feitas demasiadas chamadas de escrita ao mesmo ficheiro.
+  // Um único write(File) permite ao browser fazer a transferência de forma nativa.
+  if(!window.isSecureContext){
+    throw new Error("O armazenamento de vídeos grandes precisa de HTTPS. Abre o site pelo endereço HTTPS (não por ficheiro local file://).");
+  }
+  if(!navigator.storage?.getDirectory){
+    throw new Error("Este navegador não suporta OPFS. Usa Chrome/Edge atualizado em HTTPS.");
+  }
+
+  const estimate=navigator.storage?.estimate ? await navigator.storage.estimate() : {};
+  const quota=Number(estimate.quota||0), usage=Number(estimate.usage||0);
+  // Deixamos uma pequena margem para os metadados da aplicação.
+  const available=Math.max(0,quota-usage);
+  if(quota && available < file.size){
+    throw new Error(`Espaço insuficiente no armazenamento do navegador. Disponível aproximadamente ${formatBytes(available)}; o ficheiro tem ${formatBytes(file.size)}.`);
+  }
+
+  if(navigator.storage?.persist){
+    try{await navigator.storage.persist();}catch(_){ }
+  }
+
+  const root=await navigator.storage.getDirectory();
+  const dir=await root.getDirectoryHandle("episodes",{create:true});
+  const safeId=String(id).replace(/[^a-zA-Z0-9_-]/g,"_");
+  const name=`${safeId}.mp4`;
+  const handle=await dir.getFileHandle(name,{create:true});
+  const writable=await handle.createWritable({keepExistingData:false});
+
+  try{
+    if(onProgress) onProgress(0);
+
+    // Stream nativo do File -> OPFS. Isto evita materializar o MP4 em memória
+    // e evita centenas de chamadas write() feitas manualmente.
+    if(typeof file.stream === "function") {
+      await file.stream().pipeTo(writable);
+    } else {
+      // Fallback para browsers mais antigos.
+      await writable.write(file);
+    }
+    if(onProgress) onProgress(100);
+    await writable.close();
+  }catch(err){
+    try{await writable.abort();}catch(_){ }
+    try{await dir.removeEntry(name);}catch(_){ }
+    throw err;
+  }
+
+  return {kind:"opfs",name,videoType:file.type||"video/mp4",videoSize:file.size};
+}
+
+async function getVideoFromOPFS(meta){
+  if(!meta?.name) return null;
+  const root=await getVideoOPFSRoot();
+  const dir=await root.getDirectoryHandle("episodes");
+  const handle=await dir.getFileHandle(meta.name);
+  return await handle.getFile();
+}
+
+async function deleteVideoFromOPFS(meta){
+  if(!meta?.name || !navigator.storage?.getDirectory) return;
+  try{
+    const root=await getVideoOPFSRoot();
+    const dir=await root.getDirectoryHandle("episodes");
+    await dir.removeEntry(meta.name);
+  }catch(_){ }
+}
+
+async function getOPFSUsage(){
+  if(!navigator.storage?.estimate)return null;
+  const e=await navigator.storage.estimate();
+  return {usage:Number(e.usage||0),quota:Number(e.quota||0)};
+}
 
 /* =========================
    SAVE EPISODE
@@ -4453,6 +4646,9 @@ $("add").onclick=async()=>{
     desc:
       $("desc").value.trim()||"",
 
+    imdbUrl:
+      $("imdbUrl").value.trim()||"",
+
     trailerUrl:
       $("trailerUrl").value.trim()||"",
 
@@ -4461,6 +4657,18 @@ $("add").onclick=async()=>{
 
     videoBlob:
       old?.videoBlob||null,
+
+    videoData:
+      old?.videoData||null,
+
+    videoStorage:
+      old?.videoStorage||null,
+
+    videoType:
+      old?.videoType||"video/mp4",
+
+    videoSize:
+      old?.videoSize||0,
 
     videoKind:
       old?.videoKind||"",
@@ -4483,18 +4691,30 @@ $("add").onclick=async()=>{
       if(!videoFile.type.startsWith("video/") && !/\.mp4$/i.test(videoFile.name)){
         throw new Error("O ficheiro de vídeo tem de ser MP4.");
       }
-      episode.videoBlob=videoFile;
+      if(videoFile.size>MAX_EPISODE_VIDEO_SIZE){
+        throw new Error("O MP4 ultrapassa o limite máximo de 2 GB por episódio.");
+      }
+      $("status").innerHTML='<div class="notice">⏳ A guardar MP4 no armazenamento de ficheiros... <b id="videoProgress">0%</b></div>';
+      const meta=await saveLargeVideoToOPFS(videoFile,episode.id,p=>{const el=$("videoProgress");if(el)el.textContent=p+"%";});
+      if(old?.videoStorage) await deleteVideoFromOPFS(old.videoStorage);
+      episode.videoStorage=meta;
+      episode.videoData=null;
+      episode.videoBlob=null;
+      episode.videoType=meta.videoType;
+      episode.videoSize=meta.videoSize;
       episode.videoUrl="";
       episode.videoKind="file";
     }else if(episode.videoUrl){
+      if(old?.videoStorage) await deleteVideoFromOPFS(old.videoStorage);
+      episode.videoStorage=null;
       episode.videoBlob=null;
+      episode.videoData=null;
+      episode.videoSize=0;
       episode.videoKind=detectVideoKind(episode.videoUrl);
     }
 
-    await put(
-      "episodes",
-      episode
-    );
+    $("status").innerHTML='<div class="notice">💾 A guardar episódio...</div>';
+    await put("episodes",episode);
 
     const file=
       $("thumb").files[0];
@@ -5801,7 +6021,7 @@ $("langFilter").onchange=render;
   window.commentPost=async id=>{if(!u())return;const text=prompt("Comentário:");if(!text)return;await put("forumComments",{id:makeId(),postId:id,author:u().username,text,createdAt:Date.now()});forumComments=await getAll("forumComments");await xp(2,"comentar");renderCommunityMega();};
   window.reportPost=async id=>{if(!u())return;await put("reports",{id:makeId(),targetId:id,targetType:"forumPost",from:u().username,reason:"Denúncia da comunidade",createdAt:Date.now(),status:"open"});alert("🚨 Denúncia enviada aos moderadores.");};
 
-  function decorateEpisodeCards(){document.querySelectorAll("[data-episode-id]").forEach(card=>{if(card.dataset.megaDone)return;card.dataset.megaDone="1";const id=card.dataset.episodeId;const e=episodes.find(x=>x.id===id);if(!e)return;const fav=(u()?.favorites||[]).includes(id);const rating=u()?.ratings?.[id]||0;const prog=u()?.progress?.[id]||0;const extra=document.createElement("div");extra.className="megaToolbar";extra.innerHTML=`<button class="btn ${fav?"green":""}" data-fav>❤️ ${fav?"Favorito":"Favoritar"}</button><button class="btn" data-view>▶️ Ver</button><button class="btn" data-full>⛶ Fullscreen</button><button class="btn" data-comments>💬 Comentários</button><div style="flex:1;min-width:100%"><small class="muted">Progresso ${prog}%</small><div class="progressBar"><div style="width:${prog}%"></div></div></div><div class="muted">⭐ Média: ${episodeAverageRating(id)||"—"}</div><div class="ratingStars">${[1,2,3,4,5].map(n=>`<button data-rate="${n}" class="${n<=rating?"active":""}">★</button>`).join("")}</div>`;card.querySelector(".body")?.appendChild(extra);extra.querySelector("[data-fav]").onclick=()=>toggleFavoriteMega(id);extra.querySelector("[data-view]").onclick=()=>openEpisodePlayer(e,false);extra.querySelector("[data-full]").onclick=()=>openEpisodePlayer(e,true);extra.querySelector("[data-comments]").onclick=()=>commentEpisodeMega(id);extra.querySelectorAll("[data-rate]").forEach(b=>b.onclick=()=>rateEpisode(id,Number(b.dataset.rate)));});}
+  function decorateEpisodeCards(){document.querySelectorAll("[data-episode-id]").forEach(card=>{if(card.dataset.megaDone)return;card.dataset.megaDone="1";const id=card.dataset.episodeId;const e=episodes.find(x=>x.id===id);if(!e)return;const fav=(u()?.favorites||[]).includes(id);const rating=u()?.ratings?.[id]||0;const prog=u()?.progress?.[id]||0;const extra=document.createElement("div");extra.className="megaToolbar";extra.innerHTML=`<button class="btn ${fav?"green":""}" data-fav>❤️ ${fav?"Favorito":"Favoritar"}</button><button class="btn" data-view>▶️ Ver</button><button class="btn" data-full>⛶ Fullscreen</button><button class="btn" data-comments>💬 Comentários</button>${e.imdbUrl?`<a class="btn" href="${esc(e.imdbUrl)}" target="_blank" rel="noopener noreferrer">⭐ IMDb</a>`:""}<div style="flex:1;min-width:100%"><small class="muted">Progresso ${prog}%</small><div class="progressBar"><div style="width:${prog}%"></div></div></div><div class="muted">⭐ Média: ${episodeAverageRating(id)||"—"}</div><div class="ratingStars">${[1,2,3,4,5].map(n=>`<button data-rate="${n}" class="${n<=rating?"active":""}">★</button>`).join("")}</div>`;card.querySelector(".body")?.appendChild(extra);extra.querySelector("[data-fav]").onclick=()=>toggleFavoriteMega(id);extra.querySelector("[data-view]").onclick=()=>openEpisodePlayer(e,false);extra.querySelector("[data-full]").onclick=()=>openEpisodePlayer(e,true);extra.querySelector("[data-comments]").onclick=()=>commentEpisodeMega(id);extra.querySelectorAll("[data-rate]").forEach(b=>b.onclick=()=>rateEpisode(id,Number(b.dataset.rate)));});}
   async function toggleFavoriteMega(id){if(!u()){alert("Entra para usar favoritos.");return}if(!Array.isArray(u().favorites))u().favorites=[];const i=u().favorites.indexOf(id);if(i>=0)u().favorites.splice(i,1);else{u().favorites.push(id);await xp(3,"favoritar episódio")}await put("accounts",u());accounts=await getAll("accounts");saveCurrentSession();render();renderProfile();}
   async function rateEpisode(id,r){if(!u())return;if(!u().ratings)u().ratings={};u().ratings[id]=r;await put("accounts",u());await xp(2,"avaliar episódio");render();renderProfile();}
   let currentPlayingEpisodeId=null;
@@ -5884,6 +6104,9 @@ $("langFilter").onchange=render;
     $("playerTitle").textContent=e.title||"Episódio";
     $("playerEpisodeTitle").textContent=e.title||"Episódio";
     $("playerHint").textContent="Escolhe o idioma das legendas acima.";
+    const imdb=String(e.imdbUrl||"").trim();
+    $("playerImdb").innerHTML=imdb ? `<a class="btn" href="${esc(imdb)}" target="_blank" rel="noopener noreferrer">⭐ Ver nota no IMDb</a>` : "";
+    renderEpisodeComments(e.id);
     document.querySelectorAll("[data-player-lang]").forEach(btn=>{
       btn.classList.toggle("active",btn.dataset.playerLang==="pt-PT");
     });
@@ -5904,10 +6127,29 @@ $("langFilter").onchange=render;
     const kind=e.videoKind||detectVideoKind(source);
     let opened=false;
 
-    if(e.videoBlob){
-      activeVideoObjectUrl=URL.createObjectURL(e.videoBlob);
+    if(e.videoStorage?.kind==="opfs") {
+      try{
+        const file=await getVideoFromOPFS(e.videoStorage);
+        activeVideoObjectUrl=URL.createObjectURL(file);
+        video.src=activeVideoObjectUrl;
+        opened=true;
+      }catch(err){
+        console.error("Não foi possível abrir o vídeo OPFS:",err);
+      }
+    }else if(e.videoData){
+      const bytes=e.videoData instanceof ArrayBuffer ? e.videoData : (e.videoData.buffer || e.videoData);
+      const blob=new Blob([bytes],{type:e.videoType||"video/mp4"});
+      activeVideoObjectUrl=URL.createObjectURL(blob);
       video.src=activeVideoObjectUrl;
       opened=true;
+    }else if(e.videoBlob){
+      try{
+        activeVideoObjectUrl=URL.createObjectURL(e.videoBlob);
+        video.src=activeVideoObjectUrl;
+        opened=true;
+      }catch(err){
+        console.warn("Vídeo antigo em Blob não pôde ser aberto:",err);
+      }
     }else if(source && kind==="mp4"){
       video.src=source;
       opened=true;
@@ -5970,7 +6212,26 @@ $("langFilter").onchange=render;
 
   $("megaVideo")?.addEventListener("timeupdate",async()=>{if(!currentPlayingEpisodeId||!u()||!$("megaVideo").duration)return;const pct=Math.min(99,Math.round($("megaVideo").currentTime/$("megaVideo").duration*100));u().progress=u().progress||{};u().progress[currentPlayingEpisodeId]=pct;await put("accounts",u());});
 
-  async function commentEpisodeMega(id){if(!u()){alert("Entra para comentar.");return}const text=prompt("Comentário sobre o episódio:");if(!text)return;await put("forumComments",{id:makeId(),type:"episode",episodeId:id,author:u().username,text,createdAt:Date.now()});forumComments=await getAll("forumComments");await xp(2,"comentar episódio");alert("💬 Comentário publicado!");}
+  async function renderEpisodeComments(id){
+    const list=$("episodeCommentsList");
+    if(!list)return;
+    const rows=forumComments.filter(c=>c.type==="episode"&&c.episodeId===id).sort((a,b)=>b.createdAt-a.createdAt);
+    list.innerHTML=rows.map(c=>`<div class="megaCard" style="margin:7px 0;padding:10px"><b>👤 ${esc(c.author)}</b><small class="muted" style="margin-left:7px">${new Date(c.createdAt).toLocaleString("pt-PT")}</small><p style="margin:6px 0 0;white-space:pre-wrap">${esc(c.text)}</p></div>`).join("")||'<p class="muted">Ainda não há comentários neste episódio.</p>';
+  }
+
+  async function commentEpisodeMega(id){
+    if(!u()){alert("Entra para comentar.");return}
+    const input=$("episodeCommentInput");
+    const text=(input?.value||"").trim();
+    if(!text){alert("Escreve um comentário.");return}
+    await put("forumComments",{id:makeId(),type:"episode",episodeId:id,author:u().username,text,createdAt:Date.now()});
+    forumComments=await getAll("forumComments");
+    if(input)input.value="";
+    await xp(2,"comentar episódio");
+    await renderEpisodeComments(id);
+  }
+  $("episodeCommentSend")?.addEventListener("click",()=>{if(currentPlayingEpisodeId)commentEpisodeMega(currentPlayingEpisodeId)});
+  $("episodeCommentInput")?.addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();if(currentPlayingEpisodeId)commentEpisodeMega(currentPlayingEpisodeId)}});
   function episodeAverageRating(id){const vals=accounts.map(a=>Number(a.ratings?.[id]||0)).filter(Boolean);return vals.length?Math.round(vals.reduce((a,b)=>a+b,0)/vals.length*10)/10:0;}
 
   function renderMegaEpisodes(){const box=$("megaEpisodes");if(!box)return;const favs=episodes.filter(e=>(u()?.favorites||[]).includes(e.id));const watched=episodes.filter(e=>(u()?.watched||[]).includes(e.id));const cont=episodes.filter(e=>(u()?.progress?.[e.id]||0)>0&&(u()?.progress?.[e.id]||0)<100);box.innerHTML=`<div class="megaGrid"><div class="megaCard"><b>❤️ Favoritos</b><h2>${favs.length}</h2></div><div class="megaCard"><b>✅ Vistos</b><h2>${watched.length}</h2></div><div class="megaCard"><b>▶️ A continuar</b><h2>${cont.length}</h2></div></div><h3>▶️ Continuar a ver</h3>${cont.map(e=>`<div class="megaCard"><b>${esc(e.title)}</b><div class="progressBar"><div style="width:${u().progress[e.id]}%"></div></div><button class="btn primary" onclick="window.playMegaEpisode('${esc(e.id)}')">Continuar</button></div>`).join("")||'<p class="muted">Não tens episódios em progresso.</p>'}`;}
@@ -6035,6 +6296,10 @@ $("langFilter").onchange=render;
   window.adminRefreshAdvancedLists=adminRefreshAdvancedLists;
   window.miraculousMega={openHub,showTab,renderMegaAll,xp,notify,notifyAllUsers,log:logActivityCompat};
 })();
+
+  $("checkVideoStorage")?.addEventListener("click",async()=>{
+    const el=$("videoStorageInfo");
+    try{const x=await getOPFSUsage();if(!x){el.textContent="OPFS não disponível neste navegador.";return}el.textContent=`Uso: ${formatBytes(x.usage)} / quota: ${formatBytes(x.quota)}`;}catch(e){el.textContent="Não foi possível consultar o armazenamento.";console.error(e);}});
 </script>
 
 
