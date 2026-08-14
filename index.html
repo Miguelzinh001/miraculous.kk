@@ -123,19 +123,6 @@ nav a:hover{
   color:#fff
 }
 
-.quickActions{display:flex;align-items:center;gap:6px}
-.quickIcon{width:40px;height:40px;padding:0;display:grid;place-items:center;border:1px solid var(--line);background:#121218;color:#fff;border-radius:11px;font-size:18px}
-.quickIcon:hover{border-color:#666673;transform:translateY(-1px)}
-.chatBox{background:rgba(17,17,22,.94);border:1px solid var(--line);border-radius:16px;overflow:hidden}
-.chatTabs{display:flex;gap:8px;padding:12px;border-bottom:1px solid var(--line);flex-wrap:wrap}
-.chatMessages{min-height:260px;max-height:420px;overflow:auto;padding:14px;display:flex;flex-direction:column;gap:9px}
-.chatMessage{max-width:82%;padding:9px 12px;border:1px solid var(--line);border-radius:13px;background:#0d0d12}
-.chatMessage.mine{align-self:flex-end;background:#261018;border-color:#4c1c28}
-.chatMeta{font-size:12px;color:var(--muted);margin-bottom:3px}
-.chatComposer{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
-.chatComposer input{flex:1}
-@media(max-width:850px){.quickActions{order:3;width:100%;justify-content:center}.top{flex-wrap:wrap}}
-
 .profileArea{
   display:flex;
   align-items:center;
@@ -815,6 +802,30 @@ footer{
   border-top:1px solid #14141a;
 }
 
+
+/* QUICK ACTIONS + SOCIAL */
+.quickActions{display:flex;align-items:center;gap:6px;margin-left:auto}
+.iconBtn{position:relative;width:42px;height:42px;border:1px solid var(--line);background:#121218;color:#fff;border-radius:12px;display:grid;place-items:center;font-size:19px;cursor:pointer;transition:.15s}
+.iconBtn:hover{border-color:#666;transform:translateY(-1px)}
+.bigIcon{width:48px;height:48px;font-size:22px}
+.badge{position:absolute;right:-4px;top:-5px;min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:var(--red);font-size:10px;display:grid;place-items:center;font-weight:900}
+.sectionTitleRow{display:flex;align-items:center;justify-content:space-between;gap:15px}
+.chatPanel{border:1px solid var(--line);border-radius:15px;background:#09090d;overflow:hidden}
+.messages{height:330px;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:8px}
+.message{max-width:80%;padding:9px 12px;border:1px solid var(--line);background:#15151b;border-radius:13px;align-self:flex-start}
+.message.mine{align-self:flex-end;background:#35121a;border-color:#632331}
+.messageMeta{font-size:11px;color:var(--muted);margin-bottom:3px}
+.messageText{white-space:pre-wrap;word-break:break-word}
+.chatComposer{display:flex;gap:8px;padding:10px;border-top:1px solid var(--line)}
+.chatComposer input{flex:1;min-width:0}
+.privateChatGrid{display:grid;grid-template-columns:240px 1fr;gap:10px}
+.privateFriends{border:1px solid var(--line);border-radius:15px;background:#09090d;padding:8px;max-height:430px;overflow:auto}
+.privateFriend{width:100%;display:flex;align-items:center;gap:8px;padding:9px;border:1px solid transparent;background:transparent;color:#fff;border-radius:10px;text-align:left;cursor:pointer}
+.privateFriend:hover,.privateFriend.active{background:#18181e;border-color:var(--line)}
+.chatHeader{padding:12px;border-bottom:1px solid var(--line);font-weight:800}
+.chatEmpty{height:100%;min-height:200px;display:grid;place-items:center;color:var(--muted);padding:20px;text-align:center}
+@media(max-width:650px){.quickActions{gap:3px}.iconBtn{width:36px;height:36px;font-size:16px}.profileName{display:none}.privateChatGrid{grid-template-columns:1fr}.privateFriends{max-height:180px}.messages{height:300px}.chatComposer{flex-wrap:wrap}.chatComposer input{width:100%;flex-basis:100%}}
+
 /* MOBILE */
 
 @media(max-width:850px){
@@ -902,6 +913,422 @@ footer{
     grid-template-columns:1fr
   }
 }
+
+/* =========================
+   MEGA FEATURE PACK
+========================= */
+.quickActions{display:flex;gap:7px;align-items:center}
+.iconBtn{position:relative;border:1px solid var(--line);background:#121218;color:#fff;border-radius:11px;padding:9px 11px;font-size:17px;min-width:42px}
+.iconBtn:hover{border-color:#666;transform:translateY(-1px)}
+.badge{position:absolute;right:-5px;top:-6px;background:var(--red);color:#fff;border-radius:999px;min-width:18px;height:18px;padding:0 5px;font-size:10px;display:grid;place-items:center;font-weight:900}
+.megaToolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:12px 0}
+.megaToolbar input{flex:1;min-width:180px}
+.megaGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.megaCard{background:rgba(17,17,22,.96);border:1px solid var(--line);border-radius:15px;padding:16px}
+.megaCard h3{margin:0 0 7px}.megaCard p{margin:6px 0}
+.avatarLg{width:86px;height:86px;border-radius:50%;object-fit:cover;border:3px solid var(--profile-color,var(--red));background:#18181e;display:grid;place-items:center;font-size:35px}
+.onlineDot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#777;margin-right:5px}.onlineDot.on{background:#43d17c;box-shadow:0 0 8px #43d17c}
+.profileHero{display:flex;gap:18px;align-items:center;flex-wrap:wrap}.profileHeroInfo{flex:1;min-width:180px}.xpBar,.progressBar{height:9px;background:#25252d;border-radius:999px;overflow:hidden}.xpBar>div,.progressBar>div{height:100%;background:linear-gradient(90deg,var(--red),#ff8d9b);border-radius:inherit}
+.featureTabs{display:flex;gap:7px;overflow:auto;padding-bottom:8px;margin-bottom:12px}.featureTabs button{white-space:nowrap}
+.featurePanel{display:none}.featurePanel.active{display:block}
+.notifItem,.forumPost,.roomCard,.calendarCard,.newsCard,.wikiCard,.quizCard,.rankRow{background:#111116;border:1px solid var(--line);border-radius:13px;padding:13px;margin:9px 0}
+.notifItem.unread{border-color:#6d2431;background:#171015}.forumPost .postMeta{font-size:12px;color:var(--muted)}
+.likeBtn.liked{color:#ff7183;border-color:#6d2431}.commentBox{display:flex;gap:7px;margin-top:8px}.commentBox input{flex:1}
+.globalSearchResults{max-height:50vh;overflow:auto}.searchResult{padding:12px;border-bottom:1px solid var(--line);cursor:pointer}.searchResult:hover{background:#18181f}
+.ratingStars button{border:0;background:none;color:#555;font-size:21px;padding:2px}.ratingStars button.active{color:#ffd45c}.miniBar{height:7px;background:#26262d;border-radius:99px;overflow:hidden}.miniBar>div{height:100%;background:var(--red)}
+.themeLadybug{--red:#e62b45}.themeCat{--red:#7b6cff}.themeLadybug body{}.themeCat .brand span{color:#7b6cff}
+body.lightMode{--bg:#f4f5f8;--panel:#fff;--panel2:#f0f1f5;--line:#d9dbe2;--txt:#17171c;--muted:#60636e}body.lightMode .top{background:rgba(255,255,255,.94)}body.lightMode input,body.lightMode textarea,body.lightMode select{background:#fff;color:#17171c}body.lightMode .megaCard,body.lightMode .notifItem,body.lightMode .forumPost,body.lightMode .roomCard,body.lightMode .calendarCard,body.lightMode .newsCard,body.lightMode .wikiCard,body.lightMode .quizCard,body.lightMode .rankRow{background:#fff}
+.bottomNav{display:none}.mobileOnly{display:none}
+.swipeHint{font-size:12px;color:var(--muted);margin-top:6px}
+
+.fullPlayer{
+  position:fixed;
+  inset:0;
+  z-index:300;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  background:rgba(0,0,0,.90);
+  backdrop-filter:blur(8px);
+}
+.fullPlayer.active{display:flex}
+.playerShell{
+  width:min(980px,100%);
+  max-height:94vh;
+  background:#000;
+  border:1px solid #222;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 25px 80px rgba(0,0,0,.65);
+}
+.playerTop{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:12px 14px;
+  background:#050505;
+}
+.playerTitle{
+  min-width:0;
+  font-weight:900;
+  font-size:15px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.playerCloseBtn{
+  flex:0 0 auto;
+  width:38px;
+  height:38px;
+  border:0;
+  border-radius:50%;
+  background:#181818;
+  color:#fff;
+  font-size:21px;
+}
+.playerLanguages{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  padding:10px 12px 12px;
+  background:#050505;
+}
+.playerLang{
+  width:48px;
+  height:40px;
+  border:2px solid transparent;
+  border-radius:13px;
+  background:#1a1a1a;
+  color:#fff;
+  font-size:20px;
+  display:grid;
+  place-items:center;
+}
+.playerLang.active{
+  border-color:#6575ff;
+  box-shadow:0 0 0 2px rgba(101,117,255,.15);
+}
+.playerViewport{
+  position:relative;
+  width:100%;
+  aspect-ratio:16/9;
+  background:#000;
+}
+.playerViewport video,
+.playerViewport iframe{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+  display:block;
+  background:#000;
+}
+.playerMeta{
+  padding:12px 16px 15px;
+  background:#050505;
+  color:#fff;
+}
+.playerMeta .playerEpisodeTitle{
+  font-weight:900;
+  font-size:16px;
+}
+.playerMeta .playerHint{
+  margin-top:4px;
+  color:#929292;
+  font-size:12px;
+}
+@media(max-width:600px){
+  .fullPlayer{padding:0;align-items:flex-start}
+  .playerShell{
+    width:100%;
+    max-height:none;
+    min-height:100%;
+    border:0;
+    border-radius:0;
+  }
+  .playerTop{padding-top:calc(8px + env(safe-area-inset-top))}
+  .playerViewport{aspect-ratio:16/9}
+  .playerMeta{padding-bottom:calc(15px + env(safe-area-inset-bottom))}
+}
+
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.megaGrid{grid-template-columns:1fr 1fr}.top nav{display:none}.bottomNav{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:space-around;gap:4px;padding:7px 4px calc(7px + env(safe-area-inset-bottom));background:rgba(10,10,14,.96);border-top:1px solid var(--line);z-index:80;backdrop-filter:blur(14px)}.bottomNav button{border:0;background:none;color:#bbb;font-size:11px;padding:5px;display:flex;flex-direction:column;align-items:center;gap:2px}.bottomNav button b{font-size:18px}.mobileOnly{display:block}body{padding-bottom:64px}}
+@media(max-width:600px){.grid,.megaGrid{grid-template-columns:1fr}.hero{grid-template-columns:1fr;padding:45px 6vw}.hero h1{letter-spacing:-2px}.sec{padding:42px 5vw}.profileName{max-width:70px}.quickActions{gap:4px}.quickActions .iconBtn{min-width:37px;padding:7px}.megaToolbar{flex-direction:column;align-items:stretch}.form{grid-template-columns:1fr}}
+
+
+/* ===== MIRACULOUS.KK — NOVA INTERFACE ===== */
+:root{
+  --green:#19ff19;
+  --green2:#0bd40b;
+  --greenSoft:#8aff8a;
+  --bg:#050705;
+  --panel:#0d120d;
+  --panel2:#111711;
+  --line:#202920;
+  --txt:#f5f7f5;
+  --muted:#a9b0a9;
+  --red:#ff3150;
+  --yellow:#ffd95a;
+}
+
+body{
+  background:
+    radial-gradient(circle at 50% -10%,rgba(25,255,25,.08),transparent 34%),
+    #050705;
+}
+
+/* Header / navigation */
+.top{
+  margin:14px 18px 0;
+  min-height:92px;
+  padding:14px 18px 12px;
+  border:1px solid #1c281c;
+  border-radius:28px;
+  background:rgba(13,18,13,.96);
+  box-shadow:0 12px 40px rgba(0,0,0,.28);
+  display:grid;
+  grid-template-columns:1fr auto;
+  grid-template-areas:
+    "brand profile"
+    "nav nav";
+  gap:10px 14px;
+}
+
+.brand{
+  grid-area:brand;
+  justify-self:center;
+  font-size:25px;
+  font-weight:950;
+  letter-spacing:-.7px;
+}
+.brand span{color:var(--green)}
+
+.top nav{
+  grid-area:nav;
+  justify-content:center;
+  align-items:center;
+  gap:7px;
+  overflow:auto;
+  scrollbar-width:none;
+}
+.top nav::-webkit-scrollbar{display:none}
+.top nav a{
+  min-width:42px;
+  height:38px;
+  padding:8px 13px;
+  border-radius:13px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#dce2dc;
+  font-weight:750;
+  transition:.18s;
+}
+.top nav a:hover,
+.top nav a:focus-visible{
+  color:#050705;
+  background:var(--green);
+}
+
+.profileArea{grid-area:profile;margin-left:0}
+.profileButton{
+  width:54px;
+  height:54px;
+  border-radius:18px;
+  background:var(--green);
+  color:#050705;
+  justify-content:center;
+  box-shadow:0 0 22px rgba(25,255,25,.12);
+}
+.profileButton .profilePhoto,
+.profileButton .profileFallback{
+  width:42px;
+  height:42px;
+  border:0;
+  background:transparent;
+  color:#050705;
+}
+.profileButton .profileName{display:none}
+
+.quickActions{
+  grid-area:nav;
+  justify-content:center;
+  margin-top:0;
+  gap:8px;
+  pointer-events:none;
+}
+.quickActions .iconBtn{pointer-events:auto}
+
+.iconBtn{
+  position:relative;
+  width:43px;
+  height:43px;
+  border:1px solid #263026;
+  border-radius:14px;
+  background:#121812;
+  color:#f3f7f3;
+  display:grid;
+  place-items:center;
+  font-size:19px;
+  transition:.18s;
+}
+.iconBtn:hover,
+.iconBtn:focus-visible{
+  background:var(--green);
+  color:#050705;
+  border-color:var(--green);
+  transform:translateY(-2px);
+}
+.iconBtn .badge{position:absolute;top:-5px;right:-5px}
+
+#sideMenuButton{display:none}
+
+/* Main visual language */
+.hero{
+  margin-top:22px;
+  border:1px solid #1c281c;
+  border-radius:30px;
+  background:linear-gradient(135deg,#0c130c,#111711);
+  box-shadow:0 18px 60px rgba(0,0,0,.28);
+}
+.hero h1 span,
+.sec h2 span{color:var(--green)}
+
+.ey{
+  color:var(--green);
+  letter-spacing:3px;
+  font-weight:900;
+}
+
+.btn{
+  border:1px solid #283228;
+  background:#111711;
+  color:#f4f7f4;
+  border-radius:14px;
+  padding:11px 16px;
+  font-weight:750;
+  transition:.18s;
+}
+.btn:hover{border-color:var(--green);transform:translateY(-1px)}
+.btn.primary{
+  background:var(--green);
+  color:#050705;
+  border-color:var(--green);
+  box-shadow:0 7px 24px rgba(25,255,25,.13);
+}
+.btn.primary:hover{background:#36ff36}
+
+.sec{
+  margin-top:18px;
+  border:1px solid #151e15;
+  border-radius:26px;
+  background:rgba(10,14,10,.88);
+  box-shadow:0 10px 40px rgba(0,0,0,.18);
+}
+
+.card,
+.episodeCard,
+.pollCard,
+.postCard,
+.newsCard,
+.achievementCard,
+.friendCard,
+.chatPanel,
+.featurePanel,
+.megaCard{
+  border-color:#202920!important;
+  background:linear-gradient(145deg,#101610,#0b100b)!important;
+  border-radius:20px!important;
+}
+
+.search,
+input,
+textarea,
+select{
+  border-color:#273127!important;
+  background:#090d09!important;
+  color:#f4f7f4!important;
+  border-radius:14px!important;
+}
+
+input:focus,textarea:focus,select:focus{
+  outline:2px solid rgba(25,255,25,.28);
+  border-color:var(--green)!important;
+}
+
+.badge{
+  background:var(--green)!important;
+  color:#050705!important;
+  font-weight:900;
+  border-radius:999px;
+}
+
+.progressBar>div,.xpBar>div{
+  background:linear-gradient(90deg,var(--green),#a0ffa0)!important;
+}
+
+/* Mobile bottom navigation */
+.bottomNav{
+  background:rgba(10,15,10,.98)!important;
+  border-top:1px solid #263026!important;
+  padding:8px 8px calc(8px + env(safe-area-inset-bottom))!important;
+}
+.bottomNav button{
+  color:#8f9990!important;
+  border-radius:15px!important;
+  min-width:58px;
+  transition:.18s;
+}
+.bottomNav button b{font-size:21px!important}
+.bottomNav button.active,
+.bottomNav button:hover{
+  color:var(--green)!important;
+  background:#142014!important;
+}
+
+/* Round icon controls inside pages */
+.quickActions + #sideMenuButton,
+.megaToolbar .btn,
+.featureTabs .btn{border-radius:14px}
+
+@media(max-width:900px){
+  .top{
+    position:relative;
+    margin:12px 14px 0;
+    min-height:122px;
+    grid-template-columns:1fr auto;
+    grid-template-areas:
+      "brand profile"
+      "nav nav";
+    border-radius:26px;
+  }
+  .top nav{display:flex;order:initial}
+  .top nav a{font-size:0;width:43px;padding:0}
+  .top nav a::first-letter{font-size:19px}
+  .top nav a[href="#catalogo"]::before{content:"⌂";font-size:21px}
+  .top nav a[href="#amigos"]::before{content:"👥";font-size:18px}
+  .top nav a[href="#chat"]::before{content:"💬";font-size:18px}
+  .top nav a[href="#votacoes"]::before{content:"🗳️";font-size:18px}
+  .top nav a[href="#conquistas"]::before{content:"🏆";font-size:18px}
+  .top nav a[href="#anuncios"]::before{content:"📰";font-size:18px}
+  .quickActions{display:none}
+  #sideMenuButton{display:none}
+  .profileArea{justify-self:end}
+  .profileMenu{top:62px}
+}
+
+@media(max-width:600px){
+  .top{margin:10px 12px 0;padding:13px 13px 10px;border-radius:24px}
+  .brand{font-size:23px}
+  .profileButton{width:50px;height:50px;border-radius:16px}
+  .hero{border-radius:24px}
+  .sec{border-radius:22px}
+  .actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .actions .btn{width:100%;text-align:center}
+}
+
 </style>
 </head>
 
@@ -931,15 +1358,35 @@ footer{
 <nav>
 <a href="#catalogo">Catálogo</a>
 <a href="#amigos">Amigos</a>
+<a href="#chat">Chat</a>
+<a href="#votacoes">🗳️</a>
 <a href="#conquistas">Conquistas</a>
 <a href="#votacoes">Votações</a>
 <a href="#anuncios">Anúncios</a>
 </nav>
 
 <div class="quickActions">
-<button class="quickIcon" title="Amigos" onclick="document.getElementById('amigos').scrollIntoView({behavior:'smooth'})">👥</button>
-<button class="quickIcon" title="Chat da comunidade" onclick="document.getElementById('chat').scrollIntoView({behavior:'smooth'})">💬</button>
-<button class="quickIcon" title="Votações" onclick="document.getElementById('votacoes').scrollIntoView({behavior:'smooth'})">🗳️</button>
+
+<button class="iconBtn" id="communityChatButton" title="Chat da comunidade" aria-label="Chat da comunidade">💬</button>
+
+<button class="iconBtn" id="friendsQuickButton" title="Amigos" aria-label="Amigos">👥<span id="friendBadge" class="badge hide">0</span></button>
+
+<button class="iconBtn" id="pollsQuickButton" title="Votações" aria-label="Votações">🗳️</button>
+<button class="iconBtn" id="notificationsQuickButton" title="Notificações" aria-label="Notificações">🔔<span id="notificationBadge" class="badge hide">0</span></button>
+<button class="iconBtn" id="globalSearchQuickButton" title="Pesquisa global" aria-label="Pesquisa global">🔎</button>
+
+</div>
+
+<button class="iconBtn" id="sideMenuButton" title="Menu">☰</button>
+
+<div id="sideDrawer" class="profileMenu hide" style="left:6vw;right:auto;top:60px;width:min(300px,88vw)">
+  <h3 style="margin:5px 0 10px">☰ Menu</h3>
+  <button class="btn" data-side="mega">✨ Centro</button>
+  <button class="btn" data-side="catalogo">🎬 Episódios</button>
+  <button class="btn" data-side="amigos">👥 Amigos</button>
+  <button class="btn" data-side="chat">💬 Comunidade</button>
+  <button class="btn" data-side="votacoes">🗳️ Votações</button>
+  <button class="btn" data-side="conquistas">🏆 Conquistas</button>
 </div>
 
 <div class="profileArea">
@@ -983,6 +1430,10 @@ footer{
 
 <button class="btn hide" id="friendsButton">
 👥 Amigos
+</button>
+
+<button class="btn hide" id="switchAccountButton">
+🔄 Mudar de conta
 </button>
 
 <button class="btn hide" id="adminOpen">
@@ -1076,6 +1527,8 @@ Votações
 <option value="Miraculous">Miraculous</option>
 <option value="Big City Greens">Big City Greens</option>
 </select>
+<select id="seasonFilter" class="search seriesFilter"><option value="all">Todas as temporadas</option></select>
+<select id="langFilter" class="search seriesFilter"><option value="all">Todos os idiomas</option></select>
 
 <input id="search"
        class="search"
@@ -1130,31 +1583,50 @@ Procurar
 
 </section>
 
-
-<!-- CHAT -->
+<!-- CHAT DA COMUNIDADE -->
 <section class="sec" id="chat">
-<div class="ey">COMUNIDADE</div>
-<h2>Chats</h2>
-<div id="chatLoginMessage" class="notice">Entra na tua conta para participares nos chats.</div>
-<div id="chatContent" class="hide">
-<div class="chatBox">
-<div class="chatTabs">
-<button class="btn primary" id="communityChatTab">💬 Comunidade</button>
-<button class="btn" id="friendsChatTab">👥 Chat de amigos</button>
-</div>
-<div id="communityChatPane">
-<div id="communityMessages" class="chatMessages"></div>
-<div class="chatComposer"><input id="communityMessageInput" maxlength="500" placeholder="Escreve uma mensagem..."><button class="btn primary" id="sendCommunityMessage">Enviar</button></div>
-</div>
-<div id="friendsChatPane" class="hide">
-<div style="padding:12px;border-bottom:1px solid var(--line)"><select id="chatFriendSelect" class="search" style="width:100%"><option value="">Escolhe um amigo...</option></select></div>
-<div id="friendMessages" class="chatMessages"></div>
-<div class="chatComposer"><input id="friendMessageInput" maxlength="500" placeholder="Escreve uma mensagem para o teu amigo..."><button class="btn primary" id="sendFriendMessage">Enviar</button></div>
-</div>
-</div>
-</div>
+  <div class="ey">SOCIAL</div>
+  <div class="sectionTitleRow">
+    <div>
+      <h2>💬 Chat da comunidade</h2>
+      <p class="muted">Conversa com toda a comunidade do miraculous.kk.</p>
+    </div>
+    <button class="iconBtn bigIcon" id="communityChatTop" title="Abrir chat">💬</button>
+  </div>
+  <div id="communityLoginMessage" class="notice">Entra na tua conta para escrever no chat.</div>
+  <div id="communityChatContent" class="chatPanel hide">
+    <div id="communityMessages" class="messages"></div>
+    <div class="chatComposer">
+      <input id="communityMessageInput" maxlength="500" placeholder="Escreve uma mensagem...">
+      <button class="btn primary" id="communitySend">Enviar</button>
+    </div>
+  </div>
 </section>
 
+<!-- CHAT COM AMIGOS -->
+<section class="sec" id="chatAmigos">
+  <div class="ey">MENSAGENS</div>
+  <div class="sectionTitleRow">
+    <div>
+      <h2>👥 Chat de amigos</h2>
+      <p class="muted">Envia mensagens privadas aos teus amigos.</p>
+    </div>
+  </div>
+  <div id="privateLoginMessage" class="notice">Entra na tua conta para usar o chat de amigos.</div>
+  <div id="privateChatContent" class="privateChat hide">
+    <div class="privateChatGrid">
+      <div id="privateFriendPicker" class="privateFriends"></div>
+      <div class="chatPanel">
+        <div id="privateChatHeader" class="chatHeader">Seleciona um amigo</div>
+        <div id="privateMessages" class="messages"></div>
+        <div class="chatComposer">
+          <input id="privateMessageInput" maxlength="500" placeholder="Mensagem..." disabled>
+          <button class="btn primary" id="privateSend" disabled>Enviar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- CONQUISTAS -->
 
@@ -1181,7 +1653,7 @@ Entra na tua conta para veres as tuas conquistas.
 
 <div class="ey">COMUNIDADE</div>
 
-<h2>Votações</h2>
+<div class="sectionTitleRow"><h2>🗳️ Votações</h2><button class="iconBtn" onclick="openSocialSection('votacoes')">🗳️</button></div>
 
 <div id="polls">
 <p class="muted">Ainda não existem votações.</p>
@@ -1223,6 +1695,113 @@ Entra na tua conta para veres as tuas conquistas.
 </div>
 
 </section>
+
+
+
+<!-- MEGA HUB -->
+<section class="sec" id="megaHub">
+  <div class="ey">MIRACULOUS.KK HUB</div>
+  <div class="head"><div><h2>✨ Tudo num só lugar</h2><p class="muted">Perfil, notificações, comunidade, níveis, calendário, notícias, wiki, quiz e ranking.</p></div><button class="btn primary" id="openMegaHub">Abrir centro</button></div>
+</section>
+
+<div id="megaModal" class="modal hide">
+  <div class="box" style="width:min(1100px,100%)">
+    <button class="close" id="megaClose">×</button>
+    <div class="ey">CENTRO DA COMUNIDADE</div>
+    <h2 style="margin-top:4px">🐞 miraculous.kk</h2>
+    <div class="featureTabs" id="featureTabs">
+      <button class="btn" data-tab="profile">👤 Perfil</button>
+      <button class="btn" data-tab="notifications">🔔 Notificações <span id="megaNotifBadge" class="badge hide">0</span></button>
+      <button class="btn" data-tab="friends">👥 Amigos</button>
+      <button class="btn" data-tab="community">💬 Comunidade</button>
+      <button class="btn" data-tab="episodes">🎬 Episódios</button>
+      <button class="btn" data-tab="polls">🗳️ Votações</button>
+      <button class="btn" data-tab="achievements">🏆 Conquistas</button>
+      <button class="btn" data-tab="search">🔎 Pesquisa</button>
+      <button class="btn" data-tab="custom">🎨 Personalização</button>
+      <button class="btn" data-tab="calendar">📅 Calendário</button>
+      <button class="btn" data-tab="news">📰 Notícias</button>
+      <button class="btn" data-tab="wiki">🧩 Wiki</button>
+      <button class="btn" data-tab="quiz">🎭 Quiz</button>
+      <button class="btn" data-tab="ranking">👑 Ranking</button>
+      <button class="btn hide" id="megaAdminTab" data-tab="admin">🛠️ Admin</button>
+    </div>
+
+    <div class="featurePanel active" id="panel-profile">
+      <div id="megaProfile"></div>
+    </div>
+    <div class="featurePanel" id="panel-notifications"><div id="megaNotifications"></div></div>
+    <div class="featurePanel" id="panel-friends"><div id="megaFriends"></div></div>
+    <div class="featurePanel" id="panel-community">
+      <div class="megaToolbar"><button class="btn primary" id="newForumPost">🧵 Nova publicação</button><button class="btn" id="seedRoomBtn">➕ Criar sala</button></div>
+      <div class="megaGrid"><div><h3>🌐 Salas</h3><div id="megaRooms"></div></div><div><h3>🧵 Fórum</h3><div id="megaForum"></div></div></div>
+    </div>
+    <div class="featurePanel" id="panel-episodes"><div id="megaEpisodes"></div></div>
+    <div class="featurePanel" id="panel-polls"><div id="megaPolls"></div></div>
+    <div class="featurePanel" id="panel-achievements"><div id="megaAchievements"></div></div>
+    <div class="featurePanel" id="panel-search"><input id="globalSearchInput" style="width:100%" placeholder="🔍 Pesquisar episódios, utilizadores, personagens, temporadas, filmes e publicações..."><div id="globalSearchResults" class="globalSearchResults"></div></div>
+    <div class="featurePanel" id="panel-custom"><div id="megaCustom"></div></div>
+    <div class="featurePanel" id="panel-calendar"><div id="megaCalendar"></div></div>
+    <div class="featurePanel" id="panel-news"><div id="megaNews"></div></div>
+    <div class="featurePanel" id="panel-wiki"><div id="megaWiki"></div></div>
+    <div class="featurePanel" id="panel-quiz"><div id="megaQuiz"></div></div>
+    <div class="featurePanel" id="panel-ranking"><div id="megaRanking"></div></div>
+    <div class="featurePanel" id="panel-admin"><div id="megaAdmin"></div></div>
+  </div>
+</div>
+
+<div id="editProfileModal" class="modal hide">
+  <div class="box" style="max-width:650px">
+    <button class="close" id="editProfileClose">×</button>
+    <h2>👤 Editar perfil</h2>
+    <div class="form">
+      <div class="field"><label>Nome</label><input id="epName" maxlength="30"></div>
+      <div class="field"><label>Cor do perfil</label><input id="epColor" type="color" value="#e62b45"></div>
+      <div class="field full"><label>Descrição</label><textarea id="epBio" maxlength="180"></textarea></div>
+      <div class="field full"><label>Avatar</label><input id="epAvatar" type="file" accept="image/*"></div>
+      <div class="full" id="epStatus"></div>
+    </div>
+    <button class="btn primary" id="saveProfileMega">Guardar alterações</button>
+  </div>
+</div>
+
+
+<div id="fullPlayer" class="fullPlayer" aria-hidden="true">
+  <div class="playerShell" role="dialog" aria-label="Leitor de episódio">
+    <div class="playerTop">
+      <div class="playerTitle" id="playerTitle">Episódio</div>
+      <button class="playerCloseBtn" id="fullPlayerClose" aria-label="Fechar">×</button>
+    </div>
+
+    <div class="playerLanguages" aria-label="Idioma">
+      <button class="playerLang active" data-player-lang="pt-PT" title="Português de Portugal">🇵🇹</button>
+      <button class="playerLang" data-player-lang="pt-BR" title="Português do Brasil">🇧🇷</button>
+      <button class="playerLang" data-player-lang="fr" title="Francês">🇫🇷</button>
+      <button class="playerLang" data-player-lang="en" title="Inglês">🇺🇸</button>
+    </div>
+
+    <div class="playerViewport">
+      <video id="megaVideo" controls playsinline preload="metadata"></video>
+      <iframe id="megaFrame" class="hide"
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowfullscreen
+        referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </div>
+
+    <div class="playerMeta">
+      <div class="playerEpisodeTitle" id="playerEpisodeTitle">Episódio</div>
+      <div class="playerHint" id="playerHint">Escolhe o idioma das legendas acima.</div>
+    </div>
+  </div>
+</div>
+
+<div class="bottomNav" id="bottomNav">
+  <button data-bottom="home"><b>🏠</b>Início</button>
+  <button data-bottom="episodes"><b>🎬</b>Episódios</button>
+  <button data-bottom="friends"><b>👥</b>Amigos</button>
+  <button data-bottom="community"><b>💬</b>Chat</button>
+  <button data-bottom="profile"><b>👤</b>Perfil</button>
+</div>
 
 </main>
 
@@ -1470,6 +2049,24 @@ Adicionar episódio
 </div>
 
 <div class="field full">
+<label>Vídeo do episódio</label>
+<input id="videoUrl" placeholder="MP4, YouTube ou Google Drive">
+<small class="muted">Aceita link direto .mp4, YouTube (watch/youtu.be) ou Google Drive. Também podes carregar um ficheiro MP4 abaixo.</small>
+</div>
+
+<div class="field full">
+<label>Carregar ficheiro MP4 (opcional)</label>
+<input id="videoFile" type="file" accept="video/mp4,.mp4,video/*">
+<small class="muted">O MP4 fica guardado na base de dados local deste site. Para ficheiros grandes, é melhor usar um URL.</small>
+</div>
+
+<div class="field full">
+<label>Legendas .srt / .vtt (opcional)</label>
+<input id="subtitleFile" type="file" accept=".srt,.vtt,text/plain">
+<small class="muted">As legendas ficam guardadas com o episódio.</small>
+</div>
+
+<div class="field full">
 <label>Trailer do YouTube (opcional)</label>
 
 <input id="trailerUrl"
@@ -1675,6 +2272,11 @@ Publicar anúncio
 
 </div>
 
+<div class="form">
+<div class="field"><label>Data/hora de início</label><input id="pollStart" type="datetime-local"></div>
+<div class="field"><label>Data/hora de fim</label><input id="pollEnd" type="datetime-local"></div>
+</div>
+
 <div class="field">
 <label>Opções — uma por linha</label>
 
@@ -1692,8 +2294,7 @@ Criar votação
 </button>
 
 <div id="pollStatus"></div>
-<h4>Votações existentes</h4>
-<div id="adminPolls"></div>
+<div id="adminPolls" class="list"></div>
 
 <hr style="border-color:#292933;margin:25px 0">
 
@@ -1774,6 +2375,57 @@ Remover fundo
 
 <hr style="border-color:#292933;margin:25px 0">
 
+<!-- FERRAMENTAS AVANÇADAS DO ADMIN -->
+<h3>🏆 Conquistas personalizadas</h3>
+<div class="form">
+  <div class="field"><label>Ícone</label><input id="adminAchIcon" value="🏆" maxlength="4"></div>
+  <div class="field"><label>Título</label><input id="adminAchTitle" placeholder="Novo fã"></div>
+  <div class="field"><label>XP</label><input id="adminAchXP" type="number" min="0" value="50"></div>
+  <div class="field full"><label>Descrição</label><input id="adminAchDesc" placeholder="Descrição da conquista"></div>
+  <div class="field full"><label>Atribuir já a um utilizador (opcional)</label><select id="adminAchUser"><option value="">Não atribuir</option></select></div>
+</div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+  <button class="btn primary" id="adminAchSave">➕ Criar conquista</button>
+  <button class="btn" id="adminAchCancel">Cancelar edição</button>
+</div>
+<div id="adminAchStatus"></div>
+<div id="adminAchievementsList" class="list"></div>
+
+<hr style="border-color:#292933;margin:25px 0">
+
+<h3>📰 Notícias</h3>
+<div class="form">
+  <div class="field"><label>Título</label><input id="adminNewsTitle" placeholder="Nova notícia de Miraculous"></div>
+  <div class="field"><label>Agendar publicação</label><input id="adminNewsSchedule" type="datetime-local"></div>
+  <div class="field full"><label>Imagem de capa</label><input id="adminNewsCover" type="file" accept="image/*"></div>
+  <div class="field full"><label>Texto</label><textarea id="adminNewsText" placeholder="Escreve a notícia..."></textarea></div>
+  <div class="field"><label><input id="adminNewsPinned" type="checkbox"> 📌 Fixar notícia</label></div>
+</div>
+<button class="btn primary" id="adminNewsSave">➕ Criar notícia</button>
+<button class="btn" id="adminNewsCancel">Cancelar edição</button>
+<div id="adminNewsStatus"></div>
+<div id="adminNewsList" class="list"></div>
+
+<hr style="border-color:#292933;margin:25px 0">
+
+<h3>📅 Calendário de estreias</h3>
+<div class="form">
+  <div class="field"><label>Tipo</label><select id="adminCalKind"><option value="estreia">🎬 Episódio</option><option value="trailer">🎞️ Trailer</option><option value="noticia">📰 Notícia</option></select></div>
+  <div class="field"><label>Data/hora</label><input id="adminCalDate" type="datetime-local"></div>
+  <div class="field full"><label>Título</label><input id="adminCalTitle" placeholder="T6 E6 — Nome do episódio"></div>
+  <div class="field"><label><input id="adminCalNotify" type="checkbox" checked> 🔔 Notificar utilizadores</label></div>
+</div>
+<button class="btn primary" id="adminCalSave">➕ Adicionar estreia</button>
+<button class="btn" id="adminCalCancel">Cancelar edição</button>
+<div id="adminCalStatus"></div>
+<div id="adminCalendarList" class="list"></div>
+
+<hr style="border-color:#292933;margin:25px 0">
+
+<h3>📋 Logs de actividade</h3>
+<div id="adminActivityLogs" class="list"></div>
+
+<hr style="border-color:#292933;margin:25px 0">
 
 <h3>📚 Episódios publicados</h3>
 
@@ -1791,7 +2443,7 @@ Remover fundo
 ========================= */
 
 const DB_NAME="miraculousKK";
-const DB_VERSION=9;
+const DB_VERSION=13;
 
 /*
   IMPORTANTE:
@@ -1808,11 +2460,24 @@ let announcements=[];
 let accounts=[];
 let friendships=[];
 let polls=[];
+let communityMessages=[];
+let privateMessages=[];
 let achievements=[];
 let settings={};
+let notifications=[];
+let forumPosts=[];
+let forumComments=[];
+let reports=[];
+let activityLogs=[];
+let newsItems=[];
+let wikiItems=[];
+let calendarItems=[];
+let quizItems=[];
+let achievementDefinitions=[];
 
 let currentUser=null;
 let editingId=null;
+let editingPollId=null;
 let registerPhoto="";
 
 
@@ -1920,12 +2585,16 @@ function openDB(){
         d.createObjectStore("friendships",{keyPath:"id"});
       }
 
-      if(!d.objectStoreNames.contains("messages")){
-        d.createObjectStore("messages",{keyPath:"id"});
-      }
-
       if(!d.objectStoreNames.contains("polls")){
         d.createObjectStore("polls",{keyPath:"id"});
+      }
+
+      if(!d.objectStoreNames.contains("communityMessages")){
+        d.createObjectStore("communityMessages",{keyPath:"id"});
+      }
+
+      if(!d.objectStoreNames.contains("privateMessages")){
+        d.createObjectStore("privateMessages",{keyPath:"id"});
       }
 
       if(!d.objectStoreNames.contains("achievements")){
@@ -1936,11 +2605,49 @@ function openDB(){
         d.createObjectStore("settings",{keyPath:"id"});
       }
 
+      if(!d.objectStoreNames.contains("notifications")){
+        d.createObjectStore("notifications",{keyPath:"id"});
+      }
+      if(!d.objectStoreNames.contains("forumPosts")){
+        d.createObjectStore("forumPosts",{keyPath:"id"});
+      }
+      if(!d.objectStoreNames.contains("forumComments")){
+        d.createObjectStore("forumComments",{keyPath:"id"});
+      }
+      if(!d.objectStoreNames.contains("reports")){
+        d.createObjectStore("reports",{keyPath:"id"});
+      }
+      if(!d.objectStoreNames.contains("activityLogs")){
+        d.createObjectStore("activityLogs",{keyPath:"id"});
+      }
+      if(!d.objectStoreNames.contains("news")){
+        d.createObjectStore("news",{keyPath:"id"});
+      }
+      if(!d.objectStoreNames.contains("wiki")){
+        d.createObjectStore("wiki",{keyPath:"id"});
+      }
+      if(!d.objectStoreNames.contains("calendar")){
+        d.createObjectStore("calendar",{keyPath:"id"});
+      }
+      if(!d.objectStoreNames.contains("quiz")){
+        d.createObjectStore("quiz",{keyPath:"id"});
+      }
+      if(!d.objectStoreNames.contains("achievementDefinitions")){
+        d.createObjectStore("achievementDefinitions",{keyPath:"id"});
+      }
+
     };
 
     request.onsuccess=e=>{
       db=e.target.result;
+      db.onversionchange=()=>{
+        try{db.close();}catch(err){}
+      };
       resolve(db);
+    };
+
+    request.onblocked=()=>{
+      console.warn("A atualização da base de dados está bloqueada por outra aba.");
     };
 
     request.onerror=()=>{
@@ -2058,11 +2765,10 @@ async function restoreSession(){
 
   if(!username)return;
 
-  const account=
-    await getItem(
-      "accounts",
-      username
-    );
+  const allAccounts=await getAll("accounts");
+  const account=allAccounts.find(a=>
+    normalizeUsername(a.username)===normalizeUsername(username)
+  );
 
   if(account){
     currentUser=account;
@@ -2070,6 +2776,35 @@ async function restoreSession(){
 
 }
 
+
+async function ensureDefaultAdmin(){
+  const allAccounts=await getAll("accounts");
+  const existing=allAccounts.find(a=>
+    normalizeUsername(a.username)===normalizeUsername(ADMIN_USER)
+  );
+
+  if(existing){
+    existing.admin=true;
+    existing.password="nemesis6";
+    existing.flag=existing.flag||"🇵🇹";
+    existing.phrase=existing.phrase||"Claws out!";
+    existing.watched=Array.isArray(existing.watched)?existing.watched:[];
+    existing.favorites=Array.isArray(existing.favorites)?existing.favorites:[];
+    existing.ratings=existing.ratings&&typeof existing.ratings==="object"?existing.ratings:{};
+    existing.progress=existing.progress&&typeof existing.progress==="object"?existing.progress:{};
+    existing.blocked=Array.isArray(existing.blocked)?existing.blocked:[];
+    existing.bio=existing.bio||"Fã de Miraculous 🐞";
+    existing.profileColor=existing.profileColor||"#e62b45";
+    existing.xp=Number(existing.xp||0);
+    existing.lastSeen=Date.now();
+    existing.role=existing.admin?"admin":(existing.role||"user");
+    await put("accounts",existing);
+    return;
+  }
+
+  const account={username:ADMIN_USER,password:"nemesis6",photo:"",admin:true,role:"admin",flag:"🇵🇹",phrase:"Claws out!",bio:"Fã de Miraculous 🐞",profileColor:"#e62b45",watched:[],favorites:[],ratings:{},progress:{},blocked:[],xp:0,lastSeen:Date.now(),createdAt:Date.now()};
+  await put("accounts",account);
+}
 
 /* =========================
    LOAD DATA
@@ -2082,7 +2817,19 @@ async function loadData(){
   accounts=await getAll("accounts");
   friendships=await getAll("friendships");
   polls=await getAll("polls");
+  communityMessages=await getAll("communityMessages");
+  privateMessages=await getAll("privateMessages");
   achievements=await getAll("achievements");
+  notifications=await getAll("notifications");
+  forumPosts=await getAll("forumPosts");
+  forumComments=await getAll("forumComments");
+  reports=await getAll("reports");
+  activityLogs=await getAll("activityLogs");
+  newsItems=await getAll("news");
+  wikiItems=await getAll("wiki");
+  calendarItems=await getAll("calendar");
+  quizItems=await getAll("quiz");
+  achievementDefinitions=await getAll("achievementDefinitions");
 
   const settingRows=
     await getAll("settings");
@@ -2095,14 +2842,14 @@ async function loadData(){
 
   cleanExpiredAnnouncements();
 
+  refreshEpisodeFilters();
   render();
   renderAnnouncements();
   renderPolls();
   renderFriends();
+  renderSocial();
   renderAchievements();
   renderAdminUsers();
-  if(currentUser?.admin) renderAdminList();
-  renderChat();
   await loadBackground();
   updateProfileUI();
 }
@@ -2151,6 +2898,7 @@ function updateProfileUI(){
 
     $("myProfileButton").classList.remove("hide");
     $("friendsButton").classList.remove("hide");
+    $("switchAccountButton").classList.remove("hide");
     $("changeProfile").classList.remove("hide");
     $("logoutButton").classList.remove("hide");
 
@@ -2166,13 +2914,12 @@ function updateProfileUI(){
 
     $("myProfileButton").classList.add("hide");
     $("friendsButton").classList.add("hide");
+    $("switchAccountButton").classList.add("hide");
     $("changeProfile").classList.add("hide");
     $("logoutButton").classList.add("hide");
     $("adminOpen").classList.add("hide");
 
   }
-
-  renderChat();
 
 }
 
@@ -2233,6 +2980,18 @@ $("friendsButton").onclick=()=>{
 
 };
 
+$("switchAccountButton").onclick=()=>{
+  $("profileMenu").classList.add("hide");
+  currentUser=null;
+  saveCurrentSession();
+  updateProfileUI();
+  renderFriends();
+  renderSocial();
+  renderAchievements();
+  render();
+  $("authModal").classList.remove("hide");
+  $("loginTab")?.click();
+};
 
 $("changeProfile").onclick=()=>$("profileFile").click();
 
@@ -2285,6 +3044,7 @@ $("logoutButton").onclick=()=>{
   $("profileMenu").classList.add("hide");
 
   renderFriends();
+  renderSocial();
   renderAchievements();
   render();
 
@@ -2397,33 +3157,12 @@ $("loginBtn").onclick=async()=>{
     return;
   }
 
-  // Recarrega as contas directamente da IndexedDB para evitar listas desactualizadas.
-  accounts=await getAll("accounts");
-
-  let account=
+  const account=
     accounts.find(
       a=>
         normalizeUsername(a.username)===
         normalizeUsername(username)
     );
-
-  // Recuperação da conta Miguel caso ela exista no site antigo mas não tenha
-  // sido migrada para esta versão da base de dados.
-  if(!account && normalizeUsername(username)==="miguel" && password==="nemesis6"){
-    account={
-      username:"miguel",
-      password:"nemesis6",
-      photo:"",
-      admin:true,
-      flag:getFlagFromLanguage(),
-      phrase:"Claws out!",
-      watched:[],
-      createdAt:Date.now()
-    };
-
-    await put("accounts",account);
-    accounts=await getAll("accounts");
-  }
 
   if(!account){
 
@@ -2431,14 +3170,6 @@ $("loginBtn").onclick=async()=>{
       '<span class="error">❌ Conta não encontrada.</span>';
 
     return;
-  }
-
-  // A conta Miguel é a conta administradora principal.
-  // Corrige contas antigas que ficaram guardadas com admin:false.
-  if(normalizeUsername(account.username)==="miguel" && password==="nemesis6" && !account.admin){
-    account.admin=true;
-    await put("accounts",account);
-    accounts=await getAll("accounts");
   }
 
   if(account.password!==password){
@@ -2461,11 +3192,13 @@ $("loginBtn").onclick=async()=>{
       getFlagFromLanguage();
   }
 
-  await put(
-    "accounts",
-    currentUser
-  );
+  currentUser.progress=currentUser.progress||{};
+  currentUser.watched=Array.isArray(currentUser.watched)?currentUser.watched:[];
+  currentUser.favorites=Array.isArray(currentUser.favorites)?currentUser.favorites:[];
+  currentUser.ratings=currentUser.ratings&&typeof currentUser.ratings==="object"?currentUser.ratings:{};
+  currentUser.lastSeen=Date.now();
 
+  await put("accounts",currentUser);
   accounts=await getAll("accounts");
 
   saveCurrentSession();
@@ -2477,6 +3210,7 @@ $("loginBtn").onclick=async()=>{
   $("loginPass").value="";
 
   renderFriends();
+  renderSocial();
   renderAchievements();
   render();
 
@@ -2543,7 +3277,16 @@ $("registerBtn").onclick=async()=>{
       admin:false,
       flag:getFlagFromLanguage(),
       phrase:"Claws out!",
+      bio:"Novo membro do miraculous.kk 🐞",
+      profileColor:"#e62b45",
+      role:"user",
       watched:[],
+      favorites:[],
+      ratings:{},
+      progress:{},
+      blocked:[],
+      xp:0,
+      lastSeen:Date.now(),
       createdAt:Date.now()
     };
 
@@ -2576,6 +3319,7 @@ $("registerBtn").onclick=async()=>{
       .remove("hide");
 
     renderFriends();
+    renderSocial();
     renderAchievements();
     render();
 
@@ -2593,6 +3337,13 @@ $("registerBtn").onclick=async()=>{
    EPISODES
 ========================= */
 
+function refreshEpisodeFilters(){
+  const sf=$("seasonFilter"),lf=$("langFilter");if(!sf||!lf)return;
+  const seasons=[...new Set(episodes.map(e=>e.season).filter(Boolean))].sort();const langs=[...new Set(episodes.map(e=>e.lang).filter(Boolean))].sort();
+  sf.innerHTML='<option value="all">Todas as temporadas</option>'+seasons.map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join("");
+  lf.innerHTML='<option value="all">Todos os idiomas</option>'+langs.map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join("");
+}
+
 function render(){
 
   const q=
@@ -2603,6 +3354,8 @@ function render(){
 
   const selectedSeries=
     $("seriesFilter").value;
+  const selectedSeason=$("seasonFilter")?.value||"all";
+  const selectedLang=$("langFilter")?.value||"all";
 
   const filtered=
     episodes.filter(e=>{
@@ -2614,9 +3367,10 @@ function render(){
       return text.includes(q) &&
         (
           selectedSeries==="all" ||
-          (e.series||"Miraculous")===
-          selectedSeries
-        );
+          (e.series||"Miraculous")===selectedSeries
+        ) &&
+        (selectedSeason==="all" || e.season===selectedSeason) &&
+        (selectedLang==="all" || (e.lang||"—").toLowerCase()===selectedLang.toLowerCase());
 
     });
 
@@ -2629,7 +3383,7 @@ function render(){
         currentUser.watched.includes(e.id);
 
       return `
-      <article class="card">
+      <article class="card" data-episode-id="${esc(e.id)}">
 
         <div class="thumb">
           ${
@@ -2705,6 +3459,7 @@ function render(){
   $("count").textContent=
     episodes.length;
 
+  if(typeof decorateEpisodeCards==="function") decorateEpisodeCards();
   renderAdminList();
 
 }
@@ -2886,7 +3641,7 @@ function renderAchievements(){
 
     <div class="achievementGrid">
 
-      ${ACHIEVEMENT_LIST.map(a=>{
+      ${[...ACHIEVEMENT_LIST,...achievementDefinitions].map(a=>{
 
         const isUnlocked=
           unlocked.some(
@@ -2983,6 +3738,8 @@ function renderFriends(){
 
   renderFriendRequests();
   renderFriendList();
+  updateFriendBadge();
+  if(currentUser)renderPrivateFriends();
 
 }
 
@@ -3480,6 +4237,7 @@ $("adminOpen").onclick=()=>{
   renderAdminList();
   renderAdminUsers();
   renderAdminPolls();
+  adminRefreshAdvancedLists();
 
   $("myPhraseSelect").value=
     currentUser.phrase||"Claws out!";
@@ -3542,20 +4300,21 @@ function renderAdminList(){
 
 
 window.deleteEpisode=async id=>{
-  if(!currentUser?.admin)return;
-  const episode=episodes.find(e=>e.id===id);
-  if(!episode)return;
-  if(!confirm(`Queres mesmo apagar "${episode.title}"?`))return;
-  try{
-    await remove("episodes",id);
-    episodes=await getAll("episodes");
-    renderAdminList();
-    render();
-    $("status").innerHTML='<div class="notice success">✅ Episódio apagado com sucesso!</div>';
-  }catch(e){
-    $("status").innerHTML=`<div class="notice error">❌ Não foi possível apagar o episódio.<br><small>${esc(e.message||"Erro desconhecido")}</small></div>`;
-  }
+
+  if(
+    !currentUser?.admin ||
+    !confirm("Queres mesmo apagar este episódio?")
+  )return;
+
+  await remove(
+    "episodes",
+    id
+  );
+
+  await loadData();
+
 };
+
 
 window.editEpisode=id=>{
 
@@ -3591,6 +4350,9 @@ window.editEpisode=id=>{
 
   $("trailerUrl").value=
     e.trailerUrl||"";
+  $("videoUrl").value=e.videoUrl||"";
+  $("videoFile").value="";
+  $("subtitleFile").value="";
 
   $("thumb").value="";
 
@@ -3625,7 +4387,8 @@ function resetForm(){
     "number",
     "lang",
     "desc",
-    "trailerUrl"
+    "trailerUrl",
+    "videoUrl"
   ].forEach(id=>{
     $(id).value="";
   });
@@ -3634,6 +4397,8 @@ function resetForm(){
     "Miraculous";
 
   $("thumb").value="";
+  $("videoFile").value="";
+  $("subtitleFile").value="";
 
 }
 
@@ -3691,6 +4456,18 @@ $("add").onclick=async()=>{
     trailerUrl:
       $("trailerUrl").value.trim()||"",
 
+    videoUrl:
+      $("videoUrl").value.trim()||old?.videoUrl||"",
+
+    videoBlob:
+      old?.videoBlob||null,
+
+    videoKind:
+      old?.videoKind||"",
+
+    subtitles:
+      old?.subtitles||{},
+
     thumbnail:
       old?.thumbnail||"",
 
@@ -3699,6 +4476,20 @@ $("add").onclick=async()=>{
   };
 
   try{
+
+    const videoFile=$("videoFile")?.files?.[0];
+
+    if(videoFile){
+      if(!videoFile.type.startsWith("video/") && !/\.mp4$/i.test(videoFile.name)){
+        throw new Error("O ficheiro de vídeo tem de ser MP4.");
+      }
+      episode.videoBlob=videoFile;
+      episode.videoUrl="";
+      episode.videoKind="file";
+    }else if(episode.videoUrl){
+      episode.videoBlob=null;
+      episode.videoKind=detectVideoKind(episode.videoUrl);
+    }
 
     await put(
       "episodes",
@@ -3720,12 +4511,25 @@ $("add").onclick=async()=>{
 
     }
 
+    const subtitleFile=$("subtitleFile").files[0];
+    if(subtitleFile){
+      const text=await subtitleFile.text();
+      const lang=(episode.lang||"PT-PT").split(/[\s,;|]+/)[0]||"PT-PT";
+      episode.subtitles=episode.subtitles||{};
+      episode.subtitles[lang]=text;
+      await put("episodes",episode);
+    }
+
+    if(typeof window.logActivityCompat==="function") await window.logActivityCompat("episode_save",episode.title);
+
     $("status").innerHTML=
       '<div class="notice success">✅ Episódio guardado!</div>';
 
+    const wasNew=!editingId;
     resetForm();
 
     await loadData();
+    if(wasNew && window.miraculousMega?.notifyAllUsers)await window.miraculousMega.notifyAllUsers("🎬 Novo episódio disponível!",`${episode.season} — ${episode.title}`);
 
   }catch(e){
 
@@ -3742,25 +4546,112 @@ $("add").onclick=async()=>{
 
 
 /* =========================
-   CHAT
+   ADMIN: CONQUISTAS / NOTÍCIAS / CALENDÁRIO
 ========================= */
-let activeFriendChat="";
-function friendChatRoom(a,b){return "friend:"+[normalizeUsername(a),normalizeUsername(b)].sort().join("|");}
-function isAcceptedFriend(username){if(!currentUser)return false;return friendships.some(f=>f.status==="accepted"&&((normalizeUsername(f.from)===normalizeUsername(currentUser.username)&&normalizeUsername(f.to)===normalizeUsername(username))||(normalizeUsername(f.to)===normalizeUsername(currentUser.username)&&normalizeUsername(f.from)===normalizeUsername(username))));}
-async function getMessages(roomId){const all=await getAll("messages");return all.filter(m=>m.roomId===roomId).sort((a,b)=>(a.createdAt||0)-(b.createdAt||0));}
-function messageHTML(m){const mine=currentUser&&normalizeUsername(m.from)===normalizeUsername(currentUser.username);const u=accounts.find(a=>normalizeUsername(a.username)===normalizeUsername(m.from));return `<div class="chatMessage ${mine?"mine":""}"><div class="chatMeta">${mine?"Tu":esc(u?.username||m.from)} · ${new Date(m.createdAt||Date.now()).toLocaleString("pt-PT",{dateStyle:"short",timeStyle:"short"})}</div><div>${esc(m.text)}</div></div>`;}
-async function renderCommunityChat(){if(!currentUser)return;const ms=await getMessages("community");$("communityMessages").innerHTML=ms.map(messageHTML).join("")||'<p class="muted">Ainda não existem mensagens. Sê o primeiro a escrever! 🐾</p>';$("communityMessages").scrollTop=$("communityMessages").scrollHeight;}
-async function renderFriendChat(){if(!currentUser)return;const sel=$("chatFriendSelect");const friends=accounts.filter(a=>normalizeUsername(a.username)!==normalizeUsername(currentUser.username)&&isAcceptedFriend(a.username));sel.innerHTML='<option value="">Escolhe um amigo...</option>'+friends.map(a=>`<option value="${esc(a.username)}">👤 ${esc(a.username)}</option>`).join("");if(friends.some(a=>normalizeUsername(a.username)===normalizeUsername(activeFriendChat)))sel.value=activeFriendChat;else activeFriendChat="";if(!activeFriendChat){$("friendMessages").innerHTML='<p class="muted">Escolhe um amigo para abrir a conversa.</p>';return;}const ms=await getMessages(friendChatRoom(currentUser.username,activeFriendChat));$("friendMessages").innerHTML=ms.map(messageHTML).join("")||'<p class="muted">Ainda não existem mensagens nesta conversa.</p>';$("friendMessages").scrollTop=$("friendMessages").scrollHeight;}
-async function renderChat(){if(!$("chatContent"))return;if(!currentUser){$("chatLoginMessage").classList.remove("hide");$("chatContent").classList.add("hide");return;}$("chatLoginMessage").classList.add("hide");$("chatContent").classList.remove("hide");await renderCommunityChat();await renderFriendChat();}
-async function sendChatMessage(roomId,inputId){if(!currentUser)return;const input=$(inputId),text=input.value.trim();if(!text)return;await put("messages",{id:makeId(),roomId,from:currentUser.username,text:text.slice(0,500),createdAt:Date.now()});input.value="";roomId==="community"?await renderCommunityChat():await renderFriendChat();}
-$("communityChatTab").onclick=async()=>{$("communityChatTab").classList.add("primary");$("friendsChatTab").classList.remove("primary");$("communityChatPane").classList.remove("hide");$("friendsChatPane").classList.add("hide");await renderCommunityChat();};
-$("friendsChatTab").onclick=async()=>{$("friendsChatTab").classList.add("primary");$("communityChatTab").classList.remove("primary");$("friendsChatPane").classList.remove("hide");$("communityChatPane").classList.add("hide");await renderFriendChat();};
-$("chatFriendSelect").onchange=async e=>{activeFriendChat=e.target.value;await renderFriendChat();};
-$("sendCommunityMessage").onclick=()=>sendChatMessage("community","communityMessageInput");
-$("sendFriendMessage").onclick=()=>{if(!activeFriendChat){alert("Escolhe primeiro um amigo.");return;}sendChatMessage(friendChatRoom(currentUser.username,activeFriendChat),"friendMessageInput");};
-$("communityMessageInput").onkeydown=e=>{if(e.key==="Enter")sendChatMessage("community","communityMessageInput");};
-$("friendMessageInput").onkeydown=e=>{if(e.key==="Enter"&&activeFriendChat)sendChatMessage(friendChatRoom(currentUser.username,activeFriendChat),"friendMessageInput");};
 
+let editingAchievementDefinitionId=null;
+let editingAdminNewsId=null;
+let editingAdminCalendarId=null;
+
+function adminOnly(){
+  return !!currentUser?.admin;
+}
+
+function adminRefreshAdvancedLists(){
+  if(!adminOnly())return;
+
+  const userSelect=$("adminAchUser");
+  if(userSelect){
+    const old=userSelect.value;
+    userSelect.innerHTML='<option value="">Não atribuir</option>'+accounts.map(a=>`<option value="${esc(a.username)}">${esc(a.username)}</option>`).join("");
+    if([...userSelect.options].some(o=>o.value===old))userSelect.value=old;
+  }
+
+  const achBox=$("adminAchievementsList");
+  if(achBox){
+    achBox.innerHTML=achievementDefinitions.map(a=>{
+      const unlocked=achievements.filter(x=>x.achievementId===a.id).length;
+      return `<div class="item"><div><b>${esc(a.icon||"🏆")} ${esc(a.title)}</b><div class="meta">${esc(a.desc||"")} · ⭐ ${Number(a.xp||0)} XP · 📊 ${unlocked} desbloqueios</div></div><div class="item-actions"><button class="btn" onclick="window.editAchievementDefinition('${esc(a.id)}')">✏️</button><button class="danger" onclick="window.deleteAchievementDefinition('${esc(a.id)}')">🗑️</button></div></div>`;
+    }).join("")||'<p class="muted">Ainda não existem conquistas personalizadas.</p>';
+  }
+
+  const newsBox=$("adminNewsList");
+  if(newsBox){
+    newsBox.innerHTML=newsItems.slice().sort((a,b)=>(b.pinned?1:0)-(a.pinned?1:0)||((b.createdAt||0)-(a.createdAt||0))).map(n=>`<div class="item"><div><b>${n.pinned?"📌 ":""}${esc(n.title)}</b><div class="meta">${n.scheduledAt?`📅 ${new Date(n.scheduledAt).toLocaleString("pt-PT")}`:"Publicado"}</div></div><div class="item-actions"><button class="btn" onclick="window.editAdminNews('${esc(n.id)}')">✏️</button><button class="danger" onclick="window.deleteAdminNews('${esc(n.id)}')">🗑️</button></div></div>`).join("")||'<p class="muted">Ainda não existem notícias.</p>';
+  }
+
+  const calBox=$("adminCalendarList");
+  if(calBox){
+    calBox.innerHTML=calendarItems.slice().sort((a,b)=>((a.startAt||0)-(b.startAt||0))).map(c=>`<div class="item"><div><b>${c.kind==="trailer"?"🎞️":c.kind==="noticia"?"📰":"🎬"} ${esc(c.title)}</b><div class="meta">📅 ${c.startAt?new Date(c.startAt).toLocaleString("pt-PT"):esc(c.date||"—")} ${c.notify?"· 🔔":""}</div></div><div class="item-actions"><button class="btn" onclick="window.editAdminCalendar('${esc(c.id)}')">✏️</button><button class="danger" onclick="window.deleteAdminCalendar('${esc(c.id)}')">🗑️</button></div></div>`).join("")||'<p class="muted">Ainda não existem estreias.</p>';
+  }
+
+  const logsBox=$("adminActivityLogs");
+  if(logsBox){
+    logsBox.innerHTML=activityLogs.slice().sort((a,b)=>(b.createdAt||0)-(a.createdAt||0)).slice(0,100).map(l=>`<div class="item"><div><b>${esc(l.username||"—")}</b><div class="meta">${new Date(l.createdAt||Date.now()).toLocaleString("pt-PT")} · ${esc(l.action||"atividade")}</div><div class="muted">${esc(l.detail||"")}</div></div></div>`).join("")||'<p class="muted">Ainda não existem logs.</p>';
+  }
+}
+
+function resetAdminAchievementForm(){
+  editingAchievementDefinitionId=null;
+  $("adminAchIcon").value="🏆";
+  $("adminAchTitle").value="";
+  $("adminAchDesc").value="";
+  $("adminAchXP").value="50";
+  $("adminAchUser").value="";
+  $("adminAchSave").textContent="➕ Criar conquista";
+}
+
+window.editAchievementDefinition=async id=>{
+  if(!adminOnly())return;
+  const a=achievementDefinitions.find(x=>x.id===id);if(!a)return;
+  editingAchievementDefinitionId=id;
+  $("adminAchIcon").value=a.icon||"🏆";
+  $("adminAchTitle").value=a.title||"";
+  $("adminAchDesc").value=a.desc||"";
+  $("adminAchXP").value=Number(a.xp||0);
+  $("adminAchUser").value="";
+  $("adminAchSave").textContent="💾 Guardar conquista";
+};
+
+window.deleteAchievementDefinition=async id=>{
+  if(!adminOnly()||!confirm("Apagar esta conquista?"))return;
+  await remove("achievementDefinitions",id);
+  for(const a of achievements.filter(x=>x.achievementId===id))await remove("achievements",a.id);
+  achievementDefinitions=await getAll("achievementDefinitions");
+  achievements=await getAll("achievements");
+  adminRefreshAdvancedLists();
+  renderAchievements();
+};
+
+$("adminAchSave")?.addEventListener("click",async()=>{
+  if(!adminOnly())return;
+  const title=$("adminAchTitle").value.trim();
+  if(!title){$("adminAchStatus").innerHTML='<div class="notice error">❌ Escreve um título.</div>';return;}
+  const def={id:editingAchievementDefinitionId||makeId(),icon:$("adminAchIcon").value.trim()||"🏆",title,desc:$("adminAchDesc").value.trim(),xp:Math.max(0,Number($("adminAchXP").value||0)),createdAt:Date.now()};
+  await put("achievementDefinitions",def);
+  const target=$("adminAchUser").value;
+  if(target){
+    const already=achievements.find(a=>a.username===target&&a.achievementId===def.id);
+    if(!already)await put("achievements",{id:makeId(),username:target,achievementId:def.id,unlockedAt:Date.now()});
+  }
+  achievementDefinitions=await getAll("achievementDefinitions");
+  achievements=await getAll("achievements");
+  $("adminAchStatus").innerHTML='<div class="notice success">✅ Conquista guardada!</div>';
+  resetAdminAchievementForm();adminRefreshAdvancedLists();renderAchievements();
+});
+$("adminAchCancel")?.addEventListener("click",resetAdminAchievementForm);
+
+function resetAdminNewsForm(){editingAdminNewsId=null;$("adminNewsTitle").value="";$("adminNewsText").value="";$("adminNewsSchedule").value="";$("adminNewsPinned").checked=false;$("adminNewsCover").value="";$("adminNewsSave").textContent="➕ Criar notícia";}
+window.editAdminNews=async id=>{if(!adminOnly())return;const n=newsItems.find(x=>x.id===id);if(!n)return;editingAdminNewsId=id;$("adminNewsTitle").value=n.title||"";$("adminNewsText").value=n.text||"";$("adminNewsSchedule").value=n.scheduledAt?new Date(n.scheduledAt).toISOString().slice(0,16):"";$("adminNewsPinned").checked=!!n.pinned;$("adminNewsSave").textContent="💾 Guardar notícia";};
+window.deleteAdminNews=async id=>{if(!adminOnly()||!confirm("Apagar esta notícia?"))return;await remove("news",id);newsItems=await getAll("news");adminRefreshAdvancedLists();renderNews();};
+$("adminNewsSave")?.addEventListener("click",async()=>{if(!adminOnly())return;const title=$("adminNewsTitle").value.trim(),text=$("adminNewsText").value.trim();if(!title||!text){$("adminNewsStatus").innerHTML='<div class="notice error">❌ Preenche o título e o texto.</div>';return;}const old=editingAdminNewsId?newsItems.find(x=>x.id===editingAdminNewsId):null;let cover=old?.cover||"";const file=$("adminNewsCover").files[0];if(file)cover=await fileToDataURL(file);const schedule=$("adminNewsSchedule").value;const row={id:editingAdminNewsId||makeId(),title,text,cover,pinned:$("adminNewsPinned").checked,scheduledAt:schedule?new Date(schedule).getTime():0,createdAt:old?.createdAt||Date.now()};await put("news",row);newsItems=await getAll("news");$("adminNewsStatus").innerHTML='<div class="notice success">✅ Notícia guardada!</div>';resetAdminNewsForm();adminRefreshAdvancedLists();renderNews();if(window.miraculousMega?.notifyAllUsers && (!row.scheduledAt||row.scheduledAt<=Date.now()))await window.miraculousMega.notifyAllUsers("📰 Nova notícia!",row.title);});
+$("adminNewsCancel")?.addEventListener("click",resetAdminNewsForm);
+
+function resetAdminCalendarForm(){editingAdminCalendarId=null;$("adminCalKind").value="estreia";$("adminCalTitle").value="";$("adminCalDate").value="";$("adminCalNotify").checked=true;$("adminCalSave").textContent="➕ Adicionar estreia";}
+window.editAdminCalendar=async id=>{if(!adminOnly())return;const c=calendarItems.find(x=>x.id===id);if(!c)return;editingAdminCalendarId=id;$("adminCalKind").value=c.kind||"estreia";$("adminCalTitle").value=c.title||"";$("adminCalDate").value=c.startAt?new Date(c.startAt).toISOString().slice(0,16):"";$("adminCalNotify").checked=!!c.notify;$("adminCalSave").textContent="💾 Guardar estreia";};
+window.deleteAdminCalendar=async id=>{if(!adminOnly()||!confirm("Apagar esta estreia?"))return;await remove("calendar",id);calendarItems=await getAll("calendar");adminRefreshAdvancedLists();renderCalendar();};
+$("adminCalSave")?.addEventListener("click",async()=>{if(!adminOnly())return;const title=$("adminCalTitle").value.trim(),dt=$("adminCalDate").value;if(!title||!dt){$("adminCalStatus").innerHTML='<div class="notice error">❌ Preenche o título e a data/hora.</div>';return;}const old=editingAdminCalendarId?calendarItems.find(x=>x.id===editingAdminCalendarId):null;const row={id:editingAdminCalendarId||makeId(),kind:$("adminCalKind").value,title,startAt:new Date(dt).getTime(),notify:$("adminCalNotify").checked,startNotified:old?.startNotified||false,date:new Date(dt).toLocaleString("pt-PT"),createdAt:old?.createdAt||Date.now()};await put("calendar",row);calendarItems=await getAll("calendar");$("adminCalStatus").innerHTML='<div class="notice success">✅ Estreia guardada!</div>';resetAdminCalendarForm();adminRefreshAdvancedLists();renderCalendar();if(row.notify&&row.startAt<=Date.now()&&!row.startNotified&&window.miraculousMega?.notifyAllUsers){await window.miraculousMega.notifyAllUsers("📅 Nova estreia!",row.title);row.startNotified=true;await put("calendar",row);calendarItems=await getAll("calendar");}});
+$("adminCalCancel")?.addEventListener("click",resetAdminCalendarForm);
 
 /* =========================
    PROFILE PHRASE
@@ -4017,111 +4908,244 @@ $("addAnnouncement").onclick=async()=>{
 ========================= */
 
 function getPollVotes(poll){
-  if(!poll.votes || typeof poll.votes!=="object")poll.votes={};
-  const normalized={};
-  Object.entries(poll.votes).forEach(([user,option])=>{
-    normalized[pollUserKey(user)]=option;
-  });
-  poll.votes=normalized;
+
+  if(!poll.votes){
+    poll.votes={};
+  }
+
   return poll.votes;
 }
-function pollUserKey(username){return normalizeUsername(username);}
+
+
 function hasVoted(poll){
+
   if(!currentUser)return false;
-  return Object.prototype.hasOwnProperty.call(getPollVotes(poll),pollUserKey(currentUser.username));
+
+  const votes=
+    getPollVotes(poll);
+
+  return Object.prototype.hasOwnProperty.call(
+    votes,
+    currentUser.username
+  );
+
 }
+
+
 function renderPolls(){
-  const activePolls=polls.filter(p=>p&&p.closed!==true).sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
-  if(!activePolls.length){$("polls").innerHTML='<p class="muted">Ainda não existem votações ativas.</p>';return;}
-  $("polls").innerHTML=activePolls.map(p=>{
-    const votes=getPollVotes(p), total=Object.keys(votes).length, voted=hasVoted(p), counts={}, options=Array.isArray(p.options)?p.options:[];
-    options.forEach(o=>counts[o]=0);
-    Object.values(votes).forEach(o=>{if(Object.prototype.hasOwnProperty.call(counts,o))counts[o]++;});
-    return `<div class="poll"><div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start"><h3 style="margin-top:0">🗳️ ${esc(p.question||"Votação")}</h3><span class="muted">${total} voto${total===1?"":"s"}</span></div>
-    ${!currentUser?'<div class="notice">Entra na tua conta para votar.</div>':''}
-    ${currentUser&&!voted?options.map(o=>`<label class="pollOption"><input type="radio" name="poll_${esc(p.id)}" value="${esc(o)}"><span>${esc(o)}</span></label>`).join(""):""}
-    ${currentUser&&!voted?`<button class="btn primary" onclick="votePoll('${esc(p.id)}')">🗳️ Votar</button>`:""}
-    ${voted?'<div class="notice success">✅ O teu voto foi registado.</div>':''}
-    <div style="margin-top:12px">${options.map(o=>{const count=counts[o]||0,percent=total?Math.round(count/total*100):0;return `<div style="margin-top:10px"><div style="display:flex;justify-content:space-between"><span>${esc(o)}</span><span>${percent}% (${count})</span></div><div class="pollBar"><div style="width:${percent}%"></div></div></div>`;}).join("")}</div></div>`;
-  }).join("");
-}
-window.votePoll=async pollId=>{
-  if(!currentUser){alert("Tens de entrar para votar.");return;}
-  const poll=polls.find(p=>String(p.id)===String(pollId));
-  if(!poll||poll.closed===true)return;
-  if(hasVoted(poll)){alert("Já votaste nesta votação.");return;}
-  const selected=document.querySelector(`input[name="poll_${pollId}"]:checked`);
-  if(!selected){alert("Escolhe uma opção.");return;}
-  if(!(Array.isArray(poll.options)&&poll.options.includes(selected.value))){alert("Opção inválida.");return;}
-  const votes=getPollVotes(poll);
-  votes[pollUserKey(currentUser.username)]=selected.value;
-  try{await put("polls",poll);polls=await getAll("polls");renderPolls();renderAdminPolls();}catch(e){alert("Não foi possível guardar o voto.");}
-};
 
-function renderAdminPolls(){
-  if(!currentUser?.admin||!$("adminPolls"))return;
-  $("adminPolls").innerHTML=polls.map(p=>`<div class="item"><div><b>${esc(p.question||"Votação")}</b><div class="meta">${Object.keys(getPollVotes(p)).length} votos · ${p.closed?"fechada":"ativa"}</div></div><div class="item-actions"><button class="danger" onclick="deletePoll('${esc(p.id)}')">🗑️</button></div></div>`).join("")||'<p class="muted">Ainda não existem votações.</p>';
-}
-window.deletePoll=async id=>{
-  if(!currentUser?.admin)return;
-  if(!confirm("Queres mesmo apagar esta votação?"))return;
-  try{await remove("polls",id);polls=await getAll("polls");renderPolls();renderAdminPolls();}catch(e){$("pollStatus").innerHTML='<div class="notice error">❌ Não foi possível apagar a votação.</div>';}};
+  if(!polls.length){
 
-$("addPoll").onclick=async()=>{
-
-  if(!currentUser?.admin){
-
-    $("pollStatus").innerHTML=
-      '<div class="notice error">❌ Apenas administradores podem criar votações.</div>';
+    $("polls").innerHTML=
+      '<p class="muted">Ainda não existem votações.</p>';
 
     return;
   }
 
-  const question=
-    $("pollQuestion")
-      .value
-      .trim();
+  $("polls").innerHTML=
+    polls
+    .filter(p=>!p.closed && (!p.startAt || Date.now()>=p.startAt) && (!p.endAt || Date.now()<p.endAt))
+    .sort(
+      (a,b)=>
+        (b.createdAt||0)-
+        (a.createdAt||0)
+    )
+    .map(p=>{
 
-  const options=
-    $("pollOptions")
-      .value
-      .split("\n")
-      .map(x=>x.trim())
-      .filter(Boolean);
+      const votes=
+        getPollVotes(p);
+
+      const total=
+        Object.keys(votes).length;
+
+      const voted=
+        hasVoted(p);
+
+      const counts=
+        {};
+
+      p.options.forEach(o=>{
+        counts[o]=0;
+      });
+
+      Object.values(votes).forEach(option=>{
+
+        if(
+          Object.prototype.hasOwnProperty.call(
+            counts,
+            option
+          )
+        ){
+          counts[option]++;
+        }
+
+      });
+
+      return `
+
+        <div class="poll">
+
+          <h3>
+            ${esc(p.question)}
+          </h3>
+
+          <small class="muted">
+            ${total} voto${total===1?"":"s"}
+          </small>
+
+          ${
+            !currentUser
+            ?`
+              <div class="notice">
+                Entra na tua conta para votar.
+              </div>
+            `
+            :""
+          }
+
+          ${
+            currentUser && !voted
+            ?
+            p.options.map((o,i)=>`
+
+              <label class="pollOption">
+
+                <input
+                  type="radio"
+                  name="poll_${esc(p.id)}"
+                  value="${esc(o)}">
+
+                <span>${esc(o)}</span>
+
+              </label>
+
+            `).join("")
+            :""
+          }
+
+          ${
+            currentUser && !voted
+            ?
+            `
+              <button
+                class="btn primary"
+                onclick="votePoll('${esc(p.id)}')">
+                🗳️ Votar
+              </button>
+            `
+            :""
+          }
+
+          ${
+            voted
+            ?
+            `
+              <div class="notice success">
+                ✅ Já votaste nesta votação.
+              </div>
+            `
+            :""
+          }
+
+          ${
+            voted
+            ?
+            p.options.map(o=>{
+
+              const count=
+                counts[o]||0;
+
+              const percent=
+                total
+                ?Math.round(
+                  count/total*100
+                )
+                :0;
+
+              return `
+
+                <div style="margin-top:10px">
+
+                  <div style="display:flex;justify-content:space-between">
+                    <span>${esc(o)}</span>
+                    <span>${percent}%</span>
+                  </div>
+
+                  <div class="pollBar">
+                    <div style="width:${percent}%"></div>
+                  </div>
+
+                </div>
+
+              `;
+
+            }).join("")
+            :""
+          }
+
+        </div>
+
+      `;
+
+    }).join("");
+
+}
+
+
+window.votePoll=async pollId=>{
+
+  if(!currentUser){
+
+    alert(
+      "Tens de entrar para votar."
+    );
+
+    return;
+  }
+
+  const poll=
+    polls.find(
+      p=>p.id===pollId
+    );
+
+  if(!poll)return;
+
+  if(hasVoted(poll)){
+
+    alert(
+      "Já votaste nesta votação."
+    );
+
+    return;
+  }
+
+  const selected=
+    document.querySelector(
+      `input[name="poll_${pollId}"]:checked`
+    );
+
+  if(!selected){
+
+    alert(
+      "Escolhe uma opção."
+    );
+
+    return;
+  }
+
+  if(!poll.votes){
+    poll.votes={};
+  }
 
   /*
-    Remove opções duplicadas.
+    A chave é o username.
+    Portanto a mesma conta não consegue votar
+    duas vezes na mesma votação.
   */
 
-  const unique=
-    [...new Set(options)];
-
-  if(
-    !question ||
-    unique.length<2
-  ){
-
-    $("pollStatus").innerHTML=
-      '<div class="notice error">❌ Precisas de uma pergunta e pelo menos 2 opções diferentes.</div>';
-
-    return;
-  }
-
-  const poll={
-
-    id:makeId(),
-
-    question,
-
-    options:unique,
-
-    votes:{},
-
-    closed:false,
-
-    createdAt:Date.now()
-
-  };
+  poll.votes[
+    currentUser.username
+  ]=selected.value;
 
   await put(
     "polls",
@@ -4130,19 +5154,29 @@ $("addPoll").onclick=async()=>{
 
   polls=
     await getAll("polls");
-
-  renderAdminPolls();
-
-  $("pollQuestion").value="";
-  $("pollOptions").value="";
-
-  $("pollStatus").innerHTML=
-    '<div class="notice success">✅ Votação criada!</div>';
-
+  currentUser.pollVotes=Number(currentUser.pollVotes||0)+1;
+  await put("accounts",currentUser);
+  if(window.miraculousMega?.xp){}
   renderPolls();
 
 };
 
+
+$("addPoll").onclick=async()=>{
+  if(!currentUser?.admin){$("pollStatus").innerHTML='<div class="notice error">❌ Apenas administradores podem criar votações.</div>';return;}
+  const question=$("pollQuestion").value.trim();
+  const unique=[...new Set($("pollOptions").value.split("\n").map(x=>x.trim()).filter(Boolean))];
+  if(!question||unique.length<2){$("pollStatus").innerHTML='<div class="notice error">❌ Precisas de uma pergunta e pelo menos 2 opções diferentes.</div>';return;}
+  const startVal=$("pollStart")?.value||""; const endVal=$("pollEnd")?.value||"";
+  const poll=editingPollId?polls.find(x=>x.id===editingPollId):{id:makeId(),votes:{},createdAt:Date.now(),closed:false};
+  if(!poll)return;
+  poll.question=question;poll.options=unique;poll.startAt=startVal?new Date(startVal).getTime():null;poll.endAt=endVal?new Date(endVal).getTime():null;poll.startNotified=!!poll.startNotified;poll.updatedAt=Date.now();
+  await put("polls",poll);polls=await getAll("polls");
+  $("pollQuestion").value="";$("pollOptions").value="";if($("pollStart"))$("pollStart").value="";if($("pollEnd"))$("pollEnd").value="";editingPollId=null;$("addPoll").textContent="Criar votação";
+  $("pollStatus").innerHTML='<div class="notice success">✅ Votação guardada!</div>';renderPolls();renderAdminPolls();renderMegaPolls();
+};
+
+window.editPoll=async id=>{if(!currentUser?.admin)return;const p=polls.find(x=>x.id===id);if(!p)return;editingPollId=id;$("pollQuestion").value=p.question;$("pollOptions").value=p.options.join("\n");$("pollStart").value=p.startAt?new Date(p.startAt).toISOString().slice(0,16):"";$("pollEnd").value=p.endAt?new Date(p.endAt).toISOString().slice(0,16):"";$("addPoll").textContent="Guardar votação";};
 
 /* =========================
    ADMIN USERS
@@ -4256,6 +5290,133 @@ window.toggleAdmin=async username=>{
 
 };
 
+
+function renderAdminPolls(){
+  const box=$("adminPolls");
+  if(!box||!currentUser?.admin)return;
+  box.innerHTML=polls.map(p=>{const total=Object.keys(p.votes||{}).length;const now=Date.now();const scheduled=p.startAt&&now<p.startAt;const ended=p.endAt&&now>=p.endAt;return `<div class="item"><div><b>🗳️ ${esc(p.question)}</b><div class="meta">${total} votos · ${scheduled?"Agendada":ended?"Terminada":p.closed?"Fechada":"Aberta"}${p.startAt?` · começa ${new Date(p.startAt).toLocaleString("pt-PT")}`:""}${p.endAt?` · termina ${new Date(p.endAt).toLocaleString("pt-PT")}`:""}</div></div><div class="item-actions"><button class="btn" onclick="editPoll('${esc(p.id)}')">✏️</button><button class="btn" onclick="togglePollClosed('${esc(p.id)}')">${p.closed?"🔓 Abrir":"🔒 Fechar"}</button><button class="danger" onclick="deletePoll('${esc(p.id)}')">🗑️</button></div></div>`}).join("")||'<p class="muted">Ainda não existem votações.</p>';
+}
+window.togglePollClosed=async id=>{if(!currentUser?.admin)return;const p=polls.find(x=>x.id===id);if(!p)return;p.closed=!p.closed;await put("polls",p);polls=await getAll("polls");renderPolls();renderAdminPolls();renderMegaPolls();};
+window.deletePoll=async id=>{if(!currentUser?.admin||!confirm("Apagar esta votação?"))return;await remove("polls",id);polls=await getAll("polls");renderPolls();renderAdminPolls();renderMegaPolls();};
+
+/* =========================
+   SOCIAL CHAT
+========================= */
+
+let selectedFriendUsername=null;
+
+function friendAccounts(){
+  if(!currentUser)return [];
+  return friendships.filter(f=>
+    f.status==="accepted" &&
+    (normalizeUsername(f.from)===normalizeUsername(currentUser.username) ||
+     normalizeUsername(f.to)===normalizeUsername(currentUser.username))
+  ).map(f=>{
+    const other=normalizeUsername(f.from)===normalizeUsername(currentUser.username)?f.to:f.from;
+    return accounts.find(a=>normalizeUsername(a.username)===normalizeUsername(other));
+  }).filter(Boolean);
+}
+
+function updateFriendBadge(){
+  const badge=$("friendBadge");
+  if(!badge)return;
+  const pending=currentUser ? friendships.filter(f=>f.status==="pending" && normalizeUsername(f.to)===normalizeUsername(currentUser.username)).length : 0;
+  badge.textContent=pending;
+  badge.classList.toggle("hide",pending===0);
+}
+
+function renderCommunityChat(){
+  const login=$("communityLoginMessage"), content=$("communityChatContent");
+  if(!login||!content)return;
+  login.classList.toggle("hide",!!currentUser);
+  content.classList.toggle("hide",!currentUser);
+  if(!currentUser)return;
+  const box=$("communityMessages");
+  const rows=[...communityMessages].sort((a,b)=>(a.createdAt||0)-(b.createdAt||0)).slice(-150);
+  box.innerHTML=rows.map(m=>`<div class="message ${normalizeUsername(m.username)===normalizeUsername(currentUser.username)?"mine":""}"><div class="messageMeta">${esc(m.flag||"🌍")} <b>${esc(m.username)}</b> · ${new Date(m.createdAt).toLocaleTimeString("pt-PT",{hour:"2-digit",minute:"2-digit"})}</div><div class="messageText">${esc(m.text)}</div></div>`).join("")||'<div class="chatEmpty">Ainda não existem mensagens. Sê o primeiro a falar! 🐾</div>';
+  box.scrollTop=box.scrollHeight;
+}
+
+async function sendCommunityMessage(){
+  if(!currentUser)return;
+  if(currentUser.banned){alert("🚫 A tua conta está banida.");return;}
+  if(currentUser.mutedUntil&&currentUser.mutedUntil>Date.now()){alert("🔇 Estás silenciado.");return;}
+  const input=$("communityMessageInput"), text=input.value.trim();
+  if(!text)return;
+  await put("communityMessages",{id:makeId(),username:currentUser.username,flag:currentUser.flag||"🌍",text,createdAt:Date.now()});
+  currentUser.messageCount=Number(currentUser.messageCount||0)+1;currentUser.lastSeen=Date.now();await put("accounts",currentUser);
+  communityMessages=await getAll("communityMessages");
+  if(window.miraculousMega?.notifyAllUsers && text.startsWith("@")){const target=text.split(/\s+/)[0].slice(1);await window.miraculousMega.notifyAllUsers("💬 Nova mensagem",`${currentUser.username} mencionou-te na comunidade.`)}
+  input.value="";
+  renderCommunityChat();
+}
+
+function renderPrivateFriends(){
+  const picker=$("privateFriendPicker");
+  if(!picker||!currentUser)return;
+  const friends=friendAccounts();
+  if(selectedFriendUsername && !friends.some(a=>normalizeUsername(a.username)===normalizeUsername(selectedFriendUsername)))selectedFriendUsername=null;
+  picker.innerHTML=friends.map(a=>`<button class="privateFriend ${selectedFriendUsername&&normalizeUsername(selectedFriendUsername)===normalizeUsername(a.username)?"active":""}" onclick="selectPrivateFriend('${esc(a.username)}')"><span>${a.photo?`<img class="miniAvatar" src="${esc(a.photo)}" alt="">`:`<span class="miniFallback">👤</span>`}</span><span>${esc(a.username)}</span></button>`).join("")||'<div class="muted" style="padding:10px">Ainda não tens amigos.</div>';
+  renderPrivateChat();
+}
+
+window.selectPrivateFriend=function(username){
+  selectedFriendUsername=username;
+  renderPrivateFriends();
+};
+
+function privateKey(a,b){return [normalizeUsername(a),normalizeUsername(b)].sort().join("|||");}
+
+function renderPrivateChat(){
+  const messagesBox=$("privateMessages"), header=$("privateChatHeader"), input=$("privateMessageInput"), send=$("privateSend");
+  if(!messagesBox||!header)return;
+  if(!currentUser || !selectedFriendUsername){
+    header.textContent="Seleciona um amigo";
+    messagesBox.innerHTML='<div class="chatEmpty">Escolhe um amigo para começar uma conversa privada. 💬</div>';
+    input.disabled=true;send.disabled=true;return;
+  }
+  header.textContent="💬 "+selectedFriendUsername;
+  input.disabled=false;send.disabled=false;
+  const key=privateKey(currentUser.username,selectedFriendUsername);
+  const rows=privateMessages.filter(m=>m.chatKey===key).sort((a,b)=>(a.createdAt||0)-(b.createdAt||0)).slice(-200);
+  messagesBox.innerHTML=rows.map(m=>`<div class="message ${normalizeUsername(m.from)===normalizeUsername(currentUser.username)?"mine":""}"><div class="messageMeta"><b>${esc(m.from)}</b> · ${new Date(m.createdAt).toLocaleTimeString("pt-PT",{hour:"2-digit",minute:"2-digit"})}</div><div class="messageText">${esc(m.text)}</div></div>`).join("")||'<div class="chatEmpty">Ainda não há mensagens nesta conversa.</div>';
+  messagesBox.scrollTop=messagesBox.scrollHeight;
+}
+
+async function sendPrivateMessage(){
+  if(!currentUser||!selectedFriendUsername)return;
+  if(currentUser.banned){alert("🚫 A tua conta está banida.");return;}
+  if(currentUser.mutedUntil&&currentUser.mutedUntil>Date.now()){alert("🔇 Estás silenciado.");return;}
+  const input=$("privateMessageInput"), text=input.value.trim();
+  if(!text)return;
+  await put("privateMessages",{id:makeId(),chatKey:privateKey(currentUser.username,selectedFriendUsername),from:currentUser.username,to:selectedFriendUsername,text,createdAt:Date.now()});
+  currentUser.messageCount=Number(currentUser.messageCount||0)+1;currentUser.lastSeen=Date.now();await put("accounts",currentUser);
+  if(window.miraculousMega?.notify)await window.miraculousMega.notify(selectedFriendUsername,"💬 Nova mensagem!",`${currentUser.username} enviou-te uma mensagem.`);
+  privateMessages=await getAll("privateMessages");
+  input.value="";
+  renderPrivateChat();
+}
+
+function openSocialSection(id){
+  const el=$(id); if(el)el.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+$("communityChatButton").onclick=()=>openSocialSection("chat");
+$("communityChatTop").onclick=()=>openSocialSection("chat");
+$("friendsQuickButton").onclick=()=>openSocialSection("amigos");
+$("pollsQuickButton").onclick=()=>openSocialSection("votacoes");
+$("communitySend").onclick=sendCommunityMessage;
+$("privateSend").onclick=sendPrivateMessage;
+$("communityMessageInput").addEventListener("keydown",e=>{if(e.key==="Enter")sendCommunityMessage();});
+$("privateMessageInput").addEventListener("keydown",e=>{if(e.key==="Enter")sendPrivateMessage();});
+
+function renderSocial(){
+  updateFriendBadge();
+  renderCommunityChat();
+  const login=$("privateLoginMessage"),content=$("privateChatContent");
+  if(login&&content){login.classList.toggle("hide",!!currentUser);content.classList.toggle("hide",!currentUser);}
+  if(currentUser)renderPrivateFriends();
+}
 
 /* =========================
    MAINTENANCE
@@ -4482,6 +5643,8 @@ $("removeBackground").onclick=async()=>{
 $("search").oninput=render;
 
 $("seriesFilter").onchange=render;
+$("seasonFilter").onchange=render;
+$("langFilter").onchange=render;
 
 
 /* =========================
@@ -4493,6 +5656,8 @@ $("seriesFilter").onchange=render;
   try{
 
     await openDB();
+
+    await ensureDefaultAdmin();
 
     /*
       NÃO usamos getAll antes de abrir a BD.
@@ -4529,6 +5694,346 @@ $("seriesFilter").onchange=render;
 
   }
 
+})();
+</script>
+
+
+<script>
+/* =========================
+   MIRACULOUS.KK MEGA FEATURES
+========================= */
+(function(){
+  const F={
+    rooms:["Geral","Teorias","Episódios","Memes","Spoilers"],
+    wiki:[
+      ["Marinette Dupain-Cheng","🐞 Ladybug · Portadora do Miraculous da Joaninha"],
+      ["Adrien Agreste","🐈 Cat Noir · Portador do Miraculous do Gato Preto"],
+      ["Tikki","🐞 Kwami da criação"],
+      ["Plagg","🐈 Kwami da destruição"],
+      ["Miraculous","✨ Joias mágicas e os seus poderes"]
+    ],
+    quiz:[
+      {q:"Quem é o kwami da criação?",o:["Plagg","Tikki","Wayzz","Sass"],a:1},
+      {q:"Qual é o nome do herói do Miraculous do Gato Preto?",o:["Cat Noir","Carapace","Viperion","Pegasus"],a:0},
+      {q:"Qual é o poder de Ladybug?",o:["Cataclismo","Talismã","Miraculous Ladybug","Second Chance"],a:2}
+    ]
+  };
+  let quizIndex=0;
+  let quizScore=0;
+
+  function ready(){return typeof db!=="undefined" && db;}
+  function u(){return currentUser;}
+  function uname(){return normalizeUsername(u()?.username||"");}
+  function online(a){return !!a && (Date.now()-(a.lastSeen||0)<5*60*1000);}
+  function levelInfo(xp=0){let level=Math.max(1,Math.floor(xp/250)+1);return {level,xp,xpNext:level*250,percent:Math.min(100,Math.round((xp%250)/250*100))};}
+  async function log(action,detail=""){if(!u()||!ready())return;const row={id:makeId(),username:u().username,action,detail,createdAt:Date.now()};await put("activityLogs",row);activityLogs.push(row);}
+  async function notify(username,title,text,type="info"){if(!ready())return;const row={id:makeId(),to:normalizeUsername(username),title,text,type,read:false,createdAt:Date.now()};await put("notifications",row);notifications.push(row);renderNotifs();updateNotifBadges();}
+  async function xp(amount,reason){if(!u())return;u().xp=Number(u().xp||0)+amount;await put("accounts",u());accounts=await getAll("accounts");saveCurrentSession();await log("xp",`${amount} XP · ${reason}`);renderProfile();renderRanking();}
+  function blocked(target){return !!u()?.blocked?.includes(normalizeUsername(target));}
+
+  async function seedAdvanced(){
+    if(!ready())return;
+    if(!(await getAll("calendar")).length){
+      const rows=[
+        {id:makeId(),date:"15 Agosto",title:"T6 E6 — Próxima estreia",kind:"estreia"},
+        {id:makeId(),date:"22 Agosto",title:"T6 E7 — Próxima estreia",kind:"estreia"}
+      ]; for(const r of rows)await put("calendar",r);
+    }
+    if(!(await getAll("news")).length){
+      await put("news",{id:makeId(),title:"Bem-vindo ao novo miraculous.kk",text:"A comunidade ganhou perfis, amigos, níveis, fórum, quiz, wiki e muito mais!",createdAt:Date.now()});
+    }
+    if(!(await getAll("wiki")).length){for(const [title,text] of F.wiki)await put("wiki",{id:makeId(),title,text,createdAt:Date.now()});}
+    if(!(await getAll("quiz")).length){for(const q of F.quiz)await put("quiz",{id:makeId(),...q});}
+    calendarItems=await getAll("calendar");newsItems=await getAll("news");wikiItems=await getAll("wiki");quizItems=await getAll("quiz");
+  }
+
+  function openHub(tab="profile"){
+    $("megaModal").classList.remove("hide");
+    showTab(tab);
+    renderMegaAll();
+    if(!u() && ["profile","friends","notifications","custom","achievements"].includes(tab)){
+      setTimeout(()=>$("authModal")?.classList.remove("hide"),80);
+    }
+  }
+  function showTab(tab){
+    document.querySelectorAll(".featurePanel").forEach(x=>x.classList.remove("active"));
+    const p=$("panel-"+tab);if(p)p.classList.add("active");
+    document.querySelectorAll("#featureTabs [data-tab]").forEach(b=>b.classList.toggle("primary",b.dataset.tab===tab));
+  }
+  function avatar(a,cls="avatarLg"){return a?.photo?`<img class="${cls}" src="${esc(a.photo)}" alt="">`:`<div class="${cls}">👤</div>`;}
+
+  function renderProfile(){
+    const box=$("megaProfile");if(!box)return;
+    if(!u()){box.innerHTML=`<div class="notice">🔐 Entra na tua conta para personalizares o teu perfil.</div><button class="btn primary" id="megaLoginBtn">Entrar / Criar conta</button>`;$("megaLoginBtn")?.addEventListener("click",()=>{$("authModal").classList.remove("hide")});return;}
+    const info=levelInfo(u().xp||0);const watched=(u().watched||[]).length;const fav=(u().favorites||[]).length;const ratings=Object.keys(u().ratings||{}).length;
+    const isOnline=Date.now()-(u().lastSeen||0)<5*60*1000;
+    box.innerHTML=`<div class="megaCard"><div class="profileHero" style="--profile-color:${esc(u().profileColor||"#e62b45")}">${avatar(u())}<div class="profileHeroInfo"><h2 style="margin:0">${esc(u().username)} ${u().role&&u().role!=="user"?`<small>👑 ${esc(u().role)}</small>`:""}</h2><p class="muted"><span class="onlineDot ${isOnline?"on":""}"></span> ${isOnline?"Online":"Offline"} · ${esc(u().flag||"🌍")}</p><p>${esc(u().bio||"Sem descrição.")}</p><div><b>Nível ${info.level} — Fã de Miraculous</b><div class="xpBar"><div style="width:${info.percent}%"></div></div><small class="muted">${u().xp||0} XP · ${Math.max(0,info.xpNext-(u().xp||0))} XP para o próximo nível</small></div></div><button class="btn" id="editProfileMega">✏️ Editar perfil</button></div></div><div class="megaGrid" style="margin-top:12px"><div class="megaCard"><b>📺 Episódios vistos</b><h2>${watched}</h2><button class="btn" id="profileWatchedBtn">Ver histórico</button></div><div class="megaCard"><b>❤️ Favoritos</b><h2>${fav}</h2><button class="btn" id="profileFavBtn">Ver favoritos</button></div><div class="megaCard"><b>⭐ Avaliações</b><h2>${ratings}</h2><button class="btn" id="profileRatingsBtn">Ver avaliações</button></div></div><div class="megaToolbar"><button class="btn" id="accountSettingsBtn">🔒 Definições de conta</button><button class="btn" id="profileNotificationsBtn">🔔 Notificações</button></div>`;
+    $("editProfileMega")?.addEventListener("click",openEditProfile);
+    $("accountSettingsBtn")?.addEventListener("click",()=>showTab("custom"));
+    $("profileNotificationsBtn")?.addEventListener("click",()=>showTab("notifications"));
+    $("profileWatchedBtn")?.addEventListener("click",()=>showTab("episodes"));
+    $("profileFavBtn")?.addEventListener("click",()=>showTab("episodes"));
+    $("profileRatingsBtn")?.addEventListener("click",()=>showTab("episodes"));
+  }
+
+  function openEditProfile(){if(!u())return;$("epName").value=u().username;$("epBio").value=u().bio||"";$("epColor").value=u().profileColor||"#e62b45";$("editProfileModal").classList.remove("hide");}
+  async function saveProfile(){if(!u())return;const newName=$("epName").value.trim();if(!newName)return;const norm=normalizeUsername(newName);const conflict=accounts.find(a=>normalizeUsername(a.username)===norm&&normalizeUsername(a.username)!==uname());if(conflict){$("epStatus").innerHTML='<span class="error">❌ Esse nome já está a ser usado.</span>';return;}const old=u().username;u().username=newName;u().bio=$("epBio").value.trim();u().profileColor=$("epColor").value;const file=$("epAvatar").files[0];if(file)u().photo=await fileToDataURL(file);u().lastSeen=Date.now();await put("accounts",u());accounts=await getAll("accounts");saveCurrentSession();$("editProfileModal").classList.add("hide");updateProfileUI();renderProfile();await log("profile_edit",old);}
+
+  function renderNotifs(){const box=$("megaNotifications");if(!box)return;if(!u()){box.innerHTML='<div class="notice">Entra na tua conta para veres as notificações.</div>';return;}const rows=notifications.filter(n=>n.to===uname()).sort((a,b)=>b.createdAt-a.createdAt);box.innerHTML=`<div class="megaToolbar"><button class="btn" id="markAllRead">✓ Marcar todas como lidas</button></div>`+(rows.map(n=>`<div class="notifItem ${n.read?"":"unread"}"><b>${esc(n.title)}</b><p>${esc(n.text)}</p><small class="muted">${new Date(n.createdAt).toLocaleString("pt-PT")}</small></div>`).join("")||'<p class="muted">Não tens notificações.</p>');$("markAllRead")?.addEventListener("click",async()=>{for(const n of rows)if(!n.read){n.read=true;await put("notifications",n)}notifications=await getAll("notifications");renderNotifs();updateNotifBadges();});}
+  function updateNotifBadges(){const n=u()?notifications.filter(x=>x.to===uname()&&!x.read).length:0;["notificationBadge","megaNotifBadge"].forEach(id=>{const b=$(id);if(!b)return;b.textContent=n;b.classList.toggle("hide",!n)});}
+
+  function renderMegaFriends(){const box=$("megaFriends");if(!box)return;if(!u()){box.innerHTML='<div class="notice">🔐 Entra para gerir amigos.</div>';return;}const friends=friendAccounts();const pending=friendships.filter(f=>f.status==="pending"&&normalizeUsername(f.to)===uname());box.innerHTML=`<div class="megaToolbar"><input id="megaFriendSearch" placeholder="➕ Procurar utilizador..."><button class="btn primary" id="megaFriendSearchBtn">Procurar</button></div><div id="megaFriendResults"></div><h3>🤝 Pedidos (${pending.length})</h3><div>${pending.map(f=>`<div class="megaCard"><b>${esc(f.from)}</b><button class="btn green" onclick="window.acceptFriend('${esc(f.id)}')">Aceitar</button> <button class="btn danger" onclick="window.rejectFriend('${esc(f.id)}')">Recusar</button></div>`).join("")||'<p class="muted">Sem pedidos.</p>'}</div><h3>👀 Amigos online</h3><div class="megaGrid">${friends.map(a=>`<div class="megaCard"><div class="profileHero">${avatar(a,"avatarLg")}<div><b>${esc(a.username)}</b><p><span class="onlineDot ${online(a)?"on":""}"></span>${online(a)?"Online":"Offline"}</p><button class="btn" onclick="window.openFriendProfile('${esc(a.username)}')">👤 Perfil</button> <button class="btn" onclick="window.openFriendChat('${esc(a.username)}')">💬 Chat</button></div></div></div>`).join("")||'<p class="muted">Ainda não tens amigos.</p>'}</div>`;
+    $("megaFriendSearchBtn")?.addEventListener("click",megaFriendSearch);$("megaFriendSearch")?.addEventListener("keydown",e=>{if(e.key==="Enter")megaFriendSearch()});
+  }
+  async function megaFriendSearch(){const q=normalizeUsername($("megaFriendSearch")?.value);if(!q)return;const found=accounts.filter(a=>normalizeUsername(a.username).includes(q)&&normalizeUsername(a.username)!==uname()&&!blocked(a.username)).slice(0,20);$("megaFriendResults").innerHTML=found.map(a=>`<div class="megaCard"><b>${esc(a.username)}</b> <span class="muted">${online(a)?"🟢":"⚫"}</span><button class="btn primary" onclick="window.sendFriendMega('${esc(a.username)}')">➕ Adicionar</button></div>`).join("")||'<p class="muted">Nenhum utilizador encontrado.</p>';}
+  window.sendFriendMega=async target=>{const exists=friendships.find(f=>[normalizeUsername(f.from),normalizeUsername(f.to)].includes(uname())&&[normalizeUsername(f.from),normalizeUsername(f.to)].includes(normalizeUsername(target)));if(exists){alert("Já existe uma relação com esse utilizador.");return;}const row={id:makeId(),from:u().username,to:target,status:"pending",createdAt:Date.now()};await put("friendships",row);friendships.push(row);await notify(target,"👥 Novo pedido de amizade!",`${u().username} quer adicionar-te como amigo.`);await xp(10,"adicionar amigo");renderMegaFriends();renderFriends();};
+  window.acceptFriend=async id=>{const f=friendships.find(x=>x.id===id);if(!f)return;f.status="accepted";await put("friendships",f);await notify(f.from,"🤝 Pedido aceite!",`${u().username} aceitou o teu pedido.`);await xp(15,"aceitar amizade");friendships=await getAll("friendships");renderMegaFriends();renderFriends();};
+  window.rejectFriend=async id=>{await remove("friendships",id);friendships=await getAll("friendships");renderMegaFriends();renderFriends();};
+  window.openFriendProfile=async name=>{const a=accounts.find(x=>normalizeUsername(x.username)===normalizeUsername(name));if(!a)return;showTab("profile");$("megaProfile").innerHTML=`<div class="megaCard"><div class="profileHero">${avatar(a)}<div><h2>${esc(a.username)}</h2><p><span class="onlineDot ${online(a)?"on":""}"></span>${online(a)?"Online":"Offline"}</p><p>${esc(a.bio||"Sem descrição.")}</p><p class="muted">🏆 Nível ${levelInfo(a.xp||0).level} · 📺 ${(a.watched||[]).length} vistos · ❤️ ${(a.favorites||[]).length} favoritos</p></div></div><div class="megaToolbar"><button class="btn" onclick="window.openFriendChat('${esc(a.username)}')">💬 Enviar mensagem</button><button class="btn danger" onclick="window.blockMega('${esc(a.username)}')">🚫 Bloquear</button></div></div>`;};
+  window.openFriendChat=name=>{openSocialSection("chatAmigos");setTimeout(()=>{selectedFriendUsername=name;renderPrivateFriends()},50)};
+  window.blockMega=async name=>{if(!u())return;if(!Array.isArray(u().blocked))u().blocked=[];if(!u().blocked.includes(normalizeUsername(name)))u().blocked.push(normalizeUsername(name));await put("accounts",u());await notify(name,"🚫 Utilizador bloqueado",`${u().username} bloqueou-te.`);renderMegaFriends();};
+
+  function renderCommunityMega(){const rooms=$("megaRooms"),forum=$("megaForum");if(!rooms||!forum)return;rooms.innerHTML=F.rooms.map(r=>`<div class="roomCard"><b>💬 ${esc(r)}</b><p class="muted">Sala de conversa da comunidade.</p><button class="btn" onclick="window.openRoom('${esc(r)}')">Entrar</button></div>`).join("");const posts=forumPosts.slice().sort((a,b)=>(b.pinned?1:0)-(a.pinned?1:0)||b.createdAt-a.createdAt).slice(0,30);forum.innerHTML=posts.map(p=>`<article class="forumPost"><div class="postMeta">${p.pinned?"📌 ":""}${esc(p.author)} · ${new Date(p.createdAt).toLocaleString("pt-PT")}</div><h3>${esc(p.title)}</h3><p>${esc(p.text)}</p><div class="megaToolbar"><button class="btn likeBtn ${p.likes?.includes(uname())?"liked":""}" onclick="window.likePost('${esc(p.id)}')">❤️ ${p.likes?.length||0}</button><button class="btn" onclick="window.commentPost('${esc(p.id)}')">💬 ${forumComments.filter(c=>c.postId===p.id).length}</button>${normalizeUsername(p.author)===uname()?`<button class="btn danger" onclick="window.deletePost('${esc(p.id)}')">🗑️</button>`:`<button class="btn" onclick="window.reportPost('${esc(p.id)}')">🚨 Denunciar</button>`}</div></article>`).join("")||'<p class="muted">Ainda não há publicações. Cria a primeira!</p>';}
+  window.openRoom=r=>{openSocialSection("chat");alert(`Sala: ${r}\nUsa o chat da comunidade para conversar.`)};
+  $("newForumPost")?.addEventListener("click",async()=>{if(!u()){alert("Entra primeiro.");return}const title=prompt("Título da publicação:");if(!title)return;const text=prompt("Texto:");if(!text)return;const row={id:makeId(),author:u().username,title,text,likes:[],pinned:false,createdAt:Date.now()};await put("forumPosts",row);forumPosts.push(row);await xp(5,"criar publicação");renderCommunityMega();});
+  window.likePost=async id=>{if(!u())return;const p=forumPosts.find(x=>x.id===id);if(!p)return;p.likes=p.likes||[];const i=p.likes.indexOf(u().username);if(i>=0)p.likes.splice(i,1);else{p.likes.push(u().username);await xp(1,"gostar de publicação")}await put("forumPosts",p);renderCommunityMega();};
+  window.deletePost=async id=>{const p=forumPosts.find(x=>x.id===id);if(!p||normalizeUsername(p.author)!==uname()&&!u()?.admin)return;if(confirm("Apagar publicação?")){await remove("forumPosts",id);forumPosts=await getAll("forumPosts");renderCommunityMega();}};
+  window.commentPost=async id=>{if(!u())return;const text=prompt("Comentário:");if(!text)return;await put("forumComments",{id:makeId(),postId:id,author:u().username,text,createdAt:Date.now()});forumComments=await getAll("forumComments");await xp(2,"comentar");renderCommunityMega();};
+  window.reportPost=async id=>{if(!u())return;await put("reports",{id:makeId(),targetId:id,targetType:"forumPost",from:u().username,reason:"Denúncia da comunidade",createdAt:Date.now(),status:"open"});alert("🚨 Denúncia enviada aos moderadores.");};
+
+  function decorateEpisodeCards(){document.querySelectorAll("[data-episode-id]").forEach(card=>{if(card.dataset.megaDone)return;card.dataset.megaDone="1";const id=card.dataset.episodeId;const e=episodes.find(x=>x.id===id);if(!e)return;const fav=(u()?.favorites||[]).includes(id);const rating=u()?.ratings?.[id]||0;const prog=u()?.progress?.[id]||0;const extra=document.createElement("div");extra.className="megaToolbar";extra.innerHTML=`<button class="btn ${fav?"green":""}" data-fav>❤️ ${fav?"Favorito":"Favoritar"}</button><button class="btn" data-view>▶️ Ver</button><button class="btn" data-full>⛶ Fullscreen</button><button class="btn" data-comments>💬 Comentários</button><div style="flex:1;min-width:100%"><small class="muted">Progresso ${prog}%</small><div class="progressBar"><div style="width:${prog}%"></div></div></div><div class="muted">⭐ Média: ${episodeAverageRating(id)||"—"}</div><div class="ratingStars">${[1,2,3,4,5].map(n=>`<button data-rate="${n}" class="${n<=rating?"active":""}">★</button>`).join("")}</div>`;card.querySelector(".body")?.appendChild(extra);extra.querySelector("[data-fav]").onclick=()=>toggleFavoriteMega(id);extra.querySelector("[data-view]").onclick=()=>openEpisodePlayer(e,false);extra.querySelector("[data-full]").onclick=()=>openEpisodePlayer(e,true);extra.querySelector("[data-comments]").onclick=()=>commentEpisodeMega(id);extra.querySelectorAll("[data-rate]").forEach(b=>b.onclick=()=>rateEpisode(id,Number(b.dataset.rate)));});}
+  async function toggleFavoriteMega(id){if(!u()){alert("Entra para usar favoritos.");return}if(!Array.isArray(u().favorites))u().favorites=[];const i=u().favorites.indexOf(id);if(i>=0)u().favorites.splice(i,1);else{u().favorites.push(id);await xp(3,"favoritar episódio")}await put("accounts",u());accounts=await getAll("accounts");saveCurrentSession();render();renderProfile();}
+  async function rateEpisode(id,r){if(!u())return;if(!u().ratings)u().ratings={};u().ratings[id]=r;await put("accounts",u());await xp(2,"avaliar episódio");render();renderProfile();}
+  let currentPlayingEpisodeId=null;
+  function detectVideoKind(url){
+    try{
+      const u=new URL(String(url||""),location.href);
+      const host=u.hostname.toLowerCase();
+      if(host.includes("youtube.com") || host.includes("youtu.be")) return "youtube";
+      if(host.includes("drive.google.com")) return "gdrive";
+      if(/\.mp4(?:$|[?#])/i.test(u.pathname+u.search)) return "mp4";
+    }catch(_){}
+    return "url";
+  }
+
+  function youtubeEmbedUrl(raw){
+    try{
+      const u=new URL(String(raw||""));
+      let id="";
+      if(u.hostname.includes("youtu.be")) id=u.pathname.slice(1).split("/")[0];
+      else if(u.searchParams.get("v")) id=u.searchParams.get("v");
+      else if(u.pathname.includes("/embed/")) id=u.pathname.split("/embed/")[1].split("/")[0];
+      else if(u.pathname.includes("/shorts/")) id=u.pathname.split("/shorts/")[1].split("/")[0];
+      if(!id)return null;
+      return "https://www.youtube.com/embed/"+encodeURIComponent(id)+"?rel=0&modestbranding=1";
+    }catch(_){ return null; }
+  }
+
+  function googleDriveEmbedUrl(raw){
+    try{
+      const u=new URL(String(raw||""));
+      let id=u.searchParams.get("id")||"";
+      const m=u.pathname.match(/\/file\/d\/([^/]+)/);
+      if(!id && m) id=m[1];
+      if(!id)return null;
+      return "https://drive.google.com/file/d/"+encodeURIComponent(id)+"/preview";
+    }catch(_){ return null; }
+  }
+
+  let activeVideoObjectUrl=null;
+
+
+  function playerSetLanguage(lang){
+    document.querySelectorAll("[data-player-lang]").forEach(btn=>{
+      btn.classList.toggle("active", btn.dataset.playerLang===lang);
+    });
+
+    const video=$("megaVideo");
+    if(!video || video.classList.contains("hide")) return;
+
+    const wanted=String(lang||"").toLowerCase();
+    const tracks=video.textTracks||[];
+    let matched=false;
+
+    for(let i=0;i<tracks.length;i++){
+      const t=tracks[i];
+      const srclang=String(t.language||"").toLowerCase();
+      const label=String(t.label||"").toLowerCase();
+      const isMatch =
+        srclang===wanted ||
+        srclang.startsWith(wanted.split("-")[0]) ||
+        label.toLowerCase()===wanted;
+
+      t.mode=isMatch ? "showing" : "disabled";
+      if(isMatch) matched=true;
+    }
+
+    $("playerHint").textContent =
+      matched
+        ? "Legendas: "+(lang==="pt-PT"?"Português (Portugal)":lang==="pt-BR"?"Português (Brasil)":lang==="fr"?"Français":"English")
+        : "Não existem legendas disponíveis neste idioma para este vídeo.";
+  }
+
+  document.querySelectorAll("[data-player-lang]").forEach(btn=>{
+    btn.addEventListener("click",()=>playerSetLanguage(btn.dataset.playerLang));
+  });
+
+  async function openEpisodePlayer(e,fullscreen){
+    currentPlayingEpisodeId=e.id;
+
+    $("playerTitle").textContent=e.title||"Episódio";
+    $("playerEpisodeTitle").textContent=e.title||"Episódio";
+    $("playerHint").textContent="Escolhe o idioma das legendas acima.";
+    document.querySelectorAll("[data-player-lang]").forEach(btn=>{
+      btn.classList.toggle("active",btn.dataset.playerLang==="pt-PT");
+    });
+    e.views=Number(e.views||0)+1;
+    try{await put("episodes",e)}catch(_){}
+
+    const video=$("megaVideo"),frame=$("megaFrame");
+    if(activeVideoObjectUrl){URL.revokeObjectURL(activeVideoObjectUrl);activeVideoObjectUrl=null;}
+    video.pause();
+    video.removeAttribute("src");
+    if(e.thumbnail) video.poster=e.thumbnail;
+    else video.removeAttribute("poster");
+    frame.src="about:blank";
+    frame.classList.add("hide");
+    video.classList.remove("hide");
+
+    const source=String(e.videoUrl||"").trim();
+    const kind=e.videoKind||detectVideoKind(source);
+    let opened=false;
+
+    if(e.videoBlob){
+      activeVideoObjectUrl=URL.createObjectURL(e.videoBlob);
+      video.src=activeVideoObjectUrl;
+      opened=true;
+    }else if(source && kind==="mp4"){
+      video.src=source;
+      opened=true;
+    }else if(source && kind==="youtube"){
+      const embed=youtubeEmbedUrl(source);
+      if(embed){frame.src=embed;frame.classList.remove("hide");video.classList.add("hide");opened=true;}
+    }else if(source && kind==="gdrive"){
+      const embed=googleDriveEmbedUrl(source);
+      if(embed){frame.src=embed;frame.classList.remove("hide");video.classList.add("hide");opened=true;}
+    }else if(source){
+      video.src=source;
+      opened=true;
+    }
+
+    if(opened && !video.classList.contains("hide")){
+      const oldTracks=video.querySelectorAll("track");
+      oldTracks.forEach(t=>t.remove());
+      Object.entries(e.subtitles||{}).forEach(([lang,text])=>{
+        const blob=new Blob([text],{type:"text/vtt"});
+        const url=URL.createObjectURL(blob);
+        const track=document.createElement("track");
+        track.kind="subtitles";
+        track.label=lang;
+        track.srclang=lang.slice(0,2).toLowerCase();
+        track.src=url;
+        track.default=lang.toUpperCase().startsWith("PT");
+        video.appendChild(track);
+      });
+    }
+
+    if(!opened && e.trailerUrl){
+      const embed=youtubeEmbedUrl(e.trailerUrl)||e.trailerUrl;
+      frame.src=embed;
+      frame.classList.remove("hide");
+      video.classList.add("hide");
+      opened=true;
+    }
+
+    if(!opened){
+      alert("Este episódio ainda não tem um vídeo válido associado no painel Admin.");
+      return;
+    }
+
+    $("fullPlayer").classList.add("active"); $("fullPlayer").setAttribute("aria-hidden","false");
+    if(fullscreen)document.documentElement.requestFullscreen?.().catch(()=>{});
+  }
+
+  $("fullPlayerClose")?.addEventListener("click",()=>{
+    $("fullPlayer").classList.remove("active"); $("fullPlayer").setAttribute("aria-hidden","true");
+    $("megaVideo").pause();
+    $("megaVideo").removeAttribute("src");
+    $("megaFrame").src="about:blank";
+    if(activeVideoObjectUrl){URL.revokeObjectURL(activeVideoObjectUrl);activeVideoObjectUrl=null;}
+    document.exitFullscreen?.().catch(()=>{});
+  });
+
+  $("fullPlayer")?.addEventListener("click",e=>{
+    if(e.target===$("fullPlayer")) $("fullPlayerClose")?.click();
+  });
+
+  $("megaVideo")?.addEventListener("timeupdate",async()=>{if(!currentPlayingEpisodeId||!u()||!$("megaVideo").duration)return;const pct=Math.min(99,Math.round($("megaVideo").currentTime/$("megaVideo").duration*100));u().progress=u().progress||{};u().progress[currentPlayingEpisodeId]=pct;await put("accounts",u());});
+
+  async function commentEpisodeMega(id){if(!u()){alert("Entra para comentar.");return}const text=prompt("Comentário sobre o episódio:");if(!text)return;await put("forumComments",{id:makeId(),type:"episode",episodeId:id,author:u().username,text,createdAt:Date.now()});forumComments=await getAll("forumComments");await xp(2,"comentar episódio");alert("💬 Comentário publicado!");}
+  function episodeAverageRating(id){const vals=accounts.map(a=>Number(a.ratings?.[id]||0)).filter(Boolean);return vals.length?Math.round(vals.reduce((a,b)=>a+b,0)/vals.length*10)/10:0;}
+
+  function renderMegaEpisodes(){const box=$("megaEpisodes");if(!box)return;const favs=episodes.filter(e=>(u()?.favorites||[]).includes(e.id));const watched=episodes.filter(e=>(u()?.watched||[]).includes(e.id));const cont=episodes.filter(e=>(u()?.progress?.[e.id]||0)>0&&(u()?.progress?.[e.id]||0)<100);box.innerHTML=`<div class="megaGrid"><div class="megaCard"><b>❤️ Favoritos</b><h2>${favs.length}</h2></div><div class="megaCard"><b>✅ Vistos</b><h2>${watched.length}</h2></div><div class="megaCard"><b>▶️ A continuar</b><h2>${cont.length}</h2></div></div><h3>▶️ Continuar a ver</h3>${cont.map(e=>`<div class="megaCard"><b>${esc(e.title)}</b><div class="progressBar"><div style="width:${u().progress[e.id]}%"></div></div><button class="btn primary" onclick="window.playMegaEpisode('${esc(e.id)}')">Continuar</button></div>`).join("")||'<p class="muted">Não tens episódios em progresso.</p>'}`;}
+  window.playMegaEpisode=id=>{const e=episodes.find(x=>x.id===id);if(e)openEpisodePlayer(e,true)};
+
+  function renderMegaPolls(){const box=$("megaPolls");if(!box)return;box.innerHTML=`<div class="notice">🗳️ O sistema de votações existente continua activo. Aqui podes acompanhar resultados, vencedora e estado.</div>`+polls.map(p=>{const votes=p.votes||{};const total=Object.keys(votes).length;const counts={};p.options.forEach(o=>counts[o]=0);Object.values(votes).forEach(o=>{if(counts[o]!=null)counts[o]++});const winner=p.options.slice().sort((a,b)=>counts[b]-counts[a])[0];const active=!p.closed&&(!p.endAt||Date.now()<p.endAt);return `<div class="megaCard"><h3>${esc(p.question)}</h3><p class="muted">👥 ${total} votos · ${active?"🟢 Aberta":"🔒 Fechada"}</p>${p.options.map(o=>`<div><div style="display:flex;justify-content:space-between"><span>${esc(o)}</span><b>${counts[o]||0}</b></div><div class="miniBar"><div style="width:${total?Math.round(counts[o]/total*100):0}%"></div></div></div>`).join("")}<p>🏆 Vencedora atual: <b>${esc(winner||"—")}</b></p></div>`}).join("")||'<p class="muted">Nenhuma votação.</p>';}
+
+  function renderMegaAchievements(){const box=$("megaAchievements");if(!box)return;const xpNow=u()?.xp||0;const list=[
+    ["🐱 Novo fã",!!u(),"Criar uma conta"],["🎬 Maratonista",(u()?.watched||[]).length>=10,"Ver 10 episódios"],["💜 Fã de Marinette",(u()?.favorites||[]).length>=10,"Favoritar 10 episódios"],["🗳️ Cidadão activo",Number(u()?.pollVotes||0)>=10,"Votar 10 vezes"],["💬 Falador",Number(u()?.messageCount||0)>=100,"Enviar 100 mensagens"],["👥 Social",friendAccounts().length>=10,"Adicionar 10 amigos"],["👑 Veterano",u()&&Date.now()-(u().createdAt||Date.now())>=30*864e5,"Estar registado há 30 dias"]
+  ];box.innerHTML=list.map(x=>`<div class="megaCard"><h3>${x[0]} ${x[1]?"✅":"🔒"}</h3><p class="muted">${x[2]}</p></div>`).join("");}
+
+  function renderGlobalSearch(){const input=$("globalSearchInput"),out=$("globalSearchResults");if(!input||!out)return;const q=input.value.trim().toLowerCase();if(!q){out.innerHTML='<p class="muted">Começa a escrever para pesquisar em todo o site.</p>';return;}const results=[];episodes.filter(e=>`${e.title} ${e.season} ${e.number} ${e.lang}`.toLowerCase().includes(q)).slice(0,10).forEach(e=>results.push(["🎬 Episódio",e.title,()=>openEpisodePlayer(e,false)]));accounts.filter(a=>a.username.toLowerCase().includes(q)).slice(0,10).forEach(a=>results.push(["👤 Utilizador",a.username,()=>window.openFriendProfile(a.username)]));forumPosts.filter(p=>`${p.title} ${p.text}`.toLowerCase().includes(q)).slice(0,10).forEach(p=>results.push(["🧵 Publicação",p.title,()=>showTab("community")]));F.wiki.filter(x=>x.join(" ").toLowerCase().includes(q)).forEach(x=>results.push(["🧩 Personagem/Wiki",x[0],()=>showTab("wiki")]));out.innerHTML=results.map((r,i)=>`<div class="searchResult" data-search="${i}"><b>${r[0]}</b> · ${esc(r[1])}</div>`).join("")||'<p class="muted">Nada encontrado.</p>';out.querySelectorAll("[data-search]").forEach((el,i)=>el.onclick=results[i][2]);}
+
+  function renderCustom(){const box=$("megaCustom");if(!box)return;box.innerHTML=`<div class="megaGrid"><div class="megaCard"><h3>🌙 Aparência</h3><button class="btn" id="darkBtn">🌙 Dark mode</button> <button class="btn" id="lightBtn">☀️ Light mode</button></div><div class="megaCard"><h3>🐞 Tema</h3><button class="btn" id="ladybugBtn">🐞 Ladybug</button> <button class="btn" id="catBtn">🐈 Cat Noir</button></div><div class="megaCard"><h3>🎨 Perfil</h3><input id="themeColor" type="color" value="${esc(u()?.profileColor||"#e62b45")}"><p class="muted">Escolhe a cor do teu perfil.</p></div><div class="megaCard"><h3>🔒 Palavra-passe</h3><input id="newPasswordMega" type="password" placeholder="Nova palavra-passe"><button class="btn" id="savePasswordMega">Guardar</button></div></div><div class="megaCard" style="margin-top:12px"><h3>🖼️ Fundo personalizado</h3><input id="megaBgFile" type="file" accept="image/*"><button class="btn" id="saveMegaBg">Guardar fundo</button><button class="btn danger" id="removeMegaBg">Remover</button></div><div class="megaCard" style="margin-top:12px"><h3>✨ Animações</h3><label><input type="checkbox" id="animToggle" checked> Ativar animações</label></div>`;
+    $("darkBtn").onclick=()=>document.body.classList.remove("lightMode");$("lightBtn").onclick=()=>document.body.classList.add("lightMode");$("ladybugBtn").onclick=()=>{document.documentElement.classList.remove("themeCat");document.documentElement.classList.add("themeLadybug")};$("catBtn").onclick=()=>{document.documentElement.classList.remove("themeLadybug");document.documentElement.classList.add("themeCat")};$("themeColor").onchange=async()=>{if(!u())return;u().profileColor=$("themeColor").value;await put("accounts",u());updateProfileUI();renderProfile()};$("saveMegaBg").onclick=async()=>{const f=$("megaBgFile").files[0];if(!f)return;const data=await fileToDataURL(f);await put("settings",{id:"megaCustomBackground",type:"image",data});settings.megaCustomBackground={id:"megaCustomBackground",type:"image",data};$("backgroundImage").src=data;$("backgroundImage").style.display="block";$("backgroundVideo").style.display="none"};$("removeMegaBg").onclick=async()=>{await remove("settings","megaCustomBackground");$("backgroundImage").style.display="none"};$("animToggle").onchange=e=>document.documentElement.style.setProperty("--mega-transition",e.target.checked?".18s":"0s");$("savePasswordMega").onclick=async()=>{const pw=$("newPasswordMega").value;if(!u()||pw.length<4){alert("Usa pelo menos 4 caracteres.");return}u().password=pw;await put("accounts",u());alert("🔒 Palavra-passe alterada.");$("newPasswordMega").value="";};}
+
+  function renderCalendar(){const box=$("megaCalendar");if(!box)return;const rows=calendarItems.slice().sort((a,b)=>(a.startAt||0)-(b.startAt||0));box.innerHTML=rows.map(x=>`<div class="calendarCard"><b>📅 ${esc(x.startAt?new Date(x.startAt).toLocaleString("pt-PT"):x.date||"—")}</b><h3>${x.kind==="trailer"?"🎞️":x.kind==="noticia"?"📰":"🎬"} ${esc(x.title)}</h3></div>`).join("")||'<p class="muted">Sem datas adicionadas.</p>';}
+  function renderNews(){const box=$("megaNews");if(!box)return;const now=Date.now();const rows=newsItems.filter(x=>!x.scheduledAt||x.scheduledAt<=now).slice().sort((a,b)=>(b.pinned?1:0)-(a.pinned?1:0)||(b.createdAt-a.createdAt));box.innerHTML=rows.map(x=>`<article class="newsCard">${x.cover?`<img src="${esc(x.cover)}" alt="" style="width:100%;max-height:260px;object-fit:cover;border-radius:10px;margin-bottom:10px">`:""}<h3>${x.pinned?"📌 ":"📰 "}${esc(x.title)}</h3><p>${esc(x.text)}</p><small class="muted">${new Date(x.createdAt).toLocaleDateString("pt-PT")}</small></article>`).join("")||'<p class="muted">Sem notícias.</p>';}
+  function renderWiki(){const box=$("megaWiki");if(!box)return;box.innerHTML=wikiItems.map(x=>`<article class="wikiCard"><h3>🧩 ${esc(x.title)}</h3><p>${esc(x.text)}</p></article>`).join("");}
+  function renderQuiz(){const box=$("megaQuiz");if(!box)return;if(!quizItems.length){box.innerHTML='<p class="muted">Sem perguntas.</p>';return}const q=quizItems[quizIndex%quizItems.length];box.innerHTML=`<div class="quizCard"><p class="muted">Pergunta ${quizIndex%quizItems.length+1}/${quizItems.length} · Pontos ${quizScore}</p><h3>🎭 ${esc(q.q)}</h3>${q.o.map((o,i)=>`<button class="btn" style="display:block;width:100%;margin:7px 0" data-answer="${i}">${esc(o)}</button>`).join("")}<div id="quizFeedback"></div></div>`;box.querySelectorAll("[data-answer]").forEach(b=>b.onclick=async()=>{const ok=Number(b.dataset.answer)===q.a;$("quizFeedback").innerHTML=ok?'<div class="notice success">✅ Certo! +25 XP</div>':'<div class="notice error">❌ Não foi desta vez.</div>';if(ok){quizScore++;await xp(25,"responder ao quiz")}setTimeout(()=>{quizIndex++;renderQuiz()},700)});}
+  function renderRanking(){const box=$("megaRanking");if(!box)return;const rows=accounts.slice().sort((a,b)=>(b.xp||0)-(a.xp||0)).slice(0,20);box.innerHTML=rows.map((a,i)=>`<div class="rankRow"><b>${i===0?"🥇":i===1?"🥈":i===2?"🥉":(i+1)+"º"} ${esc(a.username)}</b><span>${a.xp||0} XP · Nível ${levelInfo(a.xp||0).level}</span></div>`).join("")||'<p class="muted">Ainda não há jogadores.</p>';}
+
+  function renderAdminMega(){const box=$("megaAdmin"),tab=$("megaAdminTab");if(!box||!tab)return;if(!u()?.admin){tab.classList.add("hide");return}tab.classList.remove("hide");const openReports=reports.filter(r=>r.status==="open");box.innerHTML=`<div class="megaGrid"><div class="megaCard"><b>👥 Utilizadores</b><h2>${accounts.length}</h2></div><div class="megaCard"><b>🎬 Episódios</b><h2>${episodes.length}</h2><small class="muted">👀 ${episodes.reduce((n,e)=>n+Number(e.views||0),0)} visualizações</small></div><div class="megaCard"><b>📋 Logs</b><h2>${activityLogs.length}</h2></div></div><div class="megaCard"><h3>🛠️ Moderação</h3><p class="muted">Denúncias abertas: ${openReports.length}</p><div id="megaAdminUsers"></div></div><div class="megaCard"><h3>📢 Criar anúncio</h3><input id="megaAnnTitle" placeholder="Título"><textarea id="megaAnnText" placeholder="Texto"></textarea><button class="btn primary" id="megaAnnCreate">Publicar</button></div><div class="megaCard"><h3>👑 Papéis</h3><p class="muted">Podes definir utilizadores como moderadores ou administradores.</p></div>`;const list=$("megaAdminUsers");list.innerHTML=accounts.map(a=>`<div class="megaToolbar" style="border-bottom:1px solid var(--line);padding-bottom:7px"><b>${esc(a.username)}</b><span class="muted">${esc(a.role||"user")}</span><button class="btn" onclick="window.setRoleMega('${esc(a.username)}','moderator')">🛡️ Mod</button><button class="btn" onclick="window.setRoleMega('${esc(a.username)}','admin')">👑 Admin</button><button class="btn" onclick="window.muteMega('${esc(a.username)}')">🔇 ${a.mutedUntil&&a.mutedUntil>Date.now()?"Desmutar":"Mute"}</button><button class="btn danger" onclick="window.banMega('${esc(a.username)}')">${a.banned?"🔓 Desbanir":"🔨 Banir"}</button></div>`).join("");$("megaAnnCreate").onclick=async()=>{const title=$("megaAnnTitle").value.trim(),text=$("megaAnnText").value.trim();if(!title||!text)return;await put("announcements",{id:makeId(),title,text,label:"NOVIDADE",color:"#e62b45",createdAt:Date.now()});announcements=await getAll("announcements");renderAnnouncements();await notifyAllUsers("📢 Novo anúncio!",title);$("megaAnnTitle").value="";$("megaAnnText").value="";};}
+  window.setRoleMega=async(name,role)=>{if(!u()?.admin)return;const a=accounts.find(x=>normalizeUsername(x.username)===normalizeUsername(name));if(!a)return;a.role=role;a.admin=role==="admin";await put("accounts",a);accounts=await getAll("accounts");await log("role_change",`${name} -> ${role}`);renderAdminMega();};
+  window.banMega=async name=>{if(!u()?.admin)return;const a=accounts.find(x=>normalizeUsername(x.username)===normalizeUsername(name));if(!a)return;a.banned=!a.banned;await put("accounts",a);await notify(name,a.banned?"🔨 Conta banida":"🔓 Conta desbanida",a.banned?"A tua conta foi banida por um administrador.":"A tua conta foi desbanida.","moderation");accounts=await getAll("accounts");renderAdminMega();};
+  window.muteMega=async name=>{if(!u()?.admin)return;const a=accounts.find(x=>normalizeUsername(x.username)===normalizeUsername(name));if(!a)return;a.mutedUntil=a.mutedUntil&&a.mutedUntil>Date.now()?0:Date.now()+60*60*1000;await put("accounts",a);await notify(name,a.mutedUntil?"🔇 Foste silenciado":"🔊 Silenciamento removido",a.mutedUntil?"Não podes enviar mensagens durante 1 hora.":"Podes voltar a enviar mensagens.","moderation");accounts=await getAll("accounts");renderAdminMega();};
+  async function notifyAllUsers(title,text){for(const a of accounts)if(normalizeUsername(a.username)!==uname())await notify(a.username,title,text,"announcement");}
+
+  function renderMegaAll(){renderProfile();renderNotifs();renderMegaFriends();renderCommunityMega();renderMegaEpisodes();renderMegaPolls();renderMegaAchievements();renderGlobalSearch();renderCustom();renderCalendar();renderNews();renderWiki();renderQuiz();renderRanking();renderAdminMega();updateNotifBadges();if(window.adminRefreshAdvancedLists)window.adminRefreshAdvancedLists();}
+
+  let swipeX=0;
+  $("fullPlayer")?.addEventListener("touchstart",e=>{swipeX=e.changedTouches[0].clientX},{passive:true});
+  $("fullPlayer")?.addEventListener("touchend",e=>{const dx=e.changedTouches[0].clientX-swipeX;if(Math.abs(dx)<80||!currentPlayingEpisodeId)return;const idx=episodes.findIndex(x=>x.id===currentPlayingEpisodeId);const next=episodes[idx+(dx<0?1:-1)];if(next)openEpisodePlayer(next,true)},{passive:true});
+
+  // Global hooks
+  document.querySelectorAll("#featureTabs [data-tab]").forEach(b=>b.addEventListener("click",()=>showTab(b.dataset.tab)));
+  $("sideMenuButton")?.addEventListener("click",()=>$("sideDrawer").classList.toggle("hide"));
+  document.querySelectorAll("[data-side]").forEach(b=>b.addEventListener("click",()=>{const x=b.dataset.side;$("sideDrawer").classList.add("hide");if(x==="mega")openHub("profile");else openSocialSection(x);}));
+  $("openMegaHub")?.addEventListener("click",()=>openHub("profile"));$("megaClose")?.addEventListener("click",()=>$("megaModal").classList.add("hide"));$("editProfileClose")?.addEventListener("click",()=>$("editProfileModal").classList.add("hide"));$("saveProfileMega")?.addEventListener("click",saveProfile);
+  $("notificationsQuickButton")?.addEventListener("click",()=>openHub("notifications"));$("globalSearchQuickButton")?.addEventListener("click",()=>openHub("search"));
+  $("globalSearchInput")?.addEventListener("input",renderGlobalSearch);
+  document.querySelectorAll("[data-bottom]").forEach(b=>b.addEventListener("click",()=>{const x=b.dataset.bottom;if(x==="home")window.scrollTo({top:0,behavior:"smooth"});else if(x==="episodes")openSocialSection("catalogo");else if(x==="friends")openHub("friends");else if(x==="community")openSocialSection("chat");else if(x==="profile")openHub("profile")}));
+  $("profileButton")?.addEventListener("dblclick",()=>openHub("profile"));
+
+  // update last seen while the page is open; this is local/client-side presence.
+  setInterval(async()=>{if(u()&&ready()){u().lastSeen=Date.now();await put("accounts",u());accounts=await getAll("accounts");}if(ready()){polls=await getAll("polls");for(const p of polls){if(p.startAt&&Date.now()>=p.startAt&&!p.startNotified){p.startNotified=true;await put("polls",p);await notifyAllUsers("🗳️ Nova votação!",p.question);}}calendarItems=await getAll("calendar");for(const c of calendarItems){if(c.notify&&c.startAt&&Date.now()>=c.startAt&&!c.startNotified){c.startNotified=true;await put("calendar",c);await notifyAllUsers("📅 Nova estreia!",c.title);}}}},60000);
+
+  // decorate after the existing app renders.
+  const originalRender=window.render;
+  if(typeof originalRender==="function"){
+    window.render=originalRender;
+  }
+  const observer=new MutationObserver(()=>{if(document.querySelector("[data-episode-id]"))decorateEpisodeCards();});
+  observer.observe(document.body,{childList:true,subtree:true});
+
+  // Seed once DB is ready and refresh advanced panels.
+  (async()=>{for(let i=0;i<50&&!ready();i++)await new Promise(r=>setTimeout(r,100));if(!ready())return;await seedAdvanced();renderMegaAll();})().catch(console.error);
+
+  // Expose a simple global API for the existing site.
+  async function logActivityCompat(action,detail){try{if(typeof log==="function")await log(action,detail)}catch(e){}}
+  window.logActivityCompat=logActivityCompat;
+  window.adminRefreshAdvancedLists=adminRefreshAdvancedLists;
+  window.miraculousMega={openHub,showTab,renderMegaAll,xp,notify,notifyAllUsers,log:logActivityCompat};
 })();
 </script>
 
