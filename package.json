@@ -1,0 +1,9 @@
+{
+  "name": "miraculous-kk",
+  "private": true,
+  "version": "2.1.1",
+  "type": "module",
+  "dependencies": {
+    "@vercel/blob": "2.6.1"
+  }
+}
