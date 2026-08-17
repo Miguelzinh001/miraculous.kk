@@ -10,6 +10,6 @@ export async function getFriends(){ const {data:{user}}=await supabase.auth.getU
 export async function getPolls(){ return supabase.from('polls').select('*').eq('published',true).order('created_at',{ascending:false}); }
 export async function vote(pollId,option){ const {data:{user}}=await supabase.auth.getUser(); if(!user) throw new Error('É necessário iniciar sessão.'); return supabase.from('votes').upsert({user_id:user.id,poll_id:pollId,option},{onConflict:'user_id,poll_id'}); }
 export async function getPollResults(pollId){ return supabase.from('votes').select('option').eq('poll_id',pollId); }
-export async function createPoll(question,options){ return supabase.from('polls').insert({question,options,published:true}).select().single(); }
+export async function createPoll(title,options,description='',closes_at=null){ return supabase.from('polls').insert({title,description,options,published:true,closes_at}).select().single(); }
 export async function deletePoll(id){ return supabase.from('polls').delete().eq('id',id); }
 window.MiraculousSocial={getProfile,saveProfile,searchProfiles,sendFriendRequest,getFriendRequests,respondFriendRequest,getFriends,getPolls,vote,getPollResults,createPoll,deletePoll};
