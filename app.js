@@ -10,12 +10,12 @@ async function loadEpisodes(){
   renderEpisodes($('search')?.value || '');
 }
 async function loadAnnouncements(){
-  const { data, error } = await supabase.from('announcements').select('*').eq('published', true).order('created_at', {ascending:false});
-  if(error){ console.error('announcements:', error); return; }
+  const { data, error } = await supabase.from('global_announcements').select('*').order('created_at', {ascending:false});
+  if(error){ console.error('global_announcements:', error); return; }
   announcements=data || []; renderAnnouncements();
 }
 function renderAnnouncements(){
-  const html=announcements.map(a=>`<div class="announcement" data-id="${esc(a.id)}"><span class="announcement-label"${a.label_color?` style="color:${esc(a.label_color)}"`:''}>${esc(a.label || 'NOVIDADE')}</span><span>${esc(a.title || '')}</span>${a.body?`<div>${esc(a.body)}</div>`:''}</div>`).join('');
+  const html=announcements.map(a=>`<div class="announcement" data-id="${esc(a.id)}"><span class="announcement-label"${a.color?` style="color:${esc(a.color)}"`:''}>${esc(a.label || 'NOVIDADE')}</span><span>${esc(a.title || '')}</span>${a.body?`<div>${esc(a.body)}</div>`:''}</div>`).join('');
   ['announcements','announcementList','newsList'].forEach(id=>{if($(id)) $(id).innerHTML=html || '<p class="muted">Sem novidades.</p>';});
   renderAdminAnnouncements();
 }
@@ -30,7 +30,7 @@ function renderAdminList(){
 }
 function renderAdminAnnouncements(){
   if(!$('adminAnnouncements')) return; $('adminAnnouncements').innerHTML=announcements.map(a=>`<div class="admin-item"><div><b>${esc(a.title)}</b><br><span class="muted">${esc(a.label || 'NOVIDADE')}</span></div><button class="delete-announcement" data-id="${esc(a.id)}">Apagar</button></div>`).join('');
-  document.querySelectorAll('.delete-announcement').forEach(btn=>btn.onclick=async()=>{if(!confirm('Apagar este anúncio?'))return;const {error}=await supabase.from('announcements').delete().eq('id',btn.dataset.id);if(error)return alert('Não foi possível apagar: '+error.message);await loadAnnouncements();});
+  document.querySelectorAll('.delete-announcement').forEach(btn=>btn.onclick=async()=>{if(!confirm('Apagar este anúncio?'))return;const {error}=await supabase.from('global_announcements').delete().eq('id',btn.dataset.id);if(error)return alert('Não foi possível apagar: '+error.message);await loadAnnouncements();});
 }
 if($('search')) $('search').oninput=e=>renderEpisodes(e.target.value);
 if($('openLogin')) $('openLogin').onclick=()=> $('loginModal')?.classList.remove('hidden');
@@ -56,12 +56,13 @@ if($('addEpisode')) $('addEpisode').onclick=async()=>{
 };
 async function addAnnouncementFromForm(){
   const titleEl=$('announcementTitle')||$('annTitle')||$('newsTitle'),bodyEl=$('announcementText')||$('annText')||$('newsText'),labelEl=$('announcementLabel')||$('annLabel')||$('newsLabel'),colorEl=$('announcementColor')||$('annColor')||$('newsColor');
-  const title=titleEl?.value.trim()||bodyEl?.value.trim(),body=bodyEl?.value.trim()||title,label=labelEl?.value.trim()||'NOVIDADE',label_color=colorEl?.value||'';
+  const title=titleEl?.value.trim()||bodyEl?.value.trim(),body=bodyEl?.value.trim()||title,label=labelEl?.value.trim()||'NOVIDADE',color=colorEl?.value||'#e62b45';
   if(!title)return false; const {data:{user}}=await supabase.auth.getUser(); if(!user)return alert('Inicia sessão como administrador primeiro.');
-  const {error}=await supabase.from('announcements').insert({title,body,label,label_color,published:true}).select().single();
-  if(error){console.error('announcement insert:',error);alert('Erro ao guardar anúncio: '+error.message);return true;}
+  const {error}=await supabase.from('global_announcements').insert({id:crypto.randomUUID(),title,body,label,color});
+  if(error){console.error('global announcement insert:',error);alert('Erro ao guardar anúncio: '+error.message);return true;}
   ["announcementTitle","annTitle","newsTitle","announcementText","annText","newsText"].forEach(id=>{if($(id))$(id).value='';});await loadAnnouncements();alert('Anúncio publicado para todos!');return true;
 }
 ['addAnnouncement','publishAnnouncement','saveAnnouncement','addNews','publishNews'].forEach(id=>{if($(id))$(id).onclick=addAnnouncementFromForm;});
+supabase.channel('global-announcements-live').on('postgres_changes',{event:'*',schema:'public',table:'global_announcements'},()=>loadAnnouncements()).subscribe();
 supabase.auth.onAuthStateChange(()=>{loadEpisodes();loadAnnouncements();});
 loadEpisodes();loadAnnouncements();
