@@ -10,7 +10,8 @@ const markers = [
   '<script src="/supabase-auth.js"></script>',
   '<script src="/supabase-live.js"></script>',
   '<script src="/supabase-actions.js"></script>',
-  '<script src="/supabase-boot-fix.js"></script>'
+  '<script src="/supabase-boot-fix.js"></script>',
+  '<script src="/profile-repair.js"></script>'
 ];
 for (const marker of markers) {
   if (!index.includes(marker)) index = index.replace(/<\/body>/i, `${marker}</body>`);
