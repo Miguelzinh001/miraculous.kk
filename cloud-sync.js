@@ -1,210 +1,68 @@
 (() => {
   "use strict";
-
   const SUPABASE_URL = "https://gfnpyzmhhwkpzvjwkckg.supabase.co";
   const SUPABASE_KEY = "sb_publishable_CGhjWdOcexqk0ac_WyYfOg_3jif0Bwz";
-  const SYNC_STORES = [
-    "announcements",
-    "friendships",
-    "polls",
-    "communityMessages",
-    "achievements",
-    "notifications",
-    "forumPosts",
-    "forumComments",
-    "reports",
-    "news",
-    "wiki",
-    "calendar",
-    "quiz",
-    "achievementDefinitions"
-  ];
+  const STORES = ["announcements","friendships","polls","communityMessages","achievements","notifications","forumPosts","forumComments","reports","news","wiki","calendar","quiz","achievementDefinitions"];
+  let clientPromise, running = false;
+  const client = () => clientPromise ||= import("https://esm.sh/@supabase/supabase-js@2").then(m => m.createClient(SUPABASE_URL, SUPABASE_KEY));
+  const id = r => String(r?.id ?? "");
+  const stamp = r => Number(r?.updatedAt || r?.createdAt || r?.unlockedAt || 0);
+  const clean = r => { const x = {...r}; delete x.__cloudUpdatedAt; return x; };
 
-  let sbPromise = null;
-  let installed = false;
-  let syncing = false;
-
-  const log = (...a) => { try { console.log("[CloudSync]", ...a); } catch (_) {} };
-
-  async function sb() {
-    if (sbPromise) return sbPromise;
-    sbPromise = import("https://esm.sh/@supabase/supabase-js@2")
-      .then(mod => mod.createClient(SUPABASE_URL, SUPABASE_KEY));
-    return sbPromise;
-  }
-
-  function isSyncStore(store) {
-    return SYNC_STORES.includes(store);
-  }
-
-  function idOf(row) {
-    return String(row?.id ?? "");
-  }
-
-  function stamp(row) {
-    return Number(row?.updatedAt || row?.createdAt || row?.unlockedAt || 0);
-  }
-
-  async function remoteRows(store) {
-    const client = await sb();
-    const { data, error } = await client
-      .from("cloud_records")
-      .select("record_id,payload,updated_at")
-      .eq("store", store);
+  async function pull(store) {
+    if (typeof window.getAll !== "function" || typeof window.put !== "function") return;
+    const sb = await client();
+    const {data, error} = await sb.from("cloud_records").select("record_id,payload,updated_at").eq("store", store);
     if (error) throw error;
-    return (data || []).map(r => ({
-      ...(r.payload || {}),
-      id: r.record_id,
-      __cloudUpdatedAt: Date.parse(r.updated_at || "") || 0
-    }));
-  }
-
-  async function pushRow(store, row) {
-    if (!row || idOf(row) === "") return;
-    const client = await sb();
-    const payload = { ...row };
-    delete payload.__cloudUpdatedAt;
-    const ts = new Date(stamp(row) || Date.now()).toISOString();
-    const { error } = await client.from("cloud_records").upsert({
-      store,
-      record_id: idOf(row),
-      payload,
-      updated_at: ts
-    }, { onConflict: "store,record_id" });
-    if (error) throw error;
-  }
-
-  async function removeRow(store, id) {
-    if (!id) return;
-    const client = await sb();
-    const { error } = await client
-      .from("cloud_records")
-      .delete()
-      .eq("store", store)
-      .eq("record_id", String(id));
-    if (error) throw error;
-  }
-
-  async function syncStore(store) {
-    if (!isSyncStore(store) || typeof window.getAll !== "function" || typeof window.put !== "function") return;
-    const local = await window.getAll.__cloudOriginal(store);
-    const remote = await remoteRows(store);
-    const byId = new Map();
-    for (const row of local || []) byId.set(idOf(row), row);
-    for (const row of remote || []) {
-      const localRow = byId.get(idOf(row));
-      if (!localRow || (row.__cloudUpdatedAt || 0) > stamp(localRow)) {
-        const clean = { ...row };
-        delete clean.__cloudUpdatedAt;
-        await window.put.__cloudOriginal(store, clean);
-        byId.set(idOf(clean), clean);
-      }
+    const local = await window.getAll(store);
+    const map = new Map((local || []).map(r => [id(r), r]));
+    for (const r of data || []) {
+      const remote = {...(r.payload || {}), id:r.record_id, __cloudUpdatedAt:Date.parse(r.updated_at || "") || 0};
+      const current = map.get(id(remote));
+      if (!current || remote.__cloudUpdatedAt > stamp(current)) await window.put(store, clean(remote));
     }
-    for (const row of byId.values()) {
-      const remoteRow = (remote || []).find(x => idOf(x) === idOf(row));
-      if (!remoteRow || stamp(row) > (remoteRow.__cloudUpdatedAt || 0)) {
-        await pushRow(store, row);
+  }
+
+  async function push(store) {
+    if (typeof window.getAll !== "function") return;
+    const sb = await client();
+    const local = await window.getAll(store);
+    if (!local?.length) return;
+    const {data:remote,error} = await sb.from("cloud_records").select("record_id,updated_at").eq("store",store);
+    if (error) throw error;
+    const map = new Map((remote || []).map(r => [String(r.record_id), Date.parse(r.updated_at || "") || 0]));
+    for (const row of local) {
+      if (!id(row)) continue;
+      const lt = stamp(row), rt = map.get(id(row)) || 0;
+      if (!map.has(id(row)) || lt > rt) {
+        const {error:e} = await sb.from("cloud_records").upsert({store,record_id:id(row),payload:clean(row),updated_at:new Date(lt || Date.now()).toISOString()},{onConflict:"store,record_id"});
+        if (e) throw e;
       }
     }
   }
 
+  async function syncStore(store) { await pull(store); await push(store); }
   async function syncAll() {
-    if (syncing) return;
-    syncing = true;
+    if (running) return; running = true;
+    try { for (const s of STORES) { try { await syncStore(s); } catch(e) { console.warn("[CloudSync]",s,e?.message||e); } } }
+    finally { running = false; }
+  }
+
+  async function start() {
+    let tries=0;
+    while ((typeof window.getAll !== "function" || typeof window.put !== "function") && tries++ < 100) await new Promise(r=>setTimeout(r,100));
+    if (typeof window.getAll !== "function" || typeof window.put !== "function") return;
+    await syncAll();
     try {
-      for (const store of SYNC_STORES) {
-        try { await syncStore(store); }
-        catch (e) { log("sync falhou", store, e?.message || e); }
-      }
-      if (typeof window.loadData === "function") {
-        try { await window.loadData(); } catch (e) { log("refresh da app falhou", e?.message || e); }
-      }
-    } finally {
-      syncing = false;
-    }
+      const sb=await client();
+      sb.channel("miraculous-v4-cloud").on("postgres_changes",{event:"*",schema:"public",table:"cloud_records"},p=>{
+        const store=p?.new?.store||p?.old?.store;
+        if(STORES.includes(store)) syncStore(store).catch(()=>{});
+      }).subscribe();
+    } catch(_) {}
+    setInterval(()=>syncAll().catch(()=>{}),10000);
+    window.miraculousCloud={syncAll,syncStore};
+    console.log("[CloudSync] V4 global database connected");
   }
-
-  function install() {
-    if (installed || typeof window.getAll !== "function" || typeof window.put !== "function" || typeof window.remove !== "function") return false;
-    installed = true;
-
-    const originalGetAll = window.getAll;
-    const originalPut = window.put;
-    const originalRemove = window.remove;
-
-    const wrappedGetAll = async function(store) {
-      if (!isSyncStore(store)) return originalGetAll(store);
-      const local = await originalGetAll(store);
-      try {
-        const remote = await remoteRows(store);
-        const byId = new Map();
-        for (const row of local || []) byId.set(idOf(row), row);
-        for (const row of remote || []) {
-          const localRow = byId.get(idOf(row));
-          if (!localRow || (row.__cloudUpdatedAt || 0) > stamp(localRow)) {
-            const clean = { ...row };
-            delete clean.__cloudUpdatedAt;
-            await originalPut(store, clean);
-            byId.set(idOf(clean), clean);
-          }
-        }
-        return [...byId.values()];
-      } catch (e) {
-        log("leitura cloud falhou", store, e?.message || e);
-        return local;
-      }
-    };
-    wrappedGetAll.__cloudOriginal = originalGetAll;
-
-    const wrappedPut = async function(store, data) {
-      const result = await originalPut(store, data);
-      if (isSyncStore(store)) {
-        try { await pushRow(store, data); }
-        catch (e) { log("escrita cloud falhou", store, e?.message || e); }
-      }
-      return result;
-    };
-    wrappedPut.__cloudOriginal = originalPut;
-
-    const wrappedRemove = async function(store, id) {
-      const result = await originalRemove(store, id);
-      if (isSyncStore(store)) {
-        try { await removeRow(store, id); }
-        catch (e) { log("remoção cloud falhou", store, e?.message || e); }
-      }
-      return result;
-    };
-    wrappedRemove.__cloudOriginal = originalRemove;
-
-    window.getAll = wrappedGetAll;
-    window.put = wrappedPut;
-    window.remove = wrappedRemove;
-
-    (async () => {
-      await syncAll();
-      try {
-        const client = await sb();
-        client.channel("miraculous-global-sync")
-          .on("postgres_changes", { event: "*", schema: "public", table: "cloud_records" }, payload => {
-            const store = payload?.new?.store || payload?.old?.store;
-            if (isSyncStore(store)) syncStore(store).then(() => {
-              if (typeof window.loadData === "function") return window.loadData();
-            }).catch(e => log("realtime falhou", e?.message || e));
-          })
-          .subscribe(status => log("Realtime", status));
-      } catch (e) {
-        log("Realtime não iniciou", e?.message || e);
-      }
-      setInterval(() => syncAll().catch(() => {}), 15000);
-    })();
-
-    log("camada global instalada");
-    return true;
-  }
-
-  let tries = 0;
-  const timer = setInterval(() => {
-    tries += 1;
-    if (install() || tries > 100) clearInterval(timer);
-  }, 100);
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",start,{once:true}); else start();
 })();
