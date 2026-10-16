@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="pt-PT" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ville Stream - Plataforma de Streaming</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              red: '#E50914',
+              darkRed: '#B81D24',
+              bg: '#0F0F0F',
+              card: '#181818',
+              hover: '#282828'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Video.js CSS e JS -->
+  <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+  <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+
+  <!-- FontAwesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* Estilização personalizada para o Player Video.js */
+    .vjs-matrix.video-js {
+      color: #E50914;
+      font-family: inherit;
+    }
+    .vjs-matrix .vjs-big-play-button {
+      background-color: rgba(229, 9, 20, 0.85);
+      border-color: #E50914;
+      border-radius: 50%;
+      width: 2em;
+      height: 2em;
+      line-height: 2em;
+      margin-top: -1em;
+      margin-left: -1em;
+    }
+    .vjs-matrix .vjs-play-progress {
+      background-color: #E50914;
+    }
+    .video-js .vjs-control-bar {
+      background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+    }
+    /* Scrollbar personalizada */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f0f0f;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #333;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #E50914;
+    }
+  </style>
+</head>
+<body class="bg-brand-bg text-white font-sans antialiased min-h-screen flex flex-col justify-between">
+
+  <!-- CABEÇALHO / NAVEGAÇÃO -->
+  <header class="sticky top-0 z-40 bg-brand-bg/90 backdrop-blur-md border-b border-zinc-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <!-- Logo e Menu Principal -->
+      <div class="flex items-center space-x-8">
+        <a href="#" onclick="switchTab('home')" class="text-2xl font-black tracking-wider text-brand-red flex items-center gap-2">
+          <i class="fa-solid fa-play-circle text-3xl"></i>
+          <span>VILLE STREAM</span>
+        </a>
+        <nav class="hidden md:flex space-x-6 text-sm font-medium">
+          <button onclick="switchTab('home')" id="nav-home" class="hover:text-brand-red transition active-nav">Início</button>
+          <button onclick="switchTab('movies')" id="nav-movies" class="hover:text-brand-red transition">Filmes</button>
+          <button onclick="switchTab('series')" id="nav-series" class="hover:text-brand-red transition">Séries & Episódios</button>
+          <button onclick="switchTab('admin')" id="nav-admin" class="px-3 py-1 bg-zinc-800 hover:bg-brand-red text-white rounded-md transition text-xs font-bold uppercase tracking-wider flex items-center gap-1">
+            <i class="fa-solid fa-user-shield"></i> ADMIN
+          </button>
+        </nav>
+      </div>
+
+      <!-- Barra de Pesquisa e Perfil -->
+      <div class="flex items-center space-x-4">
+        <div class="relative hidden sm:block">
+          <input type="text" id="searchInput" oninput="filterContent()" placeholder="Pesquisar títulos ou episódios..." class="bg-zinc-900 text-xs text-zinc-200 rounded-full pl-9 pr-4 py-2 w-60 border border-zinc-700 focus:outline-none focus:border-brand-red transition">
+          <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-zinc-500 text-xs"></i>
+        </div>
+        <div id="adminBadge" class="hidden text-xs bg-red-950 text-red-400 border border-red-800 px-2 py-1 rounded flex items-center gap-1">
+          <i class="fa-solid fa-crown"></i> M3NDS
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- BANNERS DE ANÚNCIOS - TOPO -->
+  <div id="ad-top-container" class="max-w-7xl mx-auto px-4 mt-4 hidden">
+    <div class="relative bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden group">
+      <span class="absolute top-1 left-2 text-[10px] bg-black/60 px-1.5 py-0.5 rounded text-zinc-400 z-10">Publicidade</span>
+      <button onclick="closeAd('ad-top-container')" class="absolute top-1 right-2 bg-black/60 text-zinc-400 hover:text-white text-xs px-2 py-0.5 rounded z-10">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <a id="ad-top-link" href="#" target="_blank" class="block">
+        <img id="ad-top-img" src="" alt="Anúncio" class="w-full h-24 object-cover">
+      </a>
+    </div>
+  </div>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow w-full">
+
+    <!-- SEÇÃO: CATÁLOGO DE CONTEÚDOS (HOME / FILMES / SÉRIES) -->
+    <section id="tab-catalog" class="space-y-8">
+      <!-- Destaque / Banner Principal -->
+      <div class="relative rounded-2xl overflow-hidden bg-zinc-900 border border-zinc-800 h-80 sm:h-96 flex items-end p-6 sm:p-10 shadow-2xl">
+        <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=1200&q=80" alt="Destaque" class="absolute inset-0 w-full h-full object-cover opacity-40">
+        <div class="absolute inset-0 bg-gradient-to-t from-brand-bg via-brand-bg/50 to-transparent"></div>
+        <div class="relative z-10 max-w-2xl space-y-3">
+          <span class="bg-brand-red text-white text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Em Destaque</span>
+          <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight">O Destino dos Reinos</h1>
+          <p class="text-zinc-300 text-sm line-clamp-2">Explora mundos desconhecidos e batalhas épicas numa produção original Ville Stream com a melhor qualidade de áudio e imagem.</p>
+          <div class="pt-2 flex items-center gap-3">
+            <button onclick="playMedia('https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4', 'O Destino dos Reinos', 'Explora mundos desconhecidos e batalhas épicas.')" class="bg-brand-red hover:bg-brand-darkRed text-white px-6 py-2.5 rounded-lg font-bold text-sm flex items-center gap-2 transition transform active:scale-95 shadow-lg">
+              <i class="fa-solid fa-play"></i> Assistir Agora
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lista de Vídeos / Episódios -->
+      <div>
+        <div class="flex items-center justify-between mb-4">
+          <h2 id="catalog-title" class="text-xl font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-fire text-brand-red"></i> Catálogo de Vídeos e Episódios
+          </h2>
+          <span id="content-count" class="text-xs text-zinc-400 bg-zinc-800 px-2.5 py-1 rounded-full">0 Títulos</span>
+        </div>
+
+        <div id="mediaGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
+          <!-- Os cartões de vídeo serão inseridos dinamicamente aqui -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO: PAINEL ADMIN (AUTENTICAÇÃO & GESTÃO) -->
+    <section id="tab-admin" class="hidden max-w-4xl mx-auto space-y-8">
+      
+      <!-- FORMULÁRIO DE LOGIN DO ADMINISTRADOR -->
+      <div id="admin-login-card" class="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 sm:p-8 max-w-md mx-auto shadow-2xl">
+        <div class="text-center space-y-2 mb-6">
+          <div class="w-12 h-12 bg-brand-red/10 border border-brand-red/30 rounded-full flex items-center justify-center mx-auto text-brand-red text-xl">
+            <i class="fa-solid fa-lock"></i>
+          </div>
+          <h2 class="text-2xl font-bold">Acesso Restrito ADMIN</h2>
+          <p class="text-xs text-zinc-400">Insira as credenciais autorizadas para aceder ao painel.</p>
+        </div>
+
+        <form onsubmit="handleAdminLogin(event)" class="space-y-4">
+          <div>
+            <label class="block text-xs font-medium text-zinc-300 mb-1">Nome ADM</label>
+            <input type="text" id="loginUser" required placeholder="Digite o Nome ADM" class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-red transition">
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-zinc-300 mb-1">Palavra passe ADM</label>
+            <input type="password" id="loginPass" required placeholder="Digite a Palavra Passe" class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-red transition">
+          </div>
+          <div id="loginError" class="hidden text-xs text-red-500 bg-red-950/50 border border-red-800 p-2.5 rounded text-center">
+            Credenciais incorretas! Verifica o Nome e a Palavra Passe.
+          </div>
+          <button type="submit" class="w-full bg-brand-red hover:bg-brand-darkRed text-white font-bold py-2.5 rounded-lg text-sm transition shadow-lg">
+            Entrar no Painel ADMIN
+          </button>
+        </form>
+      </div>
+
+      <!-- PAINEL DE CONTROLO DO ADMINISTRADOR (APÓS LOGIN) -->
+      <div id="admin-panel" class="hidden space-y-8">
+        
+        <!-- Boas-vindas e Ações -->
+        <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-brand-red rounded-full flex items-center justify-center text-xl font-bold">
+              M
+            </div>
+            <div>
+              <h2 class="text-xl font-bold flex items-center gap-2">
+                Painel do Administrador <span class="text-xs bg-brand-red/20 text-brand-red border border-brand-red/40 px-2 py-0.5 rounded">M3NDS</span>
+              </h2>
+              <p class="text-xs text-zinc-400">Adiciona, elimina episódios e gere anúncios do site.</p>
+            </div>
+          </div>
+          <button onclick="adminLogout()" class="text-xs bg-zinc-800 hover:bg-zinc-700 text-zinc-300 px-4 py-2 rounded-lg border border-zinc-700 transition">
+            <i class="fa-solid fa-right-from-bracket"></i> Sair do Painel
+          </button>
+        </div>
+
+        <!-- FORMULÁRIO 1: ADICIONAR / EDITAR EPISÓDIOS E CONTEÚDOS -->
+        <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 shadow-xl space-y-6">
+          <div class="border-b border-zinc-800 pb-4">
+            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-plus-circle text-brand-red"></i> Publicar Novo Episódio ou Conteúdo
+            </h3>
+            <p class="text-xs text-zinc-400">Preencha os dados e cole o link do vídeo compatível com Video.js.</p>
+          </div>
+
+          <form onsubmit="handleSaveContent(event)" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-medium text-zinc-300 mb-1">Nome do Episódio / Filme *</label>
+                <input type="text" id="contentTitle" required placeholder="Ex: Episódio 1 - O Início" class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-brand-red">
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-zinc-300 mb-1">Tipo de Conteúdo</label>
+                <select id="contentType" class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-brand-red">
+                  <option value="Episódio">Episódio</option>
+                  <option value="Filme">Filme</option>
+                  <option value="Série">Série</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-medium text-zinc-300 mb-1">URL da Imagem de Capa (Thumb) *</label>
+              <input type="url" id="contentCover" required placeholder="https://exemplo.com/imagem.jpg" class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-brand-red">
+            </div>
+
+            <div>
+              <label class="block text-xs font-medium text-zinc-300 mb-1">URL do Vídeo / Stream (Video.js - MP4, HLS/m3u8) *</label>
+              <input type="url" id="contentVideoUrl" required placeholder="https://exemplo.com/video.mp4 ou .m3u8" class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-brand-red">
+            </div>
+
+            <div>
+              <label class="block text-xs font-medium text-zinc-300 mb-1">Descrição / Sinopse (Opcional)</label>
+              <textarea id="contentDesc" rows="2" placeholder="Resumo breve do episódio ou conteúdo..." class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-brand-red"></textarea>
+            </div>
+
+            <button type="submit" class="bg-brand-red hover:bg-brand-darkRed text-white font-bold px-6 py-2.5 rounded-lg text-sm transition shadow-lg flex items-center gap-2">
+              <i class="fa-solid fa-cloud-arrow-up"></i> Guardar e Publicar Conteúdo
+            </button>
+          </form>
+        </div>
+
+        <!-- FORMULÁRIO 2: GERIR E ELIMINAR EPISÓDIOS -->
+        <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 shadow-xl space-y-4">
+          <div class="flex items-center justify-between border-b border-zinc-800 pb-4">
+            <div>
+              <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                <i class="fa-solid fa-list-check text-brand-red"></i> Gestão e Eliminação de Episódios
+              </h3>
+              <p class="text-xs text-zinc-400">Elimina episódios ou conteúdos publicados na plataforma.</p>
+            </div>
+            <span id="admin-content-count" class="text-xs bg-zinc-800 px-2.5 py-1 rounded text-zinc-300">0 itens</span>
+          </div>
+
+          <!-- Tabela de Conteúdos -->
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs text-zinc-300">
+              <thead class="bg-zinc-950 uppercase text-zinc-400 font-semibold border-b border-zinc-800">
+                <tr>
+                  <th class="p-3">Capa</th>
+                  <th class="p-3">Nome / Título</th>
+                  <th class="p-3">Tipo</th>
+                  <th class="p-3">Link do Vídeo</th>
+                  <th class="p-3 text-right">Ação</th>
+                </tr>
+              </thead>
+              <tbody id="adminTableBody" class="divide-y divide-zinc-800">
+                <!-- Linhas dos conteúdos renderizadas aqui -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- FORMULÁRIO 3: GESTÃO DE ANÚNCIOS / PUBLICIDADE -->
+        <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 shadow-xl space-y-4">
+          <div class="border-b border-zinc-800 pb-4">
+            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-rectangle-ad text-brand-red"></i> Configuração de Anúncios no Site
+            </h3>
+            <p class="text-xs text-zinc-400">Ativa banners publicitários no topo da página ou no leitor.</p>
+          </div>
+
+          <form onsubmit="handleSaveAd(event)" class="space-y-4">
+            <div class="flex items-center gap-3">
+              <input type="checkbox" id="adActive" class="w-4 h-4 accent-brand-red rounded">
+              <label for="adActive" class="text-sm font-medium text-white">Ativar Anúncio no Topo</label>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-medium text-zinc-300 mb-1">URL da Imagem do Banner</label>
+                <input type="url" id="adImgUrl" placeholder="https://exemplo.com/banner.gif" class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-brand-red">
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-zinc-300 mb-1">URL de Destino (Ao Clicar)</label>
+                <input type="url" id="adTargetUrl" placeholder="https://exemplo.com/promocao" class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-brand-red">
+              </div>
+            </div>
+
+            <button type="submit" class="bg-zinc-800 hover:bg-zinc-700 text-white font-bold px-5 py-2 rounded-lg text-sm border border-zinc-700 transition flex items-center gap-2">
+              <i class="fa-solid fa-floppy-disk"></i> Guardar Alterações do Anúncio
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- MODAL DO PLAYER PERSONALIZADO (VIDEO.JS) -->
+  <div id="playerModal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-2 sm:p-6 hidden">
+    <div class="relative w-full max-w-5xl bg-zinc-950 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col">
+      <!-- Cabeçalho do Modal -->
+      <div class="flex items-center justify-between p-4 border-b border-zinc-800 bg-zinc-900/50">
+        <div>
+          <h3 id="modalVideoTitle" class="text-base sm:text-lg font-bold text-white">Nome do Vídeo</h3>
+          <p id="modalVideoDesc" class="text-xs text-zinc-400 line-clamp-1">Descrição do episódio...</p>
+        </div>
+        <button onclick="closePlayer()" class="w-8 h-8 rounded-full bg-zinc-800 hover:bg-brand-red text-zinc-300 hover:text-white flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Contentor do Video.js -->
+      <div class="relative aspect-video w-full bg-black">
+        <video id="my-video" class="video-js vjs-matrix vjs-big-play-centered w-full h-full" controls preload="auto" data-setup="{}">
+          <p class="vjs-no-js">
+            Para ver este vídeo por favor ativa o JavaScript ou atualiza para um navegador web compatível.
+          </p>
+        </video>
+      </div>
+    </div>
+  </div>
+
+  <!-- RODAPÉ -->
+  <footer class="border-t border-zinc-800 bg-zinc-950 py-6 mt-12">
+    <div class="max-w-7xl mx-auto px-4 text-center text-xs text-zinc-500 space-y-2">
+      <p>&copy; 2026 Ville Stream. Todos os direitos reservados. Painel ADM gerido por <strong>M3NDS</strong>.</p>
+    </div>
+  </footer>
+
+  <!-- SCRIPT JS DE LÓGICA & FUNCIONALIDADES -->
+  <script>
+    // Estado Global do Sistema
+    let isLoggedIn = false;
+    let playerInstance = null;
+    let currentFilter = 'all';
+
+    // Base de dados inicial de vídeos / episódios
+    let mediaList = [
+      {
+        id: '1',
+        title: 'Episódio 1 - Origens',
+        type: 'Episódio',
+        cover: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=600&q=80',
+        videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        desc: 'Primeiro episódio da temporada de estreia.'
+      },
+      {
+        id: '2',
+        title: 'Cyber City - O Filme',
+        type: 'Filme',
+        cover: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80',
+        videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+        desc: 'Filme de ficção científica ambientado num futuro distópico.'
+      }
+    ];
+
+    // Anúncio Padrão
+    let adConfig = {
+      active: true,
+      imgUrl: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=1200&q=80',
+      targetUrl: 'https://google.com'
+    };
+
+    // Inicialização ao carregar a página
+    document.addEventListener('DOMContentLoaded', () => {
+      // Inicializar Video.js
+      playerInstance = videojs('my-video');
+
+      // Renderizar catálogo e anúncios
+      renderCatalog();
+      renderAdminTable();
+      updateAdBanner();
+    });
+
+    // Mudar de Aba na Navegação
+    function switchTab(tab) {
+      document.getElementById('tab-catalog').classList.add('hidden');
+      document.getElementById('tab-admin').classList.add('hidden');
+
+      // Reset botões
+      document.getElementById('nav-home').classList.remove('text-brand-red');
+      document.getElementById('nav-movies').classList.remove('text-brand-red');
+      document.getElementById('nav-series').classList.remove('text-brand-red');
+
+      if (tab === 'admin') {
+        document.getElementById('tab-admin').classList.remove('hidden');
+      } else {
+        document.getElementById('tab-catalog').classList.remove('hidden');
+        currentFilter = tab;
+        if (tab === 'movies') {
+          document.getElementById('nav-movies').classList.add('text-brand-red');
+          document.getElementById('catalog-title').innerHTML = '<i class="fa-solid fa-film text-brand-red"></i> Filmes';
+        } else if (tab === 'series') {
+          document.getElementById('nav-series').classList.add('text-brand-red');
+          document.getElementById('catalog-title').innerHTML = '<i class="fa-solid fa-tv text-brand-red"></i> Séries & Episódios';
+        } else {
+          document.getElementById('nav-home').classList.add('text-brand-red');
+          document.getElementById('catalog-title').innerHTML = '<i class="fa-solid fa-fire text-brand-red"></i> Catálogo Completo';
+        }
+        renderCatalog();
+      }
+    }
+
+    // Renderizar Grelha do Catálogo
+    function renderCatalog() {
+      const grid = document.getElementById('mediaGrid');
+      grid.innerHTML = '';
+
+      let items = mediaList;
+      if (currentFilter === 'movies') items = mediaList.filter(i => i.type === 'Filme');
+      if (currentFilter === 'series') items = mediaList.filter(i => i.type === 'Episódio' || i.type === 'Série');
+
+      const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+      if (searchQuery) {
+        items = items.filter(i => i.title.toLowerCase().includes(searchQuery) || (i.desc && i.desc.toLowerCase().includes(searchQuery)));
+      }
+
+      document.getElementById('content-count').textContent = `${items.length} Títulos`;
+
+      if (items.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full py-12 text-center text-zinc-500">
+            <i class="fa-solid fa-folder-open text-4xl mb-2"></i>
+            <p>Nenhum conteúdo encontrado nesta categoria.</p>
+          </div>
+        `;
+        return;
+      }
+
+      items.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'group bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden hover:border-brand-red transition cursor-pointer flex flex-col shadow-md';
+        card.onclick = () => playMedia(item.videoUrl, item.title, item.desc);
+
+        card.innerHTML = `
+          <div class="relative aspect-[2/3] w-full overflow-hidden bg-zinc-950">
+            <img src="${item.cover}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+              <div class="w-12 h-12 bg-brand-red rounded-full flex items-center justify-center text-white shadow-lg">
+                <i class="fa-solid fa-play ml-1"></i>
+              </div>
+            </div>
+            <span class="absolute top-2 left-2 bg-black/70 backdrop-blur-md text-[10px] font-bold text-white px-2 py-0.5 rounded border border-white/10">
+              ${item.type}
+            </span>
+          </div>
+          <div class="p-3 flex-grow flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-sm text-white line-clamp-1 group-hover:text-brand-red transition">${item.title}</h3>
+              <p class="text-xs text-zinc-400 line-clamp-2 mt-1">${item.desc || 'Sem descrição.'}</p>
+            </div>
+            <button class="mt-3 w-full bg-zinc-800 group-hover:bg-brand-red text-zinc-200 group-hover:text-white py-1.5 rounded text-xs font-semibold transition flex items-center justify-center gap-1">
+              <i class="fa-solid fa-play text-[10px]"></i> Assistir
+            </button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Filtrar Pesquisa
+    function filterContent() {
+      renderCatalog();
+    }
+
+    // Reproduzir Vídeo no Player Video.js
+    function playMedia(url, title, desc) {
+      document.getElementById('modalVideoTitle').textContent = title;
+      document.getElementById('modalVideoDesc').textContent = desc || '';
+
+      // Definir fonte do video.js
+      let type = 'video/mp4';
+      if (url.endsWith('.m3u8')) type = 'application/x-mpegURL';
+
+      playerInstance.src({ src: url, type: type });
+      document.getElementById('playerModal').classList.remove('hidden');
+      playerInstance.play();
+    }
+
+    // Fechar Player Modal
+    function closePlayer() {
+      playerInstance.pause();
+      document.getElementById('playerModal').classList.add('hidden');
+    }
+
+    // AUTHENTICAÇÃO ADMIN
+    function handleAdminLogin(e) {
+      e.preventDefault();
+      const user = document.getElementById('loginUser').value;
+      const pass = document.getElementById('loginPass').value;
+
+      if (user === 'M3NDS' && pass === 'adm12305') {
+        isLoggedIn = true;
+        document.getElementById('admin-login-card').classList.add('hidden');
+        document.getElementById('admin-panel').classList.remove('hidden');
+        document.getElementById('adminBadge').classList.remove('hidden');
+        document.getElementById('loginError').classList.add('hidden');
+      } else {
+        document.getElementById('loginError').classList.remove('hidden');
+      }
+    }
+
+    function adminLogout() {
+      isLoggedIn = false;
+      document.getElementById('admin-login-card').classList.remove('hidden');
+      document.getElementById('admin-panel').classList.add('hidden');
+      document.getElementById('adminBadge').classList.add('hidden');
+      document.getElementById('loginUser').value = '';
+      document.getElementById('loginPass').value = '';
+    }
+
+    // GUARDAR NOVO EPISÓDIO / CONTEÚDO
+    function handleSaveContent(e) {
+      e.preventDefault();
+      const title = document.getElementById('contentTitle').value;
+      const type = document.getElementById('contentType').value;
+      const cover = document.getElementById('contentCover').value;
+      const videoUrl = document.getElementById('contentVideoUrl').value;
+      const desc = document.getElementById('contentDesc').value;
+
+      const newItem = {
+        id: Date.now().toString(),
+        title,
+        type,
+        cover,
+        videoUrl,
+        desc
+      };
+
+      mediaList.unshift(newItem);
+      renderCatalog();
+      renderAdminTable();
+
+      // Reset formulário
+      e.target.reset();
+      alert('Conteúdo/Episódio publicado com sucesso!');
+    }
+
+    // ELIMINAR EPISÓDIO / CONTEÚDO NO PAINEL ADMIN
+    function deleteContent(id) {
+      if (confirm('Tens a certeza que desejas eliminar este episódio/conteúdo?')) {
+        mediaList = mediaList.filter(item => item.id !== id);
+        renderCatalog();
+        renderAdminTable();
+      }
+    }
+
+    // RENDERIZAR TABELA ADMIN DE REMOÇÃO DE CONTEÚDO
+    function renderAdminTable() {
+      const tbody = document.getElementById('adminTableBody');
+      tbody.innerHTML = '';
+
+      document.getElementById('admin-content-count').textContent = `${mediaList.length} itens`;
+
+      mediaList.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-zinc-950/50 transition';
+        tr.innerHTML = `
+          <td class="p-3">
+            <img src="${item.cover}" alt="${item.title}" class="w-10 h-14 object-cover rounded border border-zinc-800">
+          </td>
+          <td class="p-3 font-semibold text-white">${item.title}</td>
+          <td class="p-3">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-zinc-800 border border-zinc-700 text-zinc-300">
+              ${item.type}
+            </span>
+          </td>
+          <td class="p-3 text-zinc-400 font-mono text-[10px] max-w-xs truncate">${item.videoUrl}</td>
+          <td class="p-3 text-right">
+            <button onclick="deleteContent('${item.id}')" class="bg-red-950 hover:bg-brand-red text-red-300 hover:text-white px-3 py-1.5 rounded border border-red-800 transition flex items-center gap-1 ml-auto">
+              <i class="fa-solid fa-trash"></i> Eliminar
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // GUARDAR E ATUALIZAR ANÚNCIO
+    function handleSaveAd(e) {
+      e.preventDefault();
+      adConfig.active = document.getElementById('adActive').checked;
+      adConfig.imgUrl = document.getElementById('adImgUrl').value;
+      adConfig.targetUrl = document.getElementById('adTargetUrl').value;
+
+      updateAdBanner();
+      alert('Configurações de anúncios guardadas com sucesso!');
+    }
+
+    function updateAdBanner() {
+      const container = document.getElementById('ad-top-container');
+      if (adConfig.active && adConfig.imgUrl) {
+        document.getElementById('ad-top-img').src = adConfig.imgUrl;
+        document.getElementById('ad-top-link').href = adConfig.targetUrl || '#';
+        container.classList.remove('hidden');
+      } else {
+        container.classList.add('hidden');
+      }
+    }
+
+    function closeAd(id) {
+      document.getElementById(id).classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
